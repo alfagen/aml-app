@@ -1,0 +1,16 @@
+head
+  title Aml
+  = csrf_meta_tags
+  = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+  = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+body
+  .container
+    ul.navbar-nav
+      li.nav.item.nav-link
+        = link_to 'Documents kinds', document_kinds_path
+        =< link_to 'Clients', clients_path
+        =< link_to 'Clients documents', client_documents_path
+    br
+    p.notice= notice
+    p.alert= alert
+    = yield

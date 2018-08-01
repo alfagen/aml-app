@@ -1,0 +1,4 @@
+br
+| Document kind: #{document_kind.title}
+=< link_to 'Edit', edit_document_kind_path(document_kind)
+=< link_to 'Destroy', document_kind_path(document_kind), method: :delete, data: { confirm: 'Are you sure?' }

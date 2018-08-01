@@ -1,0 +1,4 @@
+br
+| Name: #{client.name} inn: #{client.inn}
+=< link_to 'Edit', edit_client_path(client)
+=< link_to 'Destroy', client_path(client), method: :delete, data: { confirm: 'Are you sure?' }
