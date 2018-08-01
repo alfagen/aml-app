@@ -13,6 +13,8 @@
 !/log/.keep
 !/tmp/.keep
 
+/config/database.yml
+.ruby-version
 # Ignore uploaded files in development
 /storage/*
 
@@ -20,6 +22,7 @@
 /yarn-error.log
 
 /public/assets
+/public/uploads
 .byebug_history
 
 # Ignore master key for decrypting credentials and more.

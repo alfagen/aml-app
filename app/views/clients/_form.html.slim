@@ -1,0 +1,5 @@
+= simple_form_for client do |form|
+  = form.input :name, as: :string, input_html: { style: 'height:35px;' }, required: true
+  = form.input :inn, as: :integer, input_html: { style: 'height:35px;' }, required: true
+  br
+  = form.button :submit
