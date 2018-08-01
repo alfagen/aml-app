@@ -1,0 +1,11 @@
+defaults: &defaults
+  title: AML
+  default_url_options: &default_url_options
+    host: <%= ENV['APP_HOST'] || 'localhost' %>
+
+development:
+  <<: *defaults
+test:
+  <<: *defaults
+production:
+  <<: *defaults
