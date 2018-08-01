@@ -1,0 +1,2 @@
+module DocumentKindsHelper
+end
