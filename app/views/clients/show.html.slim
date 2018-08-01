@@ -1,0 +1,10 @@
+| Name: #{client.name} inn: #{client.inn}
+br
+= render client_documents
+br
+| Add new document
+= simple_form_for ClientDocument.new, url: document_client_path do |form|
+  = form.input :document_kind_id, collection: document_kinds, include_blank: false
+  = form.file_field :file
+  br
+  = form.button :submit

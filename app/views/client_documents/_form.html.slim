@@ -1,0 +1,9 @@
+| Client: Name: #{client.name} inn: #{client.inn}
+=< link_to 'Show', client_path(client)
+br
+= simple_form_for client_document do |form|
+  = form.hidden_field :client_id, value: client.id
+  = form.input :document_kind_id, collection: document_kinds, include_blank: false
+  = form.file_field :file
+  br
+  = form.button :submit
