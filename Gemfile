@@ -12,7 +12,7 @@ gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
+# gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
 
@@ -59,9 +59,6 @@ gem 'kaminari-i18n'
 gem 'bootstrap-kaminari-views'
 
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
@@ -72,6 +69,23 @@ group :development, :test do
 end
 
 group :development do
+  gem 'capistrano', require: false
+  gem 'capistrano-upload-config', require: false
+  gem 'capistrano3-puma', github: 'seuros/capistrano-puma', require: false
+  gem 'capistrano-rails', require: false
+  gem 'capistrano-shell', require: false
+  gem 'capistrano-db-tasks', require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano-rbenv', require: false
+  gem 'capistrano-secrets-yml', require: false
+  gem 'capistrano-maintenance', require: false
+  gem 'bugsnag-capistrano', require: false
+  gem 'capistrano-faster-assets', require: false
+  gem 'capistrano-semver-git-tags', require: false
+  gem 'capistrano-git-with-submodules', '~> 2.0'
+  gem 'capistrano-tasks', github: 'alfagen/capistrano-tasks', require: false
+  gem 'capistrano-rails-console', require: false
+
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
