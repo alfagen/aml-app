@@ -1,0 +1,5 @@
+br
+| Client: #{client_document.name} Document kind: #{client_document.title} state: #{client_document.workflow_state}
+=< link_to 'Show', client_document_path(client_document)
+=< link_to 'Edit', edit_client_document_path(client_document)
+=< link_to 'Destroy', client_document_path(client_document), method: :delete, data: { confirm: 'Are you sure?' }
