@@ -1,3 +1,13 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  root 'client_documents#index'
+  resources :document_kinds, only: %i[index new create]
+  resources :clients, except: %i[edit update destroy] do
+    post :document, on: :member
+  end
+  resources :client_documents, only: %i[show index] do
+    member do
+      put :accept
+      put :reject
+    end
+  end
 end
