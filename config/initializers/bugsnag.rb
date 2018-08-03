@@ -1,5 +1,5 @@
 Bugsnag.configure do |config|
-  config.api_key = "3019edd97c98a2d81f7a880a635b3957"
+  config.api_key = Settings.bugsnag_api_key
   config.app_version = AppVersion.format('%M.%m.%p')
   config.notify_release_stages = %w(production staging staging2 staging3)
   config.send_code = true

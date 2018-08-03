@@ -3,9 +3,13 @@ defaults: &defaults
   default_url_options: &default_url_options
     host: <%= ENV['APP_HOST'] || 'localhost' %>
 
+  bugsnag_api_key: 3019edd97c98a2d81f7a880a635b3957
+
 development:
   <<: *defaults
 test:
   <<: *defaults
 production:
+  <<: *defaults
+staging:
   <<: *defaults
