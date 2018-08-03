@@ -1,4 +1,6 @@
 class ClientDocumentsController < ApplicationController
+  include Pagination
+
   def index
     render :index, locals: { client_documents: paginate(ClientDocument.ordered) }
   end
@@ -16,7 +18,7 @@ class ClientDocumentsController < ApplicationController
   rescue ActiveRecord::RecordInvalid => e
     flash[:alert] = e.message
     render :new, locals: { client_document: e.record, 
-                           client: Client.find(permitted_params[:client_id]),
+                           client: e.record.client,
                            document_kinds: DocumentKind.all.ordered }
   end
 

@@ -18,7 +18,7 @@ module Aml
       generate.request_specs false
       generate.stylesheets false
       generate.view_specs false
-      generate.controller_spec false
+      generate.controller_spec true
     end
   end
 end

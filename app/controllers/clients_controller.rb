@@ -1,4 +1,6 @@
 class ClientsController < ApplicationController
+  include Pagination
+
   def index
     render :index, locals: { clients: paginate(Client.ordered) }
   end

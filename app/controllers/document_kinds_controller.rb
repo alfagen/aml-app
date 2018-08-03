@@ -1,4 +1,6 @@
 class DocumentKindsController < ApplicationController
+  include Pagination
+
   def index
     render :index, locals: { document_kinds: paginate(DocumentKind.ordered) }
   end
