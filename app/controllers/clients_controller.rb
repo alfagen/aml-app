@@ -27,6 +27,6 @@ class ClientsController < ApplicationController
   end
 
   def permitted_params
-    params.permit(:name, :inn)
+    params[:client] ? params.require(:client).permit(:name, :inn) : params.permit(:name, :inn)
   end
 end
