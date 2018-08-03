@@ -5,7 +5,6 @@
 # add gem 'rails-assets-noty' with source 'https://rails-assets.org'
 #
 
-
 TIMEOUT = 5000
 
 window.Flash =
@@ -32,4 +31,3 @@ window.ajaxFailHanlder = (response) ->
   return if response.readyState == 0
   console.error? "Fail загрузки #{response}"
   Flash.error response
-  

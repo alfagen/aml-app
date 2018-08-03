@@ -11,6 +11,6 @@ body
         =< link_to 'Клиенты', clients_path
         =< link_to 'Документы клиентов', client_documents_path
     br
-    p.notice= notice
-    p.alert= alert
+      javascript:
+        window.Flash.error("#{alert}");
     = yield
