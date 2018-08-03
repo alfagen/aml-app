@@ -1,0 +1,6 @@
+= simple_form_for client_document do |form|
+  = form.input :document_kind_id, collection: document_kinds, include_blank: false
+  = form.hidden_field :client_id, value: client.id
+  = form.file_field :file
+  br
+  = form.button :submit

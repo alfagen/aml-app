@@ -1,10 +1,5 @@
-| Name: #{client.name} inn: #{client.inn}
+| Имя: #{client.name} ИНН: #{client.inn}
 br
-= render client_documents
+= render partial: 'document', collection: documents
 br
-| Add new document
-= simple_form_for ClientDocument.new, url: document_client_path do |form|
-  = form.input :document_kind_id, collection: document_kinds, include_blank: false
-  = form.file_field :file
-  br
-  = form.button :submit
+= link_to 'Добавить документ клиенту', new_client_document_path(client_id: client.id)

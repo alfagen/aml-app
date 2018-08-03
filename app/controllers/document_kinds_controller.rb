@@ -9,11 +9,10 @@ class DocumentKindsController < ApplicationController
 
   def create
     new_document_kind = DocumentKind.new(permitted_params)
-    if new_document_kind.save
-      redirect_to document_kinds_path
-    else
-      redirect_to new_document_kind_path, alert: new_document_kind.errors.full_messages.join(', ')
-    end
+    new_document_kind.save!
+    redirect_to document_kinds_path
+  rescue ActiveRecord::RecordInvalid => e
+    redirect_to new_document_kind_path, alert: new_document_kind.errors.full_messages.join(', ')
   end
 
   private
