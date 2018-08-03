@@ -19,6 +19,6 @@ class DocumentKindsController < ApplicationController
   private
 
   def permitted_params
-    params[:document_kind] ? params.require(:document_kind).permit(:title) : params.permit(:title)
+    params.fetch(:document_kind, params.permit(:title)).permit(:title)
   end
 end
