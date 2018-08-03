@@ -1,19 +1,23 @@
 class ClientDocumentsController < ApplicationController
   def index
-    render :index, locals: { client_documents: ClientDocument.page(params[:page]).ordered}
+    render :index, locals: { client_documents: paginate(ClientDocument.ordered) }
   end
 
   def new
-    render :new, locals: { client_document: ClientDocument.new, client: Client.find(params[:client_id]), document_kinds: DocumentKind.all.ordered }
+    render :new, locals: { client_document: ClientDocument.new(permitted_params),
+                           client: Client.find(permitted_params[:client_id]),
+                           document_kinds: DocumentKind.all.ordered }
   end
 
   def create
-    new_client_document = ClientDocument.new(document_params)
+    new_client_document = ClientDocument.new(permitted_params)
     new_client_document.save!
     redirect_to client_documents_path
   rescue ActiveRecord::RecordInvalid => e
-    flash[:alert] = new_client_document.errors.full_messages.join(', ')
-    redirect_to client_path(Client.find(document_params[:client_id]))
+    flash[:alert] = e.message
+    render :new, locals: { client_document: e.record, 
+                           client: Client.find(permitted_params[:client_id]),
+                           document_kinds: DocumentKind.all.ordered }
   end
 
   def show
@@ -37,12 +41,6 @@ class ClientDocumentsController < ApplicationController
   end
 
   def permitted_params
-    params.permit(client_document:[:document_kind_id, :file, :client_id])
-  end
-
-  def document_params
-    { document_kind_id: permitted_params[:client_document][:document_kind_id],
-      file: permitted_params[:client_document][:file],
-      client_id: permitted_params[:client_document][:client_id] }
+    params.fetch(:client_document, params.permit(:client_id)).permit(:document_kind_id, :file, :client_id)
   end
 end

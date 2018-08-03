@@ -1,10 +1,10 @@
 class DocumentKindsController < ApplicationController
   def index
-    render :index, locals: { document_kinds: DocumentKind.all.ordered }
+    render :index, locals: { document_kinds: paginate(DocumentKind.ordered) }
   end
 
   def new
-    render :new, locals: { document_kind: DocumentKind.new }
+    render :new, locals: { document_kind: DocumentKind.new(permitted_params) }
   end
 
   def create
@@ -12,12 +12,13 @@ class DocumentKindsController < ApplicationController
     new_document_kind.save!
     redirect_to document_kinds_path
   rescue ActiveRecord::RecordInvalid => e
-    redirect_to new_document_kind_path, alert: new_document_kind.errors.full_messages.join(', ')
+    flash[:alert] = e.message
+    render :new, locals: { document_kind: e.record }
   end
 
   private
 
   def permitted_params
-    params.require(:document_kind).permit(:title)
+    params.permit(:title)
   end
 end

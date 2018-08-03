@@ -14,7 +14,6 @@
 !/tmp/.keep
 
 /config/database.yml
-.ruby-version
 # Ignore uploaded files in development
 /storage/*
 

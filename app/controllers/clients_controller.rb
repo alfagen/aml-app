@@ -1,14 +1,14 @@
 class ClientsController < ApplicationController
   def index
-    render :index, locals: { clients: Client.page(params[:page]).ordered }
+    render :index, locals: { clients: paginate(Client.ordered) }
   end
 
   def show
-    render :show, locals: { client: client, documents: client.client_documents }
+    render :show, locals: { client: client, documents: client.client_documents.ordered }
   end
 
   def new
-    render :new, locals: { client: Client.new }
+    render :new, locals: { client: Client.new(permitted_params) }
   end
 
   def create
@@ -16,7 +16,8 @@ class ClientsController < ApplicationController
     new_client.save!
     redirect_to clients_path
   rescue ActiveRecord::RecordInvalid => e
-    redirect_to new_client_path, alert: new_client.errors.full_messages.join(', ')
+    flash[:alert] = e.message
+    render :new, locals: { client: e.record }
   end
 
   private
@@ -26,6 +27,6 @@ class ClientsController < ApplicationController
   end
 
   def permitted_params
-    params.require(:client).permit(:name, :inn)
+    params.permit(:name, :inn)
   end
 end
