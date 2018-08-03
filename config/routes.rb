@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
   root to: 'dashboard#index'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :document_kinds, only: %i[index new create]
+  resources :clients, except: %i[edit update destroy]
+  resources :client_documents, only: %i[show index new create] do
+    member do
+      put :accept
+      put :reject
+    end
+  end
 end

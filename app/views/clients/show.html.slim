@@ -1,0 +1,5 @@
+| Имя: #{client.name} ИНН: #{client.inn}
+br
+= render partial: 'document', collection: documents
+br
+= link_to 'Добавить документ клиенту', new_client_document_path(client_id: client.id)

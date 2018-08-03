@@ -52,6 +52,10 @@ gem 'bootstrap-sass', '~> 3.2'
 gem 'breadcrumbs_on_rails'
 gem 'simple_form', git: 'git://github.com/plataformatec/simple_form.git'
 
+source 'http://insecure.rails-assets.org' do
+  gem 'rails-assets-noty'
+end
+
 gem 'rack-request-id'
 gem 'rack-utf8_sanitizer'
 gem 'kaminari'
