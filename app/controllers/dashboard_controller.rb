@@ -2,7 +2,7 @@ class DashboardController < ApplicationController
   def index
     # Пример флешек
     #
-    flash.alert = 'Внимание'
-    flash.notice = 'Сообщение'
+    flash.now.alert = 'Внимание'
+    flash.now.notice = 'Сообщение'
   end
 end
