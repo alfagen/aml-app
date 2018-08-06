@@ -1,3 +1,5 @@
-br
-| Клиент: #{client_document.name} Тип документа: #{client_document.title} состояние: #{client_document.workflow_state}
-=< link_to 'Показать', client_document_path(client_document)
+tr
+  td #{client_document.name}
+  td #{client_document.title}
+  td #{client_document.workflow_state}
+  td = link_to 'Показать', client_document_path(client_document), class: 'btn btn-primary'

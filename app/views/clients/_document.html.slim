@@ -1,3 +1,4 @@
-br
-| Тип документа: #{document.title} состояние: #{document.workflow_state}
-=< link_to 'Показать', client_document_path(document)
+tr
+  td #{document.title}
+  td #{document.workflow_state}
+  td = link_to 'Показать', client_document_path(document), class: 'btn btn-primary'

@@ -1,4 +1,8 @@
-| Список типов документа:
-= render document_kinds
-br
-= link_to 'Новый тип документа', new_document_kind_path
+h4 Список типов документа:
+table.table.table-bordered
+  thead
+    tr
+      th Типы документа:
+  tbody
+    = render document_kinds
+= link_to 'Новый тип документа', new_document_kind_path, class: 'btn btn-primary'

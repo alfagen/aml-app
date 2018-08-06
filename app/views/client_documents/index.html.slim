@@ -1,3 +1,10 @@
-| Список клиентoв и документов:
-= paginate client_documents
-= render client_documents
+h4 Список клиентoв и документов:
+= paginate client_documents, theme: 'twitter-bootstrap-3'
+table.table.table-bordered
+  thead
+    tr
+      th Клиент:
+      th Тип документа:
+      th Cостояние:
+  tbody
+    = render client_documents

@@ -1,13 +1,10 @@
-| Клиент: #{client_document.name}
-br
-| Тип документа: #{client_document.title}
-br
-| Файл: 
-br
+h4 Клиент: #{client_document.name}
+h4 Тип документа: #{client_document.title}
+h4 Файл: 
 = image_tag(client_document.file.to_s, size: '200x200')
 br
-| Состояние: #{client_document.workflow_state}
+h4 Состояние: #{client_document.workflow_state}
 - if client_document.workflow_state == 'pending' || client_document.workflow_state == 'rejected'
-  =< link_to 'Принять', accept_client_document_path(client_document), method: :put
+  = button_to 'Принять', accept_client_document_path(client_document), method: :put, class: 'btn btn-primary'
 - if client_document.workflow_state == 'pending' || client_document.workflow_state == 'accepted'
-  =< link_to 'Отказать', reject_client_document_path(client_document), method: :put
+  = button_to 'Отказать', reject_client_document_path(client_document), method: :put, class: 'btn btn-primary'
