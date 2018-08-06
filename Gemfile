@@ -52,7 +52,9 @@ gem 'bootstrap-sass', '~> 3.2'
 gem 'breadcrumbs_on_rails'
 gem 'simple_form', git: 'git://github.com/plataformatec/simple_form.git'
 
-source 'http://insecure.rails-assets.org' do
+source 'https://rails-assets.org' do
+  # На случай есил в rail-assets снова отвалится https используем опасный вариант
+  # source 'http://insecure.rails-assets.org' do
   gem 'rails-assets-noty'
 end
 
@@ -73,6 +75,8 @@ group :development, :test do
 end
 
 group :development do
+  gem 'scss-lint'
+
   gem 'capistrano', require: false
   gem 'capistrano-upload-config', require: false
   gem 'capistrano3-puma', github: 'seuros/capistrano-puma', require: false
@@ -96,6 +100,13 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+
+  gem 'guard'
+  gem 'terminal-notifier-guard' #, '~> 1.6.1', require: darwin_only('terminal-notifier-guard')
+  gem 'guard-rails'
+  gem 'guard-rspec'
+  gem 'guard-bundler'
+  gem 'guard-ctags-bundler'
 end
 
 group :test do
