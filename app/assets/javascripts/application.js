@@ -14,4 +14,5 @@
 //= require bootstrap
 //= require activestorage
 //= require turbolinks
+//= require flash
 //= require_tree .
