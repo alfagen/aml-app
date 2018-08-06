@@ -12,9 +12,10 @@ class DocumentKindsController < ApplicationController
   def create
     new_document_kind = DocumentKind.new(permitted_params)
     new_document_kind.save!
+    flash[:alert] = { 'type' => 'success', 'message' => "Тип документа: #{new_document_kind.title} был создан" }
     redirect_to document_kinds_path
   rescue ActiveRecord::RecordInvalid => e
-    flash[:alert] = e.message
+    flash[:alert] = { 'type' => 'error', 'message' => e.message }
     render :new, locals: { document_kind: e.record }
   end
 
