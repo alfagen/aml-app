@@ -52,7 +52,9 @@ gem 'bootstrap-sass', '~> 3.2'
 gem 'breadcrumbs_on_rails'
 gem 'simple_form', git: 'git://github.com/plataformatec/simple_form.git'
 
-source 'http://insecure.rails-assets.org' do
+source 'https://rails-assets.org' do
+  # На случай есил в rail-assets снова отвалится https используем опасный вариант
+  # source 'http://insecure.rails-assets.org' do
   gem 'rails-assets-noty'
 end
 
@@ -73,6 +75,8 @@ group :development, :test do
 end
 
 group :development do
+  gem 'scss-lint'
+
   gem 'capistrano', require: false
   gem 'capistrano-upload-config', require: false
   gem 'capistrano3-puma', github: 'seuros/capistrano-puma', require: false
