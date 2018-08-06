@@ -6,9 +6,21 @@ head
 body
   = render 'flashes'
   .container
-    ul.navbar-nav
-      li.nav.item.nav-link
-        = link_to 'Типы документов', document_kinds_path
-        =< link_to 'Клиенты', clients_path
-        =< link_to 'Документы клиентов', client_documents_path
+    navbar.navbar-default.navbar-fixed-top
+      .container-fluid
+        .navbar-header
+          button.navbar-toggle.collapsed aria-expanded="false" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button" 
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+        #bs-example-navbar-collapse-1.collapse.navbar-collapse
+          ul.nav.navbar-nav
+            li
+              = link_to 'Типы документов', document_kinds_path
+            li
+              = link_to 'Клиенты', clients_path
+            li
+              = link_to 'Документы клиентов', client_documents_path
+    br
     = yield
