@@ -14,9 +14,11 @@ class ClientDocumentsController < ApplicationController
   def create
     new_client_document = ClientDocument.new(permitted_params)
     new_client_document.save!
+    flash[:alert] = { 'type' => 'success', 
+                      'message' => "Документ: #{new_client_document.title} для клиента #{new_client_document.name} был создан" }
     redirect_to client_documents_path
   rescue ActiveRecord::RecordInvalid => e
-    flash[:alert] = e.message
+    flash[:alert] = { 'type' => 'error', 'message' => e.message }
     render :new, locals: { client_document: e.record, 
                            client: e.record.client,
                            document_kinds: DocumentKind.all.ordered }

@@ -16,9 +16,10 @@ class ClientsController < ApplicationController
   def create
     new_client = Client.new(permitted_params)
     new_client.save!
+    flash[:alert] = { 'type' => 'success', 'message' => "Клиент: #{new_client.name} был создан" }
     redirect_to clients_path
   rescue ActiveRecord::RecordInvalid => e
-    flash[:alert] = e.message
+    flash[:alert] = { 'type' => 'error', 'message' => e.message }
     render :new, locals: { client: e.record }
   end
 

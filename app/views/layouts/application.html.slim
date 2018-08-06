@@ -4,6 +4,10 @@ head
   = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
   = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
 body
+  - if alert
+    javascript:
+      window.Flash["#{alert.fetch('type', 'info')}"]("#{alert['message']}");
+    - flash.discard
   .container
     ul.navbar-nav
       li.nav.item.nav-link
@@ -11,6 +15,4 @@ body
         =< link_to 'Клиенты', clients_path
         =< link_to 'Документы клиентов', client_documents_path
     br
-    p.notice= notice
-    p.alert= alert
     = yield
