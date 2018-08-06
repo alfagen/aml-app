@@ -6,7 +6,7 @@ head
 body
   = render 'flashes'
   .container
-    navbar.navbar-default.navbar-fixed-top
+    nav.navbar.navbar-default.navbar-fixed-top
       .container-fluid
         .navbar-header
           button.navbar-toggle.collapsed aria-expanded="false" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button" 
@@ -14,7 +14,8 @@ body
             span.icon-bar
             span.icon-bar
             span.icon-bar
-        #bs-example-navbar-collapse-1.collapse.navbar-collapse
+        = link_to app_title, root_path, class: 'navbar-brand'
+        .collapse.navbar-collapse
           ul.nav.navbar-nav
             li
               = link_to 'Типы документов', document_kinds_path
