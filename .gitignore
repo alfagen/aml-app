@@ -17,6 +17,9 @@
 # Ignore uploaded files in development
 /storage/*
 
+gems.tags
+tags
+
 /node_modules
 /yarn-error.log
 
