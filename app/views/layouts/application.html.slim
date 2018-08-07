@@ -6,7 +6,6 @@ head
 body
   .container
     nav.navbar.navbar-default.navbar-fixed-top
-      .container-fluid
         .navbar-header
           button.navbar-toggle.collapsed aria-expanded="false" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button" 
             span.sr-only Toggle navigation
@@ -17,10 +16,10 @@ body
         .collapse.navbar-collapse
           ul.nav.navbar-nav
             li
-              = link_to 'Типы документов', document_kinds_path
+              = active_link_to 'Типы документов', document_kinds_path, class_active: 'current'
             li
-              = link_to 'Клиенты', clients_path
+              = active_link_to 'Клиенты', clients_path, class_active: 'current'
             li
-              = link_to 'Документы клиентов', client_documents_path
+              = active_link_to 'Документы клиентов', client_documents_path, class_active: 'current'
     = yield
     = render 'flashes'
