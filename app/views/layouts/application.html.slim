@@ -4,7 +4,6 @@ head
   = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
   = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
 body
-  = render 'flashes'
   .container
     nav.navbar.navbar-default.navbar-fixed-top
       .container-fluid
@@ -23,5 +22,5 @@ body
               = link_to 'Клиенты', clients_path
             li
               = link_to 'Документы клиентов', client_documents_path
-    br
     = yield
+    = render 'flashes'
