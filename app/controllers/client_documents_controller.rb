@@ -16,7 +16,7 @@ class ClientDocumentsController < ApplicationController
     new_client_document.save!
     redirect_to client_documents_path
   rescue ActiveRecord::RecordInvalid => e
-    flash[:alert] = e.message
+    flash.now.alert = e.message
     render :new, locals: { client_document: e.record, 
                            client: e.record.client,
                            document_kinds: DocumentKind.all.ordered }

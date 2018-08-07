@@ -18,7 +18,7 @@ class ClientsController < ApplicationController
     new_client.save!
     redirect_to clients_path
   rescue ActiveRecord::RecordInvalid => e
-    flash[:alert] = e.message
+    flash.now.alert = e.message
     render :new, locals: { client: e.record }
   end
 

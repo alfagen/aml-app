@@ -16,10 +16,11 @@ body
         .collapse.navbar-collapse
           ul.nav.navbar-nav
             li
-              = active_link_to 'Типы документов', document_kinds_path, class_active: 'current'
+              = active_link_to 'Типы документов', document_kinds_path, class_active: 'active-link'
             li
-              = active_link_to 'Клиенты', clients_path, class_active: 'current'
+              = active_link_to 'Клиенты', clients_path, class_active: 'active-link'
             li
-              = active_link_to 'Документы клиентов', client_documents_path, class_active: 'current'
-    = yield
-    = render 'flashes'
+              = active_link_to 'Документы клиентов', client_documents_path, class_active: 'active-link'
+    .m-t-lg
+      = yield
+      = render 'flashes'

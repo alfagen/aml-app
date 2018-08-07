@@ -14,7 +14,7 @@ class DocumentKindsController < ApplicationController
     new_document_kind.save!
     redirect_to document_kinds_path
   rescue ActiveRecord::RecordInvalid => e
-    flash[:alert] = e.message
+    flash.now.alert = e.message
     render :new, locals: { document_kind: e.record }
   end
 
