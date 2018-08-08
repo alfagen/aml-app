@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: 'dashboard#index'
+  root to: 'client_documents#index'
   resources :document_kinds, only: %i[index new create]
   resources :clients, except: %i[edit update destroy]
   resources :client_documents, only: %i[show index new create] do
