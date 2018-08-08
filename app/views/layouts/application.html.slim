@@ -20,7 +20,9 @@ body
             li
               = active_link_to 'Клиенты', clients_path, class_active: 'active-link'
             li
-              = active_link_to 'Документы клиентов', client_documents_path, class_active: 'active-link'
+              = active_link_to client_documents_path, class_active: 'active-link' do
+                |  Документы клиентов
+                = content_tag :span, pending_documents, class: 'badge'
     .m-t-lg
       = yield
       = render 'flashes'
