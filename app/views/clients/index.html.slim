@@ -1,10 +1,14 @@
 h4 Список клиентoв:
-= paginate clients
+= link_to 'Новый клиент', new_client_path, class: 'btn btn-primary'
+br
+br
 table.table.table-bordered
   thead
     tr
       th Имя:
       th ИНН:
+      th Статус:
+      th Действия:
   tbody
     = render clients
-= link_to 'Новый клиент', new_client_path, class: 'btn btn-primary'
+= paginate clients

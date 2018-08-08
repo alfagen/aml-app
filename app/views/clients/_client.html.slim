@@ -1,4 +1,11 @@
 tr
   td #{client.name}
   td #{client.inn}
-  td = link_to 'Показать', client_path(client), class: 'btn btn-default'
+  td #{client.workflow_state}
+  td style=("width: 40%")
+    = link_to 'Показать', client_path(client), class: 'btn btn-default'
+    =< link_to 'Редактировать', edit_client_path(client), class: 'btn btn-default'
+    - if client.workflow_state == 'unblocked'
+      =< button_to 'Заблокировать', block_client_path(client), method: :put, form: {style: 'display:inline-block;'}, class: 'btn btn-default'
+    - else
+      =< button_to 'Разблокировать', unblock_client_path(client), method: :put, form: {style: 'display:inline-block;'}, class: 'btn btn-default'

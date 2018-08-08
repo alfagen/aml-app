@@ -24,6 +24,28 @@ class ClientsController < ApplicationController
     render :new, locals: { client: e.record }
   end
 
+  def edit
+    render :edit, locals: { client: client }
+  end
+
+  def update
+    client.update!(permitted_params)
+    redirect_to clients_path
+  rescue ActiveRecord::RecordInvalid => e
+    flash.now.alert = e.message
+    render :edit, locals: { client: e.record }
+  end
+
+  def block
+    client.block!
+    redirect_to clients_path
+  end
+
+  def unblock
+    client.unblock!
+    redirect_to clients_path
+  end
+
   private
 
   def client
@@ -31,6 +53,6 @@ class ClientsController < ApplicationController
   end
 
   def permitted_params
-    params.fetch(:client, params.permit(:name, :inn)).permit(:name, :inn)
+    params.fetch(:client, params.permit(:name, :inn, :workflow_state)).permit(:name, :inn, :workflow_state)
   end
 end

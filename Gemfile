@@ -42,6 +42,7 @@ gem 'authority'
 gem 'bootstrap-sass', '~> 3.2'
 gem 'breadcrumbs_on_rails'
 gem 'bugsnag'
+gem 'enumerize'
 gem 'ionicons-rails'
 gem 'nprogress-rails'
 gem 'semver2'
@@ -75,8 +76,8 @@ group :development, :test do
 end
 
 group :development do
-  gem 'rubocop'
   gem 'overcommit'
+  gem 'rubocop'
 
   gem 'scss-lint'
 
