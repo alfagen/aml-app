@@ -75,8 +75,8 @@ group :development, :test do
 end
 
 group :development do
-  gem 'rubocop'
   gem 'overcommit'
+  gem 'rubocop'
 
   gem 'scss-lint'
 

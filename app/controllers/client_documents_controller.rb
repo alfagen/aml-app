@@ -4,11 +4,11 @@ class ClientDocumentsController < ApplicationController
   include Pagination
 
   def index
-    if params[:state]
-      client_documents =  paginate(ClientDocument.where(workflow_state: params[:state]))
-    else
-      client_documents =  paginate(ClientDocument.where(workflow_state: 'pending'))
-    end
+    client_documents = if params[:state]
+                         paginate(ClientDocument.where(workflow_state: params[:state]))
+                       else
+                         paginate(ClientDocument.where(workflow_state: 'pending'))
+                       end
     render :index, locals: { client_documents: client_documents, state: params[:state] || 'pending' }
   end
 
