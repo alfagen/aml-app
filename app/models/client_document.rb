@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
 class ClientDocument < ApplicationRecord
+  extend Enumerize
+  include Workflow
   mount_uploader :file, FileUploader
+
+  enumerize :workflow_state, in: %w[pending accepted rejected], scope: true
 
   scope :ordered, -> { order 'id desc' }
 
@@ -14,7 +18,6 @@ class ClientDocument < ApplicationRecord
   delegate :name, to: :client
   delegate :title, to: :document_kind
 
-  include Workflow
   workflow do
     state :pending do
       event :accept, transitions_to: :accepted
