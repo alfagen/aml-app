@@ -1,9 +1,11 @@
 h4 Имя: #{client.name} ИНН: #{client.inn}
-table.table.table-striped
+= link_to 'Добавить документ клиенту', new_client_document_path(client_id: client.id), class: 'btn btn-primary'
+br
+br
+table.table.table-bordered
   thead
     tr
       th Тип документа:
       th Состояние:
   tbody
     = render partial: 'document', collection: documents
-= link_to 'Добавить документ клиенту', new_client_document_path(client_id: client.id), class: 'btn btn-primary'

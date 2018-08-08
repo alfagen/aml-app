@@ -15,10 +15,15 @@ body
         = link_to app_title, root_path, class: 'navbar-brand'
         .collapse.navbar-collapse
           ul.nav.navbar-nav
-            li
-              = active_link_to 'Типы документов', document_kinds_path, class_active: 'active-link'
-            li
-              = active_link_to 'Клиенты', clients_path, class_active: 'active-link'
+            li.dropdown
+              a#drop1.dropdown-toggle data-toggle="dropdown" href="#"
+                | Управление
+                span.caret
+              ul.dropdown-menu
+                li
+                  = link_to 'Типы документов', document_kinds_path
+                li
+                  = link_to 'Клиенты', clients_path
             li
               = active_link_to client_documents_path, class_active: 'active-link' do
                 |  Документы клиентов
