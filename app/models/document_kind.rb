@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class DocumentKind < ApplicationRecord
   scope :ordered, -> { order 'id desc' }
 

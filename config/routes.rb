@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   root to: 'dashboard#index'
   resources :document_kinds, only: %i[index new create]

@@ -1,0 +1,13 @@
+inherit_from: .rubocop_todo.yml
+AllCops:
+  TargetRubyVersion: 2.4
+  Exclude:
+    - 'db/schema.rb'
+    - 'bin/**/*'
+    - 'doc/**/*'
+    - 'config/initializers/simple_form*'
+    - 'db/migrate/*'
+    - 'vendor/**/*'
+
+Style/AsciiComments:
+  Enabled: false

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'settingslogic'
 if defined? Rails
   class Settings < Settingslogic
@@ -7,7 +9,7 @@ if defined? Rails
   end
 else
   class Settings < Settingslogic
-    source "./config/application.yml"
+    source './config/application.yml'
     namespace 'development'
   end
 end

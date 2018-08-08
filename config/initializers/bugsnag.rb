@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 Bugsnag.configure do |config|
   config.api_key = Settings.bugsnag_api_key
   config.app_version = AppVersion.format('%M.%m.%p')
-  config.notify_release_stages = %w(production staging staging2 staging3)
+  config.notify_release_stages = %w[production staging]
   config.send_code = true
   config.send_environment = true
 end

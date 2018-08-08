@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ClientDocumentsController < ApplicationController
   include Pagination
 
@@ -17,7 +19,7 @@ class ClientDocumentsController < ApplicationController
     redirect_to client_documents_path
   rescue ActiveRecord::RecordInvalid => e
     flash.now.alert = e.message
-    render :new, locals: { client_document: e.record, 
+    render :new, locals: { client_document: e.record,
                            client: e.record.client,
                            document_kinds: DocumentKind.all.ordered }
   end

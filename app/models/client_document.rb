@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ClientDocument < ApplicationRecord
   mount_uploader :file, FileUploader
 

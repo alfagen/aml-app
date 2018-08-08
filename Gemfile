@@ -29,28 +29,28 @@ gem 'turbolinks', '~> 5'
 
 # Use ActiveStorage variant
 gem 'carrierwave'
-gem 'virtus'
 gem 'mini_magick', '~> 4.8'
+gem 'virtus'
 
-gem 'settingslogic'
 gem 'non-stupid-digest-assets'
+gem 'settingslogic'
 
 gem 'workflow'
 
-gem 'nprogress-rails'
-gem 'ionicons-rails'
-gem 'slim'
-gem 'slim-rails'
-gem 'authority'
-gem 'sorcery', github: 'alfagen/sorcery'
-gem 'semver2'
 gem 'active_link_to', github: 'BrandyMint/active_link_to'
-gem 'simple-navigation', '~> 3.13.0' # git: 'git://github.com/andi/simple-navigation.git'
-gem 'simple-navigation-bootstrap'
-gem 'bugsnag'
+gem 'authority'
 gem 'bootstrap-sass', '~> 3.2'
 gem 'breadcrumbs_on_rails'
+gem 'bugsnag'
+gem 'ionicons-rails'
+gem 'nprogress-rails'
+gem 'semver2'
+gem 'simple-navigation', '~> 3.13.0' # git: 'git://github.com/andi/simple-navigation.git'
+gem 'simple-navigation-bootstrap'
 gem 'simple_form', git: 'git://github.com/plataformatec/simple_form.git'
+gem 'slim'
+gem 'slim-rails'
+gem 'sorcery', github: 'alfagen/sorcery'
 
 source 'https://rails-assets.org' do
   # На случай есил в rail-assets снова отвалится https используем опасный вариант
@@ -58,55 +58,59 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-noty'
 end
 
-gem 'rack-request-id'
-gem 'rack-utf8_sanitizer'
-gem 'kaminari'
-gem 'kaminari-i18n'
 gem 'bootstrap-kaminari-views'
 gem 'jquery-rails'
+gem 'kaminari'
+gem 'kaminari-i18n'
+gem 'rack-request-id'
+gem 'rack-utf8_sanitizer'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'semver'
 end
 
 group :development do
+  gem 'rubocop'
+
   gem 'scss-lint'
 
+  gem 'bugsnag-capistrano', require: false
   gem 'capistrano', require: false
-  gem 'capistrano-upload-config', require: false
-  gem 'capistrano3-puma', github: 'seuros/capistrano-puma', require: false
-  gem 'capistrano-rails', require: false
-  gem 'capistrano-shell', require: false
-  gem 'capistrano-db-tasks', require: false
   gem 'capistrano-bundler', require: false
+  gem 'capistrano-db-tasks', require: false
+  gem 'capistrano-faster-assets', require: false
+  gem 'capistrano-git-with-submodules', '~> 2.0'
+  gem 'capistrano-maintenance', require: false
+  gem 'capistrano-rails', require: false
+  gem 'capistrano-rails-console', require: false
   gem 'capistrano-rbenv', require: false
   gem 'capistrano-secrets-yml', require: false
-  gem 'capistrano-maintenance', require: false
-  gem 'bugsnag-capistrano', require: false
-  gem 'capistrano-faster-assets', require: false
   gem 'capistrano-semver-git-tags', require: false
-  gem 'capistrano-git-with-submodules', '~> 2.0'
+  gem 'capistrano-shell', require: false
   gem 'capistrano-tasks', github: 'alfagen/capistrano-tasks', require: false
-  gem 'capistrano-rails-console', require: false
+  gem 'capistrano-upload-config', require: false
+  gem 'capistrano3-puma', github: 'seuros/capistrano-puma', require: false
 
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'web-console', '>= 3.3.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 
   gem 'guard'
-  gem 'terminal-notifier-guard' #, '~> 1.6.1', require: darwin_only('terminal-notifier-guard')
-  gem 'guard-rails'
-  gem 'guard-rspec'
+  gem 'terminal-notifier-guard' # , '~> 1.6.1', require: darwin_only('terminal-notifier-guard')
+
   gem 'guard-bundler'
   gem 'guard-ctags-bundler'
+  gem 'guard-rails'
+  gem 'guard-rspec'
+  gem 'guard-rubocop'
 end
 
 group :test do
@@ -118,4 +122,4 @@ group :test do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

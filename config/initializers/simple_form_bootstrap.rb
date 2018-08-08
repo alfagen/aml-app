@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Use this setup block to configure all options available in SimpleForm.
 # Custom Wrappers - https://github.com/plataformatec/simple_form/wiki/Custom-Wrappers
 #
@@ -99,7 +101,7 @@ SimpleForm.setup do |config|
     b.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
   end
 
-  # TODO Не рабоате wrapper, починить-бы и применить в формал vendor_delivery и vendor_payment
+  # TODO: Не рабоате wrapper, починить-бы и применить в формал vendor_delivery и vendor_payment
   config.wrappers :ichecks, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
     b.use :html5
     b.optional :readonly
