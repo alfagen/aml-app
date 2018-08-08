@@ -2,6 +2,9 @@
 
 class ClientDocument < ApplicationRecord
   mount_uploader :file, FileUploader
+  extend Enumerize
+
+  enumerize :workflow_state, in: %w[pending accepted rejected], scope: true
 
   scope :ordered, -> { order 'id desc' }
 

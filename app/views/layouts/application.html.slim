@@ -7,7 +7,7 @@ body
   .container
     nav.navbar.navbar-default.navbar-fixed-top
         .navbar-header
-          button.navbar-toggle.collapsed aria-expanded="false" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button" 
+          button.navbar-toggle.collapsed aria-expanded="false" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button"
             span.sr-only Toggle navigation
             span.icon-bar
             span.icon-bar
@@ -20,7 +20,9 @@ body
             li
               = active_link_to 'Клиенты', clients_path, class_active: 'active-link'
             li
-              = active_link_to 'Документы клиентов', client_documents_path, class_active: 'active-link'
+              = active_link_to client_documents_path, class_active: 'active-link' do
+                |  Документы клиентов
+                = content_tag :span, pending_documents_count, class: 'badge'
     .m-t-lg
       = yield
       = render 'flashes'
