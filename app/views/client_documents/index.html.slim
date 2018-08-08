@@ -1,11 +1,20 @@
-h4 Список клиентoв и документов:
-= paginate client_documents
-table.table.table-bordered
-  thead
-    tr
-      th Клиент:
-      th Тип документа:
-      th Документ:
-      th Cостояние:
-  tbody
-    = render client_documents
+ul.nav.nav-tabs
+  |  <li 
+  = 'class=active' if state == 'pending'
+  | >
+  = link_to 'Ожидающие', client_documents_path(state: 'pending')
+  |  <li 
+  = 'class=active' if state == 'accepted'
+  | >
+  = link_to 'Принятые', client_documents_path(state: 'accepted')
+  |  <li 
+  = 'class=active' if state == 'rejected'
+  | >
+  = link_to 'Отклоненные', client_documents_path(state: 'rejected')
+.tab-content
+  #panel1.tab-pane.fade.in.active
+    = render partial: 'documents_list', locals: { client_documents: client_documents }
+  #panel2.tab-pane.fade
+    = render partial: 'documents_list', locals: { client_documents: client_documents }
+  #panel3.tab-pane.fade
+    = render partial: 'documents_list', locals: { client_documents: client_documents }

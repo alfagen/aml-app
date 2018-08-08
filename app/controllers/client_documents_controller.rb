@@ -2,7 +2,12 @@ class ClientDocumentsController < ApplicationController
   include Pagination
 
   def index
-    render :index, locals: { client_documents: paginate(ClientDocument.ordered) }
+    if params[:state]
+      client_documents =  paginate(ClientDocument.where(workflow_state: params[:state]))
+    else
+      client_documents =  paginate(ClientDocument.where(workflow_state: 'pending'))
+    end
+    render :index, locals: { client_documents: client_documents, state: params[:state] || 'pending' }
   end
 
   def new
@@ -43,6 +48,6 @@ class ClientDocumentsController < ApplicationController
   end
 
   def permitted_params
-    params.fetch(:client_document, params.permit(:client_id)).permit(:document_kind_id, :file, :client_id)
+    params.fetch(:client_document || :state, params.permit(:client_id)).permit(:document_kind_id, :file, :client_id)
   end
 end
