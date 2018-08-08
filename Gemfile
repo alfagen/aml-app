@@ -76,6 +76,7 @@ end
 
 group :development do
   gem 'rubocop'
+  gem 'overcommit'
 
   gem 'scss-lint'
 
