@@ -17,7 +17,7 @@ module Aml
       generate.helper false
       generate.helper_specs false
       generate.javascript_engine false
-      generate.request_specs false
+      generate.request_specs true
       generate.stylesheets false
       generate.view_specs false
       generate.controller_spec true
