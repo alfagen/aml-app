@@ -11,4 +11,4 @@ setup: rails_env
 tests:
 	bundle exec rake db:drop || echo 'db does not exists'
 	bundle exec rake db:create db:schema:load
-	bundle exec rake
+	bundle exec rspec
