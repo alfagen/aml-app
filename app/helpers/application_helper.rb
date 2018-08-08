@@ -11,7 +11,7 @@ module ApplicationHelper
     "AML #{AppVersion}"
   end
 
-  def pending_documents
-    ClientDocument.where(workflow_state: 'pending').count
+  def pending_documents_count
+    ClientDocument.with_pending_state.count
   end
 end

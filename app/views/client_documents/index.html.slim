@@ -1,16 +1,7 @@
 ul.nav.nav-tabs
-  |  <li 
-  = 'class=active' if state == 'pending'
-  | >
-  = link_to 'Ожидающие', client_documents_path(state: 'pending')
-  |  <li 
-  = 'class=active' if state == 'accepted'
-  | >
-  = link_to 'Принятые', client_documents_path(state: 'accepted')
-  |  <li 
-  = 'class=active' if state == 'rejected'
-  | >
-  = link_to 'Отклоненные', client_documents_path(state: 'rejected')
+  = active_link_to 'Ожидающие', client_documents_path(workflow_state: 'pending'), active: :exact, wrap_tag: :li
+  = active_link_to 'Принятые', client_documents_path(workflow_state: 'accepted'), active: :exact, wrap_tag: :li
+  = active_link_to 'Отклоненные', client_documents_path(workflow_state: 'rejected'), active: :exact, wrap_tag: :li
 .tab-content
   #panel1.tab-pane.fade.in.active
     = render partial: 'documents_list', locals: { client_documents: client_documents }
