@@ -4,7 +4,7 @@ class UserSessionsController < ApplicationController
   def new; end
 
   def create
-    if login(permitted_params[:email], permitted_params[:password])
+    if unblocked?(params[:email]) && login params.slice(:email, :password)
       redirect_back_or_to(:users)
     else
       flash.now.alert = 'Login failed'
@@ -17,7 +17,9 @@ class UserSessionsController < ApplicationController
     redirect_back_or_to(:users)
   end
 
-  def permitted_params
-    params.fetch(:session).permit(:email, :password)
+  private
+
+  def unblocked?(email)
+    User.exists?(email: email, workflow_state: :unblocked)
   end
 end

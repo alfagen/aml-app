@@ -12,8 +12,7 @@ class DocumentKindsController < ApplicationController
   end
 
   def create
-    new_document_kind = DocumentKind.new(permitted_params)
-    new_document_kind.save!
+    DocumentKind.create!(permitted_params)
     redirect_to document_kinds_path
   rescue ActiveRecord::RecordInvalid => e
     flash.now.alert = e.message

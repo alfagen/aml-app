@@ -12,8 +12,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    new_user = User.new(permitted_params)
-    new_user.save!
+    User.create!(permitted_params)
     redirect_to users_path
   rescue ActiveRecord::RecordInvalid => e
     flash.now.alert = e.message
@@ -34,11 +33,13 @@ class UsersController < ApplicationController
 
   def block
     user.block!
+    flash.now.alert = "Пользователь, #{user.email} был заблокирован"
     redirect_to users_path
   end
 
   def unblock
     user.unblock!
+    flash.now.alert = "Пользователь, #{user.email} был разблокирован"
     redirect_to users_path
   end
 
