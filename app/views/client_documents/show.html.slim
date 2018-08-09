@@ -1,10 +1,10 @@
 h4 Клиент: #{client_document.name}
 h4 Тип документа: #{client_document.title}
-h4 Файл: 
+h4 Файл:
 = image_tag(client_document.file.to_s, size: '400')
 br
 h4 Состояние: #{client_document.workflow_state}
-- if client_document.workflow_state == 'pending' || client_document.workflow_state == 'rejected'
+- if client_document.pending? || client_document.rejected?
   = button_to 'Принять', accept_client_document_path(client_document), method: :put, class: 'btn btn-primary'
-- if client_document.workflow_state == 'pending' || client_document.workflow_state == 'accepted'
+- if client_document.pending? || client_document.accepted?
   = button_to 'Отказать', reject_client_document_path(client_document), method: :put, class: 'btn btn-primary'

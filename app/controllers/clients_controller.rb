@@ -31,6 +31,6 @@ class ClientsController < ApplicationController
   end
 
   def permitted_params
-    params.fetch(:client, params.permit(:name, :inn)).permit(:name, :inn)
+    params.fetch(:client).permit(:name, :inn)
   end
 end
