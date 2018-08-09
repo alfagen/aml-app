@@ -10,7 +10,7 @@ class UserSessionsController < ApplicationController
     if unblocked?(permitted_params[:email]) && login(permitted_params[:email], permitted_params[:password])
       redirect_back_or_to(:users)
     else
-      flash.now.alert = 'Login failed'
+      flash.now.alert = 'Не получилось войти'
       render :new
     end
   end

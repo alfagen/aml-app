@@ -9,4 +9,8 @@ class ApplicationController < ActionController::Base
     logout
     redirect_back_or_to(:users)
   end
+
+  def not_authenticated
+    redirect_to new_user_session_path, notice: 'Вы не залогинены'
+  end
 end
