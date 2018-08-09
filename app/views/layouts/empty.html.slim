@@ -1,0 +1,18 @@
+head
+  title Aml
+  = csrf_meta_tags
+  = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+  = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+body
+  .container
+    nav.navbar.navbar-default.navbar-fixed-top
+        .navbar-header
+          button.navbar-toggle.collapsed aria-expanded="false" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button"
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+        = link_to app_title, root_path, class: 'navbar-brand'
+    .m-t-lg
+      = yield
+      = render 'flashes'

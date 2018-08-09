@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  root to: 'client_documents#index'
+  root to: 'user_sessions#new'
   resources :user_sessions, only: %i[create new destroy]
   resources :users, except: %i[show destroy] do
     member do
