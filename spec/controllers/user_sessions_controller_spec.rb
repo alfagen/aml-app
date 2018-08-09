@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe UserSessionsController, type: :controller do
+  let(:user) { create(:user) }
+
   describe 'GET #new' do
     it 'returns http success' do
       get :new
@@ -8,17 +10,18 @@ RSpec.describe UserSessionsController, type: :controller do
     end
   end
 
-  describe 'GET #create' do
+  describe 'POST #create' do
     it 'returns http success' do
-      get :create
+      post :create, params: { id: user.id, user: { email: user.email, password: user.password } }
       expect(response).to have_http_status(:success)
     end
   end
 
-  describe 'GET #destroy' do
+  describe 'DELETE #destroy' do
     it 'returns http success' do
-      get :destroy
-      expect(response).to have_http_status(:success)
+      login_user(user)
+      delete :destroy, params: { id: user.id }
+      expect(response).to have_http_status(302)
     end
   end
 end

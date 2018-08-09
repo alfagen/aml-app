@@ -2,7 +2,7 @@
 
 class UserSessionsController < ApplicationController
   skip_before_action :require_login
-  layout 'empty'
+  layout 'blank'
 
   def new; end
 

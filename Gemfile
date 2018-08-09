@@ -52,6 +52,7 @@ gem 'simple_form', git: 'git://github.com/plataformatec/simple_form.git'
 gem 'slim'
 gem 'slim-rails'
 gem 'sorcery', github: 'alfagen/sorcery'
+gem 'valid_email'
 
 source 'https://rails-assets.org' do
   # На случай есил в rail-assets снова отвалится https используем опасный вариант
