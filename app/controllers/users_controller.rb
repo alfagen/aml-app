@@ -33,14 +33,12 @@ class UsersController < ApplicationController
 
   def block
     user.block!
-    flash.now.alert = "Пользователь, #{user.email} был заблокирован"
-    redirect_to users_path
+    redirect_to users_path, notice: "Пользователь, #{user.email} был заблокирован"
   end
 
   def unblock
     user.unblock!
-    flash.now.alert = "Пользователь, #{user.email} был разблокирован"
-    redirect_to users_path
+    redirect_to users_path, notice: "Пользователь, #{user.email} был разблокирован"
   end
 
   private
