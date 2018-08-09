@@ -16,8 +16,7 @@ class ClientsController < ApplicationController
   end
 
   def create
-    new_client = Client.new(permitted_params)
-    new_client.save!
+    Client.create!(permitted_params)
     redirect_to clients_path
   rescue ActiveRecord::RecordInvalid => e
     flash.now.alert = e.message

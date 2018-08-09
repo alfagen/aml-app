@@ -1,0 +1,9 @@
+tr
+  td #{user.email}
+  td #{user.workflow_state}
+  td = link_to 'Редактировать', edit_user_path(user), class: 'btn btn-default'
+  td
+    - if user.unblocked?
+      = button_to 'Заблокировать', block_user_path(user), method: :put, class: 'btn btn-default'
+    - else
+      = button_to 'Разблокировать', unblock_user_path(user), method: :put, class: 'btn btn-default'

@@ -14,8 +14,7 @@ class ClientDocumentsController < ApplicationController
   end
 
   def create
-    new_client_document = ClientDocument.new(permitted_params)
-    new_client_document.save!
+    ClientDocument.create!(permitted_params)
     redirect_to client_documents_path
   rescue ActiveRecord::RecordInvalid => e
     flash.now.alert = e.message
