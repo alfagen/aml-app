@@ -32,7 +32,6 @@ ActiveRecord::Schema.define(version: 2018_08_08_165146) do
     t.integer "inn", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "workflow_state", default: "unblocked", null: false
   end
 
   create_table "document_kinds", force: :cascade do |t|

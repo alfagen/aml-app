@@ -52,6 +52,7 @@ gem 'simple_form', git: 'git://github.com/plataformatec/simple_form.git'
 gem 'slim'
 gem 'slim-rails'
 gem 'sorcery', github: 'alfagen/sorcery'
+gem 'valid_email'
 
 source 'https://rails-assets.org' do
   # На случай есил в rail-assets снова отвалится https используем опасный вариант
@@ -70,8 +71,19 @@ gem 'rack-utf8_sanitizer'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
+  gem 'pry'
+  gem 'pry-doc'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  # Добавляет show-routes и show-models
+  # и делает рельсовую конслоль через pry
+  gem 'pry-rails'
+
+  # show-method
+  # hist --grep foo
+  # Adds step-by-step debugging and stack navigation capabilities to pry using byebug.
+  gem 'pry-byebug'
+
   gem 'rspec-rails', '~> 3.7'
   gem 'semver'
 end

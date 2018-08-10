@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   end
   get 'login' => 'user_sessions#new', :as => :login
   delete 'logout' => 'user_sessions#destroy', :as => :logout
+  get '/users/:id' => 'passwords#edit', :as => :edit_password
   resources :document_kinds, only: %i[index new create]
   resources :clients, except: %i[edit update destroy]
   resources :client_documents, only: %i[show index new create] do
