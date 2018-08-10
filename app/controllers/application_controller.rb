@@ -2,15 +2,15 @@
 
 class ApplicationController < ActionController::Base
   before_action :require_login
-  before_action :check_user
+  before_action :logout_blocked_user
 
-  def check_user
+  def logout_blocked_user
     return unless current_user&.blocked?
     logout
-    redirect_back_or_to(:users)
+    redirect_to new_user_session_path, alert: 'Пользователь заблокирован'
   end
 
   def not_authenticated
-    redirect_to new_user_session_path, notice: 'Вы не залогинены'
+    render 'not_authenticated'
   end
 end
