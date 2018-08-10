@@ -19,16 +19,13 @@ nav.navbar.navbar-default.navbar-fixed-top
             | Управление
             span.m-l-sm.caret
           ul.dropdown-menu
-            li
-              = link_to 'Типы документов', document_kinds_path
-            li
-              = link_to 'Пользователи', users_path
+            li= link_to 'Типы документов', document_kinds_path
+            li= link_to 'Пользователи', users_path
         li.dropdown
           = link_to '#', class: 'dropdown-toggle', data: { toggle: :dropdown }, role: :button, 'aria-haspopup' => true, 'aria-expanded' => false do
             = current_user.email
             span.m-l-sm.caret
           ul.dropdown-menu
-            li
-              = link_to 'Выйти', :logout, method: :delete
-            li
-              = link_to 'Сменить пароль', edit_password_path(current_user)
+            li= link_to 'Сменить пароль', edit_password_path(current_user)
+            li.divider
+            li= link_to 'Выйти', :logout, method: :delete

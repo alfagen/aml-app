@@ -4,25 +4,27 @@ class UserSessionsController < ApplicationController
   skip_before_action :require_login
   layout 'blank'
 
-  def new; end
+  def new
+    render :new, locals: { user_session: user_session }
+  end
 
   def create
-    if login(permitted_params[:email], permitted_params[:password])
-      redirect_back_or_to(:users)
+    if login user_session.login, user_session.password, true
+      redirect_back_or_to root_path, notice: 'Добро пожаловать!'
     else
-      flash.now.alert = 'Не получилось войти'
-      render :new
+      flash.now.alert = 'Неверный логин или пароль'
+      new
     end
   end
 
   def destroy
     logout
-    redirect_back_or_to(:users)
+    flash.now.notice = 'До свидания'
   end
 
   private
 
-  def permitted_params
-    params.require(:user).permit(:email, :password)
+  def user_session
+    @user_session ||= UserSession.new params[:user_session].permit(:login, :password, :remember_me)
   end
 end

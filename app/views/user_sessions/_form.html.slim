@@ -1,4 +1,4 @@
-= simple_form_for(:user, url: user_sessions_path, method: :post) do |f|
-  = f.input :email, as: :string, label: false, hint: 'Email/логин'
+= simple_form_for(user_session, method: :post) do |f|
+  = f.input :login, as: :string, label: false, hint: 'Логин (email)'
   = f.input :password, label: false, hint: 'Пароль'
   = f.button :submit, 'Войти', class: 'btn btn-primary'
