@@ -3,6 +3,8 @@
 Rails.application.routes.draw do
   root to: redirect('/orders')
 
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+
   get 'login' => 'user_sessions#new', :as => :login
   delete 'logout' => 'user_sessions#destroy', :as => :logout
   get '/users/:id' => 'passwords#edit', :as => :edit_password

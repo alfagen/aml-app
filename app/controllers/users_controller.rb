@@ -13,6 +13,7 @@ class UsersController < ApplicationController
 
   def create
     User.create!(permitted_params)
+    UserMailer.with(user: User.last).welcome_email.deliver_later
     redirect_to users_path
   rescue ActiveRecord::RecordInvalid => e
     flash.now.alert = e.message
