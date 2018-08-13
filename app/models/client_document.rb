@@ -15,11 +15,6 @@ class ClientDocument < ApplicationRecord
   validates :file, presence: true
   validates :document_kind_id, uniqueness: { scope: :client_id }
 
-  delegate :first_name, to: :order
-  delegate :surname, to: :order
-  delegate :patronymic, to: :order
-  delegate :title, to: :document_kind
-
   workflow do
     state :pending do
       event :accept, transitions_to: :accepted
@@ -33,9 +28,5 @@ class ClientDocument < ApplicationRecord
     state :rejected do
       event :accept, transitions_to: :accepted
     end
-  end
-
-  def name
-    "Имя: #{first_name} Фамилия: #{surname} Отчество:#{patronymic}"
   end
 end

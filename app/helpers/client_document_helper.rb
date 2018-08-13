@@ -6,4 +6,8 @@ module ClientDocumentHelper
   def style(workflow_state)
     workflow_state == :pending ? :inclusive : :exact
   end
+
+  def client(client_document)
+    Client.find(client_document.client_id)
+  end
 end
