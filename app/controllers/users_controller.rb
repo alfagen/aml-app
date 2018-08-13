@@ -25,7 +25,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    user.update!(permitted_params)
+    user.update!(permitted_params.merge(password_changed: true))
     redirect_to users_path
   rescue ActiveRecord::RecordInvalid => e
     flash.now.alert = e.message
