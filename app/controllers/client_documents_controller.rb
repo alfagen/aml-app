@@ -4,7 +4,7 @@ class ClientDocumentsController < ApplicationController
   include Pagination
 
   def index
-    render :index, locals: { client_documents: client_documents, workflow_state: workflow_state }
+    render :index, locals: { documents: documents, workflow_state: workflow_state }
   end
 
   def new
@@ -45,7 +45,7 @@ class ClientDocumentsController < ApplicationController
     params[:workflow_state] || DEFAULT_WORKFLOW_STATE
   end
 
-  def client_documents
+  def documents
     paginate(ClientDocument.where(workflow_state: workflow_state))
   end
 

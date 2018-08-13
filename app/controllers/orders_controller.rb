@@ -18,7 +18,7 @@ class OrdersController < ApplicationController
   end
 
   def show
-    render :show, locals: { order: order, client: client, documents: order.client_documents.ordered }
+    render :show, locals: { order: order, client: client, documents: paginate(order.client_documents.ordered) }
   end
 
   def in_process

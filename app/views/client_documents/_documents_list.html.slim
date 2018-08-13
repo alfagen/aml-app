@@ -1,4 +1,3 @@
-= paginate client_documents
 table.table.table-bordered
   thead
     tr
@@ -8,4 +7,4 @@ table.table.table-bordered
       th Документ:
       th Cостояние:
   tbody
-    = render client_documents
+    = render partial: 'client_documents/document', collection: documents
