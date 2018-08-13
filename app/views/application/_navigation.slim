@@ -11,6 +11,10 @@ nav.navbar.navbar-default.navbar-fixed-top
         li
           = active_link_to 'Клиенты', clients_path, class_active: 'active-link'
         li
+          = active_link_to orders_path, class_active: 'active-link' do
+            |  Заявки клиентов
+            = content_tag :span, Order.with_pending_state.count, class: 'badge'
+        li
           = active_link_to client_documents_path, class_active: 'active-link' do
             |  Документы клиентов
             = content_tag :span, ClientDocument.with_pending_state.count, class: 'badge'

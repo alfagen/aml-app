@@ -8,7 +8,7 @@ class ClientsController < ApplicationController
   end
 
   def show
-    render :show, locals: { client: client, documents: client.client_documents.ordered }
+    render :show, locals: { client: client, orders: client.orders.ordered }
   end
 
   def new
