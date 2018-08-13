@@ -14,4 +14,4 @@ h5 Состояние: #{order.workflow_state}
 = link_to 'Добавить документ', new_client_document_path(client_document: { order_id: order.id }), class: 'btn btn-primary'
 - if documents.count.positive?
   h4 Документы заявки
-  = render partial: 'client_documents/documents_list', collection: documents
+  = render partial: 'client_documents/documents_list', locals: { documents: documents }
