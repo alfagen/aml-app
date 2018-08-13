@@ -100,8 +100,8 @@ group :development do
 
   gem 'scss-lint'
 
-  gem 'letter_opener'                                                                                                                                                                                           
-  gem 'letter_opener_web' 
+  gem 'letter_opener'
+  gem 'letter_opener_web'
 
   gem 'bugsnag-capistrano', require: false
   gem 'capistrano', require: false
