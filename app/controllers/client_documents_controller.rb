@@ -9,8 +9,8 @@ class ClientDocumentsController < ApplicationController
 
   def new
     render :new, locals: { client_document: ClientDocument.new(permitted_params),
-                           client: Client.find(permitted_params[:client_id]),
-                           document_kinds: DocumentKind.all.ordered }
+                           order: Order.find(permitted_params[:order_id]),
+                           document_kinds: document_kinds }
   end
 
   def create
@@ -19,8 +19,8 @@ class ClientDocumentsController < ApplicationController
   rescue ActiveRecord::RecordInvalid => e
     flash.now.alert = e.message
     render :new, locals: { client_document: e.record,
-                           client: e.record.client,
-                           document_kinds: DocumentKind.all.ordered }
+                           order: e.record.order,
+                           document_kinds: document_kinds }
   end
 
   def show
@@ -53,7 +53,11 @@ class ClientDocumentsController < ApplicationController
     @client_document ||= ClientDocument.find params[:id]
   end
 
+  def document_kinds
+    @document_kinds ||= DocumentKind.all.ordered
+  end
+
   def permitted_params
-    params.fetch(:client_document).permit(:document_kind_id, :file, :client_id, :workflow_state)
+    params.fetch(:client_document).permit(:document_kind_id, :file, :order_id, :workflow_state, :client_id)
   end
 end

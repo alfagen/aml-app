@@ -1,6 +1,7 @@
 tr
-  td #{client_document.name}
-  td #{client_document.title}
+  td = client_document.name
+  td = client_document.order_id
+  td = client_document.title
   td = image_tag(client_document.file.to_s, size: '100')
-  td #{client_document.workflow_state}
+  td = client_document.workflow_state
   td = link_to 'Показать', client_document_path(client_document), class: 'btn btn-default'

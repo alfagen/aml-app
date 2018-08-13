@@ -1,10 +1,10 @@
 h4 Имя: #{client.name} ИНН: #{client.inn}
-= link_to 'Добавить документ клиенту', new_client_document_path(client_document: { client_id: client.id }), class: 'btn btn-primary'
+= link_to 'Добавить заявку клиенту', new_order_path(order: { first_name: nil, surname: nil, patronymic: nil, birth_date: nil, client_id: client.id }), class: 'btn btn-primary'
 br
 table.table.table-striped
   thead
     tr
-      th Тип документа:
+      th Заявка:
       th Состояние:
   tbody
-    = render partial: 'document', collection: documents
+    = render partial: 'order', collection: orders
