@@ -15,5 +15,15 @@
 //= require bootstrap
 //= require activestorage
 //= require turbolinks
+//= require nprogress
+//= require nprogress-turbolinks
+//= require nprogress-ajax
+//= require moment
+//= require moment/ru
+//= require bootstrap-datetimepicker
 //= require flash
 //= require_tree .
+
+document.addEventListener("turbolinks:load", function() {
+  $('div.datetimepicker').datetimepicker({ });
+});

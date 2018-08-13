@@ -44,7 +44,6 @@ gem 'breadcrumbs_on_rails'
 gem 'bugsnag'
 gem 'enumerize'
 gem 'ionicons-rails'
-gem 'nprogress-rails'
 gem 'semver2'
 gem 'simple-navigation', '~> 3.13.0' # git: 'git://github.com/andi/simple-navigation.git'
 gem 'simple-navigation-bootstrap'
@@ -61,9 +60,14 @@ source 'https://rails-assets.org' do
 end
 
 gem 'bootstrap-kaminari-views'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
+gem 'font-awesome-rails'
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'kaminari'
 gem 'kaminari-i18n'
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'nprogress-rails'
 gem 'rack-request-id'
 gem 'rack-utf8_sanitizer'
 
