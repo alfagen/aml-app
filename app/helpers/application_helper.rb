@@ -1,6 +1,13 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
+  def top_breadcrumbs
+    return if breadcrumbs.empty?
+    content_tag :ol, class: 'breadcrumb' do
+      render_breadcrumbs tag: :li, separator: '', class: '', item_class: '', divider_class: '', active_class: 'active'
+    end
+  end
+
   def title_with_counter(title, count, hide_zero: true, css_class: '')
     [
       title,

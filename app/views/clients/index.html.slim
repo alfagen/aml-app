@@ -1,8 +1,6 @@
-h4 Список клиентoв:
-= link_to 'Новый клиент', new_client_path(client: { name: nil, inn: nil }), class: 'btn btn-primary'
-br
-br
-table.table.table-bordered
+.pull-right= link_to 'Новый клиент', new_client_path(client: { name: nil, inn: nil }), class: 'btn btn-primary'
+h2 Список клиентoв
+table.table.table-condensed
   thead
     tr
       th Имя:

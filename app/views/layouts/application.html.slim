@@ -4,8 +4,10 @@ head
   = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
   = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
 body
-  = render 'navigation'
-  .container.m-t-lg
+  .m-b-lg= render 'navigation'
+  .container.m-t-md
+    = top_breadcrumbs
+  .container.m-t-md
     = yield
 
   = render 'flashes'
