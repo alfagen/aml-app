@@ -4,7 +4,7 @@ class PasswordResetsController < ApplicationController
   before_action :require_login, only: [:update]
 
   def create
-    user = User.find_by_email params.require(:password_reset).fetch(:email)
+    user = User.find_by email: params.require(:password_reset).fetch(:email)
     user&.deliver_reset_password_instructions!
   end
 
