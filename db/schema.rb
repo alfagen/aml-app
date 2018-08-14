@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 2018_08_14_055216) do
     t.string "workflow_state", default: "unblocked", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "password_changed", default: false, null: false
     t.string "reset_password_token"
     t.datetime "reset_password_token_expires_at"
     t.datetime "reset_password_email_sent_at"
