@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   authenticates_with_sorcery!
 
+  after_create :deliver_reset_password_instructions!
+
   enumerize :workflow_state, in: %w[blocked unblocked], scope: true
 
   scope :ordered, -> { order 'id desc' }
