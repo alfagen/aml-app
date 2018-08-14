@@ -10,7 +10,7 @@ class User < ApplicationRecord
 
   scope :ordered, -> { order 'id desc' }
 
-  validates :password, length: { minimum: 10 }, if: -> { :crypted_password_changed? }
+  validates :password, length: { minimum: 8 }, if: -> { new_record? || :crypted_password_changed? }
   validates :password, confirmation: true, if: -> { new_record? || :crypted_password_changed? }
   validates :password_confirmation, presence: true, if: -> { new_record? || :crypted_password_changed? }
   validates :email, presence: true, uniqueness: true, email: true
