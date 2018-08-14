@@ -2,7 +2,7 @@
 
 class UserSessionsController < ApplicationController
   skip_before_action :require_login
-  layout 'blank'
+  layout 'simple'
 
   def new
     render :new, locals: { user_session: user_session }
