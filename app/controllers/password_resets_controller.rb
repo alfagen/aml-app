@@ -15,8 +15,8 @@ class PasswordResetsController < ApplicationController
 
   def update
     change_password!
-  rescue ActiveRecord::RecordInvalid => e
-    flash.now.alert = e.message
+  rescue StandardError
+    flash.now.alert = 'Не удалось изменить пароль'
     render 'passwords/edit', locals: { user: e.record, token: params[:id] }
   end
 
