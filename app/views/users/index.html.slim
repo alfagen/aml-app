@@ -1,7 +1,6 @@
+h4 Добавить пользователя:
+= render 'form', user: User.new(email: nil, password: nil, password_confirmation: nil)
 h4 Список пользователей:
-= link_to 'Новый пользователь', new_user_path(user: { email: nil, password: nil, password_confirmation: nil, salt: nil }), class: 'btn btn-primary'
-br
-br
 table.table.table-bordered
   thead
     tr
