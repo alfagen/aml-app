@@ -8,11 +8,11 @@ class ApplicationController < ActionController::Base
   private
 
   def not_authenticated
-    render 'not_authenticated', layout: 'blank'
+    render 'not_authenticated', layout: 'simple'
   end
 
   def rescue_invalid_authenticity_token
     flash.alert = 'Просрочен токен аутентификации, авторизуйтесь снова'
-    render 'not_authenticated', layout: 'blank'
+    render 'not_authenticated', layout: 'simple'
   end
 end

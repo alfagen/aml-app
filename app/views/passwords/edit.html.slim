@@ -1,4 +1,6 @@
-h3 Изменение пароля
+
+h3 Изменение пароля для пользователя #{user.email}
+
 = simple_form_for user, method: :put, url: password_reset_path do |f|
   = f.input :password, as: :password, label: false, hint: 'Новый пароль'
   = f.input :password_confirmation, as: :password, label: false, hint: 'Подтверждение пароля'

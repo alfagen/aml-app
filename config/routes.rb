@@ -7,9 +7,9 @@ Rails.application.routes.draw do
 
   get 'login' => 'user_sessions#new', :as => :login
   delete 'logout' => 'user_sessions#destroy', :as => :logout
-  resource :password_reset, only: %i[update edit create]
+  resources :password_resets, only: %i[new create edit update]
   resource :password, only: %i[edit update]
-  resources :user_sessions, only: %i[create new destroy]
+  resources :user_sessions, only: %i[new create destroy]
   resources :users, except: %i[show destroy] do
     member do
       put :block
