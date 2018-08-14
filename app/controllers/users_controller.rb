@@ -46,7 +46,7 @@ class UsersController < ApplicationController
   def user
     @user ||= User.find params[:id]
   end
-  
+
   def permitted_params
     params.require(:user).permit(:email, :password, :password_confirmation, :crypted_password, :salt, :workflow_state)
   end
