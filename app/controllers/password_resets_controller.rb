@@ -5,7 +5,7 @@ class PasswordResetsController < ApplicationController
   def create
     user = User.find_by_email(params[:email])
     user&.deliver_reset_password_instructions!
-  rescue Exception
+  rescue StandardError
     flash.now.alert = 'Не удалось отправить email'
   end
 
