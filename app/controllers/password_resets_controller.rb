@@ -1,6 +1,5 @@
 class PasswordResetsController < ApplicationController
-  skip_before_action :require_login
-  before_action :require_user_from_token, except: :create
+  before_action :require_login, only: [:edit, :update]
 
   def create
     user = User.find_by_email(params[:email])
@@ -10,32 +9,28 @@ class PasswordResetsController < ApplicationController
   end
 
   def edit
-    render 'passwords/edit', locals: { user: user_from_token, token: params[:id] }
+    not_authenticated if current_user.blank?
+    auto_login(current_user)
+    render 'passwords/edit', locals: { user: current_user, token: params[:id] }
   end
 
   def update
+    not_authenticated if current_user.blank?
+    auto_login(current_user)
     change_password!
-  rescue StandardError
-    flash.now.alert = 'Не удалось изменить пароль'
-    render 'passwords/edit', locals: { user: user_from_token, token: params[:id] }
+  rescue ActiveRecord::RecordInvalid => e
+    flash.now.alert = e.message
+    render 'passwords/edit', locals: { user: e.record, token: params[:id] }
   end
 
   private
 
   def change_password!
-    user_from_token.password_confirmation = params[:user][:password_confirmation]
-    user_from_token.change_password!(params[:user][:password])
+    current_user.password_confirmation = params[:user][:password_confirmation]
+    current_user.change_password!(params[:user][:password])
   end
 
-  def require_user_from_token
-    if user_from_token.blank?
-      not_authenticated
-    else
-      auto_login(user_from_token)
-    end
-  end
-
-  def user_from_token
-    @user_from_token ||= User.load_from_reset_password_token(params[:id])
+  def current_user
+    @current_user ||= User.load_from_reset_password_token(params[:id])
   end
 end

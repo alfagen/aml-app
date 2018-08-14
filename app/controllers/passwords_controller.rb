@@ -14,6 +14,6 @@ class PasswordsController < ApplicationController
   private
 
   def permitted_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :crypted_password, :salt, :workflow_state)
+    params.require(:user).permit(:email, :password, :password_confirmation)
   end
 end

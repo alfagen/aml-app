@@ -6,8 +6,6 @@ class User < ApplicationRecord
 
   authenticates_with_sorcery!
 
-  after_commit :deliver_reset_password_instructions!, on: :create
-
   enumerize :workflow_state, in: %w[blocked unblocked], scope: true
 
   scope :ordered, -> { order 'id desc' }
@@ -17,6 +15,8 @@ class User < ApplicationRecord
   validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }
   validates :password_confirmation, presence: true, if: -> { new_record? || changes[:crypted_password] }
   validates :email, presence: true, uniqueness: true, email: true
+
+  after_commit :deliver_reset_password_instructions!, on: :create
 
   workflow do
     state :unblocked do
