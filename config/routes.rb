@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  default_url_options Settings.default_url_options.symbolize_keys
+
   root to: redirect('/orders')
 
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
