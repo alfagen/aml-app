@@ -17,7 +17,7 @@ class PasswordResetsController < ApplicationController
     change_password!
   rescue StandardError
     flash.now.alert = 'Не удалось изменить пароль'
-    render 'passwords/edit', locals: { user: e.record, token: params[:id] }
+    render 'passwords/edit', locals: { user: user, token: params[:id] }
   end
 
   private
