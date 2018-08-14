@@ -11,3 +11,12 @@ AllCops:
 
 Style/AsciiComments:
   Enabled: false
+
+Rails/OutputSafety:
+  Exclude:
+    - 'app/helpers/application_helper.rb'
+
+Rails/FilePath:
+  Exclude:
+    - 'spec/rails_helper.rb'
+
