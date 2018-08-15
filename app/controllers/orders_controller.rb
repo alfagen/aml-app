@@ -10,30 +10,31 @@ class OrdersController < ApplicationController
   end
 
   def create
-    Order.create! permitted_params
-    redirect_to orders_path
+    order = Order.create! permitted_params
+    redirect_to order
   rescue ActiveRecord::RecordInvalid => e
     flash.now.alert = e.message
     render :new, locals: { order: e.record, client_id: e.record.client.id }
   end
 
   def show
-    render :show, locals: { order: order, client: client, documents: paginate(order.client_documents.ordered) }
+    render :show, locals: { order: order, client: client, document_kinds: document_kinds,
+                            documents: paginate(order.client_documents.ordered) }
   end
 
   def in_process
     order.process!
-    redirect_to order_path(order)
+    redirect_to order
   end
 
   def accept
     order.accept!
-    redirect_to order_path(order)
+    redirect_to order
   end
 
   def reject
     order.reject!
-    redirect_to order_path(order)
+    redirect_to order
   end
 
   private
@@ -54,6 +55,10 @@ class OrdersController < ApplicationController
 
   def client
     @client ||= Client.find(permitted_params[:client_id]) if params[:order]
+  end
+
+  def document_kinds
+    @document_kinds = DocumentKind.all.ordered
   end
 
   def permitted_params
