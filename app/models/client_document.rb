@@ -31,7 +31,7 @@ class ClientDocument < ApplicationRecord
   end
 
   after_create do
-    if DocumentKind.where.not(id: order.client_documents.select(:document_kind_id)).size == 0
+    if DocumentKind.where.not(id: order.client_documents.select(:document_kind_id)).empty?
       order.load! if order.pending?
     end
   end
