@@ -11,7 +11,9 @@ h5 Состояние: #{order.workflow_state}
   = button_to 'Отказать', reject_order_path(order), method: :put, class: 'btn btn-primary'
 - if order.processing? || order.rejected?
   = button_to 'Принять', accept_order_path(order), method: :put, class: 'btn btn-primary'
-= link_to 'Добавить документ', new_client_document_path(client_document: { order_id: order.id }), class: 'btn btn-primary'
 - if documents.count.positive?
   h4 Документы заявки
+  = paginate documents
   = render partial: 'client_documents/documents_list', locals: { documents: documents }
+h4 Добавить документ
+= render partial: 'client_documents/form', locals: { client_document: ClientDocument.new, order: order, document_kinds: document_kinds }

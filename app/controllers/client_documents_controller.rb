@@ -15,7 +15,7 @@ class ClientDocumentsController < ApplicationController
 
   def create
     ClientDocument.create!(permitted_params)
-    redirect_to client_documents_path
+    redirect_back(fallback_location: client_documents_path)
   rescue ActiveRecord::RecordInvalid => e
     flash.now.alert = e.message
     render :new, locals: { client_document: e.record,
