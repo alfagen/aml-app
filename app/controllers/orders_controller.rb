@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   include Pagination
 
   def index
-    @q = orders.ransack(first_name_or_surname_or_patronymic_cont: search_value)  
+    @q = orders.ransack(first_name_or_surname_or_patronymic_cont: search_value)
     render :index, locals: { orders: paginate(@q.result.ordered), workflow_state: workflow_state }
   end
 
