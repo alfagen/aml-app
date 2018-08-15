@@ -10,7 +10,7 @@ class OrdersController < ApplicationController
   end
 
   def create
-    Order.create!(permitted_params)
+    Order.create! permitted_params
     redirect_to orders_path
   rescue ActiveRecord::RecordInvalid => e
     flash.now.alert = e.message

@@ -37,7 +37,7 @@ class DatePickerInput < SimpleForm::Inputs::StringInput
   end
 
   def display_pattern
-    I18n.t('datepicker.dformat', default: '%Y-%d-%m')
+    I18n.t('datepicker.dformat', default: '%d-%m-%Y')
   end
 
   def picker_pattern

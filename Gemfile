@@ -70,6 +70,7 @@ gem 'momentjs-rails', '>= 2.9.0'
 gem 'nprogress-rails'
 gem 'rack-request-id'
 gem 'rack-utf8_sanitizer'
+gem 'rails-i18n'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false

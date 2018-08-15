@@ -1,4 +1,8 @@
 tr
-  td #{client.name}
-  td #{client.inn}
-  td = link_to 'Показать', client_path(client), class: 'btn btn-default'
+  td= client.id
+  td= client.name
+  td= client.inn
+  td.text-right
+    .btn-group
+      = link_to 'Подробнее', client_path(client), class: 'btn btn-default'
+      = link_to 'Добавить заявку', new_order_path(order: { client_id: client.id }), class: 'btn btn-success'

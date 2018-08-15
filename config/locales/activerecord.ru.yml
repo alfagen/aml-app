@@ -1,0 +1,13 @@
+ru:
+  activerecord:
+    models:
+      order: Заявка
+      client: Клиент
+      client_document: Документ
+      user: Менеджер
+    attributes:
+      order:
+        first_name: Имя
+        surname: Фамилия
+        patronymic: Отчество
+        birth_date: Дата рождения

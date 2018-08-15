@@ -1,6 +1,7 @@
-h4 Имя: #{client.name} ИНН: #{client.inn}
-= link_to 'Добавить заявку клиенту', new_order_path(order: { first_name: nil, surname: nil, patronymic: nil, birth_date: nil, client_id: client.id }), class: 'btn btn-primary'
-br
+.pull-right
+  = link_to 'Добавить заявку', new_order_path(order: { client_id: client.id }), class: 'btn btn-success'
+h2 Имя: #{client.name} ИНН: #{client.inn}
+hr
 table.table.table-striped
   thead
     tr
