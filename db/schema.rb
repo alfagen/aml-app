@@ -10,28 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_14_055216) do
+ActiveRecord::Schema.define(version: 2018_08_15_123206) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "client_documents", force: :cascade do |t|
     t.integer "document_kind_id", null: false
-    t.integer "client_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "file", null: false
     t.string "workflow_state", default: "pending", null: false
     t.bigint "order_id"
-    t.index ["client_id", "document_kind_id"], name: "index_client_documents_on_client_id_and_document_kind_id", unique: true
-    t.index ["client_id"], name: "index_client_documents_on_client_id"
     t.index ["document_kind_id"], name: "index_client_documents_on_document_kind_id"
     t.index ["order_id"], name: "index_client_documents_on_order_id"
   end
 
   create_table "clients", force: :cascade do |t|
     t.string "name", null: false
-    t.integer "inn", null: false
+    t.string "inn", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -70,7 +67,6 @@ ActiveRecord::Schema.define(version: 2018_08_14_055216) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token"
   end
 
-  add_foreign_key "client_documents", "clients"
   add_foreign_key "client_documents", "document_kinds"
   add_foreign_key "client_documents", "orders"
   add_foreign_key "orders", "clients"

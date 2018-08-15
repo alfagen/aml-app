@@ -13,7 +13,7 @@ class ClientDocument < ApplicationRecord
   belongs_to :order
 
   validates :file, presence: true
-  validates :document_kind_id, uniqueness: { scope: :client_id }
+  validates :document_kind_id, uniqueness: { scope: :order_id }
 
   workflow do
     state :pending do
@@ -27,6 +27,12 @@ class ClientDocument < ApplicationRecord
 
     state :rejected do
       event :accept, transitions_to: :accepted
+    end
+  end
+
+  after_create do
+    if DocumentKind.where.not(id: order.client_documents.select(:document_kind_id)).size == 0
+      order.load! if order.pending?
     end
   end
 end

@@ -2,7 +2,7 @@ class Order < ApplicationRecord
   extend Enumerize
   include Workflow
 
-  enumerize :workflow_state, in: %w[pending processing accepted rejected], scope: true
+  enumerize :workflow_state, in: %w[pending processing accepted rejected loaded], scope: true
 
   scope :ordered, -> { order 'id desc' }
 
@@ -16,6 +16,10 @@ class Order < ApplicationRecord
 
   workflow do
     state :pending do
+      event :load, transitions_to: :loaded
+    end
+
+    state :loaded do
       event :process, transitions_to: :processing
     end
 

@@ -8,6 +8,6 @@ module ClientDocumentHelper
   end
 
   def client(client_document)
-    Client.find(client_document.client_id)
+    client_document.order.client
   end
 end
