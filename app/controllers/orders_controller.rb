@@ -2,7 +2,8 @@ class OrdersController < ApplicationController
   include Pagination
 
   def index
-    render :index, locals: { orders: orders, workflow_state: workflow_state }
+    @q = orders.ransack(first_name_or_surname_or_patronymic_cont: search_value)  
+    render :index, locals: { orders: paginate(@q.result.ordered), workflow_state: workflow_state }
   end
 
   def new
@@ -46,7 +47,7 @@ class OrdersController < ApplicationController
   end
 
   def orders
-    paginate(Order.where(workflow_state: workflow_state))
+    Order.where(workflow_state: workflow_state)
   end
 
   def order
@@ -54,7 +55,7 @@ class OrdersController < ApplicationController
   end
 
   def client
-    @client ||= Client.find(permitted_params[:client_id]) if params[:order]
+    @client ||= Client.find_by(id: permitted_params[:client_id])
   end
 
   def document_kinds
@@ -62,6 +63,10 @@ class OrdersController < ApplicationController
   end
 
   def permitted_params
-    params.fetch(:order).permit(:first_name, :surname, :patronymic, :birth_date, :client_id, :workflow_state) if params[:order]
+    params.fetch(:order, {}).permit(:first_name, :surname, :patronymic, :birth_date, :client_id, :workflow_state)
+  end
+
+  def search_value
+    params.permit(:utf8, :commit, q: [:first_name]).to_h.dig('q', 'first_name') || ''
   end
 end

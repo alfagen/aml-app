@@ -31,6 +31,7 @@ gem 'turbolinks', '~> 5'
 gem 'carrierwave'
 gem 'mini_magick', '~> 4.8'
 gem 'virtus'
+gem 'ransack'
 
 gem 'non-stupid-digest-assets'
 gem 'settingslogic'

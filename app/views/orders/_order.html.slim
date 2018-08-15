@@ -1,5 +1,7 @@
 tr
-  td #{order.client.name}
+  td = order.first_name
+  td = order.surname
+  td = order.patronymic
   td = order.birth_date
   td = order.id
   td = order.workflow_state
