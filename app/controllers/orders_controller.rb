@@ -23,7 +23,7 @@ class OrdersController < ApplicationController
   end
 
   def in_process
-    order.process!
+    order.process!(current_user)
     redirect_to order
   end
 

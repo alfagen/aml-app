@@ -10,6 +10,8 @@ class User < ApplicationRecord
 
   scope :ordered, -> { order 'id desc' }
 
+  has_many :orders, dependent: :destroy
+
   validates :password, length: { minimum: 8 }, on: :update
   validates :password, confirmation: true, on: :update
   validates :password_confirmation, presence: true, on: :update
