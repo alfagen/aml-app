@@ -4,8 +4,7 @@ class ClientsController < ApplicationController
   include Pagination
 
   def index
-    @q = Client.ransack(name_or_inn_cont: search_value)
-    render :index, locals: { clients: paginate(@q.result.ordered) }
+    render :index, locals: { clients: paginate(q.result.ordered) }
   end
 
   def show
@@ -30,15 +29,15 @@ class ClientsController < ApplicationController
 
   private
 
+  def q
+    @q ||= Client.ransack params.fetch(:q, {}).permit!
+  end
+
   def client
     @client ||= Client.find params[:id]
   end
 
   def permitted_params
     params.fetch(:client, {}).permit(:name, :inn)
-  end
-
-  def search_value
-    params.permit(:utf8, :commit, q: [:name]).to_h.dig('q', 'name') || ''
   end
 end

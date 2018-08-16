@@ -2,8 +2,7 @@ class OrdersController < ApplicationController
   include Pagination
 
   def index
-    @q = orders.ransack(first_name_or_surname_or_patronymic_cont: search_value)
-    render :index, locals: { orders: paginate(@q.result.ordered), workflow_state: workflow_state }
+    render :index, locals: { orders: paginate(q.result.ordered), workflow_state: workflow_state }
   end
 
   def new
@@ -66,7 +65,7 @@ class OrdersController < ApplicationController
     params.fetch(:order, {}).permit(:first_name, :surname, :patronymic, :birth_date, :client_id, :workflow_state)
   end
 
-  def search_value
-    params.permit(:utf8, :commit, q: [:first_name]).to_h.dig('q', 'first_name') || ''
+  def q
+    @q ||= Order.ransack params.fetch(:q, {}).permit!
   end
 end
