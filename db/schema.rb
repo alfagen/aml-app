@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_15_123206) do
+ActiveRecord::Schema.define(version: 2018_08_15_152712) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 2018_08_15_123206) do
     t.string "surname", null: false
     t.string "patronymic", null: false
     t.datetime "birth_date", null: false
-    t.string "workflow_state", default: "pending", null: false
+    t.string "workflow_state", default: "none", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "client_id"

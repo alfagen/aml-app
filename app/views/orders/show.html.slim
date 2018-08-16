@@ -5,7 +5,7 @@ h5 Фамилия #{order.surname}
 h5 Отчество #{order.patronymic}
 h5 Дата рождения #{order.birth_date}
 h5 Состояние: #{order.workflow_state}
-- if order.loaded?
+- if order.pending?
   = button_to 'Принять в обработку', in_process_order_path(order), method: :put, class: 'btn btn-primary'
 - if order.processing? || order.accepted?
   = button_to 'Отказать', reject_order_path(order), method: :put, class: 'btn btn-primary'
