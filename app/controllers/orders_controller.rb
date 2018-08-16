@@ -2,11 +2,11 @@ class OrdersController < ApplicationController
   include Pagination
 
   def index
-    render :index, locals: { orders: orders, workflow_state: workflow_state }
+    render :index, locals: { orders: paginate(q.result.ordered), workflow_state: workflow_state }
   end
 
   def new
-    render :new, locals: { order: Order.new(permitted_params), client: client }
+    render :new, locals: { order: Order.new(permitted_params), client: Client.find(permitted_params[:client_id]) }
   end
 
   def create
@@ -18,7 +18,7 @@ class OrdersController < ApplicationController
   end
 
   def show
-    render :show, locals: { order: order, client: client, document_kinds: document_kinds,
+    render :show, locals: { order: order, client: order.client, document_kinds: document_kinds,
                             documents: paginate(order.client_documents.ordered) }
   end
 
@@ -46,15 +46,11 @@ class OrdersController < ApplicationController
   end
 
   def orders
-    paginate(Order.where(workflow_state: workflow_state))
+    Order.where(workflow_state: workflow_state)
   end
 
   def order
     @order ||= Order.find params[:id]
-  end
-
-  def client
-    @client ||= Client.find(permitted_params[:client_id]) if params[:order]
   end
 
   def document_kinds
@@ -62,6 +58,10 @@ class OrdersController < ApplicationController
   end
 
   def permitted_params
-    params.fetch(:order).permit(:first_name, :surname, :patronymic, :birth_date, :client_id, :workflow_state) if params[:order]
+    params.fetch(:order, {}).permit(:first_name, :surname, :patronymic, :birth_date, :client_id, :workflow_state)
+  end
+
+  def q
+    @q ||= orders.ransack params.fetch(:q, {}).permit!
   end
 end

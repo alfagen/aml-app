@@ -4,7 +4,7 @@ class ClientsController < ApplicationController
   include Pagination
 
   def index
-    render :index, locals: { clients: paginate(Client.ordered) }
+    render :index, locals: { clients: paginate(q.result.ordered) }
   end
 
   def show
@@ -28,6 +28,10 @@ class ClientsController < ApplicationController
   end
 
   private
+
+  def q
+    @q ||= Client.ransack params.fetch(:q, {}).permit!
+  end
 
   def client
     @client ||= Client.find params[:id]

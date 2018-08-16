@@ -30,6 +30,7 @@ gem 'turbolinks', '~> 5'
 # Use ActiveStorage variant
 gem 'carrierwave'
 gem 'mini_magick', '~> 4.8'
+gem 'ransack'
 gem 'virtus'
 
 gem 'non-stupid-digest-assets'

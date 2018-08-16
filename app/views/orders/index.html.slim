@@ -1,6 +1,10 @@
 = render 'menu', workflow_state: workflow_state
-
 - if orders.any?
+  h5 Поиск
+  = search_form_for @q do |f|
+    = f.search_field :first_name_or_surname_or_patronymic_cont
+    = hidden_field_tag :workflow_state_eq
+    = f.submit 'Искать', class: "btn btn-primary"
   = render partial: 'orders', locals: { orders: orders }
 - else
-  p.alert Заявки отсутвуют
+  p.alert Заявки отсутствуют
