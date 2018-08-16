@@ -36,4 +36,8 @@ class Order < ApplicationRecord
       event :accept, transitions_to: :accepted
     end
   end
+
+  def complete?
+    client_documents.count == DocumentKind.count
+  end
 end

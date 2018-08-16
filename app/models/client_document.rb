@@ -31,8 +31,6 @@ class ClientDocument < ApplicationRecord
   end
 
   after_create do
-    if order.client_documents.count == DocumentKind.count
-      order.load! if order.none?
-    end
+    order.load! if order.none? && order.complete?
   end
 end
