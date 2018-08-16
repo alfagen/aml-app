@@ -8,3 +8,7 @@ table.table.table-condensed
       th Типы документа:
   tbody
     = render document_kinds
+- if document_kinds.any?
+  = render document_kinds
+- else
+  p.alert Типы документов отсутствуют.
