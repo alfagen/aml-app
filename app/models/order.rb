@@ -7,6 +7,7 @@ class Order < ApplicationRecord
   scope :ordered, -> { order 'id desc' }
 
   belongs_to :client
+  belongs_to :user, optional: true
   has_many :client_documents, dependent: :destroy
 
   validates :first_name, presence: true
@@ -20,7 +21,9 @@ class Order < ApplicationRecord
     end
 
     state :pending do
-      event :process, transitions_to: :processing
+      event :process, transitions_to: :processing do |current_user|
+        update!(user: current_user)
+      end
     end
 
     state :processing do

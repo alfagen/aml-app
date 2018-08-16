@@ -3,4 +3,5 @@ tr
   td = order.birth_date
   td = order.id
   td = order.workflow_state
+  td = order.user&.email || 'Не назначен'
   td = link_to 'Показать', order_path(order), class: 'btn btn-default'
