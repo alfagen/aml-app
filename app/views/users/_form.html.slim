@@ -1,5 +1,3 @@
 = simple_form_for user do |f|
   = f.input :email, as: :string, label: false, hint: 'Email/логин'
-  = f.input :password, as: :string, label: false, hint: 'Пароль'
-  = f.input :password_confirmation, as: :string, label: false, hint: 'Подтверждение пароля'
   = f.button :submit, 'Создать/изменить', class: 'btn btn-primary'

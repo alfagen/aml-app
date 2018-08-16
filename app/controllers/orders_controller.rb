@@ -6,7 +6,7 @@ class OrdersController < ApplicationController
   end
 
   def new
-    render :new, locals: { order: Order.new(permitted_params), client: client }
+    render :new, locals: { order: Order.new(permitted_params), client: Client.find(permitted_params[:client_id]) }
   end
 
   def create
@@ -18,7 +18,7 @@ class OrdersController < ApplicationController
   end
 
   def show
-    render :show, locals: { order: order, client: client, document_kinds: document_kinds,
+    render :show, locals: { order: order, client: order.client, document_kinds: document_kinds,
                             documents: paginate(order.client_documents.ordered) }
   end
 
@@ -53,10 +53,6 @@ class OrdersController < ApplicationController
     @order ||= Order.find params[:id]
   end
 
-  def client
-    @client ||= Client.find_by(id: permitted_params[:client_id])
-  end
-
   def document_kinds
     @document_kinds = DocumentKind.all.ordered
   end
@@ -66,6 +62,6 @@ class OrdersController < ApplicationController
   end
 
   def q
-    @q ||= Order.ransack params.fetch(:q, {}).permit!
+    @q ||= orders.ransack params.fetch(:q, {}).permit!
   end
 end
