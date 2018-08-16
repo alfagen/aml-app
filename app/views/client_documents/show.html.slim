@@ -1,4 +1,4 @@
-h4 Имя клиента: #{client(client_document).name}
+h4 Имя в заявке: #{client_document.order.first_name}, #{client_document.order.surname}, #{client_document.order.patronymic}
 h4 Тип документа: #{client_document.document_kind.title}
 h4 Файл:
 = image_tag(client_document.file.to_s, size: '400')

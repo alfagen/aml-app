@@ -3,11 +3,7 @@
 # Стиль active для первоначального открытия на вкладке pending
 #
 module ClientDocumentHelper
-  def style(workflow_state)
+  def document_active_type(workflow_state)
     workflow_state == :pending ? :inclusive : :exact
-  end
-
-  def client(client_document)
-    Client.find(client_document.client_id)
   end
 end

@@ -2,7 +2,7 @@ class Order < ApplicationRecord
   extend Enumerize
   include Workflow
 
-  enumerize :workflow_state, in: %w[pending processing accepted rejected], scope: true
+  enumerize :workflow_state, in: %w[none pending processing accepted rejected], scope: true
 
   scope :ordered, -> { order 'id desc' }
 
@@ -15,6 +15,10 @@ class Order < ApplicationRecord
   validates :birth_date, presence: true
 
   workflow do
+    state :none do
+      event :load, transitions_to: :pending
+    end
+
     state :pending do
       event :process, transitions_to: :processing
     end
@@ -31,5 +35,9 @@ class Order < ApplicationRecord
     state :rejected do
       event :accept, transitions_to: :accepted
     end
+  end
+
+  def complete?
+    client_documents.count == DocumentKind.count
   end
 end
