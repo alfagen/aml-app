@@ -1,2 +1,2 @@
 - documents.each do |document|
-  =< image_tag(document.file.to_s, size: '60')
+  =< link_to image_tag(document.file.to_s, size: '60'), client_document_path(document)
