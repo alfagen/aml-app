@@ -3,18 +3,21 @@ require 'valid_email'
 class User < ApplicationRecord
   extend Enumerize
   include Workflow
+  include Authority::UserAbilities
+  include Authority::Abilities
 
   authenticates_with_sorcery!
 
   enumerize :workflow_state, in: %w[blocked unblocked], scope: true
+  enum role: [:operator, :administrator]
 
   scope :ordered, -> { order 'id desc' }
 
   has_many :orders, dependent: :destroy
 
-  validates :password, length: { minimum: 8 }, on: :update
-  validates :password, confirmation: true, on: :update
-  validates :password_confirmation, presence: true, on: :update
+  validates :password, length: { minimum: 8 }, on: :update, if: -> { crypted_password.nil? }
+  validates :password, confirmation: true, on: :update, if: :crypted_password_changed?
+  validates :password_confirmation, presence: true, on: :update, if: :crypted_password_changed?
   validates :email, presence: true, uniqueness: true, email: true
 
   after_commit :deliver_reset_password_instructions!, on: :create

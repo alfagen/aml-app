@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   include Pagination
 
   def index
-    render :index, locals: { orders: paginate(q.result.ordered), workflow_state: workflow_state }
+    render :index, locals: { orders: paginate(q.result.ordered), workflow_state: params[:workflow_state] }
   end
 
   def new

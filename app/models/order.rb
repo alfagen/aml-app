@@ -1,6 +1,7 @@
 class Order < ApplicationRecord
   extend Enumerize
   include Workflow
+  include Authority::Abilities
 
   enumerize :workflow_state, in: %w[none pending processing accepted rejected], scope: true
 
