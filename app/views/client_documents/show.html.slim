@@ -1,10 +1,11 @@
-h4 Имя в заявке: #{client_document.order.first_name}, #{client_document.order.surname}, #{client_document.order.patronymic}
-h4 Тип документа: #{client_document.document_kind.title}
-h4 Файл:
-= image_tag(client_document.file.to_s)
-br
-h4 Состояние: #{client_document.workflow_state}
-- if client_document.pending? || client_document.rejected?
-  = button_to 'Принять', accept_client_document_path(client_document), method: :put, class: 'btn btn-primary'
-- if client_document.pending? || client_document.accepted?
-  = button_to 'Отказать', reject_client_document_path(client_document), method: :put, class: 'btn btn-primary'
+- if current_user.can_process?(ClientDocument)  
+  h4 Имя в заявке: #{client_document.order.first_name}, #{client_document.order.surname}, #{client_document.order.patronymic}
+  h4 Тип документа: #{client_document.document_kind.title}
+  h4 Файл:
+  = image_tag(client_document.image.url, style: 'height:auto;width:100%;')
+  br
+  h4 Состояние: #{client_document.workflow_state}
+  - if client_document.pending? || client_document.rejected?
+    = button_to 'Принять', accept_client_document_path(client_document), method: :put, class: 'btn btn-success'
+  - if client_document.pending? || client_document.accepted?
+    = button_to 'Отказать', reject_client_document_path(client_document), method: :put, class: 'btn btn-success'

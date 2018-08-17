@@ -3,7 +3,8 @@
 class ClientDocument < ApplicationRecord
   extend Enumerize
   include Workflow
-  mount_uploader :file, FileUploader
+  include Authority::Abilities
+  mount_uploader :image, FileUploader
 
   enumerize :workflow_state, in: %w[pending accepted rejected], scope: true
 
@@ -12,7 +13,7 @@ class ClientDocument < ApplicationRecord
   belongs_to :document_kind
   belongs_to :order
 
-  validates :file, presence: true
+  validates :image, presence: true
   validates :document_kind_id, uniqueness: { scope: :order_id }
 
   workflow do
