@@ -58,6 +58,6 @@ class ClientDocumentsController < ApplicationController
   end
 
   def permitted_params
-    params.fetch(:client_document).permit(:document_kind_id, :file, :order_id, :workflow_state)
+    params.fetch(:client_document).permit(:document_kind_id, :image, :order_id, :workflow_state)
   end
 end

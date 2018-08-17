@@ -46,7 +46,10 @@ Authority.configure do |config|
     read:    'readable',
     update:  'updatable',
     delete:  'deletable',
-    destroy: 'deletable'
+    destroy: 'deletable',
+    update_role: 'role_updatable',
+    block: 'blockable',
+    process: 'processable'
   }
 
   # LOGGER

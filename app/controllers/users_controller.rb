@@ -48,6 +48,6 @@ class UsersController < ApplicationController
   end
 
   def permitted_params
-    params.fetch(:user, {}).permit(:email, :password, :password_confirmation, :crypted_password, :salt, :workflow_state)
+    params.fetch(:user, {}).permit(:email, :role, :password, :password_confirmation, :crypted_password, :salt, :workflow_state)
   end
 end
