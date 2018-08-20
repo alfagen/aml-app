@@ -46,6 +46,6 @@ class Order < ApplicationRecord
   end
 
   def missing_documents
-    DocumentKind.all.where.not(id: client_documents.select(:document_kind_id))
+    DocumentKind.where.not(id: client_documents.pluck(:document_kind_id))
   end
 end

@@ -2,7 +2,8 @@
 
 FactoryBot.define do
   factory :user do
-    email 'example@mail.com'
+    sequence(:email) { |n| "user#{n}@example.com" }
+    role 'operator'
     workflow_state 'unblocked'
     password 'password'
     password_confirmation 'password'
