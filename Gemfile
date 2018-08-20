@@ -90,6 +90,7 @@ group :development, :test do
   # Adds step-by-step debugging and stack navigation capabilities to pry using byebug.
   gem 'pry-byebug'
 
+  gem 'rails-controller-testing'
   gem 'rspec-rails', '~> 3.7'
   gem 'semver'
 end
