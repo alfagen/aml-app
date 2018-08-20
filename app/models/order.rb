@@ -44,4 +44,8 @@ class Order < ApplicationRecord
   def complete?
     client_documents.count == DocumentKind.count
   end
+
+  def missing_documents
+    DocumentKind.all.where.not(id: client_documents.select(:document_kind_id))
+  end
 end
