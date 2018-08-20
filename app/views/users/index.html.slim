@@ -1,5 +1,5 @@
 .pull-right= link_to 'Добавить пользователя', new_user_path, class: 'btn btn-success' if current_user.can_create?(User)
-h4 Список пользователей:
+h2 Список пользователей:
 table.table.table-condensed
   thead
     tr

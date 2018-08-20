@@ -16,5 +16,6 @@ h4 Состояние: #{order.workflow_state}
     h4 Документы заявки
     = paginate documents
     = render partial: 'client_documents/documents_list', locals: { documents: documents }
-  h4 Добавить документ
-  = render partial: 'client_documents/form', locals: { client_document: ClientDocument.new, order: order, document_kinds: document_kinds }
+  - if order.none?
+    h4 Добавить документ
+    = render partial: 'client_documents/form', locals: { client_document: ClientDocument.new, order: order, document_kinds: order.missing_documents }
