@@ -4,7 +4,7 @@ tr
   td
     - if current_user.can_process?(DocumentKindFieldDefinition)
       => link_to 'Редактировать', edit_document_kind_field_definition_path(field.id), class: 'btn btn-default'
-      - if field.actived?
-        = link_to 'Архивировать', archive_document_kind_field_definition_path(field), method: :put, class: 'btn btn-default'
+      - if field.active?
+        = link_to 'Архивировать', archive_document_kind_field_definition_path(field), method: :delete, class: 'btn btn-default'
       - else
-        = link_to 'Активировать', active_document_kind_field_definition_path(field), method: :put, class: 'btn btn-default'
+        = link_to 'Восстановить', restore_document_kind_field_definition_path(field), method: :post, class: 'btn btn-default'

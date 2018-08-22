@@ -22,14 +22,14 @@ class DocumentKindFieldDefinitionsController < ApplicationController
     render :edit, locals: { document_kind_field_definition: e.record }
   end
 
-  def active
-    document_kind_field_definition.active!
-    redirect_to document_kind_path(document_kind_field_definition.document_kind, workflow_state: :archived)
+  def restore
+    document_kind_field_definition.restore!
+    redirect_to document_kind_path(document_kind_field_definition.document_kind, state: :archive)
   end
 
   def archive
     document_kind_field_definition.archive!
-    redirect_to document_kind_path(document_kind_field_definition.document_kind, workflow_state: :actived)
+    redirect_to document_kind_path(document_kind_field_definition.document_kind)
   end
 
   private

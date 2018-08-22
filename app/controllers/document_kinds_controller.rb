@@ -21,21 +21,21 @@ class DocumentKindsController < ApplicationController
 
   def show
     render :show, locals: { document_kind: document_kind,
+                            all_fields: document_kind.document_kind_field_definitions,
                             fields: document_kind_field_definitions,
-                            workflow_state: workflow_state,
-                            all_fields: document_kind.document_kind_field_definitions.ordered }
+                            state: state }
   end
 
   private
 
-  DEFAULT_WORKFLOW_STATE = :actived
+  DEFAULT_STATE = :alive
 
-  def workflow_state
-    params[:workflow_state] || DEFAULT_WORKFLOW_STATE
+  def state
+    params[:state] || DEFAULT_STATE
   end
 
   def document_kind_field_definitions
-    document_kind.document_kind_field_definitions.where(workflow_state: workflow_state).ordered
+    document_kind.document_kind_field_definitions.send(state).ordered if ['alive', 'archive'].include? state.to_s
   end
 
   def document_kind
@@ -43,6 +43,6 @@ class DocumentKindsController < ApplicationController
   end
 
   def permitted_params
-    params.fetch(:document_kind).permit(:title, :workflow_state)
+    params.fetch(:document_kind).permit(:title, :state)
   end
 end
