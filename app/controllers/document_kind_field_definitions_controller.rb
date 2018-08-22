@@ -39,7 +39,7 @@ class DocumentKindFieldDefinitionsController < ApplicationController
   end
 
   def document_kind
-    @document_kind ||= DocumentKind.find params[:document_kind_field_definition][:document_kind_id]
+    @document_kind ||= DocumentKind.find params[:document_kind_id]
   end
 
   def permitted_params
