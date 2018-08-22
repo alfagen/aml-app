@@ -1,0 +1,18 @@
+h2 Тип документа: #{document_kind.title}
+- if current_user.can_read?(DocumentKindFieldDefinition)
+  = render 'menu', workflow_state: workflow_state, all_fields: all_fields
+  - if fields.any?
+    table.table.table-condensed
+      thead
+        tr
+          th Ключ поля:
+          th Название поля:
+          th Действия:
+          tbody
+            = render partial: 'document_kind_field_definitions/field', collection: fields
+  - else
+    p.alert Дополнительные поля отсутствуют.
+  - unless workflow_state == 'archived'
+    - if current_user.can_create?(DocumentKindFieldDefinition)
+      h4 Добавить поле документа
+      = render partial: 'document_kind_field_definitions/form', locals: { document_kind_field_definition: DocumentKindFieldDefinition.new, document_kind: document_kind }

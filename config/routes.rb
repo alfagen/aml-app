@@ -18,7 +18,13 @@ Rails.application.routes.draw do
       put :unblock
     end
   end
-  resources :document_kinds, only: %i[index new create]
+  resources :document_kinds, only: %i[index new create show]
+  resources :document_kind_field_definitions, only: %i[new create edit update] do
+    member do
+      put :active
+      put :archive
+    end
+  end
   resources :clients, except: %i[edit update destroy]
   resources :orders do
     member do

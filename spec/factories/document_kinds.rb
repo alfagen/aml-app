@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :document_kind do
-    title 'title'
+    sequence(:title) { |n| "title#{n}" }
   end
 end

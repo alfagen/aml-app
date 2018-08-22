@@ -1,0 +1,10 @@
+tr
+  td = field.key
+  td = field.title
+  td
+    - if current_user.can_process?(DocumentKindFieldDefinition)
+      => link_to 'Редактировать', edit_document_kind_field_definition_path(field.id), class: 'btn btn-default'
+      - if field.actived?
+        = link_to 'Архивировать', archive_document_kind_field_definition_path(field), method: :put, class: 'btn btn-default'
+      - else
+        = link_to 'Активировать', active_document_kind_field_definition_path(field), method: :put, class: 'btn btn-default'

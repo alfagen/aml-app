@@ -19,9 +19,30 @@ class DocumentKindsController < ApplicationController
     render :new, locals: { document_kind: e.record }
   end
 
+  def show
+    render :show, locals: { document_kind: document_kind,
+                            fields: document_kind_field_definitions,
+                            workflow_state: workflow_state,
+                            all_fields: document_kind.document_kind_field_definitions.ordered }
+  end
+
   private
 
+  DEFAULT_WORKFLOW_STATE = :actived
+
+  def workflow_state
+    params[:workflow_state] || DEFAULT_WORKFLOW_STATE
+  end
+
+  def document_kind_field_definitions
+    document_kind.document_kind_field_definitions.where(workflow_state: workflow_state).ordered
+  end
+
+  def document_kind
+    @document_kind ||= DocumentKind.find params[:id]
+  end
+
   def permitted_params
-    params.fetch(:document_kind).permit(:title)
+    params.fetch(:document_kind).permit(:title, :workflow_state)
   end
 end
