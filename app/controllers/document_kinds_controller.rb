@@ -21,28 +21,16 @@ class DocumentKindsController < ApplicationController
 
   def show
     render :show, locals: { document_kind: document_kind,
-                            all_fields: document_kind.document_kind_field_definitions,
-                            fields: document_kind_field_definitions,
-                            state: state }
+                            field_definitions: document_kind.document_kind_field_definitions }
   end
 
   private
-
-  DEFAULT_STATE = :alive
-
-  def state
-    params[:state] || DEFAULT_STATE
-  end
-
-  def document_kind_field_definitions
-    document_kind.document_kind_field_definitions.send(state).ordered if ['alive', 'archive'].include? state.to_s
-  end
 
   def document_kind
     @document_kind ||= DocumentKind.find params[:id]
   end
 
   def permitted_params
-    params.fetch(:document_kind).permit(:title, :state)
+    params.fetch(:document_kind).permit(:title)
   end
 end

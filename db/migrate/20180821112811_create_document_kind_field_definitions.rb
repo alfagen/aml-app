@@ -9,6 +9,6 @@ class CreateDocumentKindFieldDefinitions < ActiveRecord::Migration[5.2]
     end
 
     add_reference :document_kind_field_definitions, :document_kind, index: true, foreign_key: true
-    add_index :document_kind_field_definitions, :key, unique: true
+    add_index :document_kind_field_definitions, [:document_kind_id, :key], unique: true, name: 'document_field_definitions'
   end
 end

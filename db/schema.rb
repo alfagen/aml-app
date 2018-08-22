@@ -40,8 +40,8 @@ ActiveRecord::Schema.define(version: 2018_08_21_112811) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "document_kind_id"
+    t.index ["document_kind_id", "key"], name: "document_field_definitions", unique: true
     t.index ["document_kind_id"], name: "index_document_kind_field_definitions_on_document_kind_id"
-    t.index ["key"], name: "index_document_kind_field_definitions_on_key", unique: true
   end
 
   create_table "document_kinds", force: :cascade do |t|

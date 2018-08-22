@@ -24,7 +24,7 @@ class DocumentKindFieldDefinitionsController < ApplicationController
 
   def restore
     document_kind_field_definition.restore!
-    redirect_to document_kind_path(document_kind_field_definition.document_kind, state: :archive)
+    redirect_to document_kind_path(document_kind_field_definition.document_kind)
   end
 
   def archive

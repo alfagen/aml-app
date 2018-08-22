@@ -1,18 +1,6 @@
 h2 Тип документа: #{document_kind.title}
 - if current_user.can_read?(DocumentKindFieldDefinition)
-  = render 'menu', state: state, all_fields: all_fields
-  - if fields.any?
-    table.table.table-condensed
-      thead
-        tr
-          th Ключ поля:
-          th Название поля:
-          th Действия:
-          tbody
-            = render partial: 'document_kind_field_definitions/field', collection: fields
-  - else
-    p.alert Дополнительные поля отсутствуют.
-  - unless state == :archived
-    - if current_user.can_create?(DocumentKindFieldDefinition)
-      h4 Добавить поле документа
-      = render partial: 'document_kind_field_definitions/form', locals: { document_kind_field_definition: DocumentKindFieldDefinition.new, document_kind: document_kind }
+  = render partial: 'document_kind_field_definitions/table', locals: { field_definitions: field_definitions.alive } if field_definitions.alive.any?
+  = render partial: 'document_kind_field_definitions/table', locals: { field_definitions: field_definitions.archive } if field_definitions.archive.any?
+  h4 Добавить поле документа
+  = render partial: 'document_kind_field_definitions/form', locals: { document_kind_field_definition: DocumentKindFieldDefinition.new, document_kind: document_kind }
