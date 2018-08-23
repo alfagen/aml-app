@@ -2,5 +2,6 @@ h2 Тип документа: #{document_kind.title}
 - if current_user.can_read?(DocumentKindFieldDefinition)
   = render partial: 'document_kind_field_definitions/table', locals: { field_definitions: field_definitions.alive } if field_definitions.alive.any?
   = render partial: 'document_kind_field_definitions/table', locals: { field_definitions: field_definitions.archive } if field_definitions.archive.any?
+- if current_user.create?(DocumentKindFieldDefinition)
   h4 Добавить поле документа
   = render partial: 'document_kind_field_definitions/form', locals: { document_kind_field_definition: DocumentKindFieldDefinition.new, document_kind: document_kind }
