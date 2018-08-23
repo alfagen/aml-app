@@ -19,7 +19,16 @@ class DocumentKindsController < ApplicationController
     render :new, locals: { document_kind: e.record }
   end
 
+  def show
+    render :show, locals: { document_kind: document_kind,
+                            field_definitions: document_kind.document_kind_field_definitions }
+  end
+
   private
+
+  def document_kind
+    @document_kind ||= DocumentKind.find params[:id]
+  end
 
   def permitted_params
     params.fetch(:document_kind).permit(:title)

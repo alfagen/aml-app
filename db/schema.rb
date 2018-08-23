@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_17_050039) do
+ActiveRecord::Schema.define(version: 2018_08_21_112811) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,17 @@ ActiveRecord::Schema.define(version: 2018_08_17_050039) do
     t.string "inn", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "document_kind_field_definitions", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "title", null: false
+    t.datetime "archived_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "document_kind_id"
+    t.index ["document_kind_id", "key"], name: "document_field_definitions", unique: true
+    t.index ["document_kind_id"], name: "index_document_kind_field_definitions_on_document_kind_id"
   end
 
   create_table "document_kinds", force: :cascade do |t|
@@ -72,6 +83,7 @@ ActiveRecord::Schema.define(version: 2018_08_17_050039) do
 
   add_foreign_key "client_documents", "document_kinds"
   add_foreign_key "client_documents", "orders"
+  add_foreign_key "document_kind_field_definitions", "document_kinds"
   add_foreign_key "orders", "clients"
   add_foreign_key "orders", "users"
 end

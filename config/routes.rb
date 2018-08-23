@@ -7,6 +7,13 @@ Rails.application.routes.draw do
 
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 
+  concern :archivable do
+    member do
+      delete :archive
+      post :restore
+    end
+  end
+
   get 'login' => 'user_sessions#new', :as => :login
   delete 'logout' => 'user_sessions#destroy', :as => :logout
   resources :password_resets, only: %i[new create edit update]
@@ -18,7 +25,10 @@ Rails.application.routes.draw do
       put :unblock
     end
   end
-  resources :document_kinds, only: %i[index new create]
+  resources :document_kinds, only: %i[index new create show]
+  resources :document_kind_field_definitions, only: %i[new create edit update] do
+    concerns :archivable
+  end
   resources :clients, except: %i[edit update destroy]
   resources :orders do
     member do
