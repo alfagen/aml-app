@@ -12,7 +12,7 @@ class ClientDocument < ApplicationRecord
 
   belongs_to :document_kind
   belongs_to :order
-  has_many :client_document_fields
+  has_many :client_document_fields, dependent: :destroy
 
   validates :image, presence: true
   validates :document_kind_id, uniqueness: { scope: :order_id }
