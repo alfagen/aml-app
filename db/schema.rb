@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_21_112811) do
+ActiveRecord::Schema.define(version: 2018_08_23_053550) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "client_document_fields", force: :cascade do |t|
+    t.string "value", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "client_document_id"
+    t.bigint "document_kind_field_definition_id"
+    t.index ["client_document_id", "document_kind_field_definition_id"], name: "client_document_fields_index", unique: true
+  end
 
   create_table "client_documents", force: :cascade do |t|
     t.integer "document_kind_id", null: false
@@ -40,8 +49,8 @@ ActiveRecord::Schema.define(version: 2018_08_21_112811) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "document_kind_id"
-    t.index ["document_kind_id", "key"], name: "document_field_definitions", unique: true
     t.index ["document_kind_id"], name: "index_document_kind_field_definitions_on_document_kind_id"
+    t.index ["key"], name: "index_document_kind_field_definitions_on_key", unique: true
   end
 
   create_table "document_kinds", force: :cascade do |t|
@@ -81,6 +90,8 @@ ActiveRecord::Schema.define(version: 2018_08_21_112811) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token"
   end
 
+  add_foreign_key "client_document_fields", "client_documents"
+  add_foreign_key "client_document_fields", "document_kind_field_definitions"
   add_foreign_key "client_documents", "document_kinds"
   add_foreign_key "client_documents", "orders"
   add_foreign_key "document_kind_field_definitions", "document_kinds"

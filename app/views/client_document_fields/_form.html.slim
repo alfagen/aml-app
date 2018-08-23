@@ -1,0 +1,5 @@
+= simple_form_for client_document_field do |f|
+  = f.hidden_field :document_kind_field_definition_id, value: document_kind_field_definition.id
+  = f.hidden_field :client_document_id, value: client_document.id
+  = f.input :value, as: :string, label: false, hint: 'Введите значение параметра'
+  = f.button :submit, 'Создать/редактировать', class: 'btn btn-success'

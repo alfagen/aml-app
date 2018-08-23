@@ -24,7 +24,8 @@ class ClientDocumentsController < ApplicationController
   end
 
   def show
-    render :show, locals: { client_document: client_document }
+    render :show, locals: { client_document: client_document,
+                            alive_fields: client_document.document_kind.document_kind_field_definitions.alive }
   end
 
   def accept

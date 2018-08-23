@@ -25,6 +25,7 @@ Rails.application.routes.draw do
       put :unblock
     end
   end
+  resources :client_document_fields, only: %i[new create edit update]
   resources :document_kinds, only: %i[index new create show]
   resources :document_kind_field_definitions, only: %i[new create edit update] do
     concerns :archivable
