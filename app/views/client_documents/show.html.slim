@@ -1,24 +1,26 @@
 - if current_user.can_process?(ClientDocument)  
   h4 Имя в заявке: #{client_document.order.first_name}, #{client_document.order.surname}, #{client_document.order.patronymic}
   h4 Тип документа: #{client_document.document_kind.title}
-- if alive_fields.any?
+- if definitions.any?
   h4 Дополнительные поля документа:
   table.table.table-condensed
     thead
       tr
         th Название:
         th Значение:
+        th Статус:
         th Действия:
     tbody
-    - alive_fields.each do |field|
+    - definitions.each do |definition|
       tr
-        td = field.title
-        td = field_value(client_document, field)&.value || 'не задано'
+        td = definition.title
+        td = definition_value(client_document, definition)&.value || 'не задано'
+        td = definition.alive?
         td
-          - if field_value(client_document, field).blank?
-            = link_to 'Задать значение', new_client_document_field_path(client_document_field: { client_document_id: client_document.id, document_kind_field_definition_id: field.id }), class: 'btn btn-default'
+          - if definition_value(client_document, definition).blank?
+            = link_to 'Задать значение', new_client_document_field_path(client_document_field: { client_document_id: client_document.id, document_kind_field_definition_id: definition.id }), class: 'btn btn-default'
           - else
-            = link_to 'Редактировать значение', edit_client_document_field_path(client_document_field: { client_document_id: client_document.id, document_kind_field_definition_id: field.id }), class: 'btn btn-default'
+            = link_to 'Редактировать значение', edit_client_document_field_path(definition_value(client_document, definition)), class: 'btn btn-default'
   h4 Файл:
   = image_tag(client_document.image.url, style: 'height:auto;width:100%;')
   br

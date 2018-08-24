@@ -1,6 +1,4 @@
 class ClientDocumentFieldsController < ApplicationController
-  include ClientDocumentHelper
-
   def new
     render :new, locals: { client_document: client_document,
                            document_kind_field_definition: document_kind_field_definition,
@@ -17,8 +15,8 @@ class ClientDocumentFieldsController < ApplicationController
 
   def edit
     render :edit, locals: { client_document_field: client_document_field,
-                            client_document: client_document,
-                            document_kind_field_definition: document_kind_field_definition }
+                            client_document: client_document_field.client_document,
+                            document_kind_field_definition: client_document_field.document_kind_field_definition }
   end
 
   def update
@@ -38,7 +36,7 @@ class ClientDocumentFieldsController < ApplicationController
   end
 
   def client_document_field
-    @client_document_field ||= field_value(client_document, document_kind_field_definition)
+    @client_document_fields ||= ClientDocumentField.find params[:id]
   end
 
   def document_kind_field_definition

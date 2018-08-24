@@ -7,7 +7,7 @@ module ClientDocumentHelper
     workflow_state == :pending ? :inclusive : :exact
   end
 
-  def field_value(client_document, field)
-    ClientDocumentField.where(client_document: client_document, document_kind_field_definition: field).first
+  def definition_value(client_document, definition)
+    definition.client_document_fields.find_by(client_document: client_document)
   end
 end
