@@ -36,7 +36,7 @@ class ClientDocumentFieldsController < ApplicationController
   end
 
   def client_document_field
-    @client_document_fields ||= ClientDocumentField.find params[:id]
+    @client_document_field ||= ClientDocumentField.find params[:id]
   end
 
   def document_kind_field_definition
