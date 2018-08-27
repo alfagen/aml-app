@@ -5,6 +5,7 @@ class DocumentKindFieldDefinition < ApplicationRecord
   scope :ordered, -> { order 'id desc' }
 
   belongs_to :document_kind
+  has_many :client_document_fields, dependent: :destroy
 
   validates :title, presence: true
   validates :key, presence: true, format: { with: /[a-z_]+/ }, uniqueness: { scope: :document_kind }

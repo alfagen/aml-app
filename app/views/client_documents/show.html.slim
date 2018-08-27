@@ -1,6 +1,22 @@
-- if current_user.can_process?(ClientDocument)  
+- if current_user.can_process?(ClientDocument)
   h4 Имя в заявке: #{client_document.order.first_name}, #{client_document.order.surname}, #{client_document.order.patronymic}
   h4 Тип документа: #{client_document.document_kind.title}
+- if fields.any?
+  h4 Дополнительные поля документа:
+  table.table.table-condensed
+    thead
+      tr
+        th Название:
+        th Значение:
+        th Статус:
+        th Действия:
+    tbody
+    - fields.each do |field|
+      tr
+        td = field.title
+        td = field.value || 'не задано'
+        td = field.definition.alive?
+        td = link_to 'Изменить значение', edit_client_document_field_path(field), class: 'btn btn-default'
   h4 Файл:
   = image_tag(client_document.image.url, style: 'height:auto;width:100%;')
   br

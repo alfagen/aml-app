@@ -35,9 +35,11 @@ Rails.application.routes.draw do
       put :in_process
       put :accept
       put :reject
+      put :stop
     end
   end
   resources :client_documents, only: %i[show index new create] do
+    resources :fields, only: %i[edit update], controller: 'client_document_fields'
     member do
       put :accept
       put :reject

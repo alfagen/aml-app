@@ -37,6 +37,11 @@ class OrdersController < ApplicationController
     redirect_to order
   end
 
+  def stop
+    order.stop!
+    redirect_to order
+  end
+
   private
 
   DEFAULT_WORKFLOW_STATE = :none
