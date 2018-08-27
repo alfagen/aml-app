@@ -5,4 +5,8 @@ tr
   td = order.birth_date.strftime('%F')
   td = order.workflow_state
   td = order.user&.email || 'Не назначен'
-  td = link_to 'Показать', order_path(order), class: 'btn btn-default'
+  td
+    - if order.pending?
+      = link_to 'Принять в обработку', in_process_order_path(order), method: :put, class: 'btn btn-default'
+    - else
+      = link_to 'Показать', order_path(order), class: 'btn btn-default'

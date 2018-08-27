@@ -25,7 +25,7 @@ class ClientDocumentsController < ApplicationController
 
   def show
     render :show, locals: { client_document: client_document,
-                            definitions: client_document.document_kind.document_kind_field_definitions }
+                            fields: client_document.client_document_fields }
   end
 
   def accept

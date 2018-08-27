@@ -33,6 +33,20 @@ class ClientDocument < ApplicationRecord
   end
 
   after_create do
+    order_loading
+    add_fields
+  end
+
+  private
+
+  def order_loading
     order.load! if order.none? && order.complete?
+  end
+
+  def add_fields
+    field_definitions = document_kind.document_kind_field_definitions
+    field_definitions.each do |field_definition|
+      ClientDocumentField.create!(definition: field_definition, client_document_id: id)
+    end
   end
 end

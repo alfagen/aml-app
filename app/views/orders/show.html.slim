@@ -5,12 +5,10 @@ h4 Состояние: #{order.workflow_state}
 - if order.current_state >= :processing
   h4 Оператор: #{order.user.email}
 - if current_user.can_process?(Order)
-  - if order.pending?
-    = button_to 'Принять в обработку', in_process_order_path(order), method: :put, class: 'btn btn-success'
-  - if order.processing? || order.accepted?
-    = button_to 'Отказать', reject_order_path(order), method: :put, class: 'btn btn-success'
-  - if order.processing? || order.rejected?
-    = button_to 'Принять', accept_order_path(order), method: :put, class: 'btn btn-success'
+  = link_to 'Принять в обработку', in_process_order_path(order), method: :put, class: 'btn btn-success' if order.pending?
+  => link_to 'Прекратить обработку', stop_order_path(order), method: :put, class: 'btn btn-success' if order.user == current_user && order.processing?
+  => link_to 'Отказать', reject_order_path(order), method: :put, class: 'btn btn-success' if order.accepted? || order.processing?
+  = link_to 'Принять', accept_order_path(order), method: :put, class: 'btn btn-success' if order.rejected? || order.processing?
 - if current_user.can_process?(ClientDocument)
   - if documents.count.positive?
     h4 Документы заявки

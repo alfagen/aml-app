@@ -30,6 +30,9 @@ class Order < ApplicationRecord
     state :processing do
       event :accept, transitions_to: :accepted
       event :reject, transitions_to: :rejected
+      event :stop, transitions_to: :pending do
+        update!(user: nil)
+      end
     end
 
     state :accepted do
