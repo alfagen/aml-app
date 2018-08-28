@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Aml
+module AML
   class Client < ApplicationRecord
     include Authority::Abilities
 
@@ -8,7 +8,7 @@ module Aml
 
     scope :ordered, -> { order 'id desc' }
 
-    has_many :orders, class_name: 'Aml::Order', dependent: :destroy
+    has_many :orders, class_name: 'AML::Order', dependent: :destroy
 
     validates :name, presence: true
     validates :inn, presence: true, uniqueness: true

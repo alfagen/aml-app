@@ -1,6 +1,6 @@
 require 'valid_email'
 
-module Aml
+module AML
   class User < ApplicationRecord
     extend Enumerize
     include Workflow
@@ -16,7 +16,7 @@ module Aml
 
     scope :ordered, -> { order 'id desc' }
 
-    has_many :orders, class_name: 'Aml::Order', dependent: :destroy
+    has_many :orders, class_name: 'AML::Order', dependent: :destroy
 
     validates :password, length: { minimum: 8 }, on: :update, if: -> { crypted_password.nil? }
     validates :password, confirmation: true, on: :update, if: :crypted_password_changed?

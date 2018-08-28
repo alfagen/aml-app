@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Aml::ClientsController, type: :controller do
+RSpec.describe AML::ClientsController, type: :controller do
   describe '#create' do
     context 'with registered user' do
       let(:aml_user) { create(:user) }
@@ -10,7 +10,7 @@ RSpec.describe Aml::ClientsController, type: :controller do
       subject { post 'create', params: { aml_client: attributes_for(:client) } }
 
       it 'saves the new client to database' do
-        expect { subject }.to change(Aml::Client.all, :count).by(1)
+        expect { subject }.to change(AML::Client.all, :count).by(1)
       end
 
       it 'redirects to index view' do

@@ -1,4 +1,4 @@
-- if current_user.can_process?(Aml::ClientDocument)
+- if current_user.can_process?(AML::ClientDocument)
   h4 Имя в заявке: #{client_document.order.first_name}, #{client_document.order.surname}, #{client_document.order.patronymic}
   h4 Тип документа: #{client_document.document_kind.title}
 - if fields.any?

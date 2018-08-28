@@ -1,4 +1,4 @@
-module Aml
+module AML
   class BaseController < ApplicationController
     before_action :require_login
 

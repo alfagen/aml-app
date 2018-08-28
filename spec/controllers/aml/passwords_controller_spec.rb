@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Aml::PasswordsController, type: :controller do
+RSpec.describe AML::PasswordsController, type: :controller do
   describe '#update' do
     context 'with registered user' do
       let(:aml_user) { create(:user) }

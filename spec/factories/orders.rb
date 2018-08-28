@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory(:order, class: Aml::Order) do
+  factory(:order, class: AML::Order) do
     first_name 'First name'
     surname 'Surname'
     patronymic 'patronymic'

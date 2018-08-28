@@ -1,19 +1,19 @@
 # frozen_string_literal: true
 
-module Aml
-  class DocumentKindsController < Aml::BaseController
+module AML
+  class DocumentKindsController < AML::BaseController
     include Pagination
 
     def index
-      render :index, locals: { document_kinds: paginate(Aml::DocumentKind.ordered) }
+      render :index, locals: { document_kinds: paginate(AML::DocumentKind.ordered) }
     end
 
     def new
-      render :new, locals: { document_kind: Aml::DocumentKind.new(permitted_params) }
+      render :new, locals: { document_kind: AML::DocumentKind.new(permitted_params) }
     end
 
     def create
-      Aml::DocumentKind.create!(permitted_params)
+      AML::DocumentKind.create!(permitted_params)
       redirect_to document_kinds_path
     rescue ActiveRecord::RecordInvalid => e
       flash.now.alert = e.message
@@ -28,7 +28,7 @@ module Aml
     private
 
     def document_kind
-      @document_kind ||= Aml::DocumentKind.find params[:id]
+      @document_kind ||= AML::DocumentKind.find params[:id]
     end
 
     def permitted_params

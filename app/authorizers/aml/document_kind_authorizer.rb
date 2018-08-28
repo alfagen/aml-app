@@ -1,4 +1,4 @@
-module Aml
+module AML
   class DocumentKindAuthorizer < ApplicationAuthorizer
     def self.creatable_by?(user)
       user.administrator? || user.operator?

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Aml::OrdersController, type: :controller do
+RSpec.describe AML::OrdersController, type: :controller do
   describe '#create' do
     context 'with registered user' do
       let(:aml_user) { create(:user) }
@@ -11,7 +11,7 @@ RSpec.describe Aml::OrdersController, type: :controller do
       subject { post 'create', params: { aml_order: attributes_for(:order, client_id: aml_client.id) } }
 
       it 'saves the new order to database' do
-        expect { subject }.to change(Aml::Order.all, :count).by(1)
+        expect { subject }.to change(AML::Order.all, :count).by(1)
       end
 
       it 'should respond with a success status code (2xx)' do

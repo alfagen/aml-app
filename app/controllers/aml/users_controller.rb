@@ -1,19 +1,19 @@
 # frozen_string_literal: true
 
-module Aml
-  class UsersController < Aml::BaseController
+module AML
+  class UsersController < AML::BaseController
     include Pagination
 
     def index
-      render :index, locals: { users: paginate(Aml::User.ordered) }
+      render :index, locals: { users: paginate(AML::User.ordered) }
     end
 
     def new
-      render :new, locals: { user: Aml::User.new(permitted_params) }
+      render :new, locals: { user: AML::User.new(permitted_params) }
     end
 
     def create
-      Aml::User.create!(permitted_params)
+      AML::User.create!(permitted_params)
       redirect_to users_path
     rescue ActiveRecord::RecordInvalid => e
       flash.now.alert = e.message
@@ -45,7 +45,7 @@ module Aml
     private
 
     def user
-      @user ||= Aml::User.find params[:id]
+      @user ||= AML::User.find params[:id]
     end
 
     def permitted_params

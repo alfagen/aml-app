@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Aml::UserSessionsController, type: :controller do
+RSpec.describe AML::UserSessionsController, type: :controller do
   let(:aml_user) { create(:user) }
 
   describe 'GET #new' do

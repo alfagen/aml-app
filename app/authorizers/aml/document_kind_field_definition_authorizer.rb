@@ -1,4 +1,4 @@
-module Aml
+module AML
   class DocumentKindFieldDefinitionAuthorizer < DocumentKindAuthorizer
   end
 end
