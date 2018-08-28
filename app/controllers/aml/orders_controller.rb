@@ -1,5 +1,5 @@
-module Aml
-  class OrdersController < Aml::BaseController
+module AML
+  class OrdersController < AML::BaseController
     include Pagination
 
     def index
@@ -7,11 +7,11 @@ module Aml
     end
 
     def new
-      render :new, locals: { order: Aml::Order.new(permitted_params), client: Aml::Client.find(permitted_params[:client_id]) }
+      render :new, locals: { order: AML::Order.new(permitted_params), client: AML::Client.find(permitted_params[:client_id]) }
     end
 
     def create
-      order = Aml::Order.create! permitted_params
+      order = AML::Order.create! permitted_params
       redirect_to order_path(order)
     rescue ActiveRecord::RecordInvalid => e
       flash.now.alert = e.message
@@ -52,15 +52,15 @@ module Aml
     end
 
     def orders
-      Aml::Order.where(workflow_state: workflow_state)
+      AML::Order.where(workflow_state: workflow_state)
     end
 
     def order
-      @order ||= Aml::Order.find params[:id]
+      @order ||= AML::Order.find params[:id]
     end
 
     def document_kinds
-      @document_kinds = Aml::DocumentKind.all.ordered
+      @document_kinds = AML::DocumentKind.all.ordered
     end
 
     def permitted_params

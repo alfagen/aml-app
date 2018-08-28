@@ -1,16 +1,16 @@
-module Aml
-  class PasswordResetsController < Aml::BaseController
+module AML
+  class PasswordResetsController < AML::BaseController
     layout 'simple'
 
     before_action :require_login, only: [:update]
 
     def create
-      user = Aml::User.find_by email: params.require(:password_reset).fetch(:email)
+      user = AML::User.find_by email: params.require(:password_reset).fetch(:email)
       user&.deliver_reset_password_instructions!
     end
 
     def edit
-      user = Aml::User.load_from_reset_password_token(params[:id])
+      user = AML::User.load_from_reset_password_token(params[:id])
 
       if user.present?
         auto_login user

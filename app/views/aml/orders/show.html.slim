@@ -4,17 +4,17 @@ h4 Дата рождения: #{order.birth_date.strftime('%F')}
 h4 Состояние: #{order.workflow_state}
 - if order.current_state >= :processing
   h4 Оператор: #{order.user.email}
-- if current_user.can_process?(Aml::Order)
+- if current_user.can_process?(AML::Order)
   = link_to 'Принять в обработку', in_process_order_path(order), method: :put, class: 'btn btn-success' if order.pending?
   - if order.user == current_user
     => link_to 'Прекратить обработку', stop_order_path(order), method: :put, class: 'btn btn-success' if order.processing?
     => link_to 'Отказать', reject_order_path(order), method: :put, class: 'btn btn-success' if order.accepted? || order.processing?
     = link_to 'Принять', accept_order_path(order), method: :put, class: 'btn btn-success' if order.rejected? || order.processing?
-- if current_user.can_process?(Aml::ClientDocument)
+- if current_user.can_process?(AML::ClientDocument)
   - if documents.count.positive?
     h4 Документы заявки
     = paginate documents
     = render partial: 'aml/client_documents/documents_list', locals: { documents: documents }
   - if order.none?
     h4 Добавить документ
-    = render partial: 'aml/client_documents/form', locals: { client_document: Aml::ClientDocument.new, order: order, document_kinds: order.missing_documents }
+    = render partial: 'aml/client_documents/form', locals: { client_document: AML::ClientDocument.new, order: order, document_kinds: order.missing_documents }

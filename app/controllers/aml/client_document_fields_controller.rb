@@ -1,5 +1,5 @@
-module Aml
-  class ClientDocumentFieldsController < Aml::BaseController
+module AML
+  class ClientDocumentFieldsController < AML::BaseController
     def edit
       render :edit, locals: { client_document_field: client_document_field,
                               client_document: client_document,
@@ -17,7 +17,7 @@ module Aml
     private
 
     def client_document_field
-      @client_document_field ||= Aml::ClientDocumentField.find params[:id]
+      @client_document_field ||= AML::ClientDocumentField.find params[:id]
     end
 
     def client_document

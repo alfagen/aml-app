@@ -1,4 +1,4 @@
-.pull-right= link_to 'Добавить пользователя', new_user_path, class: 'btn btn-success' if current_user.can_create?(Aml::User)
+.pull-right= link_to 'Добавить пользователя', new_user_path, class: 'btn btn-success' if current_user.can_create?(AML::User)
 h2 Список пользователей:
 table.table.table-condensed
   thead

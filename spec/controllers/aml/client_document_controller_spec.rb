@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Aml::ClientDocumentsController, type: :controller do
+RSpec.describe AML::ClientDocumentsController, type: :controller do
   describe '#actions' do
     let(:aml_user) { create(:user) }
     let(:aml_document_kind) { create(:document_kind) }
@@ -19,7 +19,7 @@ RSpec.describe Aml::ClientDocumentsController, type: :controller do
       end
 
       it 'saves the new client document to database' do
-        expect { subject }.to change(Aml::ClientDocument.all, :count).by(1)
+        expect { subject }.to change(AML::ClientDocument.all, :count).by(1)
       end
 
       it 'should respond with a success status code (2xx)' do

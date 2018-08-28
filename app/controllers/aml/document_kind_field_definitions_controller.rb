@@ -1,11 +1,11 @@
-module Aml
-  class DocumentKindFieldDefinitionsController < Aml::BaseController
+module AML
+  class DocumentKindFieldDefinitionsController < AML::BaseController
     def new
-      render :new, locals: { document_kind_field_definition: Aml::DocumentKindFieldDefinition.new(permitted_params) }
+      render :new, locals: { document_kind_field_definition: AML::DocumentKindFieldDefinition.new(permitted_params) }
     end
 
     def create
-      Aml::DocumentKindFieldDefinition.create!(permitted_params)
+      AML::DocumentKindFieldDefinition.create!(permitted_params)
       redirect_to document_kind_path(document_kind)
     rescue ActiveRecord::RecordInvalid => e
       redirect_to document_kind, alert: e.message
@@ -36,11 +36,11 @@ module Aml
     private
 
     def document_kind_field_definition
-      @document_kind_field_definition ||= Aml::DocumentKindFieldDefinition.find params[:id]
+      @document_kind_field_definition ||= AML::DocumentKindFieldDefinition.find params[:id]
     end
 
     def document_kind
-      @document_kind ||= Aml::DocumentKind.find permitted_params[:document_kind_id]
+      @document_kind ||= AML::DocumentKind.find permitted_params[:document_kind_id]
     end
 
     def permitted_params

@@ -1,7 +1,7 @@
 h2 Список типов документа:
-.pull-right= link_to 'Новый тип документа', new_document_kind_path(document_kind: { title: nil }), class: 'btn btn-success' if current_user.can_create?(Aml::DocumentKind)
+.pull-right= link_to 'Новый тип документа', new_document_kind_path(document_kind: { title: nil }), class: 'btn btn-success' if current_user.can_create?(AML::DocumentKind)
 br
-- if current_user.can_read?(Aml::DocumentKind)
+- if current_user.can_read?(AML::DocumentKind)
   - if document_kinds.any?
     table.table.table-condensed
       thead

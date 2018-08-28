@@ -1,4 +1,4 @@
-module Aml
+module AML
   class Order < ApplicationRecord
     extend Enumerize
     include Workflow
@@ -10,9 +10,9 @@ module Aml
 
     scope :ordered, -> { order 'id desc' }
 
-    belongs_to :client, class_name: 'Aml::Client', foreign_key: 'client_id', inverse_of: :orders
-    belongs_to :user, class_name: 'Aml::User', foreign_key: 'client_id', optional: true, inverse_of: :orders
-    has_many :client_documents, class_name: 'Aml::ClientDocument', dependent: :destroy
+    belongs_to :client, class_name: 'AML::Client', foreign_key: 'client_id', inverse_of: :orders
+    belongs_to :user, class_name: 'AML::User', foreign_key: 'client_id', optional: true, inverse_of: :orders
+    has_many :client_documents, class_name: 'AML::ClientDocument', dependent: :destroy
 
     validates :first_name, presence: true
     validates :surname, presence: true
@@ -48,11 +48,11 @@ module Aml
     end
 
     def complete?
-      client_documents.count == Aml::DocumentKind.count
+      client_documents.count == AML::DocumentKind.count
     end
 
     def missing_documents
-      Aml::DocumentKind.where.not(id: client_documents.pluck(:document_kind_id))
+      AML::DocumentKind.where.not(id: client_documents.pluck(:document_kind_id))
     end
   end
 end

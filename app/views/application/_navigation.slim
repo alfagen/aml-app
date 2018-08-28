@@ -10,7 +10,7 @@ nav.navbar.navbar-default.navbar-fixed-top
     .collapse.navbar-collapse
       ul.nav.navbar-nav
         = active_link_to orders_path, wrap_tag: :li do
-          = title_with_counter 'Заявки клиентов', Aml::Order.with_none_state.count
+          = title_with_counter 'Заявки клиентов', AML::Order.with_none_state.count
         = active_link_to 'Клиенты', clients_path, wrap_tag: :li
         li.dropdown
           = link_to '#', class: 'dropdown-toggle', data: { toggle: :dropdown }, role: :button, 'aria-haspopup' => true, 'aria-expanded' => false do

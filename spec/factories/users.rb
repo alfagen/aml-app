@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory(:user, class: Aml::User) do
+  factory(:user, class: AML::User) do
     sequence(:email) { |n| "user#{n}@example.com" }
     role 'operator'
     workflow_state 'unblocked'

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-module Aml
-  class ClientsController < Aml::BaseController
+module AML
+  class ClientsController < AML::BaseController
     include Pagination
 
     def index
@@ -17,11 +17,11 @@ module Aml
     def new
       add_breadcrumb 'Клиенты', :clients_path
       add_breadcrumb 'Добавляем нового клиента'
-      render :new, locals: { client: Aml::Client.new(permitted_params) }
+      render :new, locals: { client: AML::Client.new(permitted_params) }
     end
 
     def create
-      Aml::Client.create!(permitted_params)
+      AML::Client.create!(permitted_params)
       redirect_to clients_path
     rescue ActiveRecord::RecordInvalid => e
       flash.now.alert = e.message
@@ -31,11 +31,11 @@ module Aml
     private
 
     def q
-      @q ||= Aml::Client.ransack params.fetch(:q, {}).permit!
+      @q ||= AML::Client.ransack params.fetch(:q, {}).permit!
     end
 
     def client
-      @client ||= Aml::Client.find params[:id]
+      @client ||= AML::Client.find params[:id]
     end
 
     def permitted_params

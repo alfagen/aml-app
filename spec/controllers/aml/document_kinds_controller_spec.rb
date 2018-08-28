@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Aml::DocumentKindsController, type: :controller do
+RSpec.describe AML::DocumentKindsController, type: :controller do
   describe '#base actions' do
     let(:aml_user) { create(:user) }
     let(:aml_document_kind) { create(:document_kind) }

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-module Aml
-  class ClientDocumentsController < Aml::BaseController
+module AML
+  class ClientDocumentsController < AML::BaseController
     include Pagination
 
     def index
@@ -9,13 +9,13 @@ module Aml
     end
 
     def new
-      render :new, locals: { client_document: Aml::ClientDocument.new(permitted_params),
-                             order: Aml::Order.find(permitted_params[:order_id]),
+      render :new, locals: { client_document: AML::ClientDocument.new(permitted_params),
+                             order: AML::Order.find(permitted_params[:order_id]),
                              document_kinds: document_kinds }
     end
 
     def create
-      Aml::ClientDocument.create!(permitted_params)
+      AML::ClientDocument.create!(permitted_params)
       redirect_back(fallback_location: client_documents_path)
     rescue ActiveRecord::RecordInvalid => e
       flash.now.alert = e.message
@@ -48,15 +48,15 @@ module Aml
     end
 
     def documents
-      paginate(Aml::ClientDocument.where(workflow_state: workflow_state))
+      paginate(AML::ClientDocument.where(workflow_state: workflow_state))
     end
 
     def client_document
-      @client_document ||= Aml::ClientDocument.find params[:id]
+      @client_document ||= AML::ClientDocument.find params[:id]
     end
 
     def document_kinds
-      @document_kinds ||= Aml::DocumentKind.all.ordered
+      @document_kinds ||= AML::DocumentKind.all.ordered
     end
 
     def permitted_params
