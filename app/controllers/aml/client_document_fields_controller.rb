@@ -1,5 +1,5 @@
 module AML
-  class ClientDocumentFieldsController < AML::BaseController
+  class ClientDocumentFieldsController < ApplicationController
     def edit
       render :edit, locals: { client_document_field: client_document_field,
                               client_document: client_document,

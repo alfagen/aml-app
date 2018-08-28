@@ -1,5 +1,5 @@
 module AML
-  class PasswordResetsController < AML::BaseController
+  class PasswordResetsController < ApplicationController
     layout 'simple'
 
     before_action :require_login, only: [:update]

@@ -1,5 +1,5 @@
 module AML
-  class BaseController < ApplicationController
+  class ApplicationController < ::ApplicationController
     before_action :require_login
 
     rescue_from ActionController::InvalidAuthenticityToken, with: :rescue_invalid_authenticity_token

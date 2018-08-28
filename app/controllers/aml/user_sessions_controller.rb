@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module AML
-  class UserSessionsController < AML::BaseController
+  class UserSessionsController < ApplicationController
     skip_before_action :require_login
     layout 'simple'
 
