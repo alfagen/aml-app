@@ -1,5 +1,5 @@
 require 'rails_helper'
 
-RSpec.describe ClientDocumentField, type: :model do
+RSpec.describe Aml::ClientDocumentField, type: :model do
   pending "add some examples to (or delete) #{__FILE__}"
 end

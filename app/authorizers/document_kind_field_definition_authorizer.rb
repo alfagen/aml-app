@@ -1,2 +1,0 @@
-class DocumentKindFieldDefinitionAuthorizer < DocumentKindAuthorizer
-end
