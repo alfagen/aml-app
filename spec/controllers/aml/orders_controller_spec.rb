@@ -26,8 +26,8 @@ RSpec.describe Aml::OrdersController, type: :controller do
 
   describe '#show' do
     let(:aml_user) { create(:user) }
-    let(:aml_client) { create(:client) }
-    let(:aml_order) { create(:order) }
+    let!(:aml_client) { create(:client) }
+    let(:aml_order) { create(:order, client_id: aml_client.id) }
 
     before { login_user(aml_user) }
 

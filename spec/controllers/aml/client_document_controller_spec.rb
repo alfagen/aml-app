@@ -5,7 +5,7 @@ RSpec.describe Aml::ClientDocumentsController, type: :controller do
     let(:aml_user) { create(:user) }
     let(:aml_document_kind) { create(:document_kind) }
     let!(:aml_client) { create(:client) }
-    let(:aml_order) { create(:order, client: aml_client) }
+    let(:aml_order) { create(:order, client_id: aml_client.id) }
     let(:aml_client_document) { create(:client_document) }
 
     before { login_user(aml_user) }
