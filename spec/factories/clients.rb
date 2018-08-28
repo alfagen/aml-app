@@ -1,6 +1,6 @@
 FactoryBot.define do
-  factory :client do
+  factory(:client, class: Aml::Client) do
     name 'Name'
-    inn 0
+    sequence(:inn) { |n| n }
   end
 end
