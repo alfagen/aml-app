@@ -49,7 +49,8 @@ Authority.configure do |config|
     destroy: 'deletable',
     update_role: 'role_updatable',
     block: 'blockable',
-    process: 'processable'
+    process: 'processable',
+    taked: 'taken'
   }
 
   # LOGGER

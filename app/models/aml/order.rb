@@ -11,7 +11,7 @@ module AML
     scope :ordered, -> { order 'id desc' }
 
     belongs_to :client, class_name: 'AML::Client', foreign_key: 'client_id', inverse_of: :orders
-    belongs_to :user, class_name: 'AML::User', foreign_key: 'client_id', optional: true, inverse_of: :orders
+    belongs_to :user, class_name: 'AML::User', foreign_key: 'user_id', optional: true, inverse_of: :orders
     has_many :client_documents, class_name: 'AML::ClientDocument', dependent: :destroy
 
     validates :first_name, presence: true
@@ -25,17 +25,13 @@ module AML
       end
 
       state :pending do
-        event :process, transitions_to: :processing do |current_user|
-          update(user_id: current_user.id)
-        end
+        event :process, transitions_to: :processing
       end
 
       state :processing do
         event :accept, transitions_to: :accepted
         event :reject, transitions_to: :rejected
-        event :stop, transitions_to: :pending do
-          update(user: nil)
-        end
+        event :stop, transitions_to: :pending
       end
 
       state :accepted do
