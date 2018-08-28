@@ -14,10 +14,6 @@ RSpec.describe Aml::OrdersController, type: :controller do
         expect { subject }.to change(Aml::Order.all, :count).by(1)
       end
 
-      it 'redirects to show view' do
-        expect(subject).to redirect_to(Aml::Order.last)
-      end
-
       it 'should respond with a success status code (2xx)' do
         expect(response).to have_http_status(:success)
       end
