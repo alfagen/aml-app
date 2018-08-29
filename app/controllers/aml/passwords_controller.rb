@@ -1,5 +1,5 @@
 module AML
-  class PasswordsController < AML::BaseController
+  class PasswordsController < AML::ApplicationController
     def edit
       render :edit, locals: { user: current_user }
     end
