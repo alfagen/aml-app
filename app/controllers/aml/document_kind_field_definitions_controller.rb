@@ -1,5 +1,5 @@
 module AML
-  class DocumentKindFieldDefinitionsController < ApplicationController
+  class DocumentKindFieldDefinitionsController < AML::ApplicationController
     def new
       render :new, locals: { document_kind_field_definition: AML::DocumentKindFieldDefinition.new(permitted_params) }
     end

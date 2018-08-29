@@ -1,20 +1,20 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  default_url_options Settings.default_url_options.symbolize_keys
-
-  root to: redirect('/orders')
-
-  mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
-
-  concern :archivable do
-    member do
-      delete :archive
-      post :restore
-    end
-  end
-
   scope module: :aml do
+    default_url_options Settings.default_url_options.symbolize_keys
+
+    root to: redirect('/orders')
+
+    mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
+
+    concern :archivable do
+      member do
+        delete :archive
+        post :restore
+      end
+    end
+
     get 'login' => 'user_sessions#new', :as => :login
     delete 'logout' => 'user_sessions#destroy', :as => :logout
     resources :password_resets, only: %i[new create edit update]

@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 module AML
-  class UserSessionsController < ApplicationController
+  class UserSessionsController < AML::ApplicationController
     skip_before_action :require_login
-    layout 'simple'
+    layout 'aml/simple'
 
     def new
       render :new, locals: { user_session: user_session }
