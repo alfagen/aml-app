@@ -6,7 +6,6 @@
 
 * Подключить `overcommit` 
 
-
 ## Спеки
 
 * https://docs.google.com/document/d/1-IrRMo0Uzk226cSnx_EDOtX7yhNYZ0u15mBELKl-uMo/edit#
