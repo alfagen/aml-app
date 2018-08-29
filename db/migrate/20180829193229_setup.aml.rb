@@ -1,4 +1,5 @@
-class AmlSetup < ActiveRecord::Migration[5.2]
+# This migration comes from aml (originally 20180827112418)
+class Setup < ActiveRecord::Migration[5.2]
   def change
     create_table "aml_client_document_fields", force: :cascade do |t|
       t.string "value"

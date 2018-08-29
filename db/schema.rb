@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_27_112418) do
+ActiveRecord::Schema.define(version: 2018_08_29_193231) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,10 +25,10 @@ ActiveRecord::Schema.define(version: 2018_08_27_112418) do
   end
 
   create_table "aml_client_documents", force: :cascade do |t|
-    t.integer "document_kind_id", null: false
+    t.bigint "document_kind_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "image", null: false
+    t.string "image"
     t.string "workflow_state", default: "pending", null: false
     t.bigint "order_id"
     t.index ["document_kind_id"], name: "index_aml_client_documents_on_document_kind_id"
@@ -36,10 +36,13 @@ ActiveRecord::Schema.define(version: 2018_08_27_112418) do
   end
 
   create_table "aml_clients", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "inn", null: false
+    t.string "first_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "surname"
+    t.string "patronymic"
+    t.string "workflow_state", default: "none", null: false
+    t.date "birth_date"
   end
 
   create_table "aml_document_kind_field_definitions", force: :cascade do |t|
@@ -56,19 +59,21 @@ ActiveRecord::Schema.define(version: 2018_08_27_112418) do
     t.string "title", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "archived_at"
     t.index ["title"], name: "index_aml_document_kinds_on_title", unique: true
   end
 
   create_table "aml_orders", force: :cascade do |t|
-    t.string "first_name", null: false
-    t.string "surname", null: false
-    t.string "patronymic", null: false
-    t.datetime "birth_date", null: false
+    t.string "first_name"
+    t.string "surname"
+    t.string "patronymic"
+    t.datetime "birth_date"
     t.string "workflow_state", default: "none", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "client_id"
     t.bigint "user_id"
+    t.datetime "archived_at"
     t.index ["client_id"], name: "index_aml_orders_on_client_id"
     t.index ["user_id"], name: "index_aml_orders_on_user_id"
   end

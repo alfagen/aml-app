@@ -38,6 +38,8 @@ gem 'settingslogic'
 
 gem 'workflow'
 
+gem 'aml', path: 'vendor/aml-engine'
+
 gem 'active_link_to', github: 'BrandyMint/active_link_to'
 gem 'authority'
 gem 'bootstrap-sass', '~> 3.2'
