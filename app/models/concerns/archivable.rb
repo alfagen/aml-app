@@ -1,3 +1,5 @@
+# TODO: Вытадить в gem
+#
 module Archivable
   extend ActiveSupport::Concern
 

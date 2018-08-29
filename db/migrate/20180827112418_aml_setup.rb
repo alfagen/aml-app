@@ -10,7 +10,7 @@ class AmlSetup < ActiveRecord::Migration[5.2]
     end
 
     create_table "aml_client_documents", force: :cascade do |t|
-      t.integer "document_kind_id", null: false
+      t.bigint "document_kind_id", null: false
       t.datetime "created_at", null: false
       t.datetime "updated_at", null: false
       t.string "image", null: false
