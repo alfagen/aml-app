@@ -1,0 +1,82 @@
+                   Prefix Verb   URI Pattern                                                                              Controller#Action
+        letter_opener_web        /letter_opener                                                                           LetterOpenerWeb::Engine
+                    login GET    /login(.:format)                                                                         user_sessions#new
+                   logout DELETE /logout(.:format)                                                                        user_sessions#destroy
+            user_sessions POST   /user_sessions(.:format)                                                                 user_sessions#create
+         new_user_session GET    /user_sessions/new(.:format)                                                             user_sessions#new
+             user_session DELETE /user_sessions/:id(.:format)                                                             user_sessions#destroy
+          password_resets POST   /password_resets(.:format)                                                               password_resets#create
+       new_password_reset GET    /password_resets/new(.:format)                                                           password_resets#new
+      edit_password_reset GET    /password_resets/:id/edit(.:format)                                                      password_resets#edit
+           password_reset PATCH  /password_resets/:id(.:format)                                                           password_resets#update
+                          PUT    /password_resets/:id(.:format)                                                           password_resets#update
+            edit_password GET    /password/edit(.:format)                                                                 passwords#edit
+                 password PATCH  /password(.:format)                                                                      passwords#update
+                          PUT    /password(.:format)                                                                      passwords#update
+                    users GET    /users(.:format)                                                                         users#index
+                          POST   /users(.:format)                                                                         users#create
+                 new_user GET    /users/new(.:format)                                                                     users#new
+                edit_user GET    /users/:id/edit(.:format)                                                                users#edit
+                     user GET    /users/:id(.:format)                                                                     users#show
+                          PATCH  /users/:id(.:format)                                                                     users#update
+                          PUT    /users/:id(.:format)                                                                     users#update
+                          DELETE /users/:id(.:format)                                                                     users#destroy
+                      aml        /aml                                                                                     AML::Engine
+       rails_service_blob GET    /rails/active_storage/blobs/:signed_id/*filename(.:format)                               active_storage/blobs#show
+rails_blob_representation GET    /rails/active_storage/representations/:signed_blob_id/:variation_key/*filename(.:format) active_storage/representations#show
+       rails_disk_service GET    /rails/active_storage/disk/:encoded_key/*filename(.:format)                              active_storage/disk#show
+update_rails_disk_service PUT    /rails/active_storage/disk/:encoded_token(.:format)                                      active_storage/disk#update
+     rails_direct_uploads POST   /rails/active_storage/direct_uploads(.:format)                                           active_storage/direct_uploads#create
+
+Routes for LetterOpenerWeb::Engine:
+clear_letters DELETE /clear(.:format)                 letter_opener_web/letters#clear
+delete_letter DELETE /:id(.:format)                   letter_opener_web/letters#destroy
+      letters GET    /                                letter_opener_web/letters#index
+       letter GET    /:id(/:style)(.:format)          letter_opener_web/letters#show
+              GET    /:id/attachments/:file(.:format) letter_opener_web/letters#attachment
+
+Routes for AML::Engine:
+                        block_operator PUT    /operators/:id/block(.:format)                         aml/operators#block
+                      unblock_operator PUT    /operators/:id/unblock(.:format)                       aml/operators#unblock
+                             operators GET    /operators(.:format)                                   aml/operators#index
+                                       POST   /operators(.:format)                                   aml/operators#create
+                          new_operator GET    /operators/new(.:format)                               aml/operators#new
+                         edit_operator GET    /operators/:id/edit(.:format)                          aml/operators#edit
+                              operator PATCH  /operators/:id(.:format)                               aml/operators#update
+                                       PUT    /operators/:id(.:format)                               aml/operators#update
+                        document_kinds GET    /document_kinds(.:format)                              aml/document_kinds#index
+                                       POST   /document_kinds(.:format)                              aml/document_kinds#create
+                     new_document_kind GET    /document_kinds/new(.:format)                          aml/document_kinds#new
+                         document_kind GET    /document_kinds/:id(.:format)                          aml/document_kinds#show
+archive_document_kind_field_definition DELETE /document_kind_field_definitions/:id/archive(.:format) aml/document_kind_field_definitions#archive
+restore_document_kind_field_definition POST   /document_kind_field_definitions/:id/restore(.:format) aml/document_kind_field_definitions#restore
+       document_kind_field_definitions POST   /document_kind_field_definitions(.:format)             aml/document_kind_field_definitions#create
+    new_document_kind_field_definition GET    /document_kind_field_definitions/new(.:format)         aml/document_kind_field_definitions#new
+   edit_document_kind_field_definition GET    /document_kind_field_definitions/:id/edit(.:format)    aml/document_kind_field_definitions#edit
+        document_kind_field_definition PATCH  /document_kind_field_definitions/:id(.:format)         aml/document_kind_field_definitions#update
+                                       PUT    /document_kind_field_definitions/:id(.:format)         aml/document_kind_field_definitions#update
+                               clients GET    /clients(.:format)                                     aml/clients#index
+                                       POST   /clients(.:format)                                     aml/clients#create
+                            new_client GET    /clients/new(.:format)                                 aml/clients#new
+                                client GET    /clients/:id(.:format)                                 aml/clients#show
+                      in_process_order PUT    /orders/:id/in_process(.:format)                       aml/orders#in_process
+                          accept_order PUT    /orders/:id/accept(.:format)                           aml/orders#accept
+                          reject_order PUT    /orders/:id/reject(.:format)                           aml/orders#reject
+                            stop_order PUT    /orders/:id/stop(.:format)                             aml/orders#stop
+                                orders GET    /orders(.:format)                                      aml/orders#index
+                                       POST   /orders(.:format)                                      aml/orders#create
+                             new_order GET    /orders/new(.:format)                                  aml/orders#new
+                            edit_order GET    /orders/:id/edit(.:format)                             aml/orders#edit
+                                 order GET    /orders/:id(.:format)                                  aml/orders#show
+                                       PATCH  /orders/:id(.:format)                                  aml/orders#update
+                                       PUT    /orders/:id(.:format)                                  aml/orders#update
+                                       DELETE /orders/:id(.:format)                                  aml/orders#destroy
+            edit_client_document_field GET    /client_document_fields/:id/edit(.:format)             aml/client_document_fields#edit
+                 client_document_field PATCH  /client_document_fields/:id(.:format)                  aml/client_document_fields#update
+                                       PUT    /client_document_fields/:id(.:format)                  aml/client_document_fields#update
+                 accept_order_document PUT    /order_documents/:id/accept(.:format)                  aml/order_documents#accept
+                 reject_order_document PUT    /order_documents/:id/reject(.:format)                  aml/order_documents#reject
+                       order_documents GET    /order_documents(.:format)                             aml/order_documents#index
+                                       POST   /order_documents(.:format)                             aml/order_documents#create
+                    new_order_document GET    /order_documents/new(.:format)                         aml/order_documents#new
+                        order_document GET    /order_documents/:id(.:format)                         aml/order_documents#show
