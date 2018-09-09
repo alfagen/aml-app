@@ -1,7 +1,7 @@
 all: setup tests eager_load
 
 update_engines_migrations:
-	rails railties:install:migrations
+	rails aml:install:migrations
 
 rails_env:
 	bin/rails db:environment:set RAILS_ENV=test || echo 'Провалилось environment:set'
