@@ -13,7 +13,7 @@ class PasswordResetsController < ApplicationController
 
     if user.present?
       auto_login user
-      render 'aml/passwords/edit', locals: { user: user }
+      render 'passwords/edit', locals: { user: user }
     else
       flash.now.alert = 'Просрочен токен аутентификации, авторизуйтесь снова'
       render 'new'
@@ -25,6 +25,6 @@ class PasswordResetsController < ApplicationController
     current_user.change_password! params[:user][:password]
   rescue ActiveRecord::RecordInvalid => e
     flash.now.alert = e.message
-    render 'aml/passwords/edit', locals: { user: e.record }
+    render 'passwords/edit', locals: { user: e.record }
   end
 end
