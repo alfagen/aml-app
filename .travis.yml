@@ -5,3 +5,8 @@ env:
   - RAILS_ENV=test
 before_script:
   - bundle exec rake db:create db:migrate RAILS_ENV=test
+git:
+    submodules: false
+before_install:
+    - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
+    - git submodule update --init --recursive
