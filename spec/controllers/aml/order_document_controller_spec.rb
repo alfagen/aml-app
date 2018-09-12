@@ -1,25 +1,25 @@
 require 'rails_helper'
 
-RSpec.describe AML::ClientDocumentsController, type: :controller do
+RSpec.describe AML::OrderDocumentsController, type: :controller do
   describe '#actions' do
-    let(:aml_user) { create(:user) }
+    let(:aml_operator) { create(:operator) }
     let(:aml_document_kind) { create(:document_kind) }
     let!(:aml_client) { create(:client) }
     let(:aml_order) { create(:order, client_id: aml_client.id) }
-    let(:aml_client_document) { create(:client_document, order_id: aml_order.id) }
+    let(:aml_order_document) { create(:order_document, order_id: aml_order.id) }
 
-    before { login_user(aml_user) }
+    before { login_user(aml_operator) }
 
-    context 'create with registered user' do
+    context 'create with registered operator' do
       subject do
-        post 'create', params: { aml_client_document: attributes_for(:client_document,
-                                                                     order_id: aml_order.id,
-                                                                     document_kind_id: aml_document_kind.id,
-                                                                     client_id: aml_client.id) }
+        post 'create', params: { order_document: attributes_for(:order_document,
+                                                                order_id: aml_order.id,
+                                                                document_kind_id: aml_document_kind.id,
+                                                                client_id: aml_client.id) }
       end
 
       it 'saves the new client document to database' do
-        expect { subject }.to change(AML::ClientDocument.all, :count).by(1)
+        expect { subject }.to change(AML::OrderDocument.all, :count).by(1)
       end
 
       it 'should respond with a success status code (2xx)' do
@@ -28,7 +28,7 @@ RSpec.describe AML::ClientDocumentsController, type: :controller do
     end
 
     context '#show' do
-      subject { get :show, params: { id: aml_client_document.id } }
+      subject { get :show, params: { id: aml_order_document.id } }
 
       it { is_expected.to render_template(:show) }
       it 'should respond with a success status code (2xx)' do

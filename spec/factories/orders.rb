@@ -6,6 +6,6 @@ FactoryBot.define do
     birth_date Time.zone.today - 30.years
     workflow_state :none
     client
-    user
+    operator
   end
 end

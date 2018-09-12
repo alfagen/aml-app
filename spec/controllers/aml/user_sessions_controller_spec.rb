@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe AML::UserSessionsController, type: :controller do
-  let(:aml_user) { create(:user) }
+RSpec.describe UserSessionsController, type: :controller do
+  let(:aml_operator) { create(:operator) }
 
   describe 'GET #new' do
     it 'returns http success' do
@@ -12,15 +12,15 @@ RSpec.describe AML::UserSessionsController, type: :controller do
 
   describe 'POST #create' do
     it 'returns http success' do
-      post :create, params: { user_session: { params: { login: aml_user.email, password: aml_user.password } } }
+      post :create, params: { user_session: { params: { login: aml_operator.email, password: aml_operator.password } } }
       expect(response).to have_http_status(:success)
     end
   end
 
   describe 'DELETE #destroy' do
     it 'returns http success' do
-      login_user(aml_user)
-      delete :destroy, params: { id: aml_user.id }
+      login_user(aml_operator)
+      delete :destroy, params: { id: aml_operator.id }
       expect(response).to have_http_status(:success)
     end
   end

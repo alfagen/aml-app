@@ -1,5 +1,5 @@
 = simple_form_for document_group, method: :post, url: document_groups_path do |f|
-  = f.input :title, label: false, hint: 'Название группы документов'
+  = f.input :title, label: false, hint: 'Название группы документов', include_blank: false
   = f.input :details, label: false, hint: 'Описание группы документов'
   = f.input :position, label: false, hint: 'Позиция группы документов'
   = f.button :submit, 'Создать', class: 'btn btn-success'

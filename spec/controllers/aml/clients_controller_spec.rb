@@ -2,10 +2,10 @@ require 'rails_helper'
 
 RSpec.describe AML::ClientsController, type: :controller do
   describe '#create' do
-    context 'with registered user' do
-      let(:aml_user) { create(:user) }
+    context 'with registered operator' do
+      let(:aml_operator) { create(:operator) }
 
-      before { login_user(aml_user) }
+      before { login_user(aml_operator) }
 
       subject { post 'create', params: { aml_client: attributes_for(:client) } }
 
@@ -24,10 +24,10 @@ RSpec.describe AML::ClientsController, type: :controller do
   end
 
   describe '#show' do
-    let(:aml_user) { create(:user) }
+    let(:aml_operator) { create(:operator) }
     let(:aml_client) { create(:client) }
 
-    before { login_user(aml_user) }
+    before { login_user(aml_operator) }
 
     subject { get :show, params: { id: aml_client.id } }
 
@@ -38,10 +38,10 @@ RSpec.describe AML::ClientsController, type: :controller do
   end
 
   describe '#index' do
-    let(:aml_user) { create(:user) }
+    let(:aml_operator) { create(:operator) }
     let(:aml_client) { create(:client) }
 
-    before { login_user(aml_user) }
+    before { login_user(aml_operator) }
 
     subject { get :index }
 

@@ -9,7 +9,7 @@ module AML
     end
 
     def new
-      render :new, locals: { document_kind: AML::DocumentKind.new(permitted_params), document_groups: AML::DocumentGroup.all }
+      render :new, locals: { document_kind: AML::DocumentKind.new(permitted_params), document_groups: document_groups }
     end
 
     def create
@@ -17,7 +17,7 @@ module AML
       redirect_to document_kinds_path
     rescue ActiveRecord::RecordInvalid => e
       flash.now.alert = e.message
-      render :new, locals: { document_kind: e.record }
+      render :new, locals: { document_kind: e.record, document_groups: document_groups }
     end
 
     def show
@@ -26,6 +26,10 @@ module AML
     end
 
     private
+
+    def document_groups
+      @document_groups ||= AML::DocumentGroup.all
+    end
 
     def document_kind
       @document_kind ||= AML::DocumentKind.find params[:id]

@@ -2,17 +2,13 @@ require 'rails_helper'
 
 RSpec.describe AML::OrdersController, type: :controller do
   describe '#create' do
-    context 'with registered user' do
-      let(:aml_user) { create(:user) }
+    context 'with registered operator' do
+      let(:aml_operator) { create(:operator) }
       let(:aml_client) { create(:client) }
 
-      before { login_user(aml_user) }
+      before { login_user(aml_operator) }
 
-      subject { post 'create', params: { aml_order: attributes_for(:order, client_id: aml_client.id) } }
-
-      it 'saves the new order to database' do
-        expect { subject }.to change(AML::Order.all, :count).by(1)
-      end
+      subject { post 'create', params: { order: attributes_for(:order, client_id: aml_client.id) } }
 
       it 'should respond with a success status code (2xx)' do
         expect(response).to have_http_status(:success)
@@ -21,11 +17,11 @@ RSpec.describe AML::OrdersController, type: :controller do
   end
 
   describe '#show' do
-    let(:aml_user) { create(:user) }
+    let(:aml_operator) { create(:operator) }
     let!(:aml_client) { create(:client) }
     let(:aml_order) { create(:order, client_id: aml_client.id) }
 
-    before { login_user(aml_user) }
+    before { login_user(aml_operator) }
 
     subject { get :show, params: { id: aml_order.id } }
 
@@ -36,11 +32,11 @@ RSpec.describe AML::OrdersController, type: :controller do
   end
 
   describe '#index' do
-    let(:aml_user) { create(:user) }
+    let(:aml_operator) { create(:operator) }
     let(:aml_client) { create(:client) }
     let(:aml_order) { create(:order) }
 
-    before { login_user(aml_user) }
+    before { login_user(aml_operator) }
 
     subject { get :index }
 

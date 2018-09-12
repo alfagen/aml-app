@@ -2,15 +2,15 @@ require 'rails_helper'
 
 RSpec.describe AML::DocumentKindsController, type: :controller do
   describe '#base actions' do
-    let(:aml_user) { create(:user) }
+    let(:aml_operator) { create(:operator) }
     let(:aml_document_kind) { create(:document_kind) }
 
-    before { login_user(aml_user) }
+    before { login_user(aml_operator) }
 
-    context 'with registered user' do
+    context 'with registered operator' do
       it '#create' do
         post :create, params: { aml_document_kind: attributes_for(:document_kind) }
-        expect(subject).to redirect_to(assigns(:aml_document_kind))
+        expect(response).to be_success
       end
 
       it '#index' do
