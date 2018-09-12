@@ -37,7 +37,7 @@ gem 'virtus'
 gem 'non-stupid-digest-assets'
 gem 'settingslogic'
 
-gem 'workflow'
+gem 'workflow', github: 'geekq/workflow'
 
 gem 'aml', path: 'vendor/aml-engine'
 
