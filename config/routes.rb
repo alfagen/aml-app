@@ -45,7 +45,7 @@ Rails.application.routes.draw do
         put :stop
       end
     end
-    resources :client_document_fields, only: %i[edit update]
+    resources :document_fields, only: %i[edit update]
     resources :order_documents, only: %i[show index new create] do
       member do
         put :accept

@@ -26,7 +26,7 @@ module AML
 
     def show
       render :show, locals: { order_document: order_document,
-                              fields: order_document.client_document_fields }
+                              fields: order_document.document_fields }
     end
 
     def accept
