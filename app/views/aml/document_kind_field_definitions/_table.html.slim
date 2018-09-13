@@ -3,9 +3,10 @@ table.table.table-condensed
     tr 
       th Ключ поля:
       th Название поля:
+      th Позиция
       th Действия:
       tbody
-      - if field_definitions.first.alive?
+      - unless field_definitions.first.archived?
         h3 Действующие поля: (#{field_definitions.count})
       - else
         h3 Поля в архиве: (#{field_definitions.count})
@@ -13,9 +14,10 @@ table.table.table-condensed
         tr
           td = field_definition.key
           td = field_definition.title
+          td = field_definition.position
           td
             => link_to 'Редактировать', edit_document_kind_field_definition_path(field_definition.id), class: 'btn btn-default'
-            - if field_definition.active?
-              = link_to 'Архивировать', archive_document_kind_field_definition_path(field_definition), method: :delete, class: 'btn btn-default'
-            - else
+            - if field_definition.archived?
               = link_to 'Восстановить', restore_document_kind_field_definition_path(field_definition), method: :post, class: 'btn btn-default'
+            - else
+              = link_to 'Архивировать', archive_document_kind_field_definition_path(field_definition), method: :delete, class: 'btn btn-default'

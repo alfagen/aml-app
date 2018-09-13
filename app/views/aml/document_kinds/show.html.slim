@@ -2,4 +2,9 @@ h2 Тип документа: #{document_kind.title}
 = render partial: 'aml/document_kind_field_definitions/table', locals: { field_definitions: field_definitions.alive } if field_definitions.alive.any?
 = render partial: 'aml/document_kind_field_definitions/table', locals: { field_definitions: field_definitions.archive } if field_definitions.archive.any?
 h4 Добавить поле документа
-= render partial: 'aml/document_kind_field_definitions/form', locals: { document_kind_field_definition: AML::DocumentKindFieldDefinition.new, document_kind: document_kind }
+= simple_form_for AML::DocumentKindFieldDefinition.new do |f|
+  = f.input :key, as: :string, label: false, hint: 'Ключ поля'
+  = f.input :title, as: :string, label: false, hint: 'Название поля'
+  = f.input :position, label: false, hint: 'Позиция поля'
+  = f.hidden_field :document_kind_id, value: document_kind.id
+  = f.button :submit, 'Создать', class: 'btn btn-success'
