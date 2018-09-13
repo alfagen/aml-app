@@ -1,1 +1,4 @@
 
+[submodule "vendor/aml-engine"]
+	path = vendor/aml-engine
+	url = https://github.com/alfagen/aml-engine.git
