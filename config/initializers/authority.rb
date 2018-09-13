@@ -77,4 +77,4 @@ AML::OrderDocument.include Authority::Abilities
 AML::DocumentKindFieldDefinition.include Authority::Abilities
 AML::DocumentKind.include Authority::Abilities
 AML::DocumentGroup.include Authority::Abilities
-AML::ClientDocumentField.include Authority::Abilities
+AML::DocumentField.include Authority::Abilities

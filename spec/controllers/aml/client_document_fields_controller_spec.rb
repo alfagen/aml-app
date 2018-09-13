@@ -1,4 +1,4 @@
 require 'rails_helper'
 
-RSpec.describe AML::ClientDocumentFieldsController, type: :controller do
+RSpec.describe AML::DocumentFieldsController, type: :controller do
 end
