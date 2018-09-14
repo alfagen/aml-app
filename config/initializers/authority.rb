@@ -69,12 +69,9 @@ Authority.configure do |config|
   # config.logger = Logger.new('/dev/null')          # Don't log at all (on a Unix system)
 end
 
-AML::Order.include Authority::Abilities
-AML::Client.include Authority::Abilities
-AML::Operator.include Authority::Abilities
+[
+  AML::Order, AML::Client, AML::Operator, AML::OrderDocument,
+  AML::DocumentKindFieldDefinition, AML::DocumentKind, AML::DocumentGroup, AML::DocumentField
+].each { |model| model.include Authority::Abilities }
+
 AML::Operator.include Authority::UserAbilities
-AML::OrderDocument.include Authority::Abilities
-AML::DocumentKindFieldDefinition.include Authority::Abilities
-AML::DocumentKind.include Authority::Abilities
-AML::DocumentGroup.include Authority::Abilities
-AML::DocumentField.include Authority::Abilities
