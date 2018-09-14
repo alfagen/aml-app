@@ -15,7 +15,6 @@ module AML
 
     def update
       order_document.update!(permitted_params)
-      order_document.order.done! if order_document.order.all_documents_loaded?
       redirect_to order_document_path(order_document)
     rescue ActiveRecord::RecordInvalid => error
       flash.now.alert = error.message
