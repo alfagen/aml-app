@@ -8,20 +8,18 @@ module AML
       render :index, locals: { documents: documents, workflow_state: workflow_state }
     end
 
-    def new
-      render :new, locals: { order_document: AML::OrderDocument.new(permitted_params),
-                             order: AML::Order.find(permitted_params[:order_id]),
-                             document_kinds: document_kinds }
+    def edit
+      render :edit, locals: { order_document: order_document,
+                              order: order_document.order }
     end
 
-    def create
-      AML::OrderDocument.create!(permitted_params)
-      redirect_back(fallback_location: order_documents_path)
-    rescue ActiveRecord::RecordInvalid => e
-      flash.now.alert = e.message
-      render :new, locals: { order_document: e.record,
-                             order: e.record.order,
-                             document_kinds: document_kinds }
+    def update
+      order_document.update!(permitted_params)
+      order_document.order.done! if order_document.order.all_documents_loaded?
+      redirect_to order_document_path(order_document)
+    rescue ActiveRecord::RecordInvalid => error
+      flash.now.alert = error.message
+      render :edit, locals: error_params(error)
     end
 
     def show
@@ -55,12 +53,8 @@ module AML
       @order_document ||= AML::OrderDocument.find params[:id]
     end
 
-    def document_kinds
-      @document_kinds ||= AML::DocumentKind.all.ordered
-    end
-
     def permitted_params
-      params.fetch(:order_document).permit(:document_kind_id, :image, :order_id, :workflow_state)
+      params.fetch(:order_document).permit(:document_kind_id, :image, :order_id)
     end
   end
 end
