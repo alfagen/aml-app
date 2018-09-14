@@ -39,6 +39,7 @@ Rails.application.routes.draw do
     resources :clients, except: %i[edit update destroy]
     resources :orders do
       member do
+        put :done
         put :in_process
         put :accept
         put :reject

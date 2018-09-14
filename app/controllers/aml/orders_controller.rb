@@ -23,6 +23,11 @@ module AML
                               documents: paginate(order.order_documents.ordered) }
     end
 
+    def done
+      order.done!
+      redirect_to order_path(order)
+    end
+
     def in_process
       order.process!
       order.update(operator_id: current_user.id)

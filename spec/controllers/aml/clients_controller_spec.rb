@@ -14,7 +14,7 @@ RSpec.describe AML::ClientsController, type: :controller do
       end
 
       it 'redirects to index view' do
-        is_expected.to redirect_to(action: :index)
+        is_expected.to be_redirect
       end
 
       it 'should respond with a success status code (2xx)' do

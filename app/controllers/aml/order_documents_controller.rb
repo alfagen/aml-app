@@ -39,7 +39,7 @@ module AML
 
     private
 
-    DEFAULT_WORKFLOW_STATE = :pending
+    DEFAULT_WORKFLOW_STATE = :none
 
     def workflow_state
       params[:workflow_state] || DEFAULT_WORKFLOW_STATE
