@@ -4,4 +4,6 @@ tr
   td = document.document_kind.title
   td = link_to image_tag(document.image.url, size: '100'), order_document_path(document) if document.image.present?
   td = document.workflow_state
-  td = link_to 'Показать', order_document_path(document), class: 'btn btn-default'
+  td 
+    = link_to 'Показать', order_document_path(document), class: 'btn btn-default'
+    =< link_to 'Редактировать', edit_order_document_path(document), class: 'btn btn-default'
