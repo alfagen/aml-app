@@ -59,6 +59,7 @@ RSpec.configure do |config|
         uncommitted transaction data setup over the spec's database connection.
       MSG
     end
+
     # Truncate database to clean up garbage from
     # interrupted or badly written examples
     DatabaseCleaner.clean_with(:truncation) unless ENV['SKIP_DB_TRUNCATION']

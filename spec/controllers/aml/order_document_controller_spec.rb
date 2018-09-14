@@ -10,23 +10,6 @@ RSpec.describe AML::OrderDocumentsController, type: :controller do
 
     before { login_user(aml_operator) }
 
-    context 'create with registered operator' do
-      subject do
-        post 'create', params: { order_document: attributes_for(:order_document,
-                                                                order_id: aml_order.id,
-                                                                document_kind_id: aml_document_kind.id,
-                                                                client_id: aml_client.id) }
-      end
-
-      it 'saves the new client document to database' do
-        expect { subject }.to change(AML::OrderDocument.all, :count).by(1)
-      end
-
-      it 'should respond with a success status code (2xx)' do
-        expect(response).to have_http_status(:success)
-      end
-    end
-
     context '#show' do
       subject { get :show, params: { id: aml_order_document.id } }
 
