@@ -53,7 +53,7 @@ module AML
     end
 
     def permitted_params
-      params.fetch(:order_document).permit(:document_kind_id, :image, :order_id)
+      params.fetch(:order_document).permit(:document_kind_id, :image, :order_id, :workflow_state)
     end
   end
 end
