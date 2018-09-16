@@ -36,18 +36,4 @@ module ApplicationHelper
   def app_title
     "AML #{AppVersion}"
   end
-
-  def method_missing(method, *args, &block)
-    if respond_to_missing?(method)
-      main_app.send(method, *args)
-    else
-      super
-    end
-  end
-
-  private
-
-  def respond_to_missing?(method_name)
-    method_name.to_s.end_with?('_path', '_url') && main_app.respond_to?(method_name)
-  end
 end
