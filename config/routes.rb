@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     end
   end
 
-  scope module: :amlp do
+  scope module: :amlapp do
     root to: 'orders#index'
 
     concern :archivable do

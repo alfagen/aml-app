@@ -18,5 +18,5 @@
 # end
 
 ActiveSupport::Inflector.inflections do |inflect|
-  inflect.acronym 'AML'
+  inflect.acronym 'Amlapp'
 end
