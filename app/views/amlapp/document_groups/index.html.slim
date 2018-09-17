@@ -10,6 +10,6 @@ br
           th Описание:
           th Позиция:
       tbody
-        = render document_groups
+        = render partial: 'document_group', collection: document_groups
   - else
     p.alert Группы документов отсутствуют.
