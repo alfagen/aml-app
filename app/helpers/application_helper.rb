@@ -3,6 +3,7 @@
 module ApplicationHelper
   def top_breadcrumbs
     return if breadcrumbs.empty?
+
     content_tag :ol, class: 'breadcrumb' do
       render_breadcrumbs tag: :li, separator: '', class: '', item_class: '', divider_class: '', active_class: 'active'
     end
@@ -28,12 +29,8 @@ module ApplicationHelper
                 data: { title_counter: true, count: count.to_i })
   end
 
-  def aml_order_active_type(workflow_state)
+  def active_style_tab(workflow_state)
     workflow_state == :none ? :inclusive : :exact
-  end
-
-  def aml_document_active_type(workflow_state)
-    workflow_state == :pending ? :inclusive : :exact
   end
 
   def app_title
