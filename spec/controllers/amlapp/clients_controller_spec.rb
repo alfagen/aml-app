@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe AML::ClientsController, type: :controller do
+RSpec.describe Amlapp::ClientsController, type: :controller do
   describe '#create' do
     context 'with registered operator' do
       let(:aml_operator) { create(:operator) }

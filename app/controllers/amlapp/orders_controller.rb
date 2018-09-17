@@ -1,5 +1,5 @@
-module AML
-  class OrdersController < AML::ApplicationController
+module Amlapp
+  class OrdersController < Amlapp::ApplicationController
     include Pagination
 
     def index

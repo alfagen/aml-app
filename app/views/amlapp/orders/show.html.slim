@@ -15,4 +15,4 @@ h4 Состояние: #{order.workflow_state}
   - if documents.count.positive?
     h4 Документы заявки:
     = paginate documents
-    = render partial: 'aml/order_documents/documents_list', locals: { documents: documents }
+    = render partial: 'amlapp/order_documents/documents_list', locals: { documents: documents }

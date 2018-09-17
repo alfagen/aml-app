@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe AML::OrderDocumentsController, type: :controller do
+RSpec.describe Amlapp::OrderDocumentsController, type: :controller do
   describe '#actions' do
     let(:aml_operator) { create(:operator) }
     let(:aml_document_kind) { create(:document_kind) }

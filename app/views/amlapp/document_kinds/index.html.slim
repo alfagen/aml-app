@@ -10,6 +10,6 @@ br
           th Группа документа:
           th Поля документа:
       tbody
-        = render document_kinds
+        = render partial: 'document_kind', collection: document_kinds
   - else
     p.alert Типы документов отсутствуют.

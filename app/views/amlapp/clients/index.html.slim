@@ -15,7 +15,7 @@
           th Дата рождения:
           th Действия
       tbody
-        = render clients 
+        = render partial: 'client', collection: clients
     = paginate clients
   - else
     p.alert Клиенты отсутствуют
