@@ -1,4 +1,4 @@
-module AML
+module Amlp
   class ApplicationController < ::ApplicationController
     before_action :require_login
   end

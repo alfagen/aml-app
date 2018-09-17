@@ -1,5 +1,5 @@
-module AML
-  class DocumentFieldsController < AML::ApplicationController
+module AMLP
+  class DocumentFieldsController < AMLP::ApplicationController
     def edit
       render :edit, locals: { document_field: document_field,
                               order_document: order_document,
