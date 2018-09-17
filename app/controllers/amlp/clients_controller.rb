@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-module AML
-  class ClientsController < AML::ApplicationController
+module AMLP
+  class ClientsController < AMLP::ApplicationController
     include Pagination
 
     def index
