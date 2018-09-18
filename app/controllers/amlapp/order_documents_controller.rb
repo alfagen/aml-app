@@ -22,8 +22,7 @@ module Amlapp
     end
 
     def show
-      render :show, locals: { order_document: order_document,
-                              fields: order_document.document_fields }
+      render :show, locals: { order_document: order_document }
     end
 
     def accept
