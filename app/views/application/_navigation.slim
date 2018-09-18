@@ -9,7 +9,7 @@ nav.navbar.navbar-default.navbar-fixed-top
     = link_to app_title, orders_path, class: 'navbar-brand'
     .collapse.navbar-collapse
       ul.nav.navbar-nav
-        = active_link_to orders_path, wrap_tag: :li do
+        = active_link_to orders_path(workflow_state: 'none'), wrap_tag: :li do
           = title_with_counter 'Заявки клиентов', AML::Order.with_none_state.count
         - if current_user.administrator?
           li.dropdown
