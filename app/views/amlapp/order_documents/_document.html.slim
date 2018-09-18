@@ -1,5 +1,5 @@
 tr
-  td = "#{document.order.first_name}, #{document.order.surname}, #{document.order.patronymic}"
+  td = "#{document.order.first_name} #{document.order.surname} #{document.order.patronymic}"
   td = document.order_id
   td = document.document_kind.title
   td = link_to image_tag(document.image.url, size: '100'), order_document_path(document) if document.image.present?

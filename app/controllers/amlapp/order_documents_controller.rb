@@ -23,7 +23,8 @@ module Amlapp
 
     def show
       render :show, locals: { order_document: order_document,
-                              fields: order_document.document_fields }
+                              fields: order_document.document_fields,
+                              group: order_document.document_kind.document_group }
     end
 
     def accept
