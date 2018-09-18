@@ -32,13 +32,13 @@ RSpec.describe Amlapp::OrdersController, type: :controller do
 
     context '#index another operator none state' do
       let(:another_operator) { create(:operator) }
-      let!(:aml_order) { create(:order, operator: aml_operator) }
+      let!(:aml_order) { create(:order) }
 
       before { login_user(another_operator) }
 
       it 'should respond with a success status code (2xx) and show order' do
         get :index, params: { workflow_state: 'none' }
-        expect(response.body).to include(aml_operator.email)
+        expect(response.body).to include('Не назначен')
       end
     end
 
