@@ -12,6 +12,9 @@ h4 Состояние: #{order.workflow_state}
     =< link_to 'Прекратить обработку', stop_order_path(order), method: :put, class: 'btn btn-success' if order.processing?
     =< link_to 'Отказать', reject_order_path(order), method: :put, class: 'btn btn-success' if order.accepted? || order.processing?
     =< link_to 'Принять', accept_order_path(order), method: :put, class: 'btn btn-success' if order.rejected? || order.processing?
+  - if order.reject_reason?
+    h4 Причина отклонения:
+    = order.reject_reason
   - if documents.count.positive?
     h4 Документы заявки:
     = paginate documents

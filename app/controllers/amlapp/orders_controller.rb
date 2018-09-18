@@ -18,6 +18,18 @@ module Amlapp
       render :new, locals: { order: e.record, client_id: e.record.client.id }
     end
 
+    def edit
+      render :edit, locals: { order: order }
+    end
+
+    def update
+      order.update!(permitted_params)
+      redirect_to order_path(order)
+    rescue ActiveRecord::RecordInvalid => error
+      flash.now.alert = error.message
+      render :edit, locals: error_params(error)
+    end
+
     def show
       render :show, locals: { order: order, client: order.client, document_kinds: document_kinds,
                               documents: paginate(order.order_documents.ordered) }
@@ -41,7 +53,7 @@ module Amlapp
 
     def reject
       order.reject!
-      redirect_to order_path(order)
+      redirect_to edit_order_path(order)
     end
 
     def stop
@@ -74,7 +86,7 @@ module Amlapp
     end
 
     def permitted_params
-      params.fetch(:order, {}).permit(:first_name, :surname, :patronymic, :birth_date, :client_id, :workflow_state)
+      params.fetch(:order, {}).permit(:first_name, :surname, :patronymic, :birth_date, :client_id, :workflow_state, :reject_reason)
     end
 
     def q
