@@ -39,6 +39,10 @@ gem 'settingslogic'
 
 gem 'workflow', github: 'geekq/workflow'
 
+# Можно перейти в master если туда влили этот PR https://github.com/Netflix/fast_jsonapi/pull/230
+# Данные изменения отлавливаются в spec/serializers/order_serializer_spec.rb
+gem 'fast_jsonapi', github: 'HoJSim/fast_jsonapi', branch: 'dev'
+
 gem 'aml', path: 'vendor/aml-engine'
 
 gem 'active_link_to', github: 'BrandyMint/active_link_to'
