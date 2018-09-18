@@ -52,8 +52,8 @@ module Amlapp
     end
 
     def reject
-      order.reject!
-      redirect_to edit_order_path(order)
+      order.reject!(params[:reject_reason])
+      redirect_to order_path(order)
     end
 
     def stop
