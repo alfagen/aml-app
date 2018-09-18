@@ -59,7 +59,9 @@ module Amlapp
     end
 
     def orders
-      return AML::Order.where(workflow_state: workflow_state) if ['none', 'pending'].include?(workflow_state) || current_user.administrator?
+      return AML::Order.where(workflow_state: workflow_state) if current_user.administrator?
+      return AML::Order.where(workflow_state: workflow_state) if ['none', 'pending'].include?(workflow_state)
+
       AML::Order.where(workflow_state: workflow_state, operator_id: current_user.id)
     end
 

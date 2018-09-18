@@ -1,11 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe Amlapp::OrdersController, type: :controller do
-  describe '#create' do
-    context 'with registered operator' do
-      let(:aml_operator) { create(:operator) }
-      let(:aml_client) { create(:client) }
+  render_views
 
+  let(:aml_operator) { create(:operator) }
+  let(:aml_client) { create(:client) }
+
+  describe 'actions' do
+    context '#create' do
       before { login_user(aml_operator) }
 
       subject { post 'create', params: { order: attributes_for(:order, client_id: aml_client.id) } }
@@ -14,35 +16,65 @@ RSpec.describe Amlapp::OrdersController, type: :controller do
         expect(response).to have_http_status(:success)
       end
     end
-  end
 
-  describe '#show' do
-    let(:aml_operator) { create(:operator) }
-    let!(:aml_client) { create(:client) }
-    let(:aml_order) { create(:order, client_id: aml_client.id) }
+    context '#show' do
+      let(:aml_order) { create(:order, client_id: aml_client.id) }
 
-    before { login_user(aml_operator) }
+      before { login_user(aml_operator) }
 
-    subject { get :show, params: { id: aml_order.id } }
+      subject { get :show, params: { id: aml_order.id } }
 
-    it { is_expected.to render_template(:show) }
-    it 'should respond with a success status code (2xx)' do
-      expect(response).to have_http_status(:success)
+      it { is_expected.to render_template(:show) }
+      it 'should respond with a success status code (2xx)' do
+        expect(response).to have_http_status(:success)
+      end
     end
-  end
 
-  describe '#index' do
-    let(:aml_operator) { create(:operator) }
-    let(:aml_client) { create(:client) }
-    let(:aml_order) { create(:order) }
+    context '#index another operator none state' do
+      let(:another_operator) { create(:operator) }
+      let!(:aml_order) { create(:order, operator: aml_operator) }
 
-    before { login_user(aml_operator) }
+      before { login_user(another_operator) }
 
-    subject { get :index }
+      it 'should respond with a success status code (2xx) and show order' do
+        get :index, params: { workflow_state: 'none' }
+        expect(response.body).to include(aml_operator.email)
+      end
+    end
 
-    it { is_expected.to render_template(:index) }
-    it 'should respond with a success status code (2xx)' do
-      expect(response).to have_http_status(:success)
+    context '#index operator processing state' do
+      let!(:aml_order) { create(:order, :processing, operator: aml_operator) }
+
+      before { login_user(aml_operator) }
+
+      it 'should respond with a success status code (2xx) and show order' do
+        get :index, params: { workflow_state: 'processing' }
+        expect(response.body).to include(aml_operator.email)
+      end
+    end
+
+    context '#index another operator processing state' do
+      let(:another_operator) { create(:operator) }
+      let!(:aml_order) { create(:order, :processing, operator: aml_operator) }
+
+      before { login_user(another_operator) }
+
+      it 'should respond with a success status code (2xx) and not show order' do
+        get :index, params: { workflow_state: 'processing' }
+        expect(response.body).to_not include(aml_operator.email)
+      end
+    end
+
+    context '#index administartor processing state' do
+      let(:administrator) { create(:operator, role: 'administrator') }
+      let!(:aml_order) { create(:order, :processing, operator: aml_operator) }
+
+      before { login_user(administrator) }
+
+      it 'should respond with a success status code (2xx) and show order' do
+        get :index, params: { workflow_state: 'processing' }
+        expect(response.body).to include(aml_operator.email)
+      end
     end
   end
 end

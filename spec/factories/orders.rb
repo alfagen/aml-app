@@ -8,4 +8,8 @@ FactoryBot.define do
     client
     operator
   end
+
+  trait :processing do
+    workflow_state { 'processing' }
+  end
 end
