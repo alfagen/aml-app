@@ -12,8 +12,8 @@ module AML
       resource.current_state >= :processing && resource.operator_id == operator.id
     end
 
-    def self.readable_by?(operator)
-      operator.administrator? || operator.operator?
+    def readable_by?(operator)
+      operator.administrator? || resource.operator_id == operator.id || resource.current_state < :processing
     end
   end
 end

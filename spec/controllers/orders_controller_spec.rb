@@ -38,7 +38,7 @@ RSpec.describe Amlapp::OrdersController, type: :controller do
 
       it 'should respond with a success status code (2xx) and show order' do
         get :index, params: { workflow_state: 'none' }
-        expect(response.body).to include(aml_order.id.to_s, 'Не назначен')
+        expect(aml_order.readable_by?(another_operator)).to be true
       end
     end
 
@@ -49,7 +49,7 @@ RSpec.describe Amlapp::OrdersController, type: :controller do
 
       it 'should respond with a success status code (2xx) and show order' do
         get :index, params: { workflow_state: 'processing' }
-        expect(response.body).to include(aml_order.id.to_s, aml_operator.email)
+        expect(aml_order.readable_by?(aml_operator)).to be true
       end
     end
 
@@ -61,7 +61,7 @@ RSpec.describe Amlapp::OrdersController, type: :controller do
 
       it 'should respond with a success status code (2xx) and not show order' do
         get :index, params: { workflow_state: 'processing' }
-        expect(response.body).to_not include(aml_order.id.to_s, aml_operator.email)
+        expect(aml_order.readable_by?(another_operator)).to be false
       end
     end
 
@@ -73,7 +73,7 @@ RSpec.describe Amlapp::OrdersController, type: :controller do
 
       it 'should respond with a success status code (2xx) and show order' do
         get :index, params: { workflow_state: 'processing' }
-        expect(response.body).to include(aml_order.id.to_s, aml_operator.email)
+        expect(aml_order.readable_by?(administrator)).to be true
       end
     end
   end
