@@ -28,7 +28,7 @@ install_plugin Capistrano::Puma::Workers
 install_plugin Capistrano::Puma::Nginx
 require 'capistrano/rails/assets'
 require 'capistrano/faster_assets'
-require 'capistrano/rails/migrations'
+require 'capistrano/rails/migrations' if ENV['IGNORE_DEPLOY_MIGRATION']
 require 'bugsnag-capistrano'
 require 'capistrano/semver-tag'
 require 'capistrano/upload-config'
