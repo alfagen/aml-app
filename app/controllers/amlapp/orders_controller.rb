@@ -22,14 +22,6 @@ module Amlapp
       render :edit, locals: { order: order }
     end
 
-    def update
-      order.update!(permitted_params)
-      redirect_to order_path(order)
-    rescue ActiveRecord::RecordInvalid => error
-      flash.now.alert = error.message
-      render :edit, locals: error_params(error)
-    end
-
     def show
       render :show, locals: { order: order, client: order.client, document_kinds: document_kinds,
                               documents: paginate(order.order_documents.ordered) }
@@ -48,11 +40,12 @@ module Amlapp
 
     def accept
       order.accept!
+      order.update(reject_reason: nil)
       redirect_to order_path(order)
     end
 
     def reject
-      order.reject!(params[:reject_reason])
+      order.reject! permitted_params[:reject_reason]
       redirect_to order_path(order)
     end
 
