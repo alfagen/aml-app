@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory(:document_field, class: AML::DocumentField) do
-    value 'Value'
+    value { 'Value' }
   end
 end
