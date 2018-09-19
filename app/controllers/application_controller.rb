@@ -1,13 +1,13 @@
 class ApplicationController < ActionController::Base
-  before_action :require_login, unless: :first_user?
+  before_action :require_login
 
   rescue_from ActionController::InvalidAuthenticityToken, with: :rescue_invalid_authenticity_token
 
-  private
-
-  def first_user?
-    AML::Operator.all.empty?
+  def error
+    raise 'test error'
   end
+
+  private
 
   def not_authenticated
     render 'not_authenticated', layout: 'simple'
