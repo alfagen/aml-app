@@ -45,8 +45,11 @@ module Amlapp
     end
 
     def reject
-      order.reject! permitted_params[:reject_reason]
+      order.reject!(reject_reason: permitted_params[:reject_reason])
       redirect_to order_path(order)
+    rescue RuntimeError => e
+      flash.now.alert = e.message
+      render :edit, locals: { order: order }
     end
 
     def stop
