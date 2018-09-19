@@ -40,14 +40,13 @@ module Amlapp
 
     def accept
       order.accept!
-      order.update(reject_reason: nil)
       redirect_to order_path(order)
     end
 
     def reject
       order.reject!(reject_reason: permitted_params[:reject_reason])
       redirect_to order_path(order)
-    rescue RuntimeError => e
+    rescue Workflow::TransitionHalted => e
       flash.now.alert = e.message
       render :edit, locals: { order: order }
     end
