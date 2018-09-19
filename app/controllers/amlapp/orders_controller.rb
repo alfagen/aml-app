@@ -18,16 +18,12 @@ module Amlapp
       render :new, locals: { order: e.record, client_id: e.record.client.id }
     end
 
-    def edit
-      render :edit, locals: { order: order }
-    end
-
     def update
-      order.update!(permitted_params)
+      order.reject! permitted_params[:reject_reason]
       redirect_to order_path(order)
-    rescue ActiveRecord::RecordInvalid => error
-      flash.now.alert = error.message
-      render :edit, locals: error_params(error)
+    rescue Workflow::TransitionHalted => e
+      flash.now.alert = e.message
+      render :reject, locals: { order: order }
     end
 
     def show
@@ -52,8 +48,7 @@ module Amlapp
     end
 
     def reject
-      order.reject!
-      redirect_to edit_order_path(order)
+      render :reject, locals: { order: order }
     end
 
     def stop
