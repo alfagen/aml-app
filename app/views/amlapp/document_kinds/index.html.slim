@@ -1,5 +1,5 @@
-h2 Список типов документа:
-.pull-right= link_to 'Новый тип документа', new_document_kind_path(document_kind: { title: nil }), class: 'btn btn-success' if current_user.can_create?(AML::DocumentKind)
+h2 Список типов документа группы "#{document_group.title}":
+.pull-right= link_to 'Новый тип документа', new_document_kind_path(document_kind: { aml_document_group_id: document_group.id }), class: 'btn btn-success' if current_user.can_create?(AML::DocumentKind)
 br
 - if current_user.can_read?(AML::DocumentKind)
   - if document_kinds.any?
@@ -7,9 +7,12 @@ br
       thead
         tr
           th Типы документа:
-          th Группа документа:
+          th Описание:
+          th Позиция:
+          th Статус:
           th Поля документа:
       tbody
         = render partial: 'document_kind', collection: document_kinds
+      = paginate document_kinds
   - else
     p.alert Типы документов отсутствуют.
