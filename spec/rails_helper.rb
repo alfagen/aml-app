@@ -58,6 +58,8 @@ RSpec.configure do |config|
         the spec. The app's database connection would not be able to access
         uncommitted transaction data setup over the spec's database connection.
       MSG
+
+
     end
 
     # Truncate database to clean up garbage from

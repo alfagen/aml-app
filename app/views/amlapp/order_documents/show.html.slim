@@ -21,13 +21,13 @@
       tr
         td = field.title
         td = field.value || 'не задано'
-        td = !field.definition.archived?
+        td = field.definition.alive?
         - if order_document.order.taken_by?(current_user) ||  current_user.administrator?
           td = link_to 'Изменить значение', edit_document_field_path(field), class: 'btn btn-default'
 h4 Группа документа:
 h5 Название: #{order_document.document_kind.document_group.title}
 h5 Описание: #{order_document.document_kind.document_group.details}
 h5 Позиция: #{order_document.document_kind.document_group.position}
-h5 Статус: #{!order_document.document_kind.document_group.archived?}
+h5 Статус: #{order_document.document_kind.document_group.alive?}
 h4 Файл:
 = image_tag(order_document.image.url, style: 'height:auto;width:100%;') if order_document.image.present?
