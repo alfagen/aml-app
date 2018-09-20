@@ -33,6 +33,10 @@ module ApplicationHelper
     workflow_state == :none ? :inclusive : :exact
   end
 
+  def active_style_order(workflow_state)
+    workflow_state == :pending ? :inclusive : :exact
+  end
+
   def app_title
     "AML #{AppVersion}"
   end

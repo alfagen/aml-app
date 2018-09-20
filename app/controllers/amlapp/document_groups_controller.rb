@@ -20,10 +20,6 @@ module Amlapp
       render :new, locals: { document_group: e.record }
     end
 
-    def show
-      render :show, locals: { document_group: document_group }
-    end
-
     private
 
     def document_group

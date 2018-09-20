@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   end
 
   scope module: :amlapp do
-    root to: 'orders#index'
+    root to: redirect('orders#index')
 
     concern :archivable do
       member do
