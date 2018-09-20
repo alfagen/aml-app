@@ -6,7 +6,7 @@ table.table.table-condensed
       th Позиция
       th Действия:
       tbody
-      - unless field_definitions.first.archived?
+      - if field_definitions.first.alive?
         h3 Действующие поля: (#{field_definitions.count})
       - else
         h3 Поля в архиве: (#{field_definitions.count})

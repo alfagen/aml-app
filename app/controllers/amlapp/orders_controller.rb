@@ -59,7 +59,7 @@ module Amlapp
 
     private
 
-    DEFAULT_WORKFLOW_STATE = :none
+    DEFAULT_WORKFLOW_STATE = :pending
 
     def workflow_state
       params[:workflow_state] || DEFAULT_WORKFLOW_STATE
@@ -67,7 +67,7 @@ module Amlapp
 
     def orders
       return AML::Order.where(workflow_state: workflow_state) if current_user.administrator?
-      return AML::Order.where(workflow_state: workflow_state) if ['none', 'pending'].include?(workflow_state)
+      return AML::Order.where(workflow_state: workflow_state) if workflow_state == 'pending'
 
       AML::Order.where(workflow_state: workflow_state, operator_id: current_user.id)
     end
