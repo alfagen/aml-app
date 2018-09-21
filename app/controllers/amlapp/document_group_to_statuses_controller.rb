@@ -7,11 +7,11 @@ module Amlapp
       redirect_to status_path(status)
     rescue ActiveRecord::RecordInvalid => e
       flash.now.alert = e.message
-      render :new, locals: { client: e.record }
+      render :new, locals: { aml_document_group_to_status: e.record }
     end
 
     def destroy
-      AML::DocumentGroupToStatus.find_by(permitted_params).destroy
+      AML::DocumentGroupToStatus.find_by(permitted_params).destroy!
       redirect_to status_path(status)
     end
 
