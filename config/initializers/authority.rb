@@ -70,7 +70,7 @@ Authority.configure do |config|
 end
 
 [
-  AML::Order, AML::Client, AML::Operator, AML::OrderDocument,
+  AML::Order, AML::Client, AML::Operator, AML::OrderDocument, AML::Status,
   AML::DocumentKindFieldDefinition, AML::DocumentKind, AML::DocumentGroup, AML::DocumentField
 ].each { |model| model.include Authority::Abilities }
 

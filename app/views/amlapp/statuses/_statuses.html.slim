@@ -1,0 +1,11 @@
+table.table.table-condensed
+  thead
+    tr
+      th Статус:
+      th Номер:
+      th Описание:
+      th Состояние:
+      th Действия:
+  tbody
+    = render partial: 'amlapp/statuses/status', collection: statuses
+  = paginate statuses

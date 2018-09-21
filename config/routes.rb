@@ -34,6 +34,8 @@ Rails.application.routes.draw do
     resources :document_kinds, only: %i[index new create show] do
       concerns :archivable
     end
+    resources :statuses, only: %i[index new create show]
+    resources :document_group_to_statuses, only: %i[create destroy]
     resources :document_groups, only: %i[index new create show] do
       concerns :archivable
     end
