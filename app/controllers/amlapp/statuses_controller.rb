@@ -35,7 +35,7 @@ module Amlapp
     end
 
     def permitted_params
-      params.fetch(:status, {}).permit(:title, :position, :details)
+      params.fetch(:status, {}).permit!
     end
   end
 end
