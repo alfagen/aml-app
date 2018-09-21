@@ -19,6 +19,7 @@ nav.navbar.navbar-default.navbar-fixed-top
             ul.dropdown-menu
               = active_link_to 'Клиенты', clients_path, wrap_tag: :li
               = active_link_to 'Документы клиентов', order_documents_path, wrap_tag: :li
+              = active_link_to 'Статусы', statuses_path, wrap_tag: :li
               = active_link_to 'Группы документов', document_groups_path, wrap_tag: :li
               = active_link_to 'Операторы', operators_path, wrap_tag: :li
         - if logged_in?

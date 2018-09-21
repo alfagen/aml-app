@@ -1,0 +1,5 @@
+= simple_form_for status, method: :post, url: statuses_path do |f|
+  = f.input :title, label: false, hint: 'Название статуса'
+  = f.input :details, label: false, hint: 'Описание статуса'
+  = f.input :position, label: false, hint: 'Номер статуса'
+  = f.button :submit, 'Создать', class: 'btn btn-success'
