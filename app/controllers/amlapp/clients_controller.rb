@@ -39,7 +39,7 @@ module Amlapp
     end
 
     def permitted_params
-      params.fetch(:client, {}).permit(:first_name, :surname, :patronymic, :birth_date)
+      params.fetch(:client, {}).permit(:first_name, :surname, :patronymic, :birth_date, :aml_status_id)
     end
   end
 end

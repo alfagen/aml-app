@@ -4,5 +4,7 @@ FactoryBot.define do
     surname { 'Surname' }
     patronymic { 'Patronymic' }
     birth_date { Date.today - 20.years }
+    workflow_state { :none }
+    aml_status
   end
 end

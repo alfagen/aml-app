@@ -4,10 +4,11 @@ RSpec.describe Amlapp::ClientsController, type: :controller do
   describe '#create' do
     context 'with registered operator' do
       let(:aml_operator) { create(:operator) }
+      let(:aml_status) { create(:aml_status) }
 
       before { login_user(aml_operator) }
 
-      subject { post 'create', params: { aml_client: attributes_for(:client) } }
+      subject { post 'create', params: { aml_client: attributes_for(:client, aml_status_id: aml_status.id ) } }
 
       it 'saves the new client to database' do
         expect { subject }.to change(AML::Client.all, :count).by(1)
