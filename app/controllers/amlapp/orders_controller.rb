@@ -40,6 +40,7 @@ module Amlapp
 
     def accept
       order.accept!
+      order.update(aml_status_id: order.client.aml_status_id)
       redirect_to order_path(order)
     end
 
