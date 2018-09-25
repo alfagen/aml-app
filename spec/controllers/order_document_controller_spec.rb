@@ -2,11 +2,12 @@ require 'rails_helper'
 
 RSpec.describe Amlapp::OrderDocumentsController, type: :controller do
   describe '#actions' do
-    let(:aml_operator) { create(:operator) }
-    let(:aml_document_kind) { create(:document_kind) }
-    let(:aml_client) { create(:client) }
-    let(:aml_order) { create(:order, client_id: aml_client.id) }
-    let(:aml_order_document) { create(:order_document, order_id: aml_order.id) }
+    let(:aml_status) { create(:aml_status, key: 'guest') }
+    let(:aml_operator) { create(:aml_operator) }
+    let(:aml_document_kind) { create(:aml_document_kind) }
+    let(:aml_client) { create(:aml_client, aml_status_id: aml_status.id) }
+    let(:aml_order) { create(:aml_order, client_id: aml_client.id, aml_status_id: aml_status.id) }
+    let(:aml_order_document) { create(:aml_order_document, order_id: aml_order.id) }
 
     before { login_user(aml_operator) }
 
