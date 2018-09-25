@@ -3,6 +3,6 @@ FactoryBot.define do
     title { 'Title' }
     details { 'Details' }
     position { 'Position' }
-    key { 'default' }
+    key { 'guest' }
   end
 end
