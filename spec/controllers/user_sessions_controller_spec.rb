@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe UserSessionsController, type: :controller do
-  let(:aml_operator) { create(:operator) }
+  let(:aml_operator) { create(:aml_operator) }
 
   describe 'GET #new' do
     it 'returns http success' do
