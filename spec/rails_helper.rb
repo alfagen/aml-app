@@ -7,10 +7,6 @@ abort('The Rails environment is running in production mode!') if Rails.env.produ
 require 'rspec/rails'
 require 'factory_bot'
 
-FactoryBot.factories.clear
-FactoryBot.definition_file_paths = %W(vendor/aml-engine/spec/dummy/factories)
-FactoryBot.reload
-
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
 # Add additional requires below this line. Rails is not loaded until this point!
