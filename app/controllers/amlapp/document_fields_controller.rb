@@ -21,7 +21,7 @@ module Amlapp
     end
 
     def order_document
-      @order_document ||= document_field.order_document
+      @order_document ||= document_field.aml_order_document
     end
 
     def permitted_params

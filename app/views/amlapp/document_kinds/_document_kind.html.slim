@@ -3,4 +3,4 @@ tr
   td = document_kind.details
   td = document_kind.position
   td = document_kind.alive?
-  td = link_to "Дополнительные поля (#{document_kind.definitions.alive.count})", document_kind_path(document_kind), class: 'btn btn-default'
+  td = link_to "Дополнительные поля (#{document_kind.aml_definitions.alive.count})", document_kind_path(document_kind), class: 'btn btn-default'

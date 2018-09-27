@@ -10,7 +10,7 @@ module Amlapp
 
     def edit
       render :edit, locals: { order_document: order_document,
-                              order: order_document.order }
+                              order: order_document.aml_order }
     end
 
     def update
