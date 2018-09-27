@@ -23,8 +23,8 @@ module Amlapp
     end
 
     def show
-      render :show, locals: { order: order, client: order.client, document_kinds: document_kinds,
-                              documents: paginate(order.order_documents.ordered) }
+      render :show, locals: { order: order, client: order.aml_client, document_kinds: document_kinds,
+                              documents: paginate(order.aml_order_documents.ordered) }
     end
 
     def done
@@ -40,7 +40,7 @@ module Amlapp
 
     def accept
       order.accept!
-      order.update(aml_status_id: order.client.aml_status_id)
+      order.update(aml_status_id: order.aml_client.aml_status_id)
       redirect_to order_path(order)
     end
 

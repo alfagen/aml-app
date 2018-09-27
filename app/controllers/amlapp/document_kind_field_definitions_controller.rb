@@ -25,12 +25,12 @@ module Amlapp
 
     def restore
       document_kind_field_definition.restore!
-      redirect_to document_kind_path(document_kind_field_definition.document_kind)
+      redirect_to document_kind_path(document_kind_field_definition.aml_document_kind)
     end
 
     def archive
       document_kind_field_definition.archive!
-      redirect_to document_kind_path(document_kind_field_definition.document_kind)
+      redirect_to document_kind_path(document_kind_field_definition.aml_document_kind)
     end
 
     private

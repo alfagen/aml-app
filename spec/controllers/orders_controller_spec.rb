@@ -44,7 +44,7 @@ RSpec.describe Amlapp::OrdersController, type: :controller do
     end
 
     context '#index operator processing state' do
-      let!(:aml_order) { create(:aml_order, :processing, operator: aml_operator, aml_status_id: aml_status.id) }
+      let!(:aml_order) { create(:aml_order, :processing, aml_operator: aml_operator, aml_status_id: aml_status.id) }
 
       before { login_user(aml_operator) }
 
@@ -56,7 +56,7 @@ RSpec.describe Amlapp::OrdersController, type: :controller do
 
     context '#index another operator processing state' do
       let(:another_operator) { create(:aml_operator) }
-      let!(:aml_order) { create(:aml_order, :processing, operator: aml_operator, aml_status_id: aml_status.id) }
+      let!(:aml_order) { create(:aml_order, :processing, aml_operator: aml_operator, aml_status_id: aml_status.id) }
 
       before { login_user(another_operator) }
 
@@ -68,7 +68,7 @@ RSpec.describe Amlapp::OrdersController, type: :controller do
 
     context '#index administartor processing state' do
       let(:administrator) { create(:aml_operator, role: 'administrator') }
-      let!(:aml_order) { create(:aml_order, :processing, operator: aml_operator, aml_status_id: aml_status.id) }
+      let!(:aml_order) { create(:aml_order, :processing, aml_operator: aml_operator, aml_status_id: aml_status.id) }
 
       before { login_user(administrator) }
 

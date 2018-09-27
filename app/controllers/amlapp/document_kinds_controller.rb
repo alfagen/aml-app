@@ -7,7 +7,7 @@ module Amlapp
     helper_method :document_group
 
     def index
-      render :index, locals: { document_kinds: paginate(document_group.document_kinds.ordered) }
+      render :index, locals: { document_kinds: paginate(document_group.aml_document_kinds.ordered) }
     end
 
     def new
@@ -16,7 +16,7 @@ module Amlapp
 
     def create
       AML::DocumentKind.create!(permitted_params)
-      render :index, locals: { document_kinds: paginate(document_group.document_kinds.ordered) }
+      render :index, locals: { document_kinds: paginate(document_group.aml_document_kinds.ordered) }
     rescue ActiveRecord::RecordInvalid => e
       flash.now.alert = e.message
       render :new, locals: { document_kind: e.record }
