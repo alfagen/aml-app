@@ -6,7 +6,7 @@
     - if order_document.loaded? || order_document.rejected?
       =< link_to 'Принять', accept_order_document_path(order_document), method: :put, class: 'btn btn-success'
     - if order_document.loaded? || order_document.accepted?
-      =< link_to 'Отказать', reject_order_document_path(order_document), method: :put, class: 'btn btn-success'
+      =< link_to 'Отказать', reject_order_document_path(order_document), method: :put, class: 'btn btn-danger'
 - if order_document.document_fields.any?
   h4 Дополнительные поля документа:
   table.table.table-condensed

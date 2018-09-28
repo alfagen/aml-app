@@ -27,7 +27,7 @@ module Amlapp
 
     def accept
       order_document.accept!
-      redirect_to order_document_path(order_document)
+      redirect_to order_path(order_document.order)
     end
 
     def reject

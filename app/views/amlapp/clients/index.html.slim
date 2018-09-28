@@ -1,4 +1,4 @@
-.pull-right= link_to 'Новый клиент', new_client_path, class: 'btn btn-success' if current_user.can_create?(AML::Client)
+.pull-right= link_to 'Новый клиент', new_client_path, class: 'btn btn-default' if current_user.can_create?(AML::Client)
 - if current_user.can_process?(AML::Client)
   h2 Список клиентoв
   - if clients.any?
