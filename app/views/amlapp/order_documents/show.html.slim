@@ -2,11 +2,12 @@
   h4 Имя в заявке: #{order_document.order.first_name} #{order_document.order.surname} #{order_document.order.patronymic}
   h4 Тип документа: #{order_document.document_kind.title}
   h4 Состояние: #{order_document.workflow_state}
+  = link_to 'К заявке', order_path(order_document.order), class: 'btn btn-default'
   - if order_document.order.taken_by?(current_user)
     - if order_document.loaded? || order_document.rejected?
       =< link_to 'Принять', accept_order_document_path(order_document), method: :put, class: 'btn btn-success'
     - if order_document.loaded? || order_document.accepted?
-      =< link_to 'Отказать', reject_order_document_path(order_document), method: :put, class: 'btn btn-success'
+      =< link_to 'Отказать', reject_order_document_path(order_document), method: :put, class: 'btn btn-danger'
 - if order_document.document_fields.any?
   h4 Дополнительные поля документа:
   table.table.table-condensed

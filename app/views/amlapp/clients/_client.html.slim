@@ -6,4 +6,4 @@ tr
   td.text-right
     .btn-group
       = link_to 'Подробнее', client_path(client), class: 'btn btn-default' if current_user.can_read?(AML::Client)
-      = link_to 'Добавить заявку', new_order_path(order: { client_id: client.id }), class: 'btn btn-success' if current_user.can_create?(AML::Order)
+      = link_to 'Добавить заявку', new_order_path(order: { client_id: client.id }), class: 'btn btn-default' if current_user.can_create?(AML::Order)
