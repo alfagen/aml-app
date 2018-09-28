@@ -12,6 +12,7 @@ module Amlapp
 
     def create
       order = AML::Order.create! permitted_params
+      order.copy_documents!
       redirect_to order_path(order)
     rescue ActiveRecord::RecordInvalid => e
       flash.now.alert = e.message
