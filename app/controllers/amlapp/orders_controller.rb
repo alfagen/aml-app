@@ -42,6 +42,10 @@ module Amlapp
       order.accept!
       order.update(aml_status_id: order.client.aml_status_id)
       redirect_to order_path(order)
+    rescue Workflow::TransitionHalted => e
+      flash.now.alert = e.message
+      render :show, locals: { order: order, client: order.client, document_kinds: document_kinds,
+                              documents: paginate(order.order_documents.ordered) }
     end
 
     def reject
