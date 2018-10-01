@@ -1,6 +1,11 @@
 tr
-  td = status.title
+  td
+    = link_to status.title, status_path(status)
   td = status.position
+  td = status.key
   td = status.details
-  td = status.alive?
-  td = link_to 'Показать', status_path(status), class: 'btn btn-default'
+  td
+    = link_to status.clients.count, clients_path( q: { aml_status_id_eq: status.id })
+  td
+    = link_to status.orders.count, orders_path( q: { aml_status_id_eq: status.id })
+  td.text-right = link_to 'Подробнее', status_path(status), class: 'btn btn-default'

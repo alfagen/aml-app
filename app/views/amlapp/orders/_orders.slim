@@ -1,14 +1,16 @@
 = paginate orders
-table.table.table-condensed
+table.table.table-condensed.table-striped
   thead
     tr
-      th Заявка:
-      th Документы:
-      th Имя, фамилия, отчество:
-      th Дата рождения:
-      th Cостояние:
-      th Статус:
-      th Оператор:
-      th Действия:
+      th Заявка
+      th Создана
+      th Документы
+      th Клиент
+      th Имя, фамилия, отчество
+      th Дата рождения
+      th Cостояние
+      th Статус
+      th Оператор
+      th Действия
   tbody
     = render partial: 'order', collection: orders

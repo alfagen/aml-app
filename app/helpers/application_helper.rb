@@ -1,6 +1,22 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
+  ORDER_WORKFLOW_STATE_CLASSES = {
+    'none'       => 'label-default',
+    'pending'    => 'label-warning',
+    'processing' => 'label-warning',
+    'accepted'   => 'label-success',
+    'rejected'   => 'label-danger'
+  }.freeze
+
+  def order_workflow_state(workflow_state)
+    workflow_state = workflow_state.workflow_state if workflow_state.is_a? AML::Order
+
+    classes = [:label]
+    classes << ORDER_WORKFLOW_STATE_CLASSES[workflow_state]
+    content_tag :span, workflow_state, class: classes
+  end
+
   def top_breadcrumbs
     return if breadcrumbs.empty?
 
@@ -9,7 +25,7 @@ module ApplicationHelper
     end
   end
 
-  def title_with_counter(title, count, hide_zero: true, css_class: '')
+  def title_with_counter(title, count, hide_zero: true, css_class: 'badge-success')
     [
       title,
       counter_badge(count, hide_zero: hide_zero, css_class: css_class)

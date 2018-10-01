@@ -1,13 +1,14 @@
-h2 Заявки клиентoв
-- if current_user.can_process?(AML::Order)
-  = render 'menu', workflow_state: workflow_state
+= render 'menu', workflow_state: workflow_state
+
+h5 Поиск
+= search_form_for @q, url: orders_path do |f|
+  = f.search_field :first_name_or_surname_or_patronymic_cont
+  = hidden_field_tag :workflow_state, workflow_state
+  = f.submit 'Искать', class: 'btn btn-default'
+
+- if orders.any?
   - if orders.any?
-    h5 Поиск
-    = search_form_for @q, url: orders_path do |f|
-      = f.search_field :first_name_or_surname_or_patronymic_cont
-      = hidden_field_tag :workflow_state, workflow_state
-      = f.submit 'Искать', class: 'btn btn-success'
-    - if orders.any?
-      = render partial: 'orders', locals: { orders: orders }
-  - else
-    p.alert Заявки отсутствуют
+    = render partial: 'orders', locals: { orders: orders }
+
+- else
+  p.alert Заявки отсутствуют

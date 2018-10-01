@@ -5,7 +5,12 @@ class PasswordsController < ApplicationController
 
   def update
     current_user.update!(permitted_params)
-    redirect_to operators_path
+    if permitted_params[:password].present?
+      flash.now.notice = 'Пароль изменен'
+    else
+      flash.now.alert = 'Укажите пароли для изменения'
+    end
+    render :edit, locals: { user: current_user }
   rescue ActiveRecord::RecordInvalid => e
     flash.now.alert = e.message
     render :edit, locals: { user: e.record }

@@ -11,8 +11,7 @@ module Amlapp
     end
 
     def create
-      order = AML::Order.create! permitted_params
-      redirect_to order_path(order)
+      redirect_to order_path(AML::Order.create!(permitted_params))
     rescue ActiveRecord::RecordInvalid => e
       flash.now.alert = e.message
       render :new, locals: { order: e.record, client_id: e.record.client.id }
@@ -29,18 +28,19 @@ module Amlapp
 
     def done
       order.done!
+      flash.notice = 'Заявка отмечена как загруженная'
       redirect_to order_path(order)
     end
 
     def in_process
-      order.process!
-      order.update(operator_id: current_user.id)
+      order.process! operator: current_user
+      flash.notice = 'Заявка принята в обработку'
       redirect_to order_path(order)
     end
 
     def accept
       order.accept!
-      order.update(aml_status_id: order.client.aml_status_id)
+      flash.notice = 'Заявка принята'
       redirect_to order_path(order)
     rescue Workflow::TransitionHalted => e
       flash.now.alert = e.message
@@ -49,16 +49,17 @@ module Amlapp
     end
 
     def reject
-      order.reject!(reject_reason: permitted_params[:reject_reason])
+      order.reject! reject_reason: permitted_params[:reject_reason]
+      flash.notice = 'Заявка отклонена'
       redirect_to order_path(order)
     rescue Workflow::TransitionHalted => e
       flash.now.alert = e.message
       render :edit, locals: { order: order }
     end
 
-    def stop
-      order.stop!
-      order.update(operator_id: nil)
+    def cancel
+      order.cancel!
+      flash.notice = 'Обработка заявки приостановлена'
       redirect_to order_path(order)
     end
 

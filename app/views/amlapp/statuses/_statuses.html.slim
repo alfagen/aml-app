@@ -1,11 +1,12 @@
-table.table.table-condensed
+table.table.table-condensed.table-striped
   thead
     tr
-      th Статус:
-      th Номер:
-      th Описание:
-      th Состояние:
-      th Действия:
+      th Статус
+      th Номер
+      th Ключ
+      th Описание
+      th Клиентов
+      th Заявок
+      th.text-right Действия
   tbody
     = render partial: 'amlapp/statuses/status', collection: statuses
-  = paginate statuses

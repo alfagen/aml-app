@@ -6,6 +6,11 @@ ru:
       client_document: Документ
       user: Менеджер
     attributes:
+      client:
+        first_name: Имя
+        surname: Фамилия
+        patronymic: Отчество
+        birth_date: Дата рождения
       order:
         first_name: Имя
         surname: Фамилия

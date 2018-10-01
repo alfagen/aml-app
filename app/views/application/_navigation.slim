@@ -11,6 +11,7 @@ nav.navbar.navbar-default.navbar-fixed-top
       ul.nav.navbar-nav
         = active_link_to orders_path, wrap_tag: :li do
           = title_with_counter 'Заявки клиентов', AML::Order.with_none_state.count
+
         - if current_user.administrator?
           li.dropdown
             = link_to '#', class: 'dropdown-toggle', data: { toggle: :dropdown }, role: :button, 'aria-haspopup' => true, 'aria-expanded' => false do
@@ -22,10 +23,11 @@ nav.navbar.navbar-default.navbar-fixed-top
               = active_link_to 'Статусы', statuses_path, wrap_tag: :li
               = active_link_to 'Группы документов', document_groups_path, wrap_tag: :li
               = active_link_to 'Операторы', operators_path, wrap_tag: :li
-        - if logged_in?
+      - if logged_in?
+        ul.nav.navbar-nav.navbar-right
           li.dropdown
             = link_to '#', class: 'dropdown-toggle', data: { toggle: :dropdown }, role: :button, 'aria-haspopup' => true, 'aria-expanded' => false do
-              = current_user.email
+              = "#{current_user.email} (#{current_user.role})"
               span.m-l-sm.caret
             ul.dropdown-menu
               = active_link_to 'Сменить пароль', edit_password_path(current_user), wrap_tag: :li

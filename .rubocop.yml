@@ -20,3 +20,5 @@ Rails/FilePath:
   Exclude:
     - 'spec/rails_helper.rb'
 
+Metrics/AbcSize:
+  Max: 20

@@ -33,6 +33,8 @@ gem 'mini_magick', '~> 4.8'
 gem 'ransack'
 gem 'virtus'
 
+gem 'draper', '~> 3.0.1' # , github: 'drapergem/draper'
+
 gem 'non-stupid-digest-assets'
 gem 'settingslogic'
 

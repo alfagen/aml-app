@@ -21,8 +21,10 @@ module Amlapp
     end
 
     def create
-      AML::Client.create!(permitted_params)
-      redirect_to clients_path
+      client = AML::Client.create!(permitted_params)
+
+      flash.notice = "Создан клиент ##{client.id}"
+      redirect_to client_path(client)
     rescue ActiveRecord::RecordInvalid => e
       flash.now.alert = e.message
       render :new, locals: { client: e.record }

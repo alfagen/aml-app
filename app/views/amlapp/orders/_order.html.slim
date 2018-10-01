@@ -1,14 +1,27 @@
+- #TODO Сюда уже должна придти заявки которые разрешены
 - if order.readable_by?(current_user)
+  - order = OrderDecorator.decorate order
   tr
     td = order.id
-    td = render partial: 'documents', locals: { documents: order.order_documents }
-    td #{order.first_name} #{order.surname} #{order.patronymic}
-    td = order&.birth_date || 'Отсутствует'
+    td = order.created_at
+    td
+      - if order.order_documents.any?
+        = render partial: 'documents', locals: { documents: order.order_documents }
+      - else
+        .text-muted отсутвуют
+    td = order.client
+    td = order.name
+    td = order.birth_date
     td = order.workflow_state
-    td = order.aml_status.title
-    td = order.operator&.email || 'Не назначен'
+    td = order.aml_status
+    td = order.operator
     td
       - if order.pending?
-        = link_to 'Принять в обработку', in_process_order_path(order), method: :put, class: 'btn btn-default'
+        - # TODO order.can_be_proccessed_by?
+        = link_to 'Начать обработку', in_process_order_path(order), method: :put, class: 'btn btn-success'
+      - elsif order.processing?
+        = link_to 'Принять', accept_order_path(order), method: :put, class: 'btn btn-success'
+        = link_to 'Отклонить', reject_order_path(order), method: :put, class: 'btn btn-danger', data: { confirm: 'Отклонить?' }
+
       - else
-        = link_to 'Показать', order_path(order), class: 'btn btn-default'
+        = link_to 'Подробнее', order_path(order), class: 'btn btn-default'

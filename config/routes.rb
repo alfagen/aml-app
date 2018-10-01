@@ -49,7 +49,7 @@ Rails.application.routes.draw do
         put :in_process
         put :accept
         put :reject
-        put :stop
+        put :cancel
       end
     end
     resources :document_fields, only: %i[edit update]

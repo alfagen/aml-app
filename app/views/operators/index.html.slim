@@ -1,12 +1,13 @@
-.pull-right= link_to 'Добавить пользователя', new_operator_path, class: 'btn btn-default' if !logged_in? || current_user.can_create?(AML::Operator)
-h2 Список пользователей:
+.pull-right= link_to 'Добавить пользователя', new_operator_path, class: 'btn btn-success' if current_user.can_create?(AML::Operator)
+h1 Список пользователей
+hr
 table.table.table-condensed
   thead
     tr
-      th Пользователь:
-      th Состояние:
-      th Роль:
-      th Действия:
+      th Пользователь
+      th Состояние
+      th Роль
+      th.text-right Действия
   tbody
     = render operators, partial: :operator
 = paginate operators

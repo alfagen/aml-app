@@ -5,7 +5,7 @@ module Amlapp
     include Pagination
 
     def index
-      render :index, locals: { statuses: paginate(AML::Status.ordered) }
+      render :index, locals: { statuses: AML::Status.alive.ordered }
     end
 
     def new
