@@ -14,14 +14,14 @@
     td = order.birth_date
     td = order.workflow_state
     td = order.aml_status
-    td = order.operator
+    td = order.operator.email
     td
       - if order.pending?
         - # TODO order.can_be_proccessed_by?
         = link_to 'Начать обработку', in_process_order_path(order), method: :put, class: 'btn btn-success'
       - elsif order.processing?
         = link_to 'Принять', accept_order_path(order), method: :put, class: 'btn btn-success'
-        = link_to 'Отклонить', reject_order_path(order), method: :put, class: 'btn btn-danger', data: { confirm: 'Отклонить?' }
+        =< link_to 'Отклонить', reject_order_path(order), method: :put, class: 'btn btn-danger', data: { confirm: 'Отклонить?' }
 
       - else
         = link_to 'Подробнее', order_path(order), class: 'btn btn-default'
