@@ -7,8 +7,7 @@ h5 Поиск
   = f.submit 'Искать', class: 'btn btn-default'
 
 - if orders.any?
-  - if orders.any?
-    = render partial: 'orders', locals: { orders: orders }
+  = render partial: 'orders', locals: { orders: orders }
 
 - else
   p.alert Заявки отсутствуют

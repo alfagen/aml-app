@@ -5,6 +5,10 @@ class OrderDecorator < ApplicationDecorator
     object.name.presence || none
   end
 
+  def email
+    object.operator&.email || none
+  end
+
   def client
     h.link_to object.client, h.client_path(object.client)
   end

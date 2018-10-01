@@ -14,7 +14,7 @@
     td = order.birth_date
     td = order.workflow_state
     td = order.aml_status
-    td = order.operator.email
+    td = order.email
     td
       - if order.pending?
         - # TODO order.can_be_proccessed_by?
