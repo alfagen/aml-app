@@ -1,0 +1,139 @@
+Routes for [1mController[0m
+--
+ [1m[0m /assets  
+ [1m[0m /cable  
+ [1mGET[0m /  [root]
+
+Routes for [1mUserSessionsController[0m
+--
+new [1mGET[0m /login(.:format)  [login]
+destroy [1mDELETE[0m /logout(.:format)  [logout]
+create [1mPOST[0m /user_sessions(.:format)  [user_sessions]
+new [1mGET[0m /user_sessions/new(.:format)  [new_user_session]
+destroy [1mDELETE[0m /user_sessions/:id(.:format)  [user_session]
+
+Routes for [1mApplicationController[0m
+--
+error [1mGET[0m /error(.:format)  [error]
+
+Routes for [1mPasswordResetsController[0m
+--
+create [1mPOST[0m /password_resets(.:format)  [password_resets]
+new [1mGET[0m /password_resets/new(.:format)  [new_password_reset]
+edit [1mGET[0m /password_resets/:id/edit(.:format)  [edit_password_reset]
+update [1mPATCH[0m /password_resets/:id(.:format)  [password_reset]
+update [1mPUT[0m /password_resets/:id(.:format)  
+
+Routes for [1mPasswordsController[0m
+--
+edit [1mGET[0m /password/edit(.:format)  [edit_password]
+update [1mPATCH[0m /password(.:format)  [password]
+update [1mPUT[0m /password(.:format)  
+
+Routes for [1mOperatorsController[0m
+--
+block [1mPUT[0m /operators/:id/block(.:format)  [block_operator]
+unblock [1mPUT[0m /operators/:id/unblock(.:format)  [unblock_operator]
+index [1mGET[0m /operators(.:format)  [operators]
+create [1mPOST[0m /operators(.:format)  
+new [1mGET[0m /operators/new(.:format)  [new_operator]
+edit [1mGET[0m /operators/:id/edit(.:format)  [edit_operator]
+update [1mPATCH[0m /operators/:id(.:format)  [operator]
+update [1mPUT[0m /operators/:id(.:format)  
+
+Routes for [1mAmlapp::DocumentKindsController[0m
+--
+archive [1mDELETE[0m /document_kinds/:id/archive(.:format)  [archive_document_kind]
+restore [1mPOST[0m /document_kinds/:id/restore(.:format)  [restore_document_kind]
+index [1mGET[0m /document_kinds(.:format)  [document_kinds]
+create [1mPOST[0m /document_kinds(.:format)  
+new [1mGET[0m /document_kinds/new(.:format)  [new_document_kind]
+show [1mGET[0m /document_kinds/:id(.:format)  [document_kind]
+
+Routes for [1mAmlapp::StatusesController[0m
+--
+index [1mGET[0m /statuses(.:format)  [statuses]
+create [1mPOST[0m /statuses(.:format)  
+new [1mGET[0m /statuses/new(.:format)  [new_status]
+show [1mGET[0m /statuses/:id(.:format)  [status]
+
+Routes for [1mAmlapp::DocumentGroupToStatusesController[0m
+--
+create [1mPOST[0m /document_group_to_statuses(.:format)  [document_group_to_statuses]
+destroy [1mDELETE[0m /document_group_to_statuses/:id(.:format)  [document_group_to_status]
+
+Routes for [1mAmlapp::DocumentGroupsController[0m
+--
+archive [1mDELETE[0m /document_groups/:id/archive(.:format)  [archive_document_group]
+restore [1mPOST[0m /document_groups/:id/restore(.:format)  [restore_document_group]
+index [1mGET[0m /document_groups(.:format)  [document_groups]
+create [1mPOST[0m /document_groups(.:format)  
+new [1mGET[0m /document_groups/new(.:format)  [new_document_group]
+show [1mGET[0m /document_groups/:id(.:format)  [document_group]
+
+Routes for [1mAmlapp::DocumentKindFieldDefinitionsController[0m
+--
+archive [1mDELETE[0m /document_kind_field_definitions/:id/archive(.:format)  [archive_document_kind_field_definition]
+restore [1mPOST[0m /document_kind_field_definitions/:id/restore(.:format)  [restore_document_kind_field_definition]
+create [1mPOST[0m /document_kind_field_definitions(.:format)  [document_kind_field_definitions]
+new [1mGET[0m /document_kind_field_definitions/new(.:format)  [new_document_kind_field_definition]
+edit [1mGET[0m /document_kind_field_definitions/:id/edit(.:format)  [edit_document_kind_field_definition]
+update [1mPATCH[0m /document_kind_field_definitions/:id(.:format)  [document_kind_field_definition]
+update [1mPUT[0m /document_kind_field_definitions/:id(.:format)  
+
+Routes for [1mAmlapp::ClientsController[0m
+--
+index [1mGET[0m /clients(.:format)  [clients]
+create [1mPOST[0m /clients(.:format)  
+new [1mGET[0m /clients/new(.:format)  [new_client]
+show [1mGET[0m /clients/:id(.:format)  [client]
+
+Routes for [1mAmlapp::OrdersController[0m
+--
+done [1mPUT[0m /orders/:id/done(.:format)  [done_order]
+in_process [1mPUT[0m /orders/:id/in_process(.:format)  [in_process_order]
+accept [1mPUT[0m /orders/:id/accept(.:format)  [accept_order]
+reject [1mPUT[0m /orders/:id/reject(.:format)  [reject_order]
+cancel [1mPUT[0m /orders/:id/cancel(.:format)  [cancel_order]
+index [1mGET[0m /orders(.:format)  [orders]
+create [1mPOST[0m /orders(.:format)  
+new [1mGET[0m /orders/new(.:format)  [new_order]
+edit [1mGET[0m /orders/:id/edit(.:format)  [edit_order]
+show [1mGET[0m /orders/:id(.:format)  [order]
+update [1mPATCH[0m /orders/:id(.:format)  
+update [1mPUT[0m /orders/:id(.:format)  
+destroy [1mDELETE[0m /orders/:id(.:format)  
+
+Routes for [1mAmlapp::DocumentFieldsController[0m
+--
+edit [1mGET[0m /document_fields/:id/edit(.:format)  [edit_document_field]
+update [1mPATCH[0m /document_fields/:id(.:format)  [document_field]
+update [1mPUT[0m /document_fields/:id(.:format)  
+
+Routes for [1mAmlapp::OrderDocumentsController[0m
+--
+accept [1mPUT[0m /order_documents/:id/accept(.:format)  [accept_order_document]
+reject [1mPUT[0m /order_documents/:id/reject(.:format)  [reject_order_document]
+index [1mGET[0m /order_documents(.:format)  [order_documents]
+edit [1mGET[0m /order_documents/:id/edit(.:format)  [edit_order_document]
+show [1mGET[0m /order_documents/:id(.:format)  [order_document]
+update [1mPATCH[0m /order_documents/:id(.:format)  
+update [1mPUT[0m /order_documents/:id(.:format)  
+
+Routes for [1mActiveStorage::BlobsController[0m
+--
+show [1mGET[0m /rails/active_storage/blobs/:signed_id/*filename(.:format)  [rails_service_blob]
+
+Routes for [1mActiveStorage::RepresentationsController[0m
+--
+show [1mGET[0m /rails/active_storage/representations/:signed_blob_id/:variation_key/*filename(.:format)  [rails_blob_representation]
+
+Routes for [1mActiveStorage::DiskController[0m
+--
+show [1mGET[0m /rails/active_storage/disk/:encoded_key/*filename(.:format)  [rails_disk_service]
+update [1mPUT[0m /rails/active_storage/disk/:encoded_token(.:format)  [update_rails_disk_service]
+
+Routes for [1mActiveStorage::DirectUploadsController[0m
+--
+create [1mPOST[0m /rails/active_storage/direct_uploads(.:format)  [rails_direct_uploads]
+

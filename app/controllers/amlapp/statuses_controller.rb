@@ -21,17 +21,13 @@ module Amlapp
     end
 
     def show
-      render :show, locals: { status: status, not_belong_groups: not_belong_groups }
+      render :show, locals: { status: status }
     end
 
     private
 
     def status
       @status ||= AML::Status.find params[:id]
-    end
-
-    def not_belong_groups
-      AML::DocumentGroup.where.not(id: status.aml_document_groups.pluck(:aml_document_group_id))
     end
 
     def permitted_params
