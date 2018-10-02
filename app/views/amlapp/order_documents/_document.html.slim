@@ -2,8 +2,16 @@ tr
   td = "#{document.order.first_name} #{document.order.surname} #{document.order.patronymic}"
   td = document.order_id
   td = document.document_kind.title
-  td = link_to image_tag(document.image.url, size: '100'), order_document_path(document) if document.image.present?
+  td
+    - if document.image.present?
+      = link_to image_tag(document.image.url, size: '100'), order_document_path(document)
+    - else
+      .text-muted Изображение отсутвует
   td = document.workflow_state
-  td 
+  td
+    - if order_document.loaded? || order_document.rejected?
+      =< link_to 'Принять', accept_order_document_path(order_document), method: :put, class: 'btn btn-success'
+    - if order_document.loaded? || order_document.accepted?
+      =< link_to 'Отказать', reject_order_document_path(order_document), method: :put, class: 'btn btn-danger'
     = link_to 'Показать', order_document_path(document), class: 'btn btn-default'
     =< link_to 'Редактировать', edit_order_document_path(document), class: 'btn btn-default'

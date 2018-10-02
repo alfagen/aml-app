@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :user_sessions, only: %i[new create destroy]
 
   get 'error' => 'application#error'
+  delete 'reset_db' => 'application#reset_db'
 
   resources :password_resets, only: %i[new create edit update]
   resource :password, only: %i[edit update]

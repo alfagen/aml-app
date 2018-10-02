@@ -23,7 +23,7 @@ h4 Статус: #{order.aml_status.title}
   - # TODO order.can_be_proccessed_by?
   - if order.taken_by?(current_user) || current_user.administrator?
     - # TODO order.can_be_canceled?
-    =< link_to 'Прекратить обработку', cancel_order_path(order), method: :put, class: 'btn btn-default' if order.processing?
+    =< link_to 'Прекратить обработку', cancel_order_path(order), method: :put, class: 'btn btn-warning' if order.processing?
 
     - # TODO order.can_be_rejected?
     =< link_to 'Отклонить', edit_order_path(order), class: 'btn btn-danger' if order.accepted? || order.processing?

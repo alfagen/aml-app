@@ -5,6 +5,8 @@
                          user_sessions POST   /user_sessions(.:format)                                                                 user_sessions#create
                       new_user_session GET    /user_sessions/new(.:format)                                                             user_sessions#new
                           user_session DELETE /user_sessions/:id(.:format)                                                             user_sessions#destroy
+                                 error GET    /error(.:format)                                                                         application#error
+                              reset_db DELETE /reset_db(.:format)                                                                      application#reset_db
                        password_resets POST   /password_resets(.:format)                                                               password_resets#create
                     new_password_reset GET    /password_resets/new(.:format)                                                           password_resets#new
                    edit_password_reset GET    /password_resets/:id/edit(.:format)                                                      password_resets#edit
@@ -21,51 +23,59 @@
                          edit_operator GET    /operators/:id/edit(.:format)                                                            operators#edit
                               operator PATCH  /operators/:id(.:format)                                                                 operators#update
                                        PUT    /operators/:id(.:format)                                                                 operators#update
-                                  root GET    /                                                                                        aml/orders#index
-                 archive_document_kind DELETE /document_kinds/:id/archive(.:format)                                                    aml/document_kinds#archive
-                 restore_document_kind POST   /document_kinds/:id/restore(.:format)                                                    aml/document_kinds#restore
-                        document_kinds GET    /document_kinds(.:format)                                                                aml/document_kinds#index
-                                       POST   /document_kinds(.:format)                                                                aml/document_kinds#create
-                     new_document_kind GET    /document_kinds/new(.:format)                                                            aml/document_kinds#new
-                         document_kind GET    /document_kinds/:id(.:format)                                                            aml/document_kinds#show
-                archive_document_group DELETE /document_groups/:id/archive(.:format)                                                   aml/document_groups#archive
-                restore_document_group POST   /document_groups/:id/restore(.:format)                                                   aml/document_groups#restore
-                       document_groups GET    /document_groups(.:format)                                                               aml/document_groups#index
-                                       POST   /document_groups(.:format)                                                               aml/document_groups#create
-                    new_document_group GET    /document_groups/new(.:format)                                                           aml/document_groups#new
-                        document_group GET    /document_groups/:id(.:format)                                                           aml/document_groups#show
-archive_document_kind_field_definition DELETE /document_kind_field_definitions/:id/archive(.:format)                                   aml/document_kind_field_definitions#archive
-restore_document_kind_field_definition POST   /document_kind_field_definitions/:id/restore(.:format)                                   aml/document_kind_field_definitions#restore
-       document_kind_field_definitions POST   /document_kind_field_definitions(.:format)                                               aml/document_kind_field_definitions#create
-    new_document_kind_field_definition GET    /document_kind_field_definitions/new(.:format)                                           aml/document_kind_field_definitions#new
-   edit_document_kind_field_definition GET    /document_kind_field_definitions/:id/edit(.:format)                                      aml/document_kind_field_definitions#edit
-        document_kind_field_definition PATCH  /document_kind_field_definitions/:id(.:format)                                           aml/document_kind_field_definitions#update
-                                       PUT    /document_kind_field_definitions/:id(.:format)                                           aml/document_kind_field_definitions#update
-                               clients GET    /clients(.:format)                                                                       aml/clients#index
-                                       POST   /clients(.:format)                                                                       aml/clients#create
-                            new_client GET    /clients/new(.:format)                                                                   aml/clients#new
-                                client GET    /clients/:id(.:format)                                                                   aml/clients#show
-                      in_process_order PUT    /orders/:id/in_process(.:format)                                                         aml/orders#in_process
-                          accept_order PUT    /orders/:id/accept(.:format)                                                             aml/orders#accept
-                          reject_order PUT    /orders/:id/reject(.:format)                                                             aml/orders#reject
-                            stop_order PUT    /orders/:id/stop(.:format)                                                               aml/orders#stop
-                                orders GET    /orders(.:format)                                                                        aml/orders#index
-                                       POST   /orders(.:format)                                                                        aml/orders#create
-                             new_order GET    /orders/new(.:format)                                                                    aml/orders#new
-                            edit_order GET    /orders/:id/edit(.:format)                                                               aml/orders#edit
-                                 order GET    /orders/:id(.:format)                                                                    aml/orders#show
-                                       PATCH  /orders/:id(.:format)                                                                    aml/orders#update
-                                       PUT    /orders/:id(.:format)                                                                    aml/orders#update
-                                       DELETE /orders/:id(.:format)                                                                    aml/orders#destroy
-                   edit_document_field GET    /document_fields/:id/edit(.:format)                                                      aml/document_fields#edit
-                        document_field PATCH  /document_fields/:id(.:format)                                                           aml/document_fields#update
-                                       PUT    /document_fields/:id(.:format)                                                           aml/document_fields#update
-                 accept_order_document PUT    /order_documents/:id/accept(.:format)                                                    aml/order_documents#accept
-                 reject_order_document PUT    /order_documents/:id/reject(.:format)                                                    aml/order_documents#reject
-                       order_documents GET    /order_documents(.:format)                                                               aml/order_documents#index
-                                       POST   /order_documents(.:format)                                                               aml/order_documents#create
-                    new_order_document GET    /order_documents/new(.:format)                                                           aml/order_documents#new
-                        order_document GET    /order_documents/:id(.:format)                                                           aml/order_documents#show
+                                  root GET    /                                                                                        redirect(301, orders#index)
+                 archive_document_kind DELETE /document_kinds/:id/archive(.:format)                                                    amlapp/document_kinds#archive
+                 restore_document_kind POST   /document_kinds/:id/restore(.:format)                                                    amlapp/document_kinds#restore
+                        document_kinds GET    /document_kinds(.:format)                                                                amlapp/document_kinds#index
+                                       POST   /document_kinds(.:format)                                                                amlapp/document_kinds#create
+                     new_document_kind GET    /document_kinds/new(.:format)                                                            amlapp/document_kinds#new
+                         document_kind GET    /document_kinds/:id(.:format)                                                            amlapp/document_kinds#show
+                              statuses GET    /statuses(.:format)                                                                      amlapp/statuses#index
+                                       POST   /statuses(.:format)                                                                      amlapp/statuses#create
+                            new_status GET    /statuses/new(.:format)                                                                  amlapp/statuses#new
+                                status GET    /statuses/:id(.:format)                                                                  amlapp/statuses#show
+            document_group_to_statuses POST   /document_group_to_statuses(.:format)                                                    amlapp/document_group_to_statuses#create
+              document_group_to_status DELETE /document_group_to_statuses/:id(.:format)                                                amlapp/document_group_to_statuses#destroy
+                archive_document_group DELETE /document_groups/:id/archive(.:format)                                                   amlapp/document_groups#archive
+                restore_document_group POST   /document_groups/:id/restore(.:format)                                                   amlapp/document_groups#restore
+                       document_groups GET    /document_groups(.:format)                                                               amlapp/document_groups#index
+                                       POST   /document_groups(.:format)                                                               amlapp/document_groups#create
+                    new_document_group GET    /document_groups/new(.:format)                                                           amlapp/document_groups#new
+                        document_group GET    /document_groups/:id(.:format)                                                           amlapp/document_groups#show
+archive_document_kind_field_definition DELETE /document_kind_field_definitions/:id/archive(.:format)                                   amlapp/document_kind_field_definitions#archive
+restore_document_kind_field_definition POST   /document_kind_field_definitions/:id/restore(.:format)                                   amlapp/document_kind_field_definitions#restore
+       document_kind_field_definitions POST   /document_kind_field_definitions(.:format)                                               amlapp/document_kind_field_definitions#create
+    new_document_kind_field_definition GET    /document_kind_field_definitions/new(.:format)                                           amlapp/document_kind_field_definitions#new
+   edit_document_kind_field_definition GET    /document_kind_field_definitions/:id/edit(.:format)                                      amlapp/document_kind_field_definitions#edit
+        document_kind_field_definition PATCH  /document_kind_field_definitions/:id(.:format)                                           amlapp/document_kind_field_definitions#update
+                                       PUT    /document_kind_field_definitions/:id(.:format)                                           amlapp/document_kind_field_definitions#update
+                               clients GET    /clients(.:format)                                                                       amlapp/clients#index
+                                       POST   /clients(.:format)                                                                       amlapp/clients#create
+                            new_client GET    /clients/new(.:format)                                                                   amlapp/clients#new
+                                client GET    /clients/:id(.:format)                                                                   amlapp/clients#show
+                            done_order PUT    /orders/:id/done(.:format)                                                               amlapp/orders#done
+                      in_process_order PUT    /orders/:id/in_process(.:format)                                                         amlapp/orders#in_process
+                          accept_order PUT    /orders/:id/accept(.:format)                                                             amlapp/orders#accept
+                          reject_order PUT    /orders/:id/reject(.:format)                                                             amlapp/orders#reject
+                          cancel_order PUT    /orders/:id/cancel(.:format)                                                             amlapp/orders#cancel
+                                orders GET    /orders(.:format)                                                                        amlapp/orders#index
+                                       POST   /orders(.:format)                                                                        amlapp/orders#create
+                             new_order GET    /orders/new(.:format)                                                                    amlapp/orders#new
+                            edit_order GET    /orders/:id/edit(.:format)                                                               amlapp/orders#edit
+                                 order GET    /orders/:id(.:format)                                                                    amlapp/orders#show
+                                       PATCH  /orders/:id(.:format)                                                                    amlapp/orders#update
+                                       PUT    /orders/:id(.:format)                                                                    amlapp/orders#update
+                                       DELETE /orders/:id(.:format)                                                                    amlapp/orders#destroy
+                   edit_document_field GET    /document_fields/:id/edit(.:format)                                                      amlapp/document_fields#edit
+                        document_field PATCH  /document_fields/:id(.:format)                                                           amlapp/document_fields#update
+                                       PUT    /document_fields/:id(.:format)                                                           amlapp/document_fields#update
+                 accept_order_document PUT    /order_documents/:id/accept(.:format)                                                    amlapp/order_documents#accept
+                 reject_order_document PUT    /order_documents/:id/reject(.:format)                                                    amlapp/order_documents#reject
+                       order_documents GET    /order_documents(.:format)                                                               amlapp/order_documents#index
+                   edit_order_document GET    /order_documents/:id/edit(.:format)                                                      amlapp/order_documents#edit
+                        order_document GET    /order_documents/:id(.:format)                                                           amlapp/order_documents#show
+                                       PATCH  /order_documents/:id(.:format)                                                           amlapp/order_documents#update
+                                       PUT    /order_documents/:id(.:format)                                                           amlapp/order_documents#update
                     rails_service_blob GET    /rails/active_storage/blobs/:signed_id/*filename(.:format)                               active_storage/blobs#show
              rails_blob_representation GET    /rails/active_storage/representations/:signed_blob_id/:variation_key/*filename(.:format) active_storage/representations#show
                     rails_disk_service GET    /rails/active_storage/disk/:encoded_key/*filename(.:format)                              active_storage/disk#show

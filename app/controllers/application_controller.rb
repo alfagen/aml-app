@@ -7,6 +7,15 @@ class ApplicationController < ActionController::Base
     raise 'test error'
   end
 
+  def reset_db
+    raise 'Доступно только на боевом' if Rails.env.production?
+
+    AML.seed_demo!
+
+    flash.alert = 'Данные полностью сброшены'
+    redirect_to root_path
+  end
+
   private
 
   def not_authenticated
