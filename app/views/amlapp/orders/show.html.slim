@@ -34,4 +34,4 @@ h4 Статус: #{order.aml_status.title}
 
 - if documents.any?
   h4 Документы заявки:
-  = render partial: 'amlapp/order_documents/documents_list', locals: { documents: documents }
+  = render partial: 'amlapp/order_documents/documents', locals: { documents: documents }
