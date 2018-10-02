@@ -29,7 +29,7 @@ class OperatorsController < ApplicationController
 
   def update
     operator.update!(permitted_params)
-    redirect_to users_path
+    redirect_to operators_path
   rescue ActiveRecord::RecordInvalid => e
     flash.now.alert = e.message
     render :edit, locals: { operator: e.record }
