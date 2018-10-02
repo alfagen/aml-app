@@ -13,5 +13,5 @@ tr
       =< link_to 'Принять', accept_order_document_path(document), method: :put, class: 'btn btn-success'
     - if document.loaded? || document.accepted?
       =< link_to 'Отказать', reject_order_document_path(document), method: :put, class: 'btn btn-danger'
-    = link_to 'Показать', order_document_path(document), class: 'btn btn-default'
+    =< link_to 'Показать', order_document_path(document), class: 'btn btn-default'
     =< link_to 'Редактировать', edit_order_document_path(document), class: 'btn btn-default'
