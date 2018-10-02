@@ -17,7 +17,7 @@ RSpec.describe PasswordsController, type: :controller do
       end
 
       it 'redirects to index view' do
-        expect(response).to be_successful
+        expect(response).to be_redirect
       end
     end
   end
