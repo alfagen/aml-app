@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_25_140618) do
+ActiveRecord::Schema.define(version: 2018_10_02_072645) do
 
   create_table "aml_clients", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "first_name"
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 2018_09_25_140618) do
     t.date "birth_date"
     t.bigint "aml_order_id"
     t.bigint "aml_status_id"
+    t.bigint "aml_accepted_order_id"
+    t.index ["aml_accepted_order_id"], name: "index_aml_clients_on_aml_accepted_order_id"
     t.index ["aml_order_id"], name: "index_aml_clients_on_aml_order_id"
     t.index ["aml_status_id"], name: "index_aml_clients_on_aml_status_id"
   end
@@ -88,6 +90,7 @@ ActiveRecord::Schema.define(version: 2018_09_25_140618) do
     t.datetime "reset_password_email_sent_at"
     t.integer "access_count_to_reset_password_page", default: 0
     t.integer "role", default: 0, null: false
+    t.string "name", null: false
     t.index ["email"], name: "index_aml_operators_on_email", unique: true
     t.index ["reset_password_token"], name: "index_aml_operators_on_reset_password_token"
   end
@@ -127,13 +130,14 @@ ActiveRecord::Schema.define(version: 2018_09_25_140618) do
     t.text "details"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "position"
+    t.integer "position", null: false
     t.timestamp "archived_at"
     t.string "key", null: false
     t.index ["key"], name: "index_aml_statuses_on_key", unique: true
     t.index ["title"], name: "index_aml_statuses_on_title", unique: true
   end
 
+  add_foreign_key "aml_clients", "aml_orders", column: "aml_accepted_order_id"
   add_foreign_key "aml_clients", "aml_orders", on_delete: :nullify
   add_foreign_key "aml_clients", "aml_statuses"
   add_foreign_key "aml_document_fields", "aml_document_kind_field_definitions", column: "document_kind_field_definition_id"
