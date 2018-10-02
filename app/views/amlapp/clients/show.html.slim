@@ -1,6 +1,6 @@
 .pull-right
-  = link_to 'Добавить заявку', new_order_path(order: { client_id: client.id }), class: 'btn btn-success' if current_user.can_create?(AML::Order)
-  = link_to 'Сбросить статус', reset_client_path(client), class: 'btn btn-danger', data: { confirm: 'Сбросить статус клиента?' } # TODO if client.updatable_by? current_user
+  = link_to 'Добавить заявку', new_order_path(order: { client_id: client.id }), class: 'btn btn-success' # TODO client.updatable_by if current_user.can_create?(AML::Order)
+  = link_to 'Сбросить статус', reset_client_path(client), class: 'btn btn-danger', methor: :delete, data: { confirm: 'Сбросить статус клиента?' } # TODO if client.updatable_by? current_user
 
 - client = ClientDecorator.decorate client
 .row
@@ -33,4 +33,3 @@ table.table.table-striped.table-condensed
       th.text-right Действия
   tbody
     = render partial: 'order', collection: client.orders.ordered
-
