@@ -22,6 +22,18 @@ module Amlapp
       render :new, locals: { document_kind: e.record }
     end
 
+    def edit
+      render :edit, locals: { document_kind: document_kind }
+    end
+
+    def update
+      document_kind.update!(permitted_params)
+      render :index, locals: { document_kinds: paginate(document_group.document_kinds.ordered) }
+    rescue ActiveRecord::RecordInvalid => error
+      flash.now.alert = error.message
+      render :edit, locals: error_params(error)
+    end
+
     def show
       render :show, locals: { document_kind: document_kind }
     end

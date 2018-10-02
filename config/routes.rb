@@ -32,7 +32,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :document_kinds, only: %i[index new create show] do
+    resources :document_kinds, except: %i[destroy] do
       concerns :archivable
     end
     resources :statuses, only: %i[index new create show]

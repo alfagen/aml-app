@@ -14,6 +14,13 @@ RSpec.describe Amlapp::DocumentKindsController, type: :controller do
         expect(response).to be_successful
       end
 
+      it '#update' do
+        put :update, params: { document_kind: { aml_document_group_id: aml_document_kind.aml_document_group_id,
+                                                title: 'new title',
+                                                details: 'new details', position: 2 }, id: aml_document_kind.id }
+        expect(response).to be_successful
+      end
+
       it '#index' do
         get :index, params: { document_kind: attributes_for(:aml_document_kind, aml_document_group_id: aml_document_group.id) }
         expect(response).to be_successful
@@ -26,3 +33,6 @@ RSpec.describe Amlapp::DocumentKindsController, type: :controller do
     end
   end
 end
+
+
+
