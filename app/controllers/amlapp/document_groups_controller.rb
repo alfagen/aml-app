@@ -20,6 +20,18 @@ module Amlapp
       render :new, locals: { document_group: e.record }
     end
 
+    def edit
+      render :edit, locals: { document_group: document_group }
+    end
+
+    def update
+      document_group.update!(permitted_params)
+      redirect_to document_groups_path
+    rescue ActiveRecord::RecordInvalid => error
+      flash.now.alert = error.message
+      render :edit, locals: error_params(error)
+    end
+
     def show
       render :show, locals: { document_group: document_group }
     end
