@@ -14,6 +14,11 @@ module Amlapp
       render :show, locals: { client: client, orders: client.orders.ordered }
     end
 
+    def reset
+      client.reset_status!
+      redirect_back_or_to client_path(client), notice: "Статус клиента сброшен до '#{client.aml_status.title}'"
+    end
+
     def new
       add_breadcrumb 'Клиенты', :clients_path
       add_breadcrumb 'Добавляем нового клиента'

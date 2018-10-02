@@ -43,7 +43,11 @@ Rails.application.routes.draw do
     resources :document_kind_field_definitions, only: %i[new create edit update] do
       concerns :archivable
     end
-    resources :clients, except: %i[edit update destroy]
+    resources :clients, except: %i[edit update destroy] do
+      member do
+        delete :reset
+      end
+    end
     resources :orders do
       member do
         put :done

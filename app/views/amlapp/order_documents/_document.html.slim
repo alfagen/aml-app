@@ -9,9 +9,9 @@ tr
       .text-muted Изображение отсутвует
   td = document.workflow_state
   td
-    - if order_document.loaded? || order_document.rejected?
-      =< link_to 'Принять', accept_order_document_path(order_document), method: :put, class: 'btn btn-success'
-    - if order_document.loaded? || order_document.accepted?
-      =< link_to 'Отказать', reject_order_document_path(order_document), method: :put, class: 'btn btn-danger'
+    - if document.loaded? || document.rejected?
+      =< link_to 'Принять', accept_order_document_path(document), method: :put, class: 'btn btn-success'
+    - if document.loaded? || document.accepted?
+      =< link_to 'Отказать', reject_order_document_path(document), method: :put, class: 'btn btn-danger'
     = link_to 'Показать', order_document_path(document), class: 'btn btn-default'
     =< link_to 'Редактировать', edit_order_document_path(document), class: 'btn btn-default'
