@@ -1,7 +1,7 @@
-h3 Создать новый тип документа для группы "#{document_group.title}"
-= simple_form_for document_kind, method: :post, url: document_kinds_path do |f|
+h3 Тип документа для группы "#{document_group.title}"
+= simple_form_for document_kind do |f|
   = f.input :aml_document_group_id, as: :hidden
   = f.input :title, label: false, hint: 'Название типа документа'
   = f.input :details, label: false, hint: 'Описание документа'
   = f.input :position, label: false, hint: 'Номер документа'
-  = f.button :submit, 'Создать', class: 'btn btn-success'
+  = f.button :submit, 'Создать/изменить', class: 'btn btn-success'
