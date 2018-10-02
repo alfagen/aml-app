@@ -11,7 +11,7 @@ module Amlapp
     def show
       add_breadcrumb 'Клиенты', :clients_path
       add_breadcrumb "Клиент #{client.id}"
-      render :show, locals: { client: client, orders: client.orders.ordered }
+      render :show, locals: { client: client }
     end
 
     def reset

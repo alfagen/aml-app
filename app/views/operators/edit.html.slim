@@ -1,4 +1,7 @@
-h3 Редактировать пользователя
+= link_to '&larr; назад в список операторов'.html_safe, operators_path
+
+h3 Редактировать оператора
+hr
 = simple_form_for operator, method: :put, url: operator_path do |f|
   .row
     .col-md-6
