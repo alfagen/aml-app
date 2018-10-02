@@ -10,7 +10,7 @@ class PasswordsController < ApplicationController
     else
       flash.now.alert = 'Укажите пароли для изменения'
     end
-    render :edit, locals: { user: current_user }
+    redirect_to orders_path
   rescue ActiveRecord::RecordInvalid => e
     flash.now.alert = e.message
     render :edit, locals: { user: e.record }
