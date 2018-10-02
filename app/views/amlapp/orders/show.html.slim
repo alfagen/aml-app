@@ -8,7 +8,7 @@ h4 Статус: #{order.aml_status.title}
   alert.alert-info= order.reject_reason
 
 - if order.current_state >= :processing
-  h4 Оператор: #{order.operator&.email || 'Не назначен'}
+  h4 Оператор: #{order.operator}
 
 - if current_user.can_process?(AML::Order)
 

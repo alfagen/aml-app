@@ -5,7 +5,7 @@ class OrderDecorator < ApplicationDecorator
     object.name.presence || none
   end
 
-  def email
+  def operator
     object.operator&.email || none
   end
 
