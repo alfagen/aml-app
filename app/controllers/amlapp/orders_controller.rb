@@ -49,7 +49,7 @@ module Amlapp
     end
 
     def reject
-      order.reject! reject_reason: permitted_params[:reject_reason]
+      order.reject! reject_reason: permitted_params[:reject_reason].presence || 'Причина не указана'
       flash.notice = 'Заявка отклонена'
       redirect_to order_path(order)
     rescue Workflow::TransitionHalted => e
