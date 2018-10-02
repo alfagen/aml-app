@@ -52,6 +52,6 @@ class OperatorsController < ApplicationController
   end
 
   def permitted_params
-    params.fetch(:operator, {}).permit(:email, :role, :password, :password_confirmation, :workflow_state)
+    params.fetch(:operator, {}).permit(:email, :name, :role, :password, :password_confirmation, :workflow_state)
   end
 end

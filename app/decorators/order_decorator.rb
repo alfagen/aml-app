@@ -6,7 +6,7 @@ class OrderDecorator < ApplicationDecorator
   end
 
   def operator
-    object.operator&.email || none
+    object.operator&.name
   end
 
   def client
