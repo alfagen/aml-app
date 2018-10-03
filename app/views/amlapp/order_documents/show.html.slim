@@ -2,9 +2,9 @@ h4 Имя в заявке: #{order_document.order.first_name} #{order_document.o
 h4 Тип документа: #{order_document.document_kind.title}
 h4 Состояние: #{order_document.workflow_state}
 = link_to 'К заявке', order_path(order_document.order), class: 'btn btn-default'
-- if document.acceptable_by?(current_user)
+- if order_document.acceptable_by?(current_user)
   =< link_to 'Принять', accept_order_document_path(order_document), method: :put, class: 'btn btn-success'
-- if document.rejectable_by?(current_user)
+- if order_document.rejectable_by?(current_user)
   =< link_to 'Отказать', reject_order_document_path(order_document), method: :put, class: 'btn btn-danger'
 - if order_document.document_fields.any?
 h4 Дополнительные поля документа:
