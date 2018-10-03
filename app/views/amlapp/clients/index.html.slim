@@ -1,30 +1,29 @@
 .pull-right= link_to 'Новый клиент', new_client_path, class: 'btn btn-success' if current_user.can_create?(AML::Client)
 h1 Список клиентoв
 hr
-- if current_user.can_process?(AML::Client)
-  h5 Поиск по полям клиента:
+h5 Поиск по полям клиента:
 
-  = search_form_for @q, { path: clients_path, builder: SimpleForm::FormBuilder } do |f|
-    = f.search_field :first_name_or_surname_or_patronymic_cont
-    = f.submit 'Искать', class: 'btn btn-default'
+= search_form_for @q, { path: clients_path, builder: SimpleForm::FormBuilder } do |f|
+  = f.search_field :first_name_or_surname_or_patronymic_cont
+  = f.submit 'Искать', class: 'btn btn-default'
 
-  hr
+hr
 
-  - if clients.any?
-    table.table.table-condensed.table-striped
-      thead
-        tr
-          th ID
-          th Создан
-          th Имя
-          th Фамилия
-          th Отчество
-          th Дата рождения
-          th Статус
-          th Текущая заявка
-          th.text-right Действия
-      tbody
-        = render partial: 'client', collection: clients
-    = paginate clients
-  - else
-    p.alert Клиенты отсутствуют
+- if clients.any?
+  table.table.table-condensed.table-striped
+    thead
+      tr
+        th ID
+        th Создан
+        th Имя
+        th Фамилия
+        th Отчество
+        th Дата рождения
+        th Статус
+        th Текущая заявка
+        th.text-right Действия
+    tbody
+      = render partial: 'client', collection: clients
+  = paginate clients
+- else
+  p.alert Клиенты отсутствуют
