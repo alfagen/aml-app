@@ -1,15 +1,18 @@
 # frozen_string_literal: true
+require_relative 'application_controller'
 
 module Amlapp
-  class StatusesController < Amlapp::ApplicationController
+  class StatusesController < ApplicationController
     include Pagination
 
+    authorize_actions_for Status
+
     def index
-      render :index, locals: { statuses: AML::Status.alive.ordered }
+      render :index, locals: { statuses: Status.alive.ordered }
     end
 
     def new
-      render :new, locals: { status: AML::Status.new(permitted_params) }
+      render :new, locals: { status: Status.new(permitted_params) }
     end
 
     def edit
@@ -17,7 +20,7 @@ module Amlapp
     end
 
     def create
-      AML::Status.create!(permitted_params)
+      Status.create!(permitted_params)
 
       redirect_to statuses_path, notice: 'Создан новый статус'
     rescue ActiveRecord::RecordInvalid => e
@@ -41,7 +44,7 @@ module Amlapp
     private
 
     def status
-      @status ||= AML::Status.find params[:id]
+      @status ||= Status.find params[:id]
     end
 
     def permitted_params

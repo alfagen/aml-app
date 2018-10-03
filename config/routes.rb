@@ -9,21 +9,21 @@ Rails.application.routes.draw do
   delete 'logout' => 'user_sessions#destroy', as: :logout
   resources :user_sessions, only: %i[new create destroy]
 
-  get 'error' => 'application#error'
-  delete 'reset_db' => 'application#reset_db'
-
   resources :password_resets, only: %i[new create edit update]
   resource :password, only: %i[edit update]
 
-  resources :operators, except: %i[show destroy] do
-    member do
-      put :block
-      put :unblock
-    end
-  end
-
   scope module: :amlapp do
     root to: redirect('orders#index')
+
+    get 'error' => 'application#error'
+    delete 'reset_db' => 'application#reset_db'
+
+    resources :operators, except: %i[show destroy] do
+      member do
+        put :block
+        put :unblock
+      end
+    end
 
     concern :archivable do
       member do

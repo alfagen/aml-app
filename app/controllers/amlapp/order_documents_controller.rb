@@ -4,8 +4,7 @@ module Amlapp
   class OrderDocumentsController < Amlapp::ApplicationController
     include Pagination
 
-    # TODO: убедиться что принимает/твергает документы владелец заявка
-    # authorizer
+    authorize_actions_for :order, all_actions: :update
 
     def index
       render :index, locals: { documents: documents, workflow_state: workflow_state }

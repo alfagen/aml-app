@@ -1,57 +1,62 @@
 # frozen_string_literal: true
+require_relative 'application_controller'
 
-class OperatorsController < ApplicationController
-  include Pagination
+module Amlapp
+  class OperatorsController < ApplicationController
+    include Pagination
 
-  def index
-    render :index, locals: { operators: paginate(AML::Operator.ordered) }
-  end
+    authorize_actions_for AML::Operator
 
-  def new
-    render :new, locals: { operator: AML::Operator.new(permitted_params) }
-  end
+    def index
+      render :index, locals: { operators: paginate(AML::Operator.ordered) }
+    end
 
-  def create
-    attrs = permitted_params
-    operator = AML::Operator.create! attrs
+    def new
+      render :new, locals: { operator: AML::Operator.new(permitted_params) }
+    end
 
-    auto_login operator, true if AML::Operator.one?
+    def create
+      attrs = permitted_params
+      operator = AML::Operator.create! attrs
 
-    redirect_to operators_path
-  rescue ActiveRecord::RecordInvalid => e
-    flash.now.alert = e.message
-    render :new, locals: { operator: e.record }
-  end
+      auto_login operator, true if AML::Operator.one?
 
-  def edit
-    render :edit, locals: { operator: operator }
-  end
+      redirect_to operators_path
+    rescue ActiveRecord::RecordInvalid => e
+      flash.now.alert = e.message
+      render :new, locals: { operator: e.record }
+    end
 
-  def update
-    operator.update!(permitted_params)
-    redirect_to operators_path
-  rescue ActiveRecord::RecordInvalid => e
-    flash.now.alert = e.message
-    render :edit, locals: { operator: e.record }
-  end
+    def edit
+      render :edit, locals: { operator: operator }
+    end
 
-  def block
-    operator.block!
-    redirect_to users_path, notice: "Оператор, #{operator.email} был заблокирован"
-  end
+    def update
+      operator.update!(permitted_params)
+      redirect_to operators_path
+    rescue ActiveRecord::RecordInvalid => e
+      flash.now.alert = e.message
+      render :edit, locals: { operator: e.record }
+    end
 
-  def unblock
-    operator.unblock!
-    redirect_to users_path, notice: "Оператор, #{operator.email} был разблокирован"
-  end
+    def block
+      operator.block!
+      redirect_to users_path, notice: "Оператор, #{operator.email} был заблокирован"
+    end
 
-  private
+    def unblock
+      operator.unblock!
+      redirect_to users_path, notice: "Оператор, #{operator.email} был разблокирован"
+    end
 
-  def operator
-    @operator ||= AML::Operator.find params[:id]
-  end
+    private
 
-  def permitted_params
-    params.fetch(:operator, {}).permit(:email, :name, :role, :password, :password_confirmation, :workflow_state)
+    def operator
+      @operator ||= AML::Operator.find params[:id]
+    end
+
+    def permitted_params
+      params.fetch(:operator, {}).permit(:email, :name, :role, :password, :password_confirmation, :workflow_state)
+    end
   end
 end

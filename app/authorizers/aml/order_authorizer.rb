@@ -1,10 +1,13 @@
 module AML
   class OrderAuthorizer < ApplicationAuthorizer
+
+    # TODO убедиться что принимает/отвергает заявку оператор-владелец или админ
+    #
     def self.creatable_by?(operator)
-      operator.administrator? || operator.operator?
+      true
     end
 
-    def self.processable_by?(operator)
+    def processable_by?(operator)
       operator.administrator? || operator.operator?
     end
 
