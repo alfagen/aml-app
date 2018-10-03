@@ -4,11 +4,11 @@ module AML
       operator.administrator?
     end
 
-    def self.processable_by?(operator)
+    def processable_by?(operator)
       operator.administrator?
     end
 
-    def self.readable_by?(operator)
+    def readable_by?(operator)
       operator.administrator?
     end
   end
