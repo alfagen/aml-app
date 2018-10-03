@@ -42,15 +42,19 @@ Authority.configure do |config|
   # Defaults are as follows:
   #
   config.abilities = {
-    create:  'creatable',
-    read:    'readable',
-    update:  'updatable',
-    delete:  'deletable',
-    destroy: 'deletable',
-    update_role: 'role_updatable',
-    block: 'blockable',
-    process: 'processable',
-    taked: 'taken'
+    create:      'creatable',
+    read:        'readable',
+    update:      'updatable',
+    delete:      'deletable',
+    destroy:     'deletable',
+    accept:      'acceptable',
+    reject:      'rejectable',
+    update_role: 'role_updatable', # TODO Удалить
+    block:       'blockable', # TODO Удалить
+    process:     'processable',
+    done:        'donable',
+    cancel:      'cancelable',
+    taked:       'taken' # TODO Удалить
   }
 
   # LOGGER

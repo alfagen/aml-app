@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
+require_relative 'application_controller'
 module Amlapp
-  class DocumentGroupToStatusesController < Amlapp::ApplicationController
+  class DocumentGroupToStatusesController < ApplicationController
+    authorize_actions_for :status, all_actions: :update
+
     def create
       AML::DocumentGroupToStatus.create!(permitted_params)
       redirect_to status_path(status)
@@ -16,6 +19,10 @@ module Amlapp
     end
 
     private
+
+    def document_group
+      @document_group ||= AML::DocumentGroup.find permitted_params[:aml_document_group_id]
+    end
 
     def status
       @status ||= AML::Status.find permitted_params[:aml_status_id]

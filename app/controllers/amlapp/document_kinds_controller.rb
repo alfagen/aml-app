@@ -4,6 +4,8 @@ module Amlapp
   class DocumentKindsController < Amlapp::ApplicationController
     include Pagination
 
+    authorize_actions_for AML::DocumentKind
+
     helper_method :document_group
 
     def index

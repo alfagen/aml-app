@@ -4,8 +4,10 @@ module Amlapp
   class DocumentGroupsController < Amlapp::ApplicationController
     include Pagination
 
+    authorize_actions_for AML::DocumentGroup
+
     def index
-      render :index, locals: { document_groups: paginate(AML::DocumentGroup.ordered) }
+      render :index, locals: { document_groups: AML::DocumentGroup.ordered }
     end
 
     def new
