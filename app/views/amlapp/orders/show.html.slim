@@ -6,34 +6,26 @@ h4 Клиент: #{order.first_name} #{order.surname} #{order.patronymic}
 h4 Дата рождения: #{order&.birth_date || 'Отсутствует'}
 h4 Состояние: #{order.workflow_state}
 h4 Статус: #{order.aml_status.title}
--# TODO если отклонена
-- if order.reject_reason?
+- if order.rejected?
   alert.alert-info= order.reject_reason
 
 - if order.current_state >= :processing
   h4 Оператор: #{order.operator.try(:name) || 'не указан'}
 
-- if current_user.can_process?(AML::Order)
+- if order.donable_by?(current_user)
+  = link_to 'Документы загружены (клиентская кнопка)', done_order_path(order), method: :put, class: 'btn btn-default'
 
-  - if order.all_documents_loaded?
-    - # TODO order.can_be_done?
+- if order.processable_by?(current_user)
+  =< link_to 'Принять в обработку', in_process_order_path(order), method: :put, class: 'btn btn-default'
 
-    = link_to 'Документы загружены (клиентская кнопка)', done_order_path(order), method: :put, class: 'btn btn-default' if order.none?
+- if order.cancelable_by?(current_user)
+  =< link_to 'Прекратить обработку', cancel_order_path(order), method: :put, class: 'btn btn-warning'
 
-    - # TODO order.can_process?
-    =< link_to 'Принять в обработку', in_process_order_path(order), method: :put, class: 'btn btn-default' if order.pending?
+- if order.rejectable_by?(current_user)
+  =< link_to 'Отклонить', edit_order_path(order), class: 'btn btn-danger'
 
-  - # TODO order.can_be_proccessed_by?
-  - if order.taken_by?(current_user) || current_user.administrator?
-    - # TODO order.can_be_canceled?
-    =< link_to 'Прекратить обработку', cancel_order_path(order), method: :put, class: 'btn btn-warning' if order.processing?
-
-    - # TODO order.can_be_rejected?
-    =< link_to 'Отклонить', edit_order_path(order), class: 'btn btn-danger' if order.accepted? || order.processing?
-
-    - # TODO order.can_be_accepted?
-    =< link_to 'Принять', accept_order_path(order), method: :put, class: 'btn btn-success' if order.rejected? || order.processing?
-
+- if order.acceptable_by?(current_user)
+  =< link_to 'Принять', accept_order_path(order), method: :put, class: 'btn btn-success'
 
 - if documents.any?
   h4 Документы заявки:

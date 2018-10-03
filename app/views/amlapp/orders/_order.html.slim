@@ -1,30 +1,26 @@
-- #TODO Сюда уже должна придти заявки которые разрешены
-- if order.readable_by?(current_user)
-  - order = OrderDecorator.decorate order
-  tr
-    td = order.id
-    td = order.created_at
-    td
-      - if order.order_documents.any?
-        = render partial: 'documents', locals: { documents: order.order_documents }
-      - else
-        .text-muted отсутвуют
-    td = order.client
-    td = order.name
-    td = order.birth_date
-    td
-      = order.workflow_state
-      - if order.reject_reason.present?
-        .alert.alert-info= order.reject_reason
-    td = order.aml_status
-    td = order.operator
-    td
-      - if order.pending?
-        - # TODO order.can_be_proccessed_by?
-        = link_to 'Начать обработку', in_process_order_path(order), method: :put, class: 'btn btn-success'
-      - elsif order.processing?
-        = link_to 'Принять', accept_order_path(order), method: :put, class: 'btn btn-success'
-        =< link_to 'Отклонить', reject_order_path(order), method: :put, class: 'btn btn-danger', data: { confirm: 'Отклонить?' }
-
-      - else
-        = link_to 'Подробнее', order_path(order), class: 'btn btn-default'
+- order = OrderDecorator.decorate order
+tr
+  td = order.id
+  td = order.created_at
+  td
+    - if order.order_documents.any?
+      = render partial: 'documents', locals: { documents: order.order_documents }
+    - else
+      .text-muted отсутвуют
+  td = order.client
+  td = order.name
+  td = order.birth_date
+  td
+    = order.workflow_state
+    - if order.reject_reason.present?
+      .alert.alert-info= order.reject_reason
+  td = order.aml_status
+  td = order.operator
+  td
+    - if order.processable_by?(current_user)
+      = link_to 'Начать обработку', in_process_order_path(order), method: :put, class: 'btn btn-success'
+    - if order.acceptable_by?(current_user)
+      = link_to 'Принять', accept_order_path(order), method: :put, class: 'btn btn-success'
+    - if order.rejectable_by?(current_user)
+      =< link_to 'Отклонить', reject_order_path(order), method: :put, class: 'btn btn-danger', data: { confirm: 'Отклонить?' }
+    =< link_to 'Подробнее', order_path(order), class: 'btn btn-default'

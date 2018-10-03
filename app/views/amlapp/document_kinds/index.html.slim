@@ -1,18 +1,17 @@
 h2 Список типов документа группы "#{document_group.title}":
 .pull-right= link_to 'Новый тип документа', new_document_kind_path(document_kind: { aml_document_group_id: document_group.id }), class: 'btn btn-default' if current_user.can_create?(AML::DocumentKind)
 br
-- if current_user.can_read?(AML::DocumentKind)
-  - if document_kinds.any?
-    table.table.table-condensed
-      thead
-        tr
-          th Типы документа:
-          th Описание:
-          th Позиция:
-          th Статус:
-          th Поля документа:
-      tbody
-        = render partial: 'document_kind', collection: document_kinds
-      = paginate document_kinds
-  - else
-    p.alert Типы документов отсутствуют.
+- if document_kinds.any?
+  table.table.table-condensed
+    thead
+      tr
+        th Типы документа:
+        th Описание:
+        th Позиция:
+        th Статус:
+        th Поля документа:
+    tbody
+      = render partial: 'document_kind', collection: document_kinds
+    = paginate document_kinds
+- else
+  p.alert Типы документов отсутствуют.
