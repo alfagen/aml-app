@@ -1,57 +1,63 @@
 # frozen_string_literal: true
 
-class OperatorsController < ApplicationController
-  include Pagination
+require_relative 'application_controller'
 
-  def index
-    render :index, locals: { operators: paginate(AML::Operator.ordered) }
-  end
+module Amlapp
+  class OperatorsController < ApplicationController
+    include Pagination
 
-  def new
-    render :new, locals: { operator: AML::Operator.new(permitted_params) }
-  end
+    authorize_actions_for AML::Operator
 
-  def create
-    attrs = permitted_params
-    operator = AML::Operator.create! attrs
+    def index
+      render :index, locals: { operators: paginate(AML::Operator.ordered) }
+    end
 
-    auto_login operator, true if AML::Operator.one?
+    def new
+      render :new, locals: { operator: AML::Operator.new(permitted_params) }
+    end
 
-    redirect_to operators_path
-  rescue ActiveRecord::RecordInvalid => e
-    flash.now.alert = e.message
-    render :new, locals: { operator: e.record }
-  end
+    def create
+      attrs = permitted_params
+      operator = AML::Operator.create! attrs
 
-  def edit
-    render :edit, locals: { operator: operator }
-  end
+      auto_login operator, true if AML::Operator.one?
 
-  def update
-    operator.update!(permitted_params)
-    redirect_to operators_path
-  rescue ActiveRecord::RecordInvalid => e
-    flash.now.alert = e.message
-    render :edit, locals: { operator: e.record }
-  end
+      redirect_to operators_path
+    rescue ActiveRecord::RecordInvalid => e
+      flash.now.alert = e.message
+      render :new, locals: { operator: e.record }
+    end
 
-  def block
-    operator.block!
-    redirect_to users_path, notice: "Оператор, #{operator.email} был заблокирован"
-  end
+    def edit
+      render :edit, locals: { operator: operator }
+    end
 
-  def unblock
-    operator.unblock!
-    redirect_to users_path, notice: "Оператор, #{operator.email} был разблокирован"
-  end
+    def update
+      operator.update!(permitted_params)
+      redirect_to operators_path
+    rescue ActiveRecord::RecordInvalid => e
+      flash.now.alert = e.message
+      render :edit, locals: { operator: e.record }
+    end
 
-  private
+    def block
+      operator.block!
+      redirect_to users_path, notice: "Оператор, #{operator.email} был заблокирован"
+    end
 
-  def operator
-    @operator ||= AML::Operator.find params[:id]
-  end
+    def unblock
+      operator.unblock!
+      redirect_to users_path, notice: "Оператор, #{operator.email} был разблокирован"
+    end
 
-  def permitted_params
-    params.fetch(:operator, {}).permit(:email, :name, :role, :password, :password_confirmation, :workflow_state)
+    private
+
+    def operator
+      @operator ||= AML::Operator.find params[:id]
+    end
+
+    def permitted_params
+      params.fetch(:operator, {}).permit(:email, :name, :role, :password, :password_confirmation, :workflow_state)
+    end
   end
 end
