@@ -15,7 +15,7 @@
     td
       = order.workflow_state
       - if order.reject_reason.present?
-        .alert.alert-info= object.reject_reason
+        .alert.alert-info= order.reject_reason
     td = order.aml_status
     td = order.operator
     td
