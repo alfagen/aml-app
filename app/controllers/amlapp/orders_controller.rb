@@ -4,7 +4,7 @@ module Amlapp
   class OrdersController < ApplicationController
     include Pagination
 
-    authorize_actions_for Order
+    authorize_actions_for AML::Order
 
     def index
       render :index, locals: { orders: paginate(q.result.ordered), workflow_state: workflow_state }

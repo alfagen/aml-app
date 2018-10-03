@@ -4,7 +4,7 @@ module Amlapp
   class ClientsController < Amlapp::ApplicationController
     include Pagination
 
-    authorize_actions_for Client
+    authorize_actions_for AML::Client
 
     def index
       render :index, locals: { clients: paginate(q.result.ordered) }

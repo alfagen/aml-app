@@ -54,10 +54,6 @@ PreCommit:
       - '**/spec/**/*_spec.rb'
       - '**/spec/**/support/*.rb'
 
-  RuboCop:
-    enabled: true
-    on_warn: fail # Treat all warnings as failures
-
   TrailingWhitespace:
     enabled: true
     exclude:
