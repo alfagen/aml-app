@@ -2,11 +2,11 @@ require 'rails_helper'
 
 RSpec.describe Amlapp::DocumentKindsController, type: :controller do
   describe '#base actions' do
-    let(:aml_operator) { create(:aml_operator) }
+    let(:user) { create :aml_operator, :administrator }
     let(:aml_document_group) { create(:aml_document_group) }
     let(:aml_document_kind) { create(:aml_document_kind) }
 
-    before { login_user(aml_operator) }
+    before { login_user(user) }
 
     context 'with registered operator' do
       it '#create' do
@@ -33,6 +33,3 @@ RSpec.describe Amlapp::DocumentKindsController, type: :controller do
     end
   end
 end
-
-
-

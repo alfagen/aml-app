@@ -1,11 +1,16 @@
 module Amlapp
   class DocumentKindFieldDefinitionsController < Amlapp::ApplicationController
+    authorize_actions_for :document_kind, all_actions: :update
+
     def new
       render :new, locals: { document_kind_field_definition: AML::DocumentKindFieldDefinition.new(permitted_params) }
     end
 
     def create
-      AML::DocumentKindFieldDefinition.create!(permitted_params)
+      document_kind.definitions.create! permitted_params
+
+      flash.notice = 'Добавлено определение'
+
       redirect_to document_kind_path(document_kind)
     rescue ActiveRecord::RecordInvalid => e
       redirect_to document_kind, alert: e.message

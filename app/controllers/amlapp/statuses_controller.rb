@@ -1,8 +1,12 @@
 # frozen_string_literal: true
 
+require_relative 'application_controller'
+
 module Amlapp
-  class StatusesController < Amlapp::ApplicationController
+  class StatusesController < ApplicationController
     include Pagination
+
+    authorize_actions_for AML::Status
 
     def index
       render :index, locals: { statuses: AML::Status.alive.ordered }

@@ -27,6 +27,6 @@ h4 Статус: #{order.aml_status.title}
 - if order.acceptable_by?(current_user)
   =< link_to 'Принять', accept_order_path(order), method: :put, class: 'btn btn-success'
 
-- if documents.any?
+- if order.order_documents.ordered.any?
   h4 Документы заявки:
-  = render partial: 'amlapp/order_documents/documents', locals: { documents: documents }
+  = render partial: 'amlapp/order_documents/documents', locals: { documents: order.order_documents.ordered  }

@@ -4,8 +4,7 @@ module Amlapp
   class OrderDocumentsController < Amlapp::ApplicationController
     include Pagination
 
-    # TODO: убедиться что принимает/твергает документы владелец заявка
-    # authorizer
+    authorize_actions_for :order, all_actions: :update
 
     def index
       render :index, locals: { documents: documents, workflow_state: workflow_state }
@@ -29,11 +28,13 @@ module Amlapp
     end
 
     def accept
+      authorize_action_for order_document
       order_document.accept!
       redirect_to order_path(order_document.order)
     end
 
     def reject
+      authorize_action_for order_document
       order_document.reject!
       redirect_to order_document_path(order_document)
     end

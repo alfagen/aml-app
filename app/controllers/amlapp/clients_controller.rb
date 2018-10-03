@@ -4,6 +4,8 @@ module Amlapp
   class ClientsController < Amlapp::ApplicationController
     include Pagination
 
+    authorize_actions_for AML::Client
+
     def index
       render :index, locals: { clients: paginate(q.result.ordered) }
     end
@@ -15,6 +17,7 @@ module Amlapp
     end
 
     def reset
+      authorize_action_for client
       client.reset_status!
       redirect_back_or_to client_path(client), notice: "Статус клиента сброшен до '#{client.aml_status.title}'"
     end
@@ -26,7 +29,9 @@ module Amlapp
     end
 
     def create
-      client = AML::Client.create!(permitted_params)
+      client = AML::Client.new permitted_params
+      authorize_action_for client
+      client.save!
 
       flash.notice = "Создан клиент ##{client.id}"
       redirect_to client_path(client)
