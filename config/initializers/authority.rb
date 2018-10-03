@@ -47,14 +47,11 @@ Authority.configure do |config|
     update:      'updatable',
     delete:      'deletable',
     destroy:     'deletable',
+    process:     'processable',
     accept:      'acceptable',
     reject:      'rejectable',
-    update_role: 'role_updatable', # TODO Удалить
-    block:       'blockable', # TODO Удалить
-    process:     'processable',
     done:        'donable',
-    cancel:      'cancelable',
-    taked:       'taken' # TODO Удалить
+    cancel:      'cancelable'
   }
 
   # LOGGER
