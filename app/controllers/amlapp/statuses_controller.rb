@@ -12,12 +12,26 @@ module Amlapp
       render :new, locals: { status: AML::Status.new(permitted_params) }
     end
 
+    def edit
+      render :edit, locals: { status: status }
+    end
+
     def create
       AML::Status.create!(permitted_params)
-      redirect_to statuses_path
+
+      redirect_to statuses_path, notice: 'Создан новый статус'
     rescue ActiveRecord::RecordInvalid => e
       flash.now.alert = e.message
       render :new, locals: { status: e.record }
+    end
+
+    def update
+      status.update! permitted_params
+
+      redirect_to statuses_path, notice: 'Статус обновлен'
+    rescue ActiveRecord::RecordInvalid => e
+      flash.now.alert = e.message
+      render :edit, locals: { status: e.record }
     end
 
     def show

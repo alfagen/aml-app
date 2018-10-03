@@ -1,4 +1,7 @@
+= link_to '&larr; список заявок'.html_safe, orders_path
+hr
 h2 Заявка: #{order.id}
+hr
 h4 Клиент: #{order.first_name} #{order.surname} #{order.patronymic}
 h4 Дата рождения: #{order&.birth_date || 'Отсутствует'}
 h4 Состояние: #{order.workflow_state}

@@ -1,6 +1,9 @@
-= simple_form_for status, method: :post, url: statuses_path do |f|
-  = f.input :title, label: false, hint: 'Название статуса'
-  = f.input :key, label: false, hint: 'Ключ'
-  = f.input :details, label: false, hint: 'Описание статуса'
-  = f.input :position, label: false, hint: 'Номер статуса'
-  = f.button :submit, 'Создать', class: 'btn btn-success'
+= simple_form_for status do |f|
+  .row
+    .col-md-6
+      = f.input :position, label: false, hint: 'Позиция'
+      = f.input :title, label: false, hint: 'Название статуса'
+      = f.input :key, label: false, hint: 'Уникальный ключ'
+    .col-md-6
+      = f.input :details, label: false, hint: 'Описание статуса'
+  = f.button :submit, 'Сохранить', class: 'btn btn-success'
