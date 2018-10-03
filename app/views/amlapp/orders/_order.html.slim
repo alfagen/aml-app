@@ -12,7 +12,10 @@
     td = order.client
     td = order.name
     td = order.birth_date
-    td = order.workflow_state
+    td
+      = order.workflow_state
+      - if order.reject_reason.present?
+        .alert.alert-info= object.reject_reason
     td = order.aml_status
     td = order.operator
     td
