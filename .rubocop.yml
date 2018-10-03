@@ -22,3 +22,6 @@ Rails/FilePath:
 
 Metrics/AbcSize:
   Max: 20
+
+Style/CommentAnnotation:
+  Enabled: false

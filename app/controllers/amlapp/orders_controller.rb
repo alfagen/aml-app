@@ -18,7 +18,7 @@ module Amlapp
       redirect_to order_path(AML::Order.create!(permitted_params))
     rescue ActiveRecord::RecordInvalid => e
       flash.now.alert = e.message
-      render :new, locals: { order: e.record, client_id: e.record.client.id }
+      render :new, locals: { order: e.record }
     end
 
     def edit

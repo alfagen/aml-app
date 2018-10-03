@@ -1,26 +1,26 @@
-- order = OrderDecorator.decorate order
+- order_decorated = OrderDecorator.decorate order
 tr
-  td = order.id
-  td = order.created_at
+  td = order_decorated.id
+  td = order_decorated.created_at
   td
-    - if order.order_documents.any?
-      = render partial: 'documents', locals: { documents: order.order_documents }
+    - if order_decorated.order_documents.any?
+      = render partial: 'documents', locals: { documents: order_decorated.order_documents }
     - else
       .text-muted отсутвуют
-  td = order.client
-  td = order.name
-  td = order.birth_date
+  td = order_decorated.client
+  td = order_decorated.name
+  td = order_decorated.birth_date
   td
-    = order.workflow_state
-    - if order.reject_reason.present?
-      .alert.alert-info= order.reject_reason
-  td = order.aml_status
-  td = order.operator
+    = order_decorated.workflow_state
+    - if order_decorated.reject_reason.present?
+      .alert.alert-info= order_decorated.reject_reason
+  td = order_decorated.aml_status
+  td = order_decorated.operator
   td
     - if order.processable_by?(current_user)
-      = link_to 'Начать обработку', in_process_order_path(order), method: :put, class: 'btn btn-success'
+      = link_to 'Начать обработку', in_process_order_path(order_decorated), method: :put, class: 'btn btn-success'
     - if order.acceptable_by?(current_user)
-      = link_to 'Принять', accept_order_path(order), method: :put, class: 'btn btn-success'
+      = link_to 'Принять', accept_order_path(order_decorated), method: :put, class: 'btn btn-success'
     - if order.rejectable_by?(current_user)
-      =< link_to 'Отклонить', reject_order_path(order), method: :put, class: 'btn btn-danger', data: { confirm: 'Отклонить?' }
-    =< link_to 'Подробнее', order_path(order), class: 'btn btn-default'
+      =< link_to 'Отклонить', reject_order_path(order_decorated), method: :put, class: 'btn btn-danger', data: { confirm: 'Отклонить?' }
+    =< link_to 'Подробнее', order_path(order_decorated), class: 'btn btn-default'
