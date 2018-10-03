@@ -49,14 +49,11 @@ module Amlapp
       authorize_action_for order
       order.accept!
       flash.notice = 'Заявка принята'
+
       redirect_to order_path(order)
     rescue Workflow::TransitionHalted => e
       flash.now.alert = e.message
-      render :show, locals: {
-        order: order,
-        client: order.client,
-        documents: order.order_documents.ordered
-      }
+      render :show, locals: { order: order }
     end
 
     def reject

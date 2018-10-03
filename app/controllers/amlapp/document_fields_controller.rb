@@ -2,7 +2,6 @@ require_relative 'application_controller'
 
 module Amlapp
   class DocumentFieldsController < ApplicationController
-
     authorize_actions_for :order_document, all_actions: :update
 
     def edit

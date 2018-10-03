@@ -28,11 +28,13 @@ module Amlapp
     end
 
     def accept
+      authorize_action_for order_document
       order_document.accept!
       redirect_to order_path(order_document.order)
     end
 
     def reject
+      authorize_action_for order_document
       order_document.reject!
       redirect_to order_document_path(order_document)
     end

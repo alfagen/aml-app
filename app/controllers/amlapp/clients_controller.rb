@@ -29,7 +29,7 @@ module Amlapp
     end
 
     def create
-      client = AML::Client.build permitted_params
+      client = AML::Client.new permitted_params
       authorize_action_for client
       client.save!
 

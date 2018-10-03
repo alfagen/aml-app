@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require_relative 'application_controller'
 module Amlapp
   class DocumentGroupToStatusesController < ApplicationController
@@ -20,11 +21,11 @@ module Amlapp
     private
 
     def document_group
-      @document_group ||= DocumentGroup.find permitted_params[:aml_document_group_id]
+      @document_group ||= AML::DocumentGroup.find permitted_params[:aml_document_group_id]
     end
 
     def status
-      @status ||= Status.find permitted_params[:aml_status_id]
+      @status ||= AML::Status.find permitted_params[:aml_status_id]
     end
 
     def permitted_params
