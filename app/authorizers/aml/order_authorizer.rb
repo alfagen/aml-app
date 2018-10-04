@@ -11,7 +11,7 @@ module AML
       ability = Authority.abilities[event] || raise("No ability for event #{event}")
       define_method "#{ability}_by?" do |user|
         resource.enabled_workflow_events.include?(event) \
-          && (user.administrator? || OWNER_REQUIRED_FOR_EVENTS[event].present? && order.operator == user)
+          && (user.administrator? || OWNER_REQUIRED_FOR_EVENTS.include?(event) && order.operator == user)
       end
     end
   end
