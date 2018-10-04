@@ -9,9 +9,16 @@ module AML
 
     EVENTS.each do |event|
       ability = Authority.abilities[event] || raise("No ability for event #{event}")
-      define_method "#{ability}_by?" do |user|
+      define_singleton_method "#{ability}_by?" do |_operator|
+        true
+      end
+    end
+
+    EVENTS.each do |event|
+      ability = Authority.abilities[event] || raise("No ability for event #{event}")
+      define_method "#{ability}_by?" do |operator|
         resource.enabled_workflow_events.include?(event) \
-          && (user.administrator? || OWNER_REQUIRED_FOR_EVENTS.include?(event) && order.operator == user)
+          && (OWNER_REQUIRED_FOR_EVENTS.exclude?(event) || operator.administrator? || order.operator == operator)
       end
     end
   end
