@@ -30,7 +30,8 @@ Authority.configure do |config|
     update:  'update',
     destroy: 'delete',
     accept:  'accept',
-    reject:  'reject'
+    reject:  'reject',
+    in_process:  'update' # TODO Поправить на нужную
   }
 
   # ABILITIES
@@ -52,7 +53,6 @@ Authority.configure do |config|
     update_role: 'role_updatable', # TODO Удалить
     block:       'blockable', # TODO Удалить
     process:     'processable',
-    in_process:  'processable',
     done:        'donable',
     cancel:      'cancelable',
     taked:       'taken' # TODO Удалить

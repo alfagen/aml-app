@@ -2,6 +2,8 @@ module Amlapp
   class ApplicationController < ::ApplicationController
     rescue_from ActionController::InvalidAuthenticityToken, with: :rescue_invalid_authenticity_token
 
+    rescue_from Workflow::Error, with: :humanized_error
+
     before_action :require_login
 
     helper_method :document_kinds
@@ -25,6 +27,12 @@ module Amlapp
 
     def document_kinds
       @document_kinds ||= AML::DocumentKind.alive.ordered
+    end
+
+    def humanized_error(exception)
+      Rails.logger.error exception
+      Bugsnag.notify exception
+      render 'humanized_error', status: 500, layout: 'simple', locals: { exception: exception }
     end
 
     def not_authenticated
