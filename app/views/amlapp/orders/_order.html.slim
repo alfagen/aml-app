@@ -17,10 +17,7 @@ tr
   td = order_decorated.aml_status
   td = order_decorated.operator
   td
-    - if order.processable_by?(current_user)
-      = link_to 'Начать обработку', in_process_order_path(order_decorated), method: :put, class: 'btn btn-success'
-    - if order.acceptable_by?(current_user)
-      = link_to 'Принять', accept_order_path(order_decorated), method: :put, class: 'btn btn-success'
-    - if order.rejectable_by?(current_user)
-      =< link_to 'Отклонить', reject_order_path(order_decorated), method: :put, class: 'btn btn-danger', data: { confirm: 'Отклонить?' }
+
+    = render 'order_actions', order: order
+  td
     =< link_to 'Подробнее', order_path(order_decorated), class: 'btn btn-default'

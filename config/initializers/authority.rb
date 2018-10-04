@@ -31,6 +31,7 @@ Authority.configure do |config|
     destroy: 'delete',
     accept:  'accept',
     reject:  'reject',
+    done:  'done',
     in_process:  'update' # TODO Поправить на нужную
   }
 

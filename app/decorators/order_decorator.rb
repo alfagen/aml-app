@@ -1,6 +1,10 @@
 class OrderDecorator < ApplicationDecorator
   delegate_all
 
+  def id
+    h.link_to object.id, h.order_path(object)
+  end
+
   def name
     object.name.presence || none
   end

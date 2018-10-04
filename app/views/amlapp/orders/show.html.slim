@@ -12,21 +12,8 @@ h4 Статус: #{order.aml_status.title}
 - if order.current_state >= :processing
   h4 Оператор: #{order.operator.try(:name) || 'не указан'}
 
-- if order.donable_by?(current_user)
-  = link_to 'Документы загружены (клиентская кнопка)', done_order_path(order), method: :put, class: 'btn btn-default'
-
-- if order.processable_by?(current_user)
-  =< link_to 'Принять в обработку', in_process_order_path(order), method: :put, class: 'btn btn-default'
-
-- if order.cancelable_by?(current_user)
-  =< link_to 'Прекратить обработку', cancel_order_path(order), method: :put, class: 'btn btn-warning'
-
-- if order.rejectable_by?(current_user)
-  =< link_to 'Отклонить', edit_order_path(order), class: 'btn btn-danger'
-
-- if order.acceptable_by?(current_user)
-  =< link_to 'Принять', accept_order_path(order), method: :put, class: 'btn btn-success'
-
+= render 'order_actions', order: order
+hr
 - if order.order_documents.ordered.any?
   h4 Документы заявки:
   = render partial: 'amlapp/order_documents/documents', locals: { documents: order.order_documents.ordered  }
