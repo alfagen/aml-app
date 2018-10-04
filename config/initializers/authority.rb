@@ -52,6 +52,7 @@ Authority.configure do |config|
     update_role: 'role_updatable', # TODO Удалить
     block:       'blockable', # TODO Удалить
     process:     'processable',
+    in_process:  'processable',
     done:        'donable',
     cancel:      'cancelable',
     taked:       'taken' # TODO Удалить
