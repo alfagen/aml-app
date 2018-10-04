@@ -4,7 +4,6 @@ module Amlapp
   class OrderDocumentsController < Amlapp::ApplicationController
     include Pagination
 
-    authorize_actions_for :order, all_actions: :update, except: :index
     authorize_actions_for AML::OrderDocument
 
     def index
@@ -12,11 +11,13 @@ module Amlapp
     end
 
     def edit
+      authorize_action_for order_document
       render :edit, locals: { order_document: order_document,
                               order: order_document.order }
     end
 
     def update
+      authorize_action_for order_document
       order_document.update!(permitted_params)
       redirect_to order_document_path(order_document)
     rescue ActiveRecord::RecordInvalid => error
@@ -25,6 +26,7 @@ module Amlapp
     end
 
     def show
+      authorize_action_for order_document
       render :show, locals: { order_document: order_document }
     end
 
@@ -37,7 +39,7 @@ module Amlapp
     def reject
       authorize_action_for order_document
       order_document.reject!
-      redirect_to order_document_path(order_document)
+      redirect_to order_path(order_document.order)
     end
 
     private
