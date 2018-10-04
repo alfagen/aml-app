@@ -12,8 +12,7 @@ module Amlapp
 
     def edit
       authorize_action_for order_document
-      render :edit, locals: { order_document: order_document,
-                              order: order_document.order }
+      render :edit, locals: { order_document: order_document }
     end
 
     def update
@@ -33,13 +32,13 @@ module Amlapp
     def accept
       authorize_action_for order_document
       order_document.accept!
-      redirect_to order_path(order_document.order)
+      redirect_to order_path(order)
     end
 
     def reject
       authorize_action_for order_document
       order_document.reject!
-      redirect_to order_path(order_document.order)
+      redirect_to order_path(order)
     end
 
     private
