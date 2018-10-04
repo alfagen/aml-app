@@ -38,9 +38,9 @@ module Amlapp
       redirect_to order_path(order)
     end
 
-    def in_process
+    def start
       authorize_action_for order
-      order.process! operator: current_user
+      order.start! operator: current_user
       flash.notice = 'Заявка принята в обработку'
       redirect_to order_path(order)
     end
@@ -82,10 +82,8 @@ module Amlapp
     end
 
     def orders
-      return AML::Order.where(workflow_state: workflow_state) if current_user.administrator?
-      return AML::Order.where(workflow_state: workflow_state) if workflow_state == 'pending'
-
-      AML::Order.where(workflow_state: workflow_state, operator_id: current_user.id)
+      # Показываем все заявки, в не зависимости от того кто из взял
+      AML::Order.where(workflow_state: workflow_state)
     end
 
     def order

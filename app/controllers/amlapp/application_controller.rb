@@ -1,10 +1,9 @@
 module Amlapp
   class ApplicationController < ::ApplicationController
     rescue_from ActionController::InvalidAuthenticityToken, with: :rescue_invalid_authenticity_token
-
     rescue_from Workflow::Error, with: :humanized_error
 
-    before_action :require_login
+    prepend_before_action :require_login
 
     helper_method :document_kinds
 

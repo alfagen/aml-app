@@ -10,7 +10,7 @@ nav.navbar.navbar-default.navbar-fixed-top
     .collapse.navbar-collapse
       ul.nav.navbar-nav
         = active_link_to orders_path, wrap_tag: :li do
-          = title_with_counter 'Заявки клиентов', AML::Order.with_none_state.count
+          = title_with_counter 'Заявки клиентов', AML::Order.with_pending_state.count
 
         - if current_user.administrator?
           li.dropdown

@@ -1,0 +1,2 @@
+rails runner "AML::Operator.create!(name: 'Оператор Вася', email: 'operator@kassa.cc', password: 'operator', password_confirmation: 'operator', role: 'operator')"
+rails runner "AML::Operator.create!(name: 'Администратор петя', email: 'admin@kassa.cc', password: 'admin', password_confirmation: 'admin', role: 'administrator')"

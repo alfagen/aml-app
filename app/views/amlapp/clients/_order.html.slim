@@ -3,4 +3,5 @@ tr
   td= l order.created_at, format: :default
   td= l order.updated_at, format: :default
   td= order_workflow_state order
-  td.text-right = link_to 'Показать', order_path(order), class: 'btn btn-default' if order.processable_by?(current_user)
+  td.text-right
+    = link_to 'Показать', order_path(order), class: 'btn btn-default'
