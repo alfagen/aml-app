@@ -1,0 +1,3 @@
+= simple_form_for reject_reason, url: (reject_reason.new_record? ? reason_rejects_path(reject_reason) : reason_reject_path(reject_reason)), method: (reject_reason.new_record? ? :post : :put) do |f|
+  = f.input :title, label: false, hint: 'Причина отклонения заявки', required: true
+  = f.button :submit, 'Создать/изменить', class: 'btn btn-success'

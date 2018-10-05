@@ -1,3 +1,4 @@
+- order_decorated = OrderDecorator.decorate order
 = link_to '&larr; список заявок'.html_safe, orders_path
 hr
 h2 Заявка: #{order.id}
@@ -6,8 +7,7 @@ h4 Клиент: #{order.first_name} #{order.surname} #{order.patronymic}
 h4 Дата рождения: #{order&.birth_date || 'Отсутствует'}
 h4 Состояние: #{order.workflow_state}
 h4 Статус: #{order.aml_status.title}
-- if order.rejected?
-  alert.alert-info= order.reject_reason
+alert.alert-info= order_decorated.reject_reason&.title if order_decorated.rejected?
 
 - if order.current_state >= :processing
   h4 Оператор: #{order.operator.try(:name) || 'не указан'}
