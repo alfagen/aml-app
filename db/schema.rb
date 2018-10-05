@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_02_094845) do
+ActiveRecord::Schema.define(version: 2018_10_05_071215) do
 
   create_table "aml_clients", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "first_name"
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 2018_10_02_094845) do
   create_table "aml_document_groups", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title", null: false
     t.text "details"
-    t.integer "position"
+    t.integer "position", null: false
     t.timestamp "archived_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -118,11 +118,21 @@ ActiveRecord::Schema.define(version: 2018_10_02_094845) do
     t.bigint "client_id"
     t.bigint "operator_id"
     t.timestamp "archived_at"
-    t.text "reject_reason"
     t.bigint "aml_status_id"
+    t.bigint "aml_reject_reason_id"
+    t.text "reject_reason_details"
+    t.index ["aml_reject_reason_id"], name: "index_aml_orders_on_aml_reject_reason_id"
     t.index ["aml_status_id"], name: "index_aml_orders_on_aml_status_id"
     t.index ["client_id"], name: "index_aml_orders_on_client_id"
     t.index ["operator_id"], name: "index_aml_orders_on_operator_id"
+  end
+
+  create_table "aml_reject_reasons", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title", null: false
+    t.timestamp "archived_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["title"], name: "index_aml_reject_reasons_on_title", unique: true
   end
 
   create_table "aml_statuses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
