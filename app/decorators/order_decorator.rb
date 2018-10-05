@@ -9,6 +9,12 @@ class OrderDecorator < ApplicationDecorator
     object.name.presence || none
   end
 
+  def reject_reason
+    return unless object.aml_reject_reason.present?
+
+    content_tag :div, object.aml_reject_reason.details, class: 'alert alert-info'
+  end
+
   def operator
     object.operator&.name
   end

@@ -17,6 +17,12 @@ module ApplicationHelper
     content_tag :span, workflow_state, class: classes
   end
 
+  def available_reject_reasons
+    AML::RejectReason.ordered.alive.map do |rr|
+      [rr.details, rr.id]
+    end
+  end
+
   def top_breadcrumbs
     return if breadcrumbs.empty?
 
