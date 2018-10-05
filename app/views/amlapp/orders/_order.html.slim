@@ -12,8 +12,8 @@ tr
   td = order_decorated.birth_date
   td
     = order_decorated.workflow_state
-    - if order_decorated.reject_reason.present?
-      .alert.alert-info= order_decorated.reject_reason
+    - if order_decorated.aml_reject_reason.present?
+      .alert.alert-info= order_decorated.reject_reason.title
   td = order_decorated.aml_status
   td = order_decorated.operator
   td
