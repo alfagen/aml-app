@@ -1,0 +1,4 @@
+h3 Редактировать причину отмены
+= simple_form_for reason, method: :put, url: reason_path(reason) do |f|
+  = f.input :title, label: false, hint: 'Причина отклонения заявки', required: true
+  = f.button :submit, 'Редактировать', class: 'btn btn-success'

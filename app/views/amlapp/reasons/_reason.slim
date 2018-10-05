@@ -1,0 +1,6 @@
+tr
+  td = reason.id
+  td = reason.title
+  td
+    = link_to 'Редактировать', edit_reason_path(reason), class: 'btn btn-default'
+    =< link_to 'Удалить', reason_path(reason), class: 'btn btn-danger', method: :delete, data: { confirm: 'Удалить причину?' }
