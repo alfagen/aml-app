@@ -58,7 +58,7 @@ module Amlapp
 
     def reject
       authorize_action_for order
-      order.reject! reject_reason: permitted_params[:reject_reason].presence || 'Причина не указана'
+      order.reject! reject_reason: find_reject_reason
       flash.notice = 'Заявка отклонена'
       redirect_to order_path(order)
     rescue Workflow::TransitionHalted => e
@@ -91,7 +91,12 @@ module Amlapp
     end
 
     def permitted_params
-      params.fetch(:order, {}).permit(:first_name, :surname, :patronymic, :birth_date, :client_id, :workflow_state, :reject_reason)
+      params.fetch(:order, {}).permit(:first_name, :surname, :patronymic, :birth_date, :client_id, :workflow_state, :aml_reject_reason_id)
+    end
+
+    def find_reject_reason
+      id = permitted_params[:aml_reject_reason_id]
+      AML::RejectReason.find_by(id: id) || raise("Не найдена причина отклонения #{id}")
     end
 
     def q
