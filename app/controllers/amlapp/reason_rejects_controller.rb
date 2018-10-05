@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 module Amlapp
-  class ReasonsController < Amlapp::ApplicationController
+  class ReasonRejectsController < Amlapp::ApplicationController
 
     authorize_actions_for AML::RejectReason
 
     def index
-      render :index, locals: { reasons: AML::RejectReason.all }
+      render :index, locals: { reasons: AML::RejectReason.ordered }
     end
 
     def new
@@ -15,7 +15,7 @@ module Amlapp
 
     def create
       AML::RejectReason.create!(permitted_params)
-      redirect_to reasons_path
+      redirect_to reason_rejects_path
     rescue ActiveRecord::RecordInvalid => e
       flash.now.alert = e.message
       render :new, locals: { reason: e.record }
@@ -27,7 +27,7 @@ module Amlapp
 
     def update
       reason.update!(permitted_params)
-      redirect_to reasons_path(reason)
+      redirect_to reason_rejects_path
     rescue ActiveRecord::RecordInvalid => error
       flash.now.alert = error.message
       render :edit, locals: error_params(error)
@@ -35,7 +35,7 @@ module Amlapp
 
     def destroy
       reason.destroy!
-      redirect_to reasons_path
+      redirect_to reason_rejects_path
     end
 
     private

@@ -64,6 +64,6 @@ Rails.application.routes.draw do
         put :reject
       end
     end
-    resources :reasons
+    resources :reason_rejects
   end
 end
