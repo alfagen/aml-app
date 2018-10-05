@@ -5,4 +5,10 @@ table.table.table-condensed.table-striped
       th Причина отмены
       th Действия
   tbody
-    = render partial: 'reason', collection: reasons
+    - reject_reasons.each do |reason|
+      tr
+        td = reason.id
+        td = reason.title
+        td
+          = link_to 'Редактировать', edit_reason_reject_path(reason), class: 'btn btn-default'
+          =< link_to 'Удалить', reason_reject_path(reason), class: 'btn btn-danger', method: :delete, data: { confirm: 'Удалить причину?' }

@@ -6,11 +6,11 @@ module Amlapp
     authorize_actions_for AML::RejectReason
 
     def index
-      render :index, locals: { reasons: AML::RejectReason.ordered }
+      render :index, locals: { reject_reasons: AML::RejectReason.ordered }
     end
 
     def new
-      render :new, locals: { reason: AML::RejectReason.new(permitted_params) }
+      render :new, locals: { reject_reason: AML::RejectReason.new(permitted_params) }
     end
 
     def create
@@ -18,15 +18,15 @@ module Amlapp
       redirect_to reason_rejects_path
     rescue ActiveRecord::RecordInvalid => e
       flash.now.alert = e.message
-      render :new, locals: { reason: e.record }
+      render :new, locals: { reject_reason: e.record }
     end
 
     def edit
-      render :edit, locals: { reason: reason }
+      render :edit, locals: { reject_reason: reject_reason }
     end
 
     def update
-      reason.update!(permitted_params)
+      reject_reason.update!(permitted_params)
       redirect_to reason_rejects_path
     rescue ActiveRecord::RecordInvalid => error
       flash.now.alert = error.message
@@ -34,14 +34,14 @@ module Amlapp
     end
 
     def destroy
-      reason.destroy!
+      reject_reason.destroy!
       redirect_to reason_rejects_path
     end
 
     private
 
-    def reason
-      @reason ||= AML::RejectReason.find params[:id]
+    def reject_reason
+      @reject_reason ||= AML::RejectReason.find params[:id]
     end
 
     def permitted_params
