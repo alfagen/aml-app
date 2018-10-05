@@ -1,0 +1,4 @@
+h3 Новая причина отмены
+= simple_form_for reason, method: :post, url: reason_rejects_path do |f|
+  = f.input :title, label: false, hint: 'Причина отклонения заявки', required: true
+  = f.button :submit, 'Создать', class: 'btn btn-success'
