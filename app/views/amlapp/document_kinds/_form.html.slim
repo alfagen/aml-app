@@ -4,4 +4,6 @@ h3 Тип документа для группы "#{document_group.title}"
   = f.input :title, label: false, hint: 'Название типа документа'
   = f.input :details, label: false, hint: 'Описание документа'
   = f.input :position, label: false, hint: 'Номер документа'
+  = f.file_field :image, hint: 'Изображение документа'
+  = f.input :file_title, label: false, hint: 'Название изображения'
   = f.button :submit, 'Создать/изменить', class: 'btn btn-success'

@@ -33,7 +33,7 @@ module Amlapp
       render :index, locals: { document_kinds: paginate(document_group.document_kinds.ordered) }
     rescue ActiveRecord::RecordInvalid => error
       flash.now.alert = error.message
-      render :edit, locals: error_params(error)
+      render :edit, locals: { document_kind: error.record }
     end
 
     def show
@@ -51,7 +51,7 @@ module Amlapp
     end
 
     def permitted_params
-      params.fetch(:document_kind, {}).permit(:title, :details, :position, :aml_document_group_id)
+      params.fetch(:document_kind, {}).permit(:title, :details, :position, :aml_document_group_id, :image, :file_title)
     end
   end
 end

@@ -3,6 +3,12 @@ tr
   td = document_kind.details
   td = document_kind.position
   td = document_kind.alive?
+  td = document_kind.definitions.alive.count
+  td
+    - if document_kind.image.present?
+      = link_to document_kind.file_title, document_kind.image.url
+    - else
+      .text-muted Изображение отсутствует
   td 
-    = link_to "Дополнительные поля (#{document_kind.definitions.alive.count})", document_kind_path(document_kind), class: 'btn btn-default'
-    =< link_to 'Редактировать', edit_document_kind_path(document_kind), class: 'btn btn-default'
+    = link_to 'Редактировать', edit_document_kind_path(document_kind), class: 'btn btn-default'
+    =< link_to 'Показать', document_kind_path(document_kind), class: 'btn btn-default'
