@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Amlapp::ReasonRejectsController, type: :controller do
+RSpec.describe Amlapp::RejectReasonsController, type: :controller do
   let(:administrator) { create(:aml_operator, :administrator) }
   let(:aml_reason) { create(:aml_reject_reason) }
 
