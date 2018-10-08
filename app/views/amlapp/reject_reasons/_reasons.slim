@@ -1,0 +1,14 @@
+table.table.table-condensed.table-striped
+  thead
+    tr
+      th ID
+      th Причина отмены
+      th Действия
+  tbody
+    - reject_reasons.each do |reason|
+      tr
+        td = reason.id
+        td = reason.title
+        td
+          = link_to 'Редактировать', edit_reject_reason_path(reason), class: 'btn btn-default'
+          =< link_to 'Удалить', reject_reason_path(reason), class: 'btn btn-danger', method: :delete, data: { confirm: 'Удалить причину?' }
