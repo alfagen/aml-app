@@ -5,8 +5,6 @@
                          user_sessions POST   /user_sessions(.:format)                                                                 user_sessions#create
                       new_user_session GET    /user_sessions/new(.:format)                                                             user_sessions#new
                           user_session DELETE /user_sessions/:id(.:format)                                                             user_sessions#destroy
-                                 error GET    /error(.:format)                                                                         application#error
-                              reset_db DELETE /reset_db(.:format)                                                                      application#reset_db
                        password_resets POST   /password_resets(.:format)                                                               password_resets#create
                     new_password_reset GET    /password_resets/new(.:format)                                                           password_resets#new
                    edit_password_reset GET    /password_resets/:id/edit(.:format)                                                      password_resets#edit
@@ -15,25 +13,34 @@
                          edit_password GET    /password/edit(.:format)                                                                 passwords#edit
                               password PATCH  /password(.:format)                                                                      passwords#update
                                        PUT    /password(.:format)                                                                      passwords#update
-                        block_operator PUT    /operators/:id/block(.:format)                                                           operators#block
-                      unblock_operator PUT    /operators/:id/unblock(.:format)                                                         operators#unblock
-                             operators GET    /operators(.:format)                                                                     operators#index
-                                       POST   /operators(.:format)                                                                     operators#create
-                          new_operator GET    /operators/new(.:format)                                                                 operators#new
-                         edit_operator GET    /operators/:id/edit(.:format)                                                            operators#edit
-                              operator PATCH  /operators/:id(.:format)                                                                 operators#update
-                                       PUT    /operators/:id(.:format)                                                                 operators#update
                                   root GET    /                                                                                        redirect(301, orders#index)
+                                 error GET    /error(.:format)                                                                         amlapp/application#error
+                              reset_db DELETE /reset_db(.:format)                                                                      amlapp/application#reset_db
+                        block_operator PUT    /operators/:id/block(.:format)                                                           amlapp/operators#block
+                      unblock_operator PUT    /operators/:id/unblock(.:format)                                                         amlapp/operators#unblock
+                             operators GET    /operators(.:format)                                                                     amlapp/operators#index
+                                       POST   /operators(.:format)                                                                     amlapp/operators#create
+                          new_operator GET    /operators/new(.:format)                                                                 amlapp/operators#new
+                         edit_operator GET    /operators/:id/edit(.:format)                                                            amlapp/operators#edit
+                              operator PATCH  /operators/:id(.:format)                                                                 amlapp/operators#update
+                                       PUT    /operators/:id(.:format)                                                                 amlapp/operators#update
                  archive_document_kind DELETE /document_kinds/:id/archive(.:format)                                                    amlapp/document_kinds#archive
                  restore_document_kind POST   /document_kinds/:id/restore(.:format)                                                    amlapp/document_kinds#restore
                         document_kinds GET    /document_kinds(.:format)                                                                amlapp/document_kinds#index
                                        POST   /document_kinds(.:format)                                                                amlapp/document_kinds#create
                      new_document_kind GET    /document_kinds/new(.:format)                                                            amlapp/document_kinds#new
+                    edit_document_kind GET    /document_kinds/:id/edit(.:format)                                                       amlapp/document_kinds#edit
                          document_kind GET    /document_kinds/:id(.:format)                                                            amlapp/document_kinds#show
+                                       PATCH  /document_kinds/:id(.:format)                                                            amlapp/document_kinds#update
+                                       PUT    /document_kinds/:id(.:format)                                                            amlapp/document_kinds#update
                               statuses GET    /statuses(.:format)                                                                      amlapp/statuses#index
                                        POST   /statuses(.:format)                                                                      amlapp/statuses#create
                             new_status GET    /statuses/new(.:format)                                                                  amlapp/statuses#new
+                           edit_status GET    /statuses/:id/edit(.:format)                                                             amlapp/statuses#edit
                                 status GET    /statuses/:id(.:format)                                                                  amlapp/statuses#show
+                                       PATCH  /statuses/:id(.:format)                                                                  amlapp/statuses#update
+                                       PUT    /statuses/:id(.:format)                                                                  amlapp/statuses#update
+                                       DELETE /statuses/:id(.:format)                                                                  amlapp/statuses#destroy
             document_group_to_statuses POST   /document_group_to_statuses(.:format)                                                    amlapp/document_group_to_statuses#create
               document_group_to_status DELETE /document_group_to_statuses/:id(.:format)                                                amlapp/document_group_to_statuses#destroy
                 archive_document_group DELETE /document_groups/:id/archive(.:format)                                                   amlapp/document_groups#archive
@@ -41,7 +48,10 @@
                        document_groups GET    /document_groups(.:format)                                                               amlapp/document_groups#index
                                        POST   /document_groups(.:format)                                                               amlapp/document_groups#create
                     new_document_group GET    /document_groups/new(.:format)                                                           amlapp/document_groups#new
+                   edit_document_group GET    /document_groups/:id/edit(.:format)                                                      amlapp/document_groups#edit
                         document_group GET    /document_groups/:id(.:format)                                                           amlapp/document_groups#show
+                                       PATCH  /document_groups/:id(.:format)                                                           amlapp/document_groups#update
+                                       PUT    /document_groups/:id(.:format)                                                           amlapp/document_groups#update
 archive_document_kind_field_definition DELETE /document_kind_field_definitions/:id/archive(.:format)                                   amlapp/document_kind_field_definitions#archive
 restore_document_kind_field_definition POST   /document_kind_field_definitions/:id/restore(.:format)                                   amlapp/document_kind_field_definitions#restore
        document_kind_field_definitions POST   /document_kind_field_definitions(.:format)                                               amlapp/document_kind_field_definitions#create
@@ -49,12 +59,15 @@ restore_document_kind_field_definition POST   /document_kind_field_definitions/:
    edit_document_kind_field_definition GET    /document_kind_field_definitions/:id/edit(.:format)                                      amlapp/document_kind_field_definitions#edit
         document_kind_field_definition PATCH  /document_kind_field_definitions/:id(.:format)                                           amlapp/document_kind_field_definitions#update
                                        PUT    /document_kind_field_definitions/:id(.:format)                                           amlapp/document_kind_field_definitions#update
+                          reset_client DELETE /clients/:id/reset(.:format)                                                             amlapp/clients#reset
                                clients GET    /clients(.:format)                                                                       amlapp/clients#index
                                        POST   /clients(.:format)                                                                       amlapp/clients#create
                             new_client GET    /clients/new(.:format)                                                                   amlapp/clients#new
                                 client GET    /clients/:id(.:format)                                                                   amlapp/clients#show
+                      order_rejections POST   /orders/:order_id/rejections(.:format)                                                   amlapp/rejections#create
+                   new_order_rejection GET    /orders/:order_id/rejections/new(.:format)                                               amlapp/rejections#new
                             done_order PUT    /orders/:id/done(.:format)                                                               amlapp/orders#done
-                      in_process_order PUT    /orders/:id/in_process(.:format)                                                         amlapp/orders#in_process
+                           start_order PUT    /orders/:id/start(.:format)                                                              amlapp/orders#start
                           accept_order PUT    /orders/:id/accept(.:format)                                                             amlapp/orders#accept
                           reject_order PUT    /orders/:id/reject(.:format)                                                             amlapp/orders#reject
                           cancel_order PUT    /orders/:id/cancel(.:format)                                                             amlapp/orders#cancel

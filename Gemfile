@@ -101,9 +101,7 @@ group :development, :test do
   gem 'rails-controller-testing'
   gem 'rspec-rails', '~> 3.7'
   gem 'semver'
-end
 
-group :test do
   gem 'factory_bot'
   gem 'factory_bot_rails'
 end

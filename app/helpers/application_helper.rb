@@ -18,8 +18,8 @@ module ApplicationHelper
   end
 
   def available_reject_reasons
-    AML::RejectReason.ordered.alive.map do |rr|
-      [rr.details, rr.id]
+    @available_reject_reasons ||= AML::RejectReason.ordered.alive.map do |rr|
+      [rr.title, rr.id]
     end
   end
 

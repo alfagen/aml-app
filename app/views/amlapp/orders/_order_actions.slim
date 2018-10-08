@@ -2,7 +2,7 @@
   = link_to 'Начать обработку', start_order_path(order), method: :put, class: 'btn btn-success'
 
 - if order.rejectable_by?(current_user)
-  =< link_to 'Отклонить', reject_order_path(order), method: :put, class: 'btn btn-danger', data: { confirm: 'Отклонить?' }
+  =< link_to 'Отклонить', new_order_rejection_path(order), class: 'btn btn-danger'
 
 - if order.donable_by?(current_user)
   = link_to 'done (клиентская кнопка)', done_order_path(order), method: :put, class: 'btn btn-success'

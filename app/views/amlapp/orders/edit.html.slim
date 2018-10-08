@@ -1,4 +1,0 @@
-h4 Напишите причину отклонения заявки
-= simple_form_for order, method: :put, url: reject_order_path(order) do |f|
-  = f.input :aml_reject_reason_id, collection: available_reject_reasons, label: false, hint: 'Причина отклонения заявки', required: true
-  = f.button :submit, 'Отклонить', class: 'btn btn-success'

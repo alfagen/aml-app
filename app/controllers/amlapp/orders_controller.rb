@@ -21,11 +21,6 @@ module Amlapp
       render :new, locals: { order: e.record }
     end
 
-    def edit
-      authorize_action_for order
-      render :edit, locals: { order: order }
-    end
-
     def show
       authorize_action_for order
       render :show, locals: { order: order }
@@ -56,16 +51,6 @@ module Amlapp
       render :show, locals: { order: order }
     end
 
-    def reject
-      authorize_action_for order
-      order.reject! reject_reason: find_reject_reason
-      flash.notice = 'Заявка отклонена'
-      redirect_to order_path(order)
-    rescue Workflow::TransitionHalted => e
-      flash.now.alert = e.message
-      render :edit, locals: { order: order }
-    end
-
     def cancel
       authorize_action_for order
       order.cancel!
@@ -91,12 +76,9 @@ module Amlapp
     end
 
     def permitted_params
-      params.fetch(:order, {}).permit(:first_name, :surname, :patronymic, :birth_date, :client_id, :workflow_state, :aml_reject_reason_id)
-    end
-
-    def find_reject_reason
-      id = permitted_params[:aml_reject_reason_id]
-      AML::RejectReason.find_by(id: id) || raise("Не найдена причина отклонения #{id}")
+      params
+        .fetch(:order, {})
+        .permit(:first_name, :surname, :patronymic, :birth_date, :client_id, :workflow_state, :aml_reject_reason_id, :reject_reason_details)
     end
 
     def q

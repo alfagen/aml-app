@@ -12,7 +12,11 @@ class OrderDecorator < ApplicationDecorator
   def reject_reason
     return unless object.aml_reject_reason.present?
 
-    content_tag :div, object.aml_reject_reason.details, class: 'alert alert-info'
+    buffer = []
+    buffer << object.aml_reject_reason.title
+    buffer << h.content_tag(:div, object.reject_reason_details) if object.reject_reason_details.present?
+
+    h.content_tag :div, buffer.join.html_safe, class: 'alert alert-info'
   end
 
   def operator

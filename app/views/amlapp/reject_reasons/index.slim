@@ -1,0 +1,8 @@
+.pull-right
+  = link_to 'Добавить причину', new_reject_reason_path, class: 'btn btn-default'
+.clearfix
+hr
+- if reject_reasons.any?
+  = render partial: 'reject_reasons', locals: { reject_reasons: reject_reasons }
+- else
+  .alert.alert-info Список причин пуст. Добавьте хотябы одну.

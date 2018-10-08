@@ -49,6 +49,7 @@ Rails.application.routes.draw do
       end
     end
     resources :orders do
+      resources :rejections, only: [:new, :create], controller: :order_rejections
       member do
         put :done
         put :start
@@ -64,6 +65,6 @@ Rails.application.routes.draw do
         put :reject
       end
     end
-    resources :reason_rejects
+    resources :reject_reasons
   end
 end
