@@ -1,6 +1,4 @@
 = simple_form_for order_document, method: :put, url: order_document_path do |f|
-  = f.hidden_field :order_id, value: order.id
-  = f.hidden_field :client_id, value: order.client.id
   = f.file_field :image, hint: 'Загрузить документ'
   br
   = f.button :submit, 'Изменить', class: 'btn btn-success'
