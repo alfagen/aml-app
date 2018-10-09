@@ -2,12 +2,14 @@ module Amlapp
   class DocumentKindFieldDefinitionsController < Amlapp::ApplicationController
     authorize_actions_for :document_kind, all_actions: :update
 
+    helper_method :document_kind
+
     def new
       render :new, locals: { document_kind_field_definition: AML::DocumentKindFieldDefinition.new(permitted_params) }
     end
 
     def create
-      document_kind.definitions.create! permitted_params
+      AML::DocumentKindFieldDefinition.create! permitted_params
 
       flash.notice = 'Добавлено определение'
 
@@ -30,12 +32,12 @@ module Amlapp
 
     def restore
       document_kind_field_definition.restore!
-      redirect_to document_kind_path(document_kind_field_definition.document_kind)
+      redirect_to document_kind_path(document_kind)
     end
 
     def archive
       document_kind_field_definition.archive!
-      redirect_to document_kind_path(document_kind_field_definition.document_kind)
+      redirect_to document_kind_path(document_kind)
     end
 
     private
