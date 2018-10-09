@@ -9,7 +9,7 @@ module Amlapp
     end
 
     def create
-      AML::DocumentKindFieldDefinition.create! permitted_params
+      document_kind.definitions.create! permitted_params
 
       flash.notice = 'Добавлено определение'
 
@@ -24,7 +24,7 @@ module Amlapp
 
     def update
       document_kind_field_definition.update!(permitted_params)
-      redirect_to document_kind_path(permitted_params[:document_kind_id])
+      redirect_to document_kind_path(document_kind)
     rescue ActiveRecord::RecordInvalid => e
       flash.now.alert = e.message
       render :edit, locals: { document_kind_field_definition: e.record }
@@ -47,7 +47,7 @@ module Amlapp
     end
 
     def document_kind
-      @document_kind ||= AML::DocumentKind.find permitted_params[:document_kind_id]
+      @document_kind ||= AML::DocumentKind.find params[:document_kind_id]
     end
 
     def permitted_params
