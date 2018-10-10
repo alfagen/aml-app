@@ -19,9 +19,9 @@ module Amlapp
       authorize_action_for order_document
       order_document.update!(permitted_params)
       redirect_to order_document_path(order_document)
-    rescue ActiveRecord::RecordInvalid => error
-      flash.now.alert = error.message
-      render :edit, locals: error_params(error)
+    rescue ActiveRecord::RecordInvalid, AML::OrderDocument::ClosedOrderError => e
+      flash.now.alert = e.message
+      render :edit, locals: { order_document: order_document }
     end
 
     def show
@@ -32,12 +32,6 @@ module Amlapp
     def accept
       authorize_action_for order_document
       order_document.accept!
-      redirect_to order_path(order)
-    end
-
-    def reject
-      authorize_action_for order_document
-      order_document.reject!
       redirect_to order_path(order)
     end
 
@@ -60,7 +54,7 @@ module Amlapp
     end
 
     def permitted_params
-      params.fetch(:order_document).permit(:document_kind_id, :image, :order_id, :workflow_state)
+      params.fetch(:order_document, {}).permit(:document_kind_id, :image, :order_id, :workflow_state)
     end
   end
 end

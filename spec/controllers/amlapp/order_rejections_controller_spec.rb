@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Amlapp::OrderRejectionsController, type: :controller do
   let!(:status) { create :aml_status, :default }
   let(:order) { create :aml_order, :pending }
-  let(:reject_reason) { create :aml_reject_reason }
+  let(:reject_reason) { create :aml_reject_reason, :order_reason }
 
   describe 'GET #new' do
     it 'returns http success' do

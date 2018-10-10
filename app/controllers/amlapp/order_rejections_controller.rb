@@ -5,9 +5,10 @@ module Amlapp
     authorize_actions_for :order, all_actions: :reject
 
     helper_method :order
+    helper_method :available_reject_reasons
 
     def new
-      render :new, locals: { order: order }
+      render :new, locals: { order: order, reasons: available_reject_reasons('order_reason') }
     end
 
     def create
