@@ -20,7 +20,7 @@ module Amlapp
       order_document.update!(permitted_params)
       redirect_to order_document_path(order_document)
     rescue ActiveRecord::RecordInvalid, AML::OrderDocument::ClosedOrderError => e
-      flash.now.alert = e.message
+      flash.now.alert = I18n.t e.message
       render :edit, locals: { order_document: order_document }
     end
 
