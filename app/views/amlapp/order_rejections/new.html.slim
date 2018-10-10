@@ -2,7 +2,7 @@
 h1 Отклоняем заявку ##{order.id}
 hr
 
-- if available_reject_reasons('order_reason').empty?
+- if reasons('order_reason').empty?
   .alert.alert-warning
     | В базе нет ни одной причины для отмены.
     = link_to 'Добавить причину', new_reject_reason_path(reject_reason: { kind: 'order_reason' })

@@ -18,7 +18,7 @@ module ApplicationHelper
   end
 
   def available_reject_reasons(kind)
-    @available_reject_reasons ||= AML::RejectReason.where(kind: kind).ordered.alive.map do |rr|
+    available_reject_reasons = AML::RejectReason.where(kind: kind).ordered.alive.map do |rr|
       [rr.title, rr.id]
     end
   end

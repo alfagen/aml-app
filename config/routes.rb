@@ -60,6 +60,7 @@ Rails.application.routes.draw do
     end
     resources :document_fields, only: %i[edit update]
     resources :order_documents, only: %i[show index edit update] do
+      resources :rejections, only: [:new, :create], controller: :order_document_rejections
       member do
         put :accept
         put :reject
