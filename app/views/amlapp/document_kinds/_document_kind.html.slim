@@ -2,12 +2,12 @@ tr
   td = document_kind.title
   td = document_kind.details
   td = document_kind.position
-  td = document_kind.alive?
+  td = document_kind.goal.presence || '-'
   td
     - if document_kind.file.present?
       = link_to "#{document_kind.file_title}.pdf (#{number_to_human_size document_kind.file.size})", document_kind.file.url
     - else
       .text-muted Файл отсутствует
-  td 
+  td
     = link_to "Дополнительные поля (#{document_kind.definitions.alive.count})", document_kind_path(document_kind), class: 'btn btn-default'
     =< link_to 'Редактировать', edit_document_kind_path(document_kind), class: 'btn btn-default'

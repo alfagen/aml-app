@@ -5,12 +5,12 @@ br
   table.table.table-condensed
     thead
       tr
-        th Типы документа:
-        th Описание:
-        th Позиция:
-        th Статус:
-        th Загруженный документ:
-        th Поля документа:
+        th Типы документа
+        th Описание
+        th Позиция
+        th Цель в метрике
+        th Загруженный документ
+        th Поля документа
     tbody
       = render partial: 'document_kind', collection: document_kinds
     = paginate document_kinds
