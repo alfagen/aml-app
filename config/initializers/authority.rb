@@ -33,7 +33,9 @@ Authority.configure do |config|
     reject:  'reject',
     done:    'done',
     start:   'start',
-    cancel:  'cancel'
+    cancel:  'cancel',
+    archive: 'archive',
+    restore: 'restore'
   }
 
   # ABILITIES

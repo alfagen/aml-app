@@ -1,11 +1,5 @@
 h2 Тип документа: #{document_kind.title}
 h4 Группа документа: #{document_kind.document_group.title}
+.pull-right= link_to 'Новое поле документа', new_document_kind_document_kind_field_definition_path(document_kind), class: 'btn btn-default'
 = render partial: 'amlapp/document_kind_field_definitions/table', locals: { field_definitions: document_kind.definitions.alive } if document_kind.definitions.alive.any?
 = render partial: 'amlapp/document_kind_field_definitions/table', locals: { field_definitions: document_kind.definitions.archive } if document_kind.definitions.archive.any?
-h4 Добавить поле документа
-= simple_form_for AML::DocumentKindFieldDefinition.new do |f|
-  = f.input :key, as: :string, label: false, hint: 'Ключ поля'
-  = f.input :title, as: :string, label: false, hint: 'Название поля'
-  = f.input :position, label: false, hint: 'Позиция поля'
-  = f.hidden_field :document_kind_id, value: document_kind.id
-  = f.button :submit, 'Создать', class: 'btn btn-success'

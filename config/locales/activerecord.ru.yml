@@ -16,3 +16,6 @@ ru:
         surname: Фамилия
         patronymic: Отчество
         birth_date: Дата рождения
+  errors:
+    messages:
+      extension_whitelist_error: Неверный формат файла (должен быть pdf)
