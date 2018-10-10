@@ -32,7 +32,7 @@ module Amlapp
     end
 
     def available_reject_reasons
-      available_reject_reasons = AML::RejectReason.where(kind: 'order_reason').ordered.alive.map do |rr|
+      AML::RejectReason.order_reason.ordered.alive.map do |rr|
         [rr.title, rr.id]
       end
     end

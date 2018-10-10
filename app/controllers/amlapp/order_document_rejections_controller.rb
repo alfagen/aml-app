@@ -5,7 +5,6 @@ module Amlapp
     authorize_actions_for :order_document, all_actions: :reject
 
     helper_method :order_document
-    helper_method :available_reject_reasons
 
     def new
       render :new, locals: { order_document: order_document, reasons: available_reject_reasons }
@@ -33,7 +32,7 @@ module Amlapp
     end
 
     def available_reject_reasons
-      available_reject_reasons = AML::RejectReason.where(kind: 'order_document_reason').ordered.alive.map do |rr|
+      AML::RejectReason.order_document_reason.ordered.alive.map do |rr|
         [rr.title, rr.id]
       end
     end
