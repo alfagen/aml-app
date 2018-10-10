@@ -1,5 +1,6 @@
+h3 Причины отклонения для #{I18n.t kind}
 .pull-right
-  = link_to 'Добавить причину', new_reject_reason_path, class: 'btn btn-default'
+  = link_to 'Добавить причину', new_reject_reason_path(reject_reason: { kind: kind }), class: 'btn btn-default'
 .clearfix
 hr
 - if reject_reasons.any?
