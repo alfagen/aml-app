@@ -19,5 +19,3 @@ ru:
   errors:
     messages:
       extension_whitelist_error: Неверный формат файла (должен быть pdf)
-  AML::OrderDocument::ClosedOrderError: Нельзя редактировать документ. Заявка закрыта для изменений
-  AML::DocumentField::ClosedOrderError: Нельзя редактировать поле документа. Заявка закрыта для изменений
