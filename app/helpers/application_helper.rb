@@ -17,8 +17,8 @@ module ApplicationHelper
     content_tag :span, workflow_state, class: classes
   end
 
-  def available_reject_reasons
-    @available_reject_reasons ||= AML::RejectReason.ordered.alive.map do |rr|
+  def available_reject_reasons(kind)
+    available_reject_reasons = AML::RejectReason.where(kind: kind).ordered.alive.map do |rr|
       [rr.title, rr.id]
     end
   end
