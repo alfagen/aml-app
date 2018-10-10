@@ -1,3 +1,4 @@
 = simple_form_for reject_reason do |f|
   = f.input :title, label: false, hint: 'Причина отклонения заявки', required: true
+  = f.input :kind, as: :hidden
   = f.button :submit, 'Сохранить', class: 'btn btn-success'
