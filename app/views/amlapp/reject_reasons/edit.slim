@@ -1,4 +1,4 @@
 = link_to '&larr; Назад в список причин'.html_safe, reject_reasons_path
 hr
-h1 Редактируем причину отмены ##{reject_reason.id}
-= render 'form', reject_reason: reject_reason
+h3 Редактируем причину отмены ##{reject_reason.id} для #{I18n.t kind}
+= render 'form', reject_reason: reject_reason, kind: kind

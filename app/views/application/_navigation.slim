@@ -24,7 +24,8 @@ nav.navbar.navbar-default.navbar-fixed-top
               = active_link_to 'Статусы', statuses_path, wrap_tag: :li
               = active_link_to 'Группы документов', document_groups_path, wrap_tag: :li
               = active_link_to 'Операторы', operators_path, wrap_tag: :li
-              = active_link_to 'Причины отмены', reject_reasons_path, wrap_tag: :li
+              = active_link_to 'Причины отмены для заявок', reject_reasons_path(reject_reason: { kind: 'order_reason' }), wrap_tag: :li
+              = active_link_to 'Причины отмены для документов', reject_reasons_path(reject_reason: { kind: 'order_document_reason' }), wrap_tag: :li
               - unless Rails.env.production?
                 li.divider
                 = active_link_to 'Полный сброс данных', reset_db_path, wrap_tag: :li, method: :delete, data: { confirm: 'Сбросить полностью данные (документы, анкеты, кроме операторов) без восстановления?' }
