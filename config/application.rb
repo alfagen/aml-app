@@ -13,6 +13,7 @@ module Aml
     config.load_defaults 5.2
 
     I18n.default_locale = :ru
+    I18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
 
     # ru_RU, en_GB, cs_CZ
     # I18n.available_locales = [:ru, :en, :cs]
