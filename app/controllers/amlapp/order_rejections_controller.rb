@@ -5,10 +5,9 @@ module Amlapp
     authorize_actions_for :order, all_actions: :reject
 
     helper_method :order
-    helper_method :available_reject_reasons
 
     def new
-      render :new, locals: { order: order, reasons: available_reject_reasons('order_reason') }
+      render :new, locals: { order: order, reasons: available_reject_reasons }
     end
 
     def create
@@ -30,6 +29,12 @@ module Amlapp
     def find_reject_reason
       id = permitted_params[:aml_reject_reason_id]
       AML::RejectReason.find_by(id: id) || raise("Не найдена причина отклонения #{id}")
+    end
+
+    def available_reject_reasons
+      AML::RejectReason.order_reason.ordered.alive.map do |rr|
+        [rr.title, rr.id]
+      end
     end
 
     def permitted_params

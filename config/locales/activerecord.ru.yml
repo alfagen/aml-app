@@ -19,5 +19,3 @@ ru:
   errors:
     messages:
       extension_whitelist_error: Неверный формат файла (должен быть pdf)
-  order_reason: заявки
-  order_document_reason: документа
