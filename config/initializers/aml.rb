@@ -6,5 +6,4 @@ Rails.application.config.to_prepare do
   ].each { |model| model.include Authority::Abilities }
 
   AML::Operator.include Authority::UserAbilities
-  AML::Operator.authenticates_with_sorcery!
 end
