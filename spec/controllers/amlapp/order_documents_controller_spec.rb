@@ -12,7 +12,12 @@ RSpec.describe Amlapp::OrderDocumentsController, type: :controller do
     before { login_user user }
 
     it '#update' do
-      put 'update', params: { order_document: { image: Rack::Test::UploadedFile.new(Rails.root.join('spec', 'test_files', 'test.png')) }, id: aml_order_document.id }
+      put 'update', params: {
+        order_document: {
+          image: Rack::Test::UploadedFile.new(Rails.root.join('spec', 'test_files', 'test.png'))
+        },
+        id: aml_order_document.id
+      }
     end
 
     it '#show' do

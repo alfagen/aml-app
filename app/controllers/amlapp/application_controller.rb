@@ -7,7 +7,7 @@ module Amlapp
 
     helper_method :document_kinds
 
-    ensure_authorization_performed except: [:error, :reset_db, :drop_clients, :drop_orders]
+    ensure_authorization_performed except: %i[error reset_db drop_clients drop_orders]
 
     def error
       raise 'test error'
