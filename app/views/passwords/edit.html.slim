@@ -4,6 +4,9 @@ hr
 = simple_form_for user, method: :put, url: password_path do |f|
   .row
     .col-md-6
+      = f.input :current_password, as: :password, label: false, hint: 'Текущий пароль'
+  .row
+    .col-md-6
       = f.input :password, as: :password, label: false, hint: 'Новый пароль'
     .col-md-6
       = f.input :password_confirmation, as: :password, label: false, hint: 'Подтверждение пароля'
