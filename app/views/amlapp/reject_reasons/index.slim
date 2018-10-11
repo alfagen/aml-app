@@ -1,4 +1,4 @@
-h3 Причины отклонения для #{I18n.t 'helpers.' + kind}
+h3 Причины отклонения для #{t kind, scope: [:helpers]}
 .pull-right
   = link_to 'Добавить причину', new_reject_reason_path(reject_reason: { kind: kind }), class: 'btn btn-default'
 .clearfix
