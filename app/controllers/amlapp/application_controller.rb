@@ -7,7 +7,7 @@ module Amlapp
 
     helper_method :document_kinds
 
-    ensure_authorization_performed except: [:error, :reset_db]
+    ensure_authorization_performed except: [:error, :reset_db, :drop_clients, :drop_orders]
 
     def error
       raise 'test error'
@@ -19,6 +19,26 @@ module Amlapp
       AML.seed_demo!
 
       flash.alert = 'Данные полностью сброшены'
+      redirect_to root_path
+    end
+
+    def drop_clients
+      raise 'Доступно только на боевом' if Rails.env.production?
+
+      AML::Client.destroy_all
+
+      flash.alert = 'Клиенты сброшены'
+      redirect_to root_path
+    end
+
+    def drop_orders
+      raise 'Доступно только на боевом' if Rails.env.production?
+
+      AML::Client.update_all aml_order_id: nil, aml_status_id: nil, aml_accepted_order_id: nil
+      AML::OrderDocument.delete_all
+      AML::Order.delete_all
+
+      flash.alert = 'Заявки сброшены'
       redirect_to root_path
     end
 

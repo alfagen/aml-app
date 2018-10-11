@@ -17,6 +17,8 @@ Rails.application.routes.draw do
 
     get 'error' => 'application#error'
     delete 'reset_db' => 'application#reset_db'
+    delete 'drop_clients' => 'application#drop_clients'
+    delete 'drop_orders' => 'application#drop_orders'
 
     resources :operators, except: %i[show destroy] do
       member do

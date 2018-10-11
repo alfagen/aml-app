@@ -29,6 +29,8 @@ nav.navbar.navbar-default.navbar-fixed-top
               - unless Rails.env.production?
                 li.divider
                 = active_link_to 'Полный сброс данных', reset_db_path, wrap_tag: :li, method: :delete, data: { confirm: 'Сбросить полностью данные (документы, анкеты, кроме операторов) без восстановления?' }
+                = active_link_to 'Сброс клиентов', drop_clients_path, wrap_tag: :li, method: :delete, data: { confirm: 'Сбросить клиентов?' }
+                = active_link_to 'Сброс заявок', drop_orders_path, wrap_tag: :li, method: :delete, data: { confirm: 'Сбросить заявки?' }
       - if logged_in?
         ul.nav.navbar-nav.navbar-right
           li.dropdown

@@ -22,14 +22,15 @@
         tr
           th Статус
           td= client.aml_status
-hr
-table.table.table-striped.table-condensed
-  thead
-    tr
-      th Заявка
-      th Создана
-      th Обновлена
-      th Состояние
-      th.text-right Действия
-  tbody
-    = render partial: 'order', collection: client.orders.ordered
+- if client.orders.any?
+  hr
+  table.table.table-striped.table-condensed
+    thead
+      tr
+        th Заявка
+        th Создана
+        th Обновлена
+        th Состояние
+        th.text-right Действия
+    tbody
+      = render partial: 'order', collection: client.orders.ordered
