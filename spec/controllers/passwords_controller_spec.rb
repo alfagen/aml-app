@@ -5,7 +5,7 @@ RSpec.describe PasswordsController, type: :controller do
     context 'with registered user' do
       let(:new_password) { generate :aml_password }
       let(:current_password) { generate :aml_password }
-      let(:aml_operator) { create :aml_operator, password: current_password }
+      let(:aml_operator) { create :aml_operator }
 
       let(:operator_params) do
         { password: new_password, password_confirmation: new_password, current_password: current_password }
