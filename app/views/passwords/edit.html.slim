@@ -2,7 +2,7 @@ h1 Изменение пароля для пользователя #{user.email}
 hr
 
 = simple_form_for user, method: :put, url: password_path do |f|
-  - if user.crypted_password.present?
+  - if user.crypted_password.present? && !controller_name == 'password_resets'
     .row
       .col-md-6
         = f.input :current_password, as: :password, label: false, hint: 'Текущий пароль'
