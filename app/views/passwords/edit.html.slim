@@ -1,15 +1,15 @@
-h1 Изменение пароля для пользователя #{user.email}
+h1 Изменение пароля для пользователя.
 hr
 
-= simple_form_for user, method: :put, url: password_path do |f|
-  - if user.crypted_password.present?
-    .row
-      .col-md-6
-        = f.input :current_password, as: :password, label: false, hint: 'Текущий пароль'
+= simple_form_for :change_password_form, method: :put, url: password_path do |f|
+  .row
+    .col-md-6
+      = f.input :current_password, as: :password, label: false, hint: 'Текущий пароль'
   .row
     .col-md-6
       = f.input :password, as: :password, label: false, hint: 'Новый пароль'
     .col-md-6
       = f.input :password_confirmation, as: :password, label: false, hint: 'Подтверждение пароля'
+  = f.input :user_id, as: :hidden
   hr
   = f.button :submit, 'Изменить', class: 'btn btn-success'
