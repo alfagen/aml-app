@@ -1,4 +1,5 @@
 = simple_form_for reject_reason do |f|
-  = f.input :title, label: false, hint: 'Причина отклонения заявки', required: true
   = f.input :kind, as: :hidden
+  = localized_render do |locale|
+    = f.input localized_attribute(:title, locale), label: false, hint: 'Причина отклонения заявки', required: true
   = f.button :submit, 'Сохранить', class: 'btn btn-success'

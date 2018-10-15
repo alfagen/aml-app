@@ -1,7 +1,6 @@
 tr
-  td = document_kind.title
-  td = document_kind.details
-  td = document_kind.position
+  td
+    = link_to document_kind.title, document_group_document_kind_path(document_kind.document_group, document_kind)
   td = document_kind.goal.presence || '-'
   td
     - if document_kind.file.present?
@@ -9,5 +8,9 @@ tr
     - else
       .text-muted Файл отсутствует
   td
-    = link_to "Дополнительные поля (#{document_kind.definitions.alive.count})", document_kind_path(document_kind), class: 'btn btn-default'
-    =< link_to 'Редактировать', edit_document_kind_path(document_kind), class: 'btn btn-default'
+    - if document_kind.definitions.any?
+      ul
+        - document_kind.definitions.ordered.each do |d|
+          li= link_to d.title, document_group_document_kind_document_kind_field_definition_path(d.document_kind.document_group, d.document_kind, d)
+    - else
+      .text Нет полей

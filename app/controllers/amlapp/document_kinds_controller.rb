@@ -9,7 +9,7 @@ module Amlapp
     helper_method :document_group
 
     def index
-      render :index, locals: { document_kinds: paginate(document_group.document_kinds.ordered) }
+      redirect_to document_group_path(document_group)
     end
 
     def new
@@ -18,7 +18,7 @@ module Amlapp
 
     def create
       AML::DocumentKind.create!(permitted_params)
-      render :index, locals: { document_kinds: paginate(document_group.document_kinds.ordered) }
+      redirect_to document_group_path(document_group)
     rescue ActiveRecord::RecordInvalid => e
       flash.now.alert = e.message
       render :new, locals: { document_kind: e.record }
@@ -30,14 +30,14 @@ module Amlapp
 
     def update
       document_kind.update!(permitted_params)
-      render :index, locals: { document_kinds: paginate(document_group.document_kinds.ordered) }
+      redirect_to document_group_path(document_group)
     rescue ActiveRecord::RecordInvalid => e
       flash.now.alert = e.message
       render :edit, locals: { document_kind: e.record }
     end
 
     def show
-      render :show, locals: { document_kind: document_kind }
+      redirect_to edit_document_group_document_kind_path(document_group, document_kind)
     end
 
     private
@@ -47,7 +47,7 @@ module Amlapp
     end
 
     def document_group
-      @document_group ||= AML::DocumentGroup.find permitted_params[:aml_document_group_id]
+      @document_group ||= AML::DocumentGroup.find params[:document_group_id]
     end
 
     def permitted_params

@@ -1,10 +1,9 @@
 table.table.table-condensed
   thead
     tr
-      th Ключ поля:
-      th Название поля:
-      th Позиция
-      th Действия:
+      th Название
+      th Ключ
+      th Действия
       tbody
       - if field_definitions.first.alive?
         h3 Действующие поля: (#{field_definitions.count})
@@ -12,9 +11,8 @@ table.table.table-condensed
         h3 Поля в архиве: (#{field_definitions.count})
       - field_definitions.each do |field_definition|
         tr
-          td = field_definition.key
           td = field_definition.title
-          td = field_definition.position
+          td = field_definition.key
           td
             => link_to 'Редактировать', edit_document_kind_document_kind_field_definition_path(field_definition.document_kind, field_definition), class: 'btn btn-default'
             - if field_definition.archived?

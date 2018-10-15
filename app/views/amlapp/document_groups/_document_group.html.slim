@@ -1,8 +1,0 @@
-tr
-  td = document_group.title
-  td = document_group.details
-  td = document_group.position
-  td
-    = link_to 'Типы документов', document_kinds_path(document_kind: { aml_document_group_id: document_group.id }), class: 'btn btn-default'
-    =< link_to 'Показать', document_group_path(document_group), class: 'btn btn-default'
-    =< link_to 'Редактировать', edit_document_group_path(document_group), class: 'btn btn-default'

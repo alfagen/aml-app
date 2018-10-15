@@ -34,17 +34,20 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :document_kinds, except: %i[destroy] do
-      concerns :archivable
-      resources :document_kind_field_definitions, only: %i[new create edit update] do
-        concerns :archivable
-      end
-    end
     resources :statuses
     resources :document_group_to_statuses, only: %i[create destroy]
+
     resources :document_groups, except: %i[destroy] do
       concerns :archivable
+
+      resources :document_kinds, except: %i[destroy] do
+        concerns :archivable
+        resources :document_kind_field_definitions do
+          concerns :archivable
+        end
+      end
     end
+
     resources :clients, except: %i[edit update destroy] do
       member do
         delete :reset

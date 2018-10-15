@@ -1,6 +1,14 @@
 class ApplicationDecorator < Draper::Decorator
   delegate_all
 
+  def alive?
+    if object.alive?
+      'действующий'
+    else
+      h.content_tag :span, 'архив', class: 'label label-default'
+    end
+  end
+
   def first_name
     object.first_name.presence || none
   end

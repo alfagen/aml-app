@@ -1,10 +1,17 @@
-h3 Тип документа для группы "#{document_group.title}"
-= simple_form_for document_kind do |f|
-  = f.input :aml_document_group_id, as: :hidden
-  = f.input :title, label: false, hint: 'Название типа документа'
-  = f.input :details, label: false, hint: 'Описание документа'
-  = f.input :position, label: false, hint: 'Номер документа'
-  = f.input :goal, label: false, hint: 'Цель в метрике'
-  = f.file_field :file, as: :file
-  = f.input :file_title, label: false, hint: 'Название загруженного документа'
+= simple_form_for [document_group, document_kind] do |f|
+  = localized_render do |locale|
+    = f.input localized_attribute(:title, locale), label: false, hint: 'Название типа документа'
+    = f.input localized_attribute(:details, locale), label: false, hint: 'Описание документа'
+    = f.input localized_attribute(:file_title, locale), label: false, hint: 'Название загруженного документа'
+
+  .row
+    .col-md-6
+      = f.input :position, label: false, hint: 'Номер документа'
+    .col-md-6
+      = f.input :goal, label: false, hint: 'Цель в метрике'
+
+
+  = f.input :file, as: :file, label: 'Файл (PDF)'
+
+  hr
   = f.button :submit, 'Сохранить', class: 'btn btn-success'

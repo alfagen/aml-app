@@ -8,6 +8,8 @@ git checkout master && git pull > /dev/null
 cd ../../
 pwd
 
+rails aml:install:migrations
+
 NEW_VERSION=`ruby -r./vendor/aml-engine/lib/aml/version -e "print AML::VERSION"`
 
 if [ "${CURRENT_VERSION}" = "${NEW_VERSION}" ]; then
@@ -16,8 +18,6 @@ if [ "${CURRENT_VERSION}" = "${NEW_VERSION}" ]; then
 fi
 
 MESSAGE="update aml-engine from ${CURRENT_VERSION} to ${NEW_VERSION}"
-
-rails aml:install:migrations
 
 echo "Создаю и заливаю комит '${MESSAGE}'"
 git add ./db/

@@ -45,7 +45,7 @@ module Amlapp
     end
 
     def permitted_params
-      params.fetch(:document_group, {}).permit(:title, :details, :position)
+      params.fetch(:document_group, {}).permit!
     end
   end
 end

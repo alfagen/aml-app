@@ -21,8 +21,7 @@ class PasswordResetsController < ApplicationController
   end
 
   def update
-    current_user.password_confirmation = params[:user][:password_confirmation]
-    current_user.change_password! params[:user][:password]
+    current_user.change_password! params.require(:user).require(:password)
   rescue ActiveRecord::RecordInvalid => e
     flash.now.alert = e.message
     render 'passwords/edit', locals: { user: e.record }
