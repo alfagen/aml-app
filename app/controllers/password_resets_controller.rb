@@ -13,17 +13,18 @@ class PasswordResetsController < ApplicationController
 
     if user.present?
       auto_login user
-      render 'passwords/edit', locals: { user: user }
+      render :edit, locals: { user: user }
     else
       flash.now.alert = 'Просрочен токен аутентификации, авторизуйтесь снова'
-      render 'new'
+      render :new
     end
   end
 
   def update
     current_user.change_password! params.require(:user).require(:password)
+    redirect_to orders_path
   rescue ActiveRecord::RecordInvalid => e
     flash.now.alert = e.message
-    render 'passwords/edit', locals: { user: e.record }
+    render :edit, locals: { user: e.record }
   end
 end
