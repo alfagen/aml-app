@@ -17,6 +17,6 @@ class PasswordsController < ApplicationController
   private
 
   def permitted_params
-    params.require(:operator).permit(:email, :password, :password_confirmation, :current_password)
+    params.require(:operator).permit(:email, :password, :password_confirmation)
   end
 end

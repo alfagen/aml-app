@@ -16,7 +16,7 @@ module Aml
     I18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
 
     # ru_RU, en_GB, cs_CZ
-    # I18n.available_locales = [:ru, :en, :cs]
+    I18n.available_locales = %i[ru en cs]
     config.time_zone = 'Europe/Moscow'
     Time.zone = 'Europe/Moscow'
 

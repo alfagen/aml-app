@@ -1,4 +1,5 @@
-= link_to '&larr; Назад в список причин'.html_safe, reject_reasons_path
-h3 Новая причина отмены для #{I18n.t kind}
+= link_to '&larr; Назад в список причин'.html_safe, reject_reasons_path(kind: reject_reason.kind)
 hr
-= render 'form', reject_reason: reject_reason, kind: kind
+h3 Новая причина отмены для #{I18n.t reject_reason.kind}
+hr
+= render 'form', reject_reason: reject_reason

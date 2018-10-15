@@ -35,6 +35,10 @@ gem 'virtus'
 
 gem 'draper', '~> 3.0.1' # , github: 'drapergem/draper'
 
+gem 'globalize', github: 'globalize/globalize', ref: 'HEAD'
+gem 'globalize-accessors'
+gem 'localized_render'
+
 gem 'non-stupid-digest-assets'
 gem 'settingslogic'
 
