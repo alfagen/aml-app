@@ -1,22 +1,23 @@
 class PasswordsController < ApplicationController
   def edit
-    render :edit, locals: { user: current_user }
+    render :edit, locals: { change_password_form: form, user: current_user }
   end
 
   def update
-    current_user.update! permitted_params
-
-    flash.now.notice = 'Пароль установлен'
-
-    redirect_to orders_path
-  rescue ActiveRecord::RecordInvalid => e
-    flash.now.alert = e.message
-    render :edit, locals: { user: e.record }
+    if form.valid?
+      current_user.change_password! form.password
+      flash.now.alert = 'Пароль изменен.'
+    else
+      flash.now.alert = form.errors.messages.to_s
+    end
+    render :edit, locals: { change_password_form: form }
   end
 
   private
 
-  def permitted_params
-    params.require(:operator).permit(:email, :password, :password_confirmation)
+  def form
+    @form ||= ChangePasswordForm.new(params.fetch(:change_password_form, {}).permit(:password,
+                                                                                    :password_confirmation,
+                                                                                    :current_password).merge(user: current_user))
   end
 end
