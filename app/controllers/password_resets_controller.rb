@@ -22,7 +22,7 @@ class PasswordResetsController < ApplicationController
 
   def update
     current_user.change_password! params.require(:user).require(:password)
-    redirect_to orders_path
+    redirect_to root_path
   rescue ActiveRecord::RecordInvalid => e
     flash.now.alert = e.message
     render :edit, locals: { user: e.record }
