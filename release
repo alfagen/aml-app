@@ -4,4 +4,4 @@ git add .semver
 git commit -m `semver`
 git tag -a `semver` -m `semver`
 git push
-bundle exec cap staging deploy
+bundle exec cap production deploy
