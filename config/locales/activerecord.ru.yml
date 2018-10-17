@@ -11,7 +11,7 @@ ru:
         surname: Фамилия
         patronymic: Отчество
         birth_date: Дата рождения
-      order:
+      aml/order:
         first_name: Имя
         surname: Фамилия
         patronymic: Отчество
