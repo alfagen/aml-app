@@ -4,8 +4,8 @@ hr
 = simple_form_for :user, method: :put, url: password_reset_path do |f|
   .row
     .col-md-6
-      = f.input :password, as: :password, label: false, hint: 'Новый пароль'
+      = f.input :password, as: :password
     .col-md-6
-      = f.input :password_confirmation, as: :password, label: false, hint: 'Подтверждение пароля'
+      = f.input :password_confirmation, as: :password
   hr
   = f.button :submit, 'Изменить', class: 'btn btn-success'

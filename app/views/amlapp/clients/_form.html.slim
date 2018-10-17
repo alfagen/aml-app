@@ -1,10 +1,10 @@
 = simple_form_for client, method: :post, url: clients_path do |f|
   .row
     .col-md-6
-      = f.input :first_name, label: false, hint: 'Имя'
-      = f.input :surname, label: false, hint: 'Фамилия'
-      = f.input :patronymic, label: false, hint: 'Отчество'
+      = f.input :first_name
+      = f.input :surname
+      = f.input :patronymic
     .col-md-6
-      = f.input :birth_date, as: :date_picker, hint: 'Дата рождения', label: false
+      = f.input :birth_date, as: :date_picker
   hr
   = f.button :submit, 'Создать', class: 'btn btn-success'
