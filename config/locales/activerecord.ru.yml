@@ -3,19 +3,56 @@ ru:
     models:
       order: Заявка
       client: Клиент
+      document_field: Поле документа
+      document_group: Группа документов
+      document_kind: Тип документа
+      document_kind_field_definition: Определение поля документа
       client_document: Документ
       user: Менеджер
+      operator: Менеджер
+      status: Статус
+      reject_reason: Причина отклонения
     attributes:
+      aml_document_group_to_status:
+        aml_document_group_id: Список групп документов
       client:
         first_name: Имя
         surname: Фамилия
         patronymic: Отчество
         birth_date: Дата рождения
+        workflow_state: Состояние
+      document_field:
+        value: Значение
+      document_group:
+        position: Позиция
+      document_kind:
+        position: Позиция типа документа
+        file: Файл (PDF)
+        goal: Цель в метрике
+        title_ru: Название типа документа
+        details_ru: Описание типа документа
+        file_title_ru: Название файла
+      document_kind_field_definition:
+        key: Ключ
+        position: Позиция
       order:
         first_name: Имя
         surname: Фамилия
         patronymic: Отчество
         birth_date: Дата рождения
+        workflow_state: Состояние
+        reject_reason_details: Причина отклонения
+      operator:
+        email: Почта
+        workflow_state: Состояние
+        role: Роль
+        name: Имя
+      reject_reason:
+        kind: Вид
+        title_ru: Причина отклонения заявки
+      status:
+        key: Ключ
+        position: Позиция
   errors:
     messages:
       extension_whitelist_error: Неверный формат файла (должен быть pdf)
