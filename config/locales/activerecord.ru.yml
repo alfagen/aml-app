@@ -8,6 +8,7 @@ ru:
       surname: &surname Фамилия
       patronymic: &patronymic Отчество
       birth_date: &birth_date Дата рождения
+    email: &email Почта
 
   activerecord:
     models:
@@ -27,7 +28,7 @@ ru:
         <<: *full_name
         workflow_state: Состояние клиента
       aml/document_field:
-        value: Значение
+        value: Значение поля
       aml/document_group:
         title_ru: Название группы документов
         details_ru: Описание группы документов
@@ -40,8 +41,8 @@ ru:
         details_ru: Описание типа документа
         file_title_ru: Название файла
       aml/document_kind_field_definition:
-        key: Ключ
-        position: Позиция
+        key: Ключ поля
+        position: Позиция поля
         title_ru: Название поля документа
       aml/order:
         <<: *full_name
@@ -49,15 +50,15 @@ ru:
         reject_reason_details: Подробности отклонения заявки
       aml/operator:
         <<: *passwords
-        email: Почта
+        email: *email
         workflow_state: Состояние оператора
         role: Роль
         name: Имя
       aml/reject_reason:
-        kind: Вид
+        kind: Вид отклонения
         title_ru: Причина отклонения
       aml/status:
-        key: Ключ
+        key: Ключ статуса
         position: Позиция статуса
         title_ru: Название статуса
         details_ru: Описание статуса
@@ -75,8 +76,8 @@ ru:
         <<: *passwords
         current_password: Текущий пароль
       user_session:
-        login: Почта
-        password: Пароль
+        login: *email
+        password: *password
       user:
         <<: *passwords
 
