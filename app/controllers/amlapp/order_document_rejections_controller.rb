@@ -11,6 +11,7 @@ module Amlapp
     end
 
     def create
+      byebug
       authorize_action_for order_document
       order_document.reject! reject_reason: find_reject_reason, details: permitted_params[:reject_reason_details]
       flash.notice = 'Документ отклонен'
