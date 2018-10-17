@@ -1,21 +1,85 @@
 ru:
+  dictionary:
+    passwords: &passwords
+      password: &password Пароль
+      password_confirmation: &password_confirmation Подтверждение пароля
+    full_name: &full_name
+      first_name: &first_name Имя
+      surname: &surname Фамилия
+      patronymic: &patronymic Отчество
+      birth_date: &birth_date Дата рождения
+
   activerecord:
     models:
       order: Заявка
       client: Клиент
-      client_document: Документ
+      document_field: Поле документа
+      document_group: Группа документов
+      document_kind: Тип документа
+      document_kind_field_definition: Определение поля документа
+      order_document: Документ
       user: Менеджер
+      operator: Менеджер
+      status: Статус
+      reject_reason: Причина отклонения
     attributes:
-      client:
-        first_name: Имя
-        surname: Фамилия
-        patronymic: Отчество
-        birth_date: Дата рождения
+      aml/client:
+        <<: *full_name
+        workflow_state: Состояние клиента
+      aml/document_field:
+        value: Значение
+      aml/document_group:
+        title_ru: Название группы документов
+        details_ru: Описание группы документов
+        position: Позиция группы документов
+      aml/document_kind:
+        position: Позиция типа документа
+        file: Файл (PDF)
+        goal: Цель в метрике
+        title_ru: Название типа документа
+        details_ru: Описание типа документа
+        file_title_ru: Название файла
+      aml/document_kind_field_definition:
+        key: Ключ
+        position: Позиция
+        title_ru: Название поля документа
       aml/order:
-        first_name: Имя
-        surname: Фамилия
-        patronymic: Отчество
-        birth_date: Дата рождения
+        <<: *full_name
+        workflow_state: Состояние заявки
+        reject_reason_details: Подробности отклонения заявки
+      aml/operator:
+        <<: *passwords
+        email: Почта
+        workflow_state: Состояние оператора
+        role: Роль
+        name: Имя
+      aml/reject_reason:
+        kind: Вид
+        title_ru: Причина отклонения
+      aml/status:
+        key: Ключ
+        position: Позиция статуса
+        title_ru: Название статуса
+        details_ru: Описание статуса
+      aml/order_document:
+        reject_reason_details: Подробности отклонения документа
+
+    labels:
+      aml_document_group_to_status:
+        aml_document_group_id: Список групп документов
+      order_document:
+        aml_reject_reason_id: Причина отклонения документа
+      order:
+        aml_reject_reason_id: Причина отклонения заявки
+      change_password_form:
+        <<: *passwords
+        current_password: Текущий пароль
+      user_session:
+        login: Почта
+        password: Пароль
+      user:
+        <<: *passwords
+
   errors:
     messages:
       extension_whitelist_error: Неверный формат файла (должен быть pdf)
