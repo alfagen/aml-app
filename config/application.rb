@@ -17,8 +17,8 @@ module Aml
 
     # ru_RU, en_GB, cs_CZ
     I18n.available_locales = %i[ru en cs]
-    config.time_zone = 'Europe/Moscow'
-    Time.zone = 'Europe/Moscow'
+    # config.time_zone = 'Europe/Moscow'
+    # Time.zone = 'Europe/Moscow'
 
     config.generators do |generate|
       generate.template_engine :slim

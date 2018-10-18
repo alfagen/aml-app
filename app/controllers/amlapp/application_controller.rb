@@ -7,7 +7,9 @@ module Amlapp
 
     helper_method :document_kinds
 
-    ensure_authorization_performed except: %i[error reset_db drop_clients drop_orders]
+    ensure_authorization_performed except: %i[error reset_db drop_clients drop_orders set_locale]
+
+    LOCALES = { 'ru' => 'Europe/Moscow', 'cs' => 'Europe/Prague', 'en' => 'Europe/London' }
 
     def error
       raise 'test error'
@@ -40,6 +42,15 @@ module Amlapp
 
       flash.alert = 'Заявки сброшены'
       redirect_to root_path
+    end
+
+    def set_locale
+      if LOCALES[params[:locale]]
+        I18n.locale = params[:locale].to_sym if I18n.available_locales.include?(params[:locale].to_sym)
+        Time.zone = LOCALES[params[:locale]]
+      end
+      flash.notice = "Текущая локаль: #{Time.zone}"
+      redirect_back(fallback_location: root_path)
     end
 
     private
