@@ -17,7 +17,7 @@ module Amlapp
     end
 
     def create
-      AML::DocumentKind.create!(permitted_params)
+      document_group.document_kinds.create!(permitted_params)
       redirect_to document_group_path(document_group)
     rescue ActiveRecord::RecordInvalid => e
       flash.now.alert = e.message

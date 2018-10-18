@@ -12,7 +12,7 @@ RSpec.describe Amlapp::DocumentKindsController, type: :controller do
       it '#create' do
         post :create, params: {
           document_group_id: aml_document_group.id,
-          document_kind: attributes_for(:aml_document_kind, aml_document_group_id: aml_document_group.id)
+          document_kind: attributes_for(:aml_document_kind)
         }
         expect(response).to be_redirect
       end
