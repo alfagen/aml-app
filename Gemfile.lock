@@ -62,6 +62,14 @@ GIT
       capistrano-bundler
       puma (~> 3.4)
 
+GIT
+  remote: https://github.com/virgoproz/capistrano-master-key.git
+  revision: 526bfdafb63b31fc428fea0de5fcc165fee0f0bf
+  specs:
+    capistrano-master-key (1.0.2)
+      capistrano (~> 3.11)
+      sshkit (~> 1.17)
+
 PATH
   remote: vendor/aml-engine
   specs:
@@ -577,6 +585,7 @@ DEPENDENCIES
   capistrano-faster-assets
   capistrano-git-with-submodules (~> 2.0)
   capistrano-maintenance
+  capistrano-master-key!
   capistrano-rails
   capistrano-rails-console
   capistrano-rbenv

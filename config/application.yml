@@ -11,15 +11,9 @@ test:
   <<: *defaults
 production:
   <<: *defaults
+  default_url_options:
+    host: aml.kassa.cc
 staging:
   <<: *defaults
   default_url_options:
     host: aml.stage.bang8.ru
-
-  smtp_settings:
-    user_name: 'cd713a3aaf6357'
-    password: '3e201311417506'
-    address: 'smtp.mailtrap.io'
-    domain: 'smtp.mailtrap.io'
-    port: '2525'
-    authentication: :cram_md5

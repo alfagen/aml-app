@@ -126,6 +126,7 @@ group :development do
   gem 'capistrano-faster-assets', require: false
   gem 'capistrano-git-with-submodules', '~> 2.0'
   gem 'capistrano-maintenance', require: false
+  gem 'capistrano-master-key', github: 'virgoproz/capistrano-master-key', require: false
   gem 'capistrano-rails', require: false
   gem 'capistrano-rails-console', require: false
   gem 'capistrano-rbenv', require: false

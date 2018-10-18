@@ -18,7 +18,7 @@ Rails.application.configure do
 
   # Ensures that a master key has been made available in either ENV["RAILS_MASTER_KEY"]
   # or in config/master.key. This key is used to decrypt credentials (and other encrypted files).
-  # config.require_master_key = true
+  config.require_master_key = true
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
@@ -65,8 +65,15 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "aml_#{Rails.env}"
 
-  config.action_mailer.perform_caching = false
+  config.action_mailer.perform_caching     = false
   config.action_mailer.default_url_options = Settings.default_url_options.symbolize_keys
+  config.action_mailer.delivery_method     = :mailgun
+
+  # NOTE не хочет подтягивать конфиг из initializers/mailgun.rb
+  config.action_mailer.mailgun_settings = {
+    api_key: Secrets.mailgun_api_key,
+    domain: Secrets.mailgun_domain
+  }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
