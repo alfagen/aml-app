@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
 class ApplicationMailer < ActionMailer::Base
-  default from: 'from@example.com'
-  # default from: Settings.mailer.default_from
-  #
+  default from: Settings.mailer.default_from
+
   layout 'mailer'
 
   # советуют ловить только ActiveJob::DeserializationError

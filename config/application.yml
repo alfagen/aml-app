@@ -4,6 +4,8 @@ defaults: &defaults
     host: <%= ENV['APP_HOST'] || 'localhost' %>
 
   bugsnag_api_key: "88eff6a1190d47f39a44cead0a437815"
+  mailer:
+    from: support@kassa.cc
 
 development:
   <<: *defaults
