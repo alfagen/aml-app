@@ -9,7 +9,7 @@ module Amlapp
 
     ensure_authorization_performed except: %i[error reset_db drop_clients drop_orders set_locale]
 
-    LOCALES = { 'ru' => 'Europe/Moscow', 'cs' => 'Europe/Prague', 'en' => 'Europe/London' }
+    LOCALES = { 'ru' => 'Europe/Moscow', 'cs' => 'Europe/Prague', 'en' => 'Europe/London' }.freeze
 
     def error
       raise 'test error'
