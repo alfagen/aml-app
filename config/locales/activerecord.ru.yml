@@ -3,19 +3,64 @@ ru:
     models:
       order: Заявка
       client: Клиент
-      client_document: Документ
+      document_field: Поле документа
+      document_group: Группа документов
+      document_kind: Тип документа
+      document_kind_field_definition: Определение поля документа
+      order_document: Документ
       user: Менеджер
+      operator: Менеджер
+      status: Статус
+      reject_reason: Причина отклонения
     attributes:
-      client:
+      aml/client:
         first_name: Имя
         surname: Фамилия
         patronymic: Отчество
         birth_date: Дата рождения
+        workflow_state: Состояние клиента
+      aml/document_field:
+        value: Значение поля
+      aml/document_group:
+        title_ru: Название группы документов
+        details_ru: Описание группы документов
+        position: Позиция группы документов
+      aml/document_kind:
+        position: Позиция типа документа
+        file: Файл (PDF)
+        goal: Цель в метрике
+        title_ru: Название типа документа
+        details_ru: Описание типа документа
+        file_title_ru: Название файла
+      aml/document_kind_field_definition:
+        key: Ключ поля
+        position: Позиция поля
+        title_ru: Название поля документа
       aml/order:
         first_name: Имя
         surname: Фамилия
         patronymic: Отчество
         birth_date: Дата рождения
+        workflow_state: Состояние заявки
+        reject_reason_details: Подробности отклонения заявки
+      aml/operator:
+        password: Пароль
+        password_confirmation: Подтверждение пароля
+        email: Почта
+        workflow_state: Состояние оператора
+        role: Роль
+        name: Имя
+      aml/reject_reason:
+        kind: Вид отклонения
+        title_ru: Причина отклонения
+      aml/status:
+        key: Ключ статуса
+        position: Позиция статуса
+        title_ru: Название статуса
+        details_ru: Описание статуса
+      aml/order_document:
+        reject_reason_details: Подробности отклонения документа
+
   errors:
     messages:
       extension_whitelist_error: Неверный формат файла (должен быть pdf)

@@ -2,9 +2,9 @@
   .row
     .col-md-6
       = localized_render do |locale|
-        = f.input localized_attribute(:title, locale), label: 'Назване'
-        = f.input localized_attribute(:details, locale), label: 'Описание'
+        = f.input localized_attribute(:title, locale)
+        = f.input localized_attribute(:details, locale)
     .col-md-6
-      = f.input :position, label: 'Позиция'
-      = f.input :key, label: 'Уникальный ключ'
+      = f.input :position
+      = f.input :key
   = f.button :submit, 'Сохранить', class: 'btn btn-success'
