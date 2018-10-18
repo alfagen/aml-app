@@ -35,7 +35,8 @@ Authority.configure do |config|
     start:   'start',
     cancel:  'cancel',
     archive: 'archive',
-    restore: 'restore'
+    restore: 'restore',
+    reset:   'reset'
   }
 
   # ABILITIES
@@ -50,6 +51,7 @@ Authority.configure do |config|
     create:      'creatable',
     read:        'readable',
     update:      'updatable',
+    reset:       'updatable',
     delete:      'deletable',
     destroy:     'deletable',
     accept:      'acceptable',
