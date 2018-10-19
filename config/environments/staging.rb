@@ -70,7 +70,10 @@ Rails.application.configure do
   config.action_mailer.default_url_options = Settings.default_url_options.symbolize_keys
 
   config.action_mailer.delivery_method = :smtp
-  # config.action_mailer.smtp_settings = Secrets.mailtrap.smtp_settings.symbolize_keys
+
+  raise 'Установите mailtrap.smtp_settings в config/secrets.yml' unless Secrets.mailtrap[:smtp_settings].is_a? Hash
+
+  config.action_mailer.smtp_settings = Secrets.mailtrap[:smtp_settings].symbolize_keys
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
