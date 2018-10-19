@@ -9,7 +9,7 @@ module Amlapp
 
     helper_method :document_kinds
 
-    ensure_authorization_performed except: %i[error reset_db drop_clients drop_orders locale]
+    ensure_authorization_performed except: %i[error reset_db drop_clients drop_orders update_locale]
 
     def error
       raise 'test error'
@@ -44,8 +44,8 @@ module Amlapp
       redirect_to root_path
     end
 
-    def locale
-      current_user.update! locale: params[:locale] if params[:locale]
+    def update_locale
+      current_user.update! locale: params[:locale]
       flash.notice = "Вы установили локаль: #{current_user.locale.capitalize}"
       redirect_back(fallback_location: root_path)
     rescue ActiveRecord::RecordInvalid => e

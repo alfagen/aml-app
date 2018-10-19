@@ -6,4 +6,4 @@
           = current_user.locale.capitalize
         ul.dropdown-menu
           - I18n.available_locales.each do |locale|
-            = active_link_to locale.capitalize, locale_path(locale: locale), wrap_tag: :li unless locale.to_s == current_user.locale
+            = active_link_to locale.capitalize, locale_path(locale: locale), method: :put, wrap_tag: :li unless locale.to_s == current_user.locale

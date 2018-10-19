@@ -10,7 +10,7 @@ module SetLocale
   def set_locale
     I18n.locale = available_locale(request.query_parameters[:locale]) ||
                   available_locale(params[:locale]) ||
-                  available_locale(cookies[:locale]) ||
+                  available_locale(session[:locale]) ||
                   available_locale(current_user.try(:locale)) ||
                   http_accept_language.compatible_language_from(I18n.available_locales) ||
                   I18n.default_locale
