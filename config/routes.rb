@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   resources :password_resets, only: %i[new create edit update]
   resource :password, only: %i[edit update]
 
+  resource :locales, only: :update
+
   scope module: :amlapp do
     root to: redirect('orders#index')
 
@@ -19,7 +21,6 @@ Rails.application.routes.draw do
     delete 'reset_db' => 'application#reset_db'
     delete 'drop_clients' => 'application#drop_clients'
     delete 'drop_orders' => 'application#drop_orders'
-    put 'locale/:locale' => 'application#update_locale', as: :locale
 
     resources :operators, except: %i[show destroy] do
       member do

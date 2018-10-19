@@ -1,7 +1,5 @@
 module Amlapp
   class ApplicationController < ::ApplicationController
-    include SetLocale
-
     rescue_from ActionController::InvalidAuthenticityToken, with: :rescue_invalid_authenticity_token
     rescue_from Workflow::Error, with: :humanized_error
 
@@ -9,7 +7,7 @@ module Amlapp
 
     helper_method :document_kinds
 
-    ensure_authorization_performed except: %i[error reset_db drop_clients drop_orders update_locale]
+    ensure_authorization_performed except: %i[error reset_db drop_clients drop_orders]
 
     def error
       raise 'test error'
@@ -42,15 +40,6 @@ module Amlapp
 
       flash.alert = 'Заявки сброшены'
       redirect_to root_path
-    end
-
-    def update_locale
-      current_user.update! locale: params[:locale]
-      flash.notice = "Вы установили локаль: #{current_user.locale}"
-      redirect_back(fallback_location: root_path)
-    rescue ActiveRecord::RecordInvalid => e
-      flash.now.alert = e.message
-      redirect_back(fallback_location: root_path)
     end
 
     private
