@@ -51,7 +51,7 @@ Authority.configure do |config|
     create:      'creatable',
     read:        'readable',
     update:      'updatable',
-    reset:       'updatable',
+    reset:       'resetable',
     delete:      'deletable',
     destroy:     'deletable',
     accept:      'acceptable',
