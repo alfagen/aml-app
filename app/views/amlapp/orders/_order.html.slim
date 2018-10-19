@@ -7,8 +7,7 @@ tr
       = render partial: 'documents', locals: { documents: order_decorated.order_documents }
     - else
       .text-muted отсутвуют
-  td = order_decorated.client
-  td = order_decorated.name
+  td = order_decorated.client_name
   td = order_decorated.birth_date
   td
     = order_decorated.workflow_state

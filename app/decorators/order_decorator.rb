@@ -5,8 +5,8 @@ class OrderDecorator < ApplicationDecorator
     h.link_to object.id, h.order_path(object)
   end
 
-  def name
-    object.name.presence || none
+  def client_name
+    h.link_to object.client_name, h.client_path(object.client_id)
   end
 
   def reject_reason
