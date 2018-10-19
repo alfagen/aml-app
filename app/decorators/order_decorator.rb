@@ -6,7 +6,7 @@ class OrderDecorator < ApplicationDecorator
   end
 
   def name
-    object.name.presence || none
+    object.client_name.presence || none
   end
 
   def reject_reason
