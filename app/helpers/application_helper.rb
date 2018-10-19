@@ -33,6 +33,8 @@ module ApplicationHelper
   end
 
   def paginate(objects, options = {})
+    return unless objects.respond_to? :total_pages
+
     options.reverse_merge!(theme: 'twitter-bootstrap-3')
 
     super(objects, options)

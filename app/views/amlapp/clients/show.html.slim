@@ -22,15 +22,8 @@
         tr
           th Статус
           td= client.aml_status
+
 - if client.orders.any?
   hr
-  table.table.table-striped.table-condensed
-    thead
-      tr
-        th Заявка
-        th Создана
-        th Обновлена
-        th Состояние
-        th.text-right Действия
-    tbody
-      = render partial: 'order', collection: client.orders.ordered
+  h2 Заявки (#{client.orders.count})
+  = render 'amlapp/orders/orders', orders: client.orders.ordered
