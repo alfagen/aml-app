@@ -80,3 +80,7 @@ production:
   database: aml_production
   username: aml
   password: <%= ENV['AML_DATABASE_PASSWORD'] %>
+
+staging:
+  <<: *default
+  database: <%= ENV['DATABASE'] || 'aml_development' %>
