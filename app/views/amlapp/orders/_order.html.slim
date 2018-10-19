@@ -1,12 +1,12 @@
 - order_decorated = OrderDecorator.decorate order
 tr
   td = order_decorated.id
-  td = order_decorated.created_at
+  td = l order.created_at
   td
     - if order_decorated.order_documents.any?
       = render partial: 'documents', locals: { documents: order_decorated.order_documents }
     - else
-      .text-muted отсутвуют
+      .text-muted отсутствуют
   td = order_decorated.client
   td = order_decorated.name
   td = order_decorated.birth_date
