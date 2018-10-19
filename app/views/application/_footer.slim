@@ -1,0 +1,9 @@
+.navbar-fixed-bottom.row-fluid
+  .navbar-inner
+    .container
+      .btn-group.dropup.navbar-right
+        button.btn.btn-secondary.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" type="button" 
+          = current_user.locale
+        ul.dropdown-menu
+          - I18n.available_locales.each do |locale|
+            = active_link_to locale, locale_path(locale: locale), method: :put, wrap_tag: :li unless locale.to_s == current_user.locale
