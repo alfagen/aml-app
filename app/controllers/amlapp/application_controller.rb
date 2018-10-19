@@ -45,7 +45,7 @@ module Amlapp
     end
 
     def locale
-      current_user.update locale: params[:locale] if params[:locale]
+      current_user.update! locale: params[:locale] if params[:locale]
       flash.notice = "Вы установили локаль: #{current_user.locale.capitalize}"
       redirect_back(fallback_location: root_path)
     rescue ActiveRecord::RecordInvalid => e
