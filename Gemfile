@@ -37,6 +37,7 @@ gem 'draper', '~> 3.0.1' # , github: 'drapergem/draper'
 
 gem 'globalize', github: 'globalize/globalize', ref: 'HEAD'
 gem 'globalize-accessors'
+gem 'http_accept_language'
 gem 'localized_render'
 
 gem 'non-stupid-digest-assets'
