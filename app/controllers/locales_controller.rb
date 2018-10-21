@@ -2,11 +2,13 @@ class LocalesController < ApplicationController
   include SetLocale
 
   def update
-    current_user.update! locale: params[:locale]
-    flash.notice = "Вы установили локаль: #{current_user.locale}"
-    redirect_back(fallback_location: root_path)
-  rescue ActiveRecord::RecordInvalid => e
-    flash.now.alert = e.message
+  locale = available_locale params[:locale]
+    if locale.present?
+      I18n.locale = session[:locale] = locale
+      flash.notice = "Вы установили локаль: #{locale}"
+    else
+      flash.alert = "Такая локаль #{params[:locale]} не поддерживается"
+    end
     redirect_back(fallback_location: root_path)
   end
 end
