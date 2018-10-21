@@ -1,9 +1,7 @@
-.navbar-fixed-bottom.row-fluid
-  .navbar-inner
-    .container
-      .btn-group.dropup.navbar-right
-        button.btn.btn-secondary.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" type="button" 
-          = I18n.locale
-        ul.dropdown-menu
-          - I18n.available_locales.each do |locale|
-            = active_link_to locale, locale_path(locale: locale), method: :put, wrap_tag: :li unless locale == I18n.locale
+hr
+footer
+  .container.m-t-md
+    ul.list-inline.nav-locales
+      li Локаль:
+      - I18n.available_locales.each do |locale|
+        = active_link_to locale.to_s.upcase, locale_path(locale: locale), method: :put, wrap_tag: :li, active: I18n.locale == locale
