@@ -9,8 +9,9 @@ RSpec.describe LocalesController, type: :controller do
 
       it 'изменение локали на другую' do
         locale = I18n.locale
-        put 'update', params: { locale: (I18n.available_locales - [locale]).sample }
-        expect(I18n.locale).to_not eq(locale)
+        another_locale = (I18n.available_locales - [locale]).sample || :en
+        put 'update', params: { locale: another_locale }
+        expect(I18n.locale).to eq(another_locale)
       end
     end
   end
