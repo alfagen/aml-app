@@ -8,10 +8,9 @@ RSpec.describe LocalesController, type: :controller do
       before { login_user(aml_operator) }
 
       it 'изменение локали на другую' do
-        # ru по умолчанию
-        expect(I18n.locale).to eq(:ru)
-        put 'update', params: { locale: :en }
-        expect(I18n.locale).to eq(:en)
+        locale = I18n.locale
+        put 'update', params: { locale: (I18n.available_locales - [locale]).sample }
+        expect(I18n.locale).to_not eq(locale)
       end
     end
   end

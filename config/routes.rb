@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :password_resets, only: %i[new create edit update]
   resource :password, only: %i[edit update]
 
-  resource :locales, only: :update
+  resource :locale, only: :update
 
   scope module: :amlapp do
     root to: redirect('orders#index')

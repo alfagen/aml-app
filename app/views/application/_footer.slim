@@ -6,4 +6,4 @@
           = I18n.locale
         ul.dropdown-menu
           - I18n.available_locales.each do |locale|
-            = active_link_to locale, locales_path(locale: locale, id: nil), method: :put, wrap_tag: :li unless locale == I18n.locale
+            = active_link_to locale, locale_path(locale: locale), method: :put, wrap_tag: :li unless locale == I18n.locale
