@@ -6,7 +6,8 @@ class PasswordsController < ApplicationController
   def update
     if form.valid?
       current_user.change_password! form.password
-      flash.now.alert = 'Пароль изменен.'
+      current_user.update locale: form.locale
+      flash.now.alert = 'Профиль изменен.'
     else
       flash.now.alert = form.errors.messages.to_s
     end
@@ -18,6 +19,7 @@ class PasswordsController < ApplicationController
   def form
     @form ||= ChangePasswordForm.new(params.fetch(:change_password_form, {}).permit(:password,
                                                                                     :password_confirmation,
-                                                                                    :current_password).merge(user: current_user))
+                                                                                    :current_password,
+                                                                                    :locale).merge(user: current_user))
   end
 end
