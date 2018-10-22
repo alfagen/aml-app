@@ -10,5 +10,6 @@ hr
     .col-md-6
       = f.input :password
       = f.input :password_confirmation
+      = f.input :locale, collection: I18n.available_locales, selected: current_user.locale, include_blank: false
   hr
   = f.button :submit, 'Добавить', class: 'btn btn-success'

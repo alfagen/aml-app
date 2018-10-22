@@ -21,12 +21,6 @@ RSpec.describe PasswordsController, type: :controller do
         expect(AML::Operator.authenticate(aml_operator.email, new_password)).to eq(aml_operator)
         expect(response).to be_successful
       end
-
-      it 'изменение локали не требует пароля' do
-        put 'update', params: { change_password_form: attributes_for(:aml_operator, password: '', locale: :en) }
-        expect(aml_operator.locale).to eq('en')
-        expect(response).to be_successful
-      end
     end
   end
 end

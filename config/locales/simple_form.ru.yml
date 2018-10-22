@@ -11,7 +11,6 @@ ru:
         password: Пароль
         password_confirmation: Подтверждение пароля
         current_password: Текущий пароль
-        locale: Локаль
       user_session:
         login: Почта
         password: Пароль

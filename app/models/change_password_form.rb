@@ -7,7 +7,6 @@ class ChangePasswordForm
   attribute :current_password, String
   attribute :password, String
   attribute :password_confirmation, String
-  attribute :locale, String
   attribute :user
 
   validates :password, presence: true
