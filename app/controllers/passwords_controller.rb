@@ -4,13 +4,9 @@ class PasswordsController < ApplicationController
   end
 
   def update
-    if form.valid?
-      current_user.change_password! form.password
-      current_user.update locale: form.locale
-      flash.now.alert = 'Профиль изменен.'
-    else
-      flash.now.alert = form.errors.messages.to_s
-    end
+    current_user.update locale: form.locale
+    current_user.change_password! form.password if !form.password.empty? && form.valid?
+    flash.now.alert = message
     render :edit, locals: { change_password_form: form }
   end
 
@@ -21,5 +17,9 @@ class PasswordsController < ApplicationController
                                                                                     :password_confirmation,
                                                                                     :current_password,
                                                                                     :locale).merge(user: current_user))
+  end
+
+  def message
+    form.errors.messages.empty? ? 'Профиль изменен.' : form.errors.messages.to_s
   end
 end
