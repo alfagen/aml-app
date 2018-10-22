@@ -1,0 +1,12 @@
+h3 Редактировать профиль
+hr
+= simple_form_for user, url: user_path do |f|
+  .row
+    .col-md-6
+      = f.input :name, as: :string
+  .row
+    .col-md-6
+      = f.input :email, as: :string
+    .col-md-6
+      = f.input :locale, collection: I18n.available_locales, selected: current_user.locale, include_blank: false
+  = f.button :submit, 'Изменить', class: 'btn btn-success'

@@ -57,7 +57,7 @@ module Amlapp
     end
 
     def permitted_params
-      params.fetch(:operator, {}).permit(:email, :name, :role, :password, :password_confirmation, :workflow_state, :locale)
+      params.fetch(:operator, {}).permit(:email, :name, :role, :password, :password_confirmation)
     end
   end
 end
