@@ -13,12 +13,18 @@ RSpec.describe PasswordsController, type: :controller do
 
       before { login_user(aml_operator) }
 
-      it 'изменение профиля с правильным текущим паролем' do
+      it 'изменение пароля с правильным текущим паролем' do
         put 'update', params: { change_password_form: attributes_for(:aml_operator, current_password: current_password,
                                                                                     password: new_password,
                                                                                     password_confirmation: new_password,
                                                                                     locale: I18n.available_locales.sample) }
         expect(AML::Operator.authenticate(aml_operator.email, new_password)).to eq(aml_operator)
+        expect(response).to be_successful
+      end
+
+      it 'изменение локали не требует пароля' do
+        put 'update', params: { change_password_form: attributes_for(:aml_operator, password: '', locale: :en) }
+        expect(aml_operator.locale).to eq('en')
         expect(response).to be_successful
       end
     end
