@@ -4,26 +4,13 @@ hr
 h5 Поиск по полям клиента:
 
 = search_form_for @q, { path: clients_path, builder: SimpleForm::FormBuilder } do |f|
-  = f.search_field :first_name_or_surname_or_patronymic_cont
+  = f.search_field :first_name_or_surname_or_patronymic_or_email_or_phone_cont
   = f.submit 'Искать', class: 'btn btn-default'
 
 hr
 
 - if clients.any?
-  table.table.table-condensed.table-striped
-    thead
-      tr
-        th ID
-        th Создан
-        th Имя
-        th Фамилия
-        th Отчество
-        th Дата рождения
-        th Статус
-        th Текущая заявка
-        th.text-right Действия
-    tbody
-      = render partial: 'client', collection: clients
+  = render 'clients', clients: clients
   = paginate clients
 - else
   p.alert Клиенты отсутствуют

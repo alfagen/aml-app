@@ -1,0 +1,31 @@
+table.table.table-condensed.table-striped
+  thead
+    tr
+      th ID
+      th Создан
+      th Имя
+      th Фамилия
+      th Отчество
+      th email
+      th Телефон
+      th Дата рождения
+      th Статус
+      th Текущая заявка
+      th.text-right Действия
+  tbody
+    - clients.each do |client|
+      - cd = ClientDecorator.new client
+      tr
+        td= cd.id
+        td= cd.created_at
+        td= cd.first_name
+        td= cd.surname
+        td= cd.patronymic
+        td= cd.email
+        td= cd.phone
+        td= cd.birth_date
+        td= cd.aml_status
+        td= cd.current_order
+        td.text-right
+          .btn-group
+            = link_to 'Подробнее', client_path(cd), class: 'btn btn-default' if client.readable_by?(current_user)
