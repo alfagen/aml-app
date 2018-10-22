@@ -50,6 +50,7 @@ ru:
         workflow_state: Состояние оператора
         role: Роль
         name: Имя
+        locale: Локаль
       aml/reject_reason:
         kind: Вид отклонения
         title_ru: Причина отклонения

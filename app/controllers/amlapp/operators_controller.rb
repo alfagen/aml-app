@@ -34,7 +34,7 @@ module Amlapp
 
     def update
       operator.update!(permitted_params)
-      redirect_to operators_path
+      render :edit, locals: { operator: operator }
     rescue ActiveRecord::RecordInvalid => e
       flash.now.alert = e.message
       render :edit, locals: { operator: e.record }
@@ -57,7 +57,7 @@ module Amlapp
     end
 
     def permitted_params
-      params.fetch(:operator, {}).permit(:email, :name, :role, :password, :password_confirmation, :workflow_state)
+      params.fetch(:operator, {}).permit(:email, :name, :role, :password, :password_confirmation)
     end
   end
 end

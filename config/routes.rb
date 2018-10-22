@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resource :password, only: %i[edit update]
 
   resource :locale, only: :update
+  resource :user, only: %i[edit update]
 
   scope module: :amlapp do
     root to: redirect('orders#index')
