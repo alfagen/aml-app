@@ -4,9 +4,11 @@ hr
   .row
     .col-md-6
       = f.input :name, as: :string
-  .row
     .col-md-6
       = f.input :email, as: :string
+  .row
     .col-md-6
       = f.input :locale, collection: I18n.available_locales, selected: current_user.locale, include_blank: false
+    .col-md-6
+      = f.input :time_zone, collection: ActiveSupport::TimeZone.all.sort_by(&:name).map{|e| "#{e.name}(GMT#{e.formatted_offset})"}, include_blank: true
   = f.button :submit, 'Изменить', class: 'btn btn-success'

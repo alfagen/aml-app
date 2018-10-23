@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_19_073247) do
+ActiveRecord::Schema.define(version: 2018_10_23_080825) do
 
   create_table "aml_clients", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "first_name"
@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(version: 2018_10_19_073247) do
     t.bigint "aml_order_id"
     t.bigint "aml_status_id"
     t.bigint "aml_accepted_order_id"
+    t.string "email"
+    t.string "phone"
     t.index ["aml_accepted_order_id"], name: "index_aml_clients_on_aml_accepted_order_id"
     t.index ["aml_order_id"], name: "index_aml_clients_on_aml_order_id"
     t.index ["aml_status_id"], name: "index_aml_clients_on_aml_status_id"
@@ -121,6 +123,7 @@ ActiveRecord::Schema.define(version: 2018_10_19_073247) do
     t.integer "role", default: 0, null: false
     t.string "name", null: false
     t.string "locale", default: "ru", null: false
+    t.string "time_zone"
     t.index ["email"], name: "index_aml_operators_on_email", unique: true
     t.index ["reset_password_token"], name: "index_aml_operators_on_reset_password_token"
   end
@@ -197,6 +200,17 @@ ActiveRecord::Schema.define(version: 2018_10_19_073247) do
     t.index ["key"], name: "index_aml_statuses_on_key", unique: true
   end
 
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "email", null: false
+    t.string "crypted_password"
+    t.string "salt"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "aml_operator_id"
+    t.index ["aml_operator_id"], name: "index_users_on_aml_operator_id"
+    t.index ["email"], name: "index_users_on_email", unique: true
+  end
+
   add_foreign_key "aml_clients", "aml_orders", column: "aml_accepted_order_id"
   add_foreign_key "aml_clients", "aml_orders", on_delete: :nullify
   add_foreign_key "aml_clients", "aml_statuses"
@@ -210,4 +224,5 @@ ActiveRecord::Schema.define(version: 2018_10_19_073247) do
   add_foreign_key "aml_orders", "aml_clients", column: "client_id"
   add_foreign_key "aml_orders", "aml_operators", column: "operator_id"
   add_foreign_key "aml_orders", "aml_statuses"
+  add_foreign_key "users", "aml_operators"
 end

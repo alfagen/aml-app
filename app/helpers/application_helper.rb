@@ -58,4 +58,12 @@ module ApplicationHelper
   def app_title
     "AML #{AppVersion}"
   end
+
+  def current_time_zone
+    current_user.time_zone.presence || Time.zone
+  end
+
+  def to_time_zone(time)
+    time.in_time_zone(/.*?(?=\()/.match(current_user.time_zone)[0])
+  end
 end
