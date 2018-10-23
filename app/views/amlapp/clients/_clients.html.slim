@@ -17,7 +17,7 @@ table.table.table-condensed.table-striped
       - cd = ClientDecorator.new client
       tr
         td= cd.id
-        td= cd.created_at
+        td= l to_time_zone(cd.created_at)
         td= cd.first_name
         td= cd.surname
         td= cd.patronymic
