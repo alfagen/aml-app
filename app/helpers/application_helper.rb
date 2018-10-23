@@ -58,4 +58,12 @@ module ApplicationHelper
   def app_title
     "AML #{AppVersion}"
   end
+
+  def current_time_zone_offset
+    ActiveSupport::TimeZone[current_time_zone].formatted_offset
+  end
+
+  def humanized_time_in_current_time_zone(time)
+    I18n.l time.in_time_zone(current_time_zone)
+  end
 end

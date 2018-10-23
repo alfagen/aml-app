@@ -15,6 +15,6 @@ class UsersController < ApplicationController
   private
 
   def permitted_params
-    params.fetch(:operator, {}).permit(:email, :name, :locale)
+    params.fetch(:operator, {}).permit(:email, :name, :locale, :time_zone)
   end
 end
