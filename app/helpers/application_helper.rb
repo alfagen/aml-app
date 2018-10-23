@@ -66,4 +66,8 @@ module ApplicationHelper
   def current_time_zone
     current_user.time_zone.presence || Time.zone.name
   end
+
+  def time_zone_offset
+    ActiveSupport::TimeZone[current_time_zone].formatted_offset
+  end
 end
