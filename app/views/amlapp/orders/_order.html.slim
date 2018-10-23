@@ -1,7 +1,7 @@
 - order_decorated = OrderDecorator.decorate order
 tr
   td = order_decorated.id
-  td = humanized_time_in_current_time_zone order.created_at
+  td.text-nowrap = humanized_time_in_current_time_zone order.created_at
   td
     - if order_decorated.order_documents.any?
       = render partial: 'documents', locals: { documents: order_decorated.order_documents }

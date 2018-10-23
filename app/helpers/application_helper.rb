@@ -64,6 +64,6 @@ module ApplicationHelper
   end
 
   def humanized_time_in_current_time_zone(time)
-    I18n.l time.in_time_zone(current_time_zone)
+    I18n.l time.in_time_zone(current_time_zone), format: :human
   end
 end
