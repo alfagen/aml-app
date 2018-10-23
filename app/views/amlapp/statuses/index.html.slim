@@ -4,6 +4,6 @@
 h2 Статусы
 hr
 - if statuses.any?
-  = render partial: 'statuses', locals: { statuses: statuses }
+  = render 'statuses', statuses: statuses
 - else
   p.alert Статусы отсутствуют

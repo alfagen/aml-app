@@ -58,6 +58,9 @@ ru:
       aml/status:
         key: Ключ статуса
         position: Позиция статуса
+        max_amount_limit: Максимальная сумма заявки
+        operations_count_limit: Кол-во допустимых заявок
+        referal_output_enabled: Реферальная программа с возможностью вывода средств (Без ограничений)
         title_ru: Название статуса
         details_ru: Описание статуса
       aml/order_document:

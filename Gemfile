@@ -33,6 +33,9 @@ gem 'mini_magick', '~> 4.8'
 gem 'ransack'
 gem 'virtus'
 
+gem 'money', '~> 6.12'
+gem 'money-rails', '~> 1.12'
+
 gem 'draper', '~> 3.0.1' # , github: 'drapergem/draper'
 
 gem 'globalize', github: 'globalize/globalize', ref: 'HEAD'
