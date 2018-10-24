@@ -5,6 +5,6 @@ class ApplicationController < ActionController::Base
   helper_method :current_time_zone
 
   def current_time_zone
-    current_user.time_zone.presence || "#{Time.zone.name}(#{Time.zone.formatted_offset})"
+    current_user.time_zone.presence || Time.zone
   end
 end
