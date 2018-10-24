@@ -10,5 +10,5 @@ hr
     .col-md-6
       = f.input :locale, collection: I18n.available_locales, selected: current_user.locale, include_blank: false
     .col-md-6
-      = f.input :time_zone, collection: ActiveSupport::TimeZone.all.map(&:name).sort, include_blank: true
+      = f.input :time_zone, collection: ActiveSupport::TimeZone.all.sort_by{|zone| zone.formatted_offset.to_i}.map{|e| "#{e.name}(#{e.formatted_offset})"}, include_blank: true
   = f.button :submit, 'Изменить', class: 'btn btn-success'
