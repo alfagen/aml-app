@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    current_user.update! permitted_params.merge!(time_zone: permitted_params[:time_zone].split(' GMT')[0])
+    current_user.update! permitted_params
     flash.now.notice = 'Профиль изменен.'
     render :edit, locals: { user: current_user }
   rescue ActiveRecord::RecordInvalid => e
