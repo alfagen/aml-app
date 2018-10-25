@@ -5,6 +5,6 @@ class ApplicationController < ActionController::Base
   helper_method :current_time_zone
 
   def current_time_zone
-    current_user.time_zone.presence || Time.zone.name
+    current_user.time_zone_object || Time.zone
   end
 end
