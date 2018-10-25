@@ -62,10 +62,4 @@ module ApplicationHelper
   def humanized_time_in_current_time_zone(time)
     I18n.l time.in_time_zone(current_time_zone), format: :human
   end
-
-  def time_zone(zone)
-    return "#{zone} GMT(#{ActiveSupport::TimeZone[zone].formatted_offset})" if zone.is_a? String
-
-    "#{zone.name} GMT(#{zone.formatted_offset})"
-  end
 end
