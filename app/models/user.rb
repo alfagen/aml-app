@@ -9,7 +9,7 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true, email: true
 
   after_commit :deliver_reset_password_instructions!, on: :create, if: -> { respond_to?(:deliver_reset_password_instructions!) }
-  # after_create :create_operator
+  before_validation :create_operator
 
   def active_for_authentication?
     aml_operator.unblocked?
@@ -25,6 +25,7 @@ class User < ApplicationRecord
   end
 
   def create_operator
-    #
+    operator = AML::Operator.create!(email: email, name: email, role: 'operator')
+    self.aml_operator_id = operator.id
   end
 end

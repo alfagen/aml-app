@@ -9,7 +9,11 @@ Authority.configure do |config|
   #
   # Default is:
 
-  config.user_method = :current_user
+  config.user_method = :current_operator
+
+  def current_operator
+    current_user.aml_operator
+  end
 
   # CONTROLLER_ACTION_MAP
   # =====================

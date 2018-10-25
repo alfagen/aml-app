@@ -12,7 +12,7 @@ nav.navbar.navbar-default.navbar-fixed-top
         = active_link_to orders_path, wrap_tag: :li do
           = title_with_counter 'Заявки клиентов', AML::Order.with_pending_state.count
 
-        - if current_user.administrator?
+        - if current_operator.administrator?
           li.dropdown
             = link_to '#', class: 'dropdown-toggle', data: { toggle: :dropdown }, role: :button, 'aria-haspopup' => true, 'aria-expanded' => false do
               | Управление
@@ -35,10 +35,10 @@ nav.navbar.navbar-default.navbar-fixed-top
         ul.nav.navbar-nav.navbar-right
           li.dropdown
             = link_to '#', class: 'dropdown-toggle', data: { toggle: :dropdown }, role: :button, 'aria-haspopup' => true, 'aria-expanded' => false do
-              = "#{current_user.email} (#{current_user.role})"
+              = "#{current_operator.email} (#{current_operator.role})"
               span.m-l-sm.caret
             ul.dropdown-menu
-              = active_link_to 'Сменить пароль', edit_password_path(current_user), wrap_tag: :li
+              = active_link_to 'Сменить пароль', edit_password_path(current_operator), wrap_tag: :li
               = active_link_to 'Редактировать профиль', edit_user_path, wrap_tag: :li
               li.divider
               li= link_to 'Выйти', logout_path, method: :delete
