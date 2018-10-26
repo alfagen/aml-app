@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Amlapp::OperatorsController, type: :controller do
-  let(:administrator) { create(:aml_operator, role: 'administrator') }
+  let(:administrator) { create(:user) }
   let(:operator) { create(:aml_operator, role: 'operator') }
   let(:test_operator) { create(:aml_operator, role: 'operator') }
 

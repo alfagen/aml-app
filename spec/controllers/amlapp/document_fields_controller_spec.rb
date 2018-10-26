@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Amlapp::DocumentFieldsController, type: :controller do
   let!(:aml_status) { create(:aml_status, key: 'guest') }
-  let(:user) { create :aml_operator, :administrator }
+  let(:user) { create :user }
   let!(:aml_document_field) { create(:aml_document_field) }
 
   before { login_user user }

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Amlapp::StatusesController, type: :controller do
   describe '#base actions' do
-    let(:administrator) { create(:aml_operator, role: 'administrator') }
+    let(:administrator) { create(:user) }
     let(:aml_status) { create(:aml_status) }
 
     before { login_user(administrator) }

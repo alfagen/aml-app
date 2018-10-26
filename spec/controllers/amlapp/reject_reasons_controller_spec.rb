@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Amlapp::RejectReasonsController, type: :controller do
-  let(:administrator) { create(:aml_operator, :administrator) }
+  let(:administrator) { create(:user) }
   let(:aml_reason) { create(:aml_reject_reason, :order_reason) }
   let(:kind) { 'order_document_reason' }
 

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Amlapp::DocumentKindsController, type: :controller do
   describe '#base actions' do
-    let(:user) { create :aml_operator, :administrator }
+    let(:user) { create :user }
     let(:aml_document_group) { create(:aml_document_group) }
     let(:aml_document_kind) { create(:aml_document_kind) }
 
