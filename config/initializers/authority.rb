@@ -36,7 +36,9 @@ Authority.configure do |config|
     cancel:  'cancel',
     archive: 'archive',
     restore: 'restore',
-    reset:   'reset'
+    reset:   'reset',
+    block:   'block',
+    unblock: 'unblock'
   }
 
   # ABILITIES
@@ -56,8 +58,9 @@ Authority.configure do |config|
     destroy:     'deletable',
     accept:      'acceptable',
     reject:      'rejectable',
-    update_role: 'role_updatable', # TODO Удалить
-    block:       'blockable', # TODO Удалить
+    update_role: 'role_updatable',
+    block:       'blockable',
+    unblock:     'unblockable',
     start:       'startable',
     done:        'donable',
     cancel:      'cancelable',

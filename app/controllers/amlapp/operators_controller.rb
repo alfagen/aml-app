@@ -42,12 +42,12 @@ module Amlapp
 
     def block
       operator.block!
-      redirect_to users_path, notice: "Оператор, #{operator.email} был заблокирован"
+      redirect_to operators_path, notice: "Оператор, #{operator.email} был заблокирован"
     end
 
     def unblock
       operator.unblock!
-      redirect_to users_path, notice: "Оператор, #{operator.email} был разблокирован"
+      redirect_to operators_path, notice: "Оператор, #{operator.email} был разблокирован"
     end
 
     private

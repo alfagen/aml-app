@@ -9,11 +9,15 @@ module AML
     end
 
     def updatable_by?(operator)
-      (resource == operator && operator.operator?) || operator.administrator?
+      resource == operator || operator.administrator?
     end
 
-    def blockable_by?(operator)
-      operator.administrator?
+    def blockable_by?(operator = nil)
+      resource != operator && operator.administrator?
+    end
+
+    def unblockable_by?(operator)
+      blockable_by? operator
     end
   end
 end
