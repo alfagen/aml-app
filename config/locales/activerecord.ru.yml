@@ -51,7 +51,7 @@ ru:
         role: Роль
         name: Имя
         locale: Локаль
-        time_zone: Часовой пояс
+        time_zone_name: Часовой пояс
       aml/reject_reason:
         kind: Вид отклонения
         title_ru: Причина отклонения

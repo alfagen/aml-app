@@ -62,4 +62,8 @@ module ApplicationHelper
   def humanized_time_in_current_time_zone(time)
     I18n.l time.in_time_zone(current_time_zone.name), format: :human
   end
+
+  def time_zone_name_with_offset(time_zone)
+    "#{Time.now.in_time_zone(time_zone).formatted_offset} #{time_zone}"
+  end
 end
