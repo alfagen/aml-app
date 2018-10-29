@@ -2,9 +2,13 @@ class ApplicationController < ActionController::Base
   include SetLocale
   helper LocalizedRender::Engine.helpers
 
-  helper_method :current_time_zone
+  helper_method :current_time_zone, :current_operator
 
   def current_time_zone
-    current_user.time_zone || Time.zone
+    current_operator.time_zone || Time.zone
+  end
+
+  def current_operator
+    current_user&.aml_operator
   end
 end

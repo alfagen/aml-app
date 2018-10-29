@@ -9,7 +9,8 @@ RSpec.describe Amlapp::OrdersController, type: :controller do
   before { login_user user }
 
   describe 'оператор' do
-    let(:user) { create :aml_operator }
+    let!(:aml_operator) { create(:aml_operator) }
+    let(:user) { create(:user, aml_operator_id: aml_operator.id) }
 
     it '#show' do
       get :show, params: { id: aml_order.id }
@@ -23,7 +24,8 @@ RSpec.describe Amlapp::OrdersController, type: :controller do
   end
 
   describe 'administartor' do
-    let(:user) { create(:aml_operator, role: 'administrator') }
+    let!(:aml_operator) { create(:aml_operator, :administrator) }
+    let(:user) { create(:user, aml_operator_id: aml_operator.id) }
 
     it '#create' do
       post :create, params: { order: attributes_for(:aml_order) }

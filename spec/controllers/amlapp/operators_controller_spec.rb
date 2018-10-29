@@ -1,12 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Amlapp::OperatorsController, type: :controller do
-  let(:administrator) { create(:aml_operator, role: 'administrator') }
-  let(:operator) { create(:aml_operator, role: 'operator') }
+  let!(:aml_operator) { create(:aml_operator, :administrator) }
+  let(:user) { create(:user, aml_operator_id: aml_operator.id) }
   let(:test_operator) { create(:aml_operator, role: 'operator') }
 
   context 'администратор может' do
-    before { login_user administrator }
+    before { login_user user }
 
     it '#create создавать операторов' do
       post :create, params: { operator: test_operator.attributes }

@@ -1,6 +1,6 @@
 .pull-right
-  = link_to 'Добавить заявку', new_order_path(order: { client_id: client.id }), class: 'btn btn-success' if current_user.can_create?(AML::Order)
-  =< link_to 'Сбросить статус', reset_client_path(client), class: 'btn btn-danger', method: :delete, data: { confirm: 'Сбросить статус клиента?' } if client.resetable_by? current_user
+  = link_to 'Добавить заявку', new_order_path(order: { client_id: client.id }), class: 'btn btn-success' if current_operator.can_create?(AML::Order)
+  =< link_to 'Сбросить статус', reset_client_path(client), class: 'btn btn-danger', method: :delete, data: { confirm: 'Сбросить статус клиента?' } if client.resetable_by? current_operator
 
 - client = ClientDecorator.decorate client
 .row
