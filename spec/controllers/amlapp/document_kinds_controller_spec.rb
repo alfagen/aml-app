@@ -2,13 +2,14 @@ require 'rails_helper'
 
 RSpec.describe Amlapp::DocumentKindsController, type: :controller do
   describe '#base actions' do
-    let(:user) { create :aml_operator, :administrator }
+    let!(:aml_operator) { create(:aml_operator, :administrator) }
+    let(:user) { create(:user, aml_operator_id: aml_operator.id) }
     let(:aml_document_group) { create(:aml_document_group) }
     let(:aml_document_kind) { create(:aml_document_kind) }
 
     before { login_user(user) }
 
-    context 'with registered operator' do
+    context 'with registered administrator' do
       it '#create' do
         post :create, params: {
           document_group_id: aml_document_group.id,

@@ -1,5 +1,5 @@
 ul.nav.nav-tabs
-  - if current_user.administrator?
+  - if current_operator.administrator?
     = active_link_to orders_path(workflow_state: :none), active: :exact, wrap_tag: :li do
       = title_with_counter 'Незаполненные', AML::Order.with_none_state.count
   = active_link_to orders_path(workflow_state: :pending), active: active_style_order(workflow_state), wrap_tag: :li do
