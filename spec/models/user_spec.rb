@@ -8,5 +8,5 @@ RSpec.describe User, type: :model do
     user.change_password! password
   end
 
-  it { expect(user.valid_password? password) }
+  it { expect(user.valid_password?(password)) }
 end
