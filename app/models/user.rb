@@ -13,7 +13,8 @@ class User < ApplicationRecord
   def active_for_authentication?
     aml_operator.unblocked?
   end
-   # TODO move to sorcery
+
+  # TODO move to sorcery
   #
   def change_password!(new_password)
     clear_reset_password_token
