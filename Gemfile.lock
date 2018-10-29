@@ -73,7 +73,7 @@ GIT
 PATH
   remote: vendor/aml-engine
   specs:
-    aml (0.2.0)
+    aml (0.3.0)
       carrierwave
       dapi-archivable (~> 0.1.2)
       enumerize

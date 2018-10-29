@@ -8,6 +8,8 @@ table.table.table-condensed.table-striped
       th Отчество
       th email
       th Телефон
+      th Сумма сделок
+      th Количество сделок
       th Дата рождения
       th Статус
       th Текущая заявка
@@ -24,6 +26,8 @@ table.table.table-condensed.table-striped
         td= cd.email
         td= cd.phone
         td= cd.birth_date
+        td= cd.total_income_amount
+        td= cd.total_operations_count
         td= cd.aml_status
         td= cd.current_order
         td.text-right
