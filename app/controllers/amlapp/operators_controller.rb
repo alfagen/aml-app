@@ -12,28 +12,13 @@ module Amlapp
       render :index, locals: { operators: paginate(AML::Operator.ordered) }
     end
 
-    def new
-      render :new, locals: { operator: AML::Operator.new(permitted_params) }
-    end
-
-    def create
-      attrs = permitted_params
-      operator = AML::Operator.create! attrs
-
-      auto_login operator, true if AML::Operator.one?
-
-      redirect_to operators_path
-    rescue ActiveRecord::RecordInvalid => e
-      flash.now.alert = e.message
-      render :new, locals: { operator: e.record }
-    end
-
     def edit
       render :edit, locals: { operator: operator }
     end
 
     def update
       operator.update!(permitted_params)
+      flash.now.notice = "Оператор, #{operator.name} был изменен"
       render :edit, locals: { operator: operator }
     rescue ActiveRecord::RecordInvalid => e
       flash.now.alert = e.message
@@ -42,12 +27,12 @@ module Amlapp
 
     def block
       operator.block!
-      redirect_to operators_path, notice: "Оператор, #{operator.email} был заблокирован"
+      redirect_to operators_path, notice: "Оператор, #{operator.name} был заблокирован"
     end
 
     def unblock
       operator.unblock!
-      redirect_to operators_path, notice: "Оператор, #{operator.email} был разблокирован"
+      redirect_to operators_path, notice: "Оператор, #{operator.name} был разблокирован"
     end
 
     private
@@ -57,7 +42,7 @@ module Amlapp
     end
 
     def permitted_params
-      params.fetch(:operator, {}).permit(:email, :name, :role, :password, :password_confirmation)
+      params.fetch(:operator, {}).permit(:name, :role)
     end
   end
 end

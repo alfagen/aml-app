@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!
 
+  scope :ordered, -> { order 'id desc' }
+
   belongs_to :aml_operator, class_name: 'AML::Operator', foreign_key: :aml_operator_id, inverse_of: :user, dependent: :destroy
 
   validates :password, length: { minimum: 8 }, on: :update, if: :crypted_password_changed?

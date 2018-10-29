@@ -1,11 +1,9 @@
 h3 Редактировать профиль
 hr
-= simple_form_for user, url: user_path do |f|
+= simple_form_for user, url: profile_path do |f|
   .row
     .col-md-6
       = f.input :name, as: :string
-    .col-md-6
-      = f.input :email, as: :string
   .row
     .col-md-6
       = f.input :locale, collection: I18n.available_locales, selected: current_operator.locale, include_blank: false

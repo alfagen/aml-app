@@ -9,6 +9,6 @@ class ApplicationController < ActionController::Base
   end
 
   def current_operator
-    current_user&.aml_operator
+    current_user.aml_operator
   end
 end
