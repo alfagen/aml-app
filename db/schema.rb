@@ -204,6 +204,17 @@ ActiveRecord::Schema.define(version: 2018_10_26_101950) do
     t.index ["key"], name: "index_aml_statuses_on_key", unique: true
   end
 
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "email", null: false
+    t.string "crypted_password"
+    t.string "salt"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "aml_operator_id"
+    t.index ["aml_operator_id"], name: "index_users_on_aml_operator_id"
+    t.index ["email"], name: "index_users_on_email", unique: true
+  end
+
   add_foreign_key "aml_clients", "aml_orders", column: "aml_accepted_order_id"
   add_foreign_key "aml_clients", "aml_orders", on_delete: :nullify
   add_foreign_key "aml_clients", "aml_statuses"
@@ -217,4 +228,5 @@ ActiveRecord::Schema.define(version: 2018_10_26_101950) do
   add_foreign_key "aml_orders", "aml_clients", column: "client_id"
   add_foreign_key "aml_orders", "aml_operators", column: "operator_id"
   add_foreign_key "aml_orders", "aml_statuses"
+  add_foreign_key "users", "aml_operators"
 end
