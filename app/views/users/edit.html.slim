@@ -10,5 +10,5 @@ hr
     .col-md-6
       = f.input :locale, collection: I18n.available_locales, selected: current_user.locale, include_blank: false
     .col-md-6
-      = f.input :time_zone_name, collection: ActiveSupport::TimeZone.all.map{ |z| [time_zone_name_with_offset(z.name), z.name] }, include_blank: "Зона сервера: #{ActiveSupport::TimeZone[Rails.application.config.time_zone].to_s}"
+      = f.input :time_zone_name, collection: ActiveSupport::TimeZone.all.map{ |z| [z.to_s, z.name] }, include_blank: "Зона сервера: #{ActiveSupport::TimeZone[Rails.application.config.time_zone].to_s}"
   = f.button :submit, 'Изменить', class: 'btn btn-success'
