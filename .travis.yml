@@ -4,7 +4,7 @@ rvm:
 env:
   - RAILS_ENV=test
 before_install:
-  - psql -c 'create database aml_test;' -U postgres
+  - psql -c 'create database aml_development;' -U postgres
   - cp config/database.yml.travis config/database.yml
 before_script:
   - bundle exec rake db:create db:migrate RAILS_ENV=test
