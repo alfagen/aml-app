@@ -65,6 +65,8 @@ ru:
         details_ru: Описание статуса
       aml/order_document:
         reject_reason_details: Подробности отклонения документа
+      user:
+        name: Имя
 
   errors:
     messages:

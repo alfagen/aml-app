@@ -3,12 +3,13 @@ class User < ApplicationRecord
 
   scope :ordered, -> { order 'id desc' }
 
-  belongs_to :aml_operator, class_name: 'AML::Operator', foreign_key: :aml_operator_id, inverse_of: :user, dependent: :destroy
+  belongs_to :aml_operator, class_name: 'AML::Operator', foreign_key: :aml_operator_id, dependent: :destroy
 
   validates :password, length: { minimum: 8 }, on: :update, if: :crypted_password_changed?
   validates :password, confirmation: true, on: :update, if: :crypted_password_changed?
   validates :password_confirmation, presence: true, on: :update, if: :crypted_password_changed?
   validates :email, presence: true, uniqueness: true, email: true
+  validates :name, presence: true, uniqueness: true
 
   after_commit :deliver_reset_password_instructions!, on: :create, if: -> { respond_to?(:deliver_reset_password_instructions!) }
 

@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   resources :password_resets, only: %i[new create edit update]
   resource :password, only: %i[edit update]
-
+  resources :users, except: :destroy
   resource :locale, only: :update
 
   scope module: :amlapp do
@@ -23,7 +23,6 @@ Rails.application.routes.draw do
     delete 'drop_orders' => 'application#drop_orders'
 
     resource :profile, only: %i[edit update]
-    resources :users, except: :destroy
     resources :operators, except: %i[destroy new create] do
       member do
         put :block

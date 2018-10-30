@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_29_145547) do
+ActiveRecord::Schema.define(version: 2018_10_30_081239) do
 
   create_table "aml_clients", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "first_name"
@@ -216,6 +216,7 @@ ActiveRecord::Schema.define(version: 2018_10_29_145547) do
     t.datetime "reset_password_token_expires_at"
     t.datetime "reset_password_email_sent_at"
     t.integer "access_count_to_reset_password_page"
+    t.string "name"
     t.index ["aml_operator_id"], name: "index_users_on_aml_operator_id"
     t.index ["email"], name: "index_users_on_email", unique: true
   end

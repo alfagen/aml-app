@@ -1,7 +1,6 @@
 = link_to '&larr; назад в список операторов'.html_safe, operators_path
 
 h3 Редактировать оператора
-= link_to "К пользователю #{operator.user.email}", edit_user_path(operator.user), class: 'btn btn-default'
 hr
 = simple_form_for operator do |f|
   .row
