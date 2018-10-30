@@ -27,6 +27,7 @@ class UsersController < ApplicationController
   end
 
   def update
+    authorize_action_for user
     user.update! permitted_params
     redirect_to users_path, notice: "Пользователь #{permitted_params[:name]} изменен."
   rescue ActiveRecord::RecordInvalid => e

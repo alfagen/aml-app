@@ -15,12 +15,6 @@ RSpec.describe UsersController, type: :controller do
   it '#update администратор может может редактировать других пользователей' do
     login_user administrator
     put :update, params: { user: { email: 'new@mail.com', password: 'password', password_confirmation: 'password' }, id: user.id }
-    expect(response.status).to eq(200)
-  end
-
-  it '#update оператор может редактировать себя' do
-    login_user user
-    put :update, params: { user: { email: 'newnew@mail.com', password: 'password', password_confirmation: 'password' }, id: user.id }
-    expect(response.status).to eq(200)
+    expect(response.status).to eq(302)
   end
 end
