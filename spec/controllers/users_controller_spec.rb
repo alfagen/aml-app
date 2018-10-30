@@ -8,7 +8,7 @@ RSpec.describe UsersController, type: :controller do
 
   it '#create администратор может создавать пользователей' do
     login_user administrator
-    post :create, params: { user: { email: 'new@mail.com', password: 'password', password_confirmation: 'password' } }
+    post :create, params: { user: { email: 'new@mail.com', password: 'password', password_confirmation: 'password', name: 'name' } }
     expect(response.status).to eq(302)
   end
 
