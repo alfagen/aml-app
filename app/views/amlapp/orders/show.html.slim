@@ -20,6 +20,8 @@ hr
       dt Категория риска
       dd= order.client.risk
 
+      = link_to 'Задать категорию риска', client_path(order.client), class: 'btn btn-default' if order.client.risk == 'undefined'
+
       dt Состояние
       dd= order_decorated.workflow_state
 

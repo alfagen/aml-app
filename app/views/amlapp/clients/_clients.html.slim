@@ -12,6 +12,7 @@ table.table.table-condensed.table-striped
       th Количество сделок
       th Дата рождения
       th Статус
+      th Категория риска
       th Текущая заявка
       th.text-right Действия
   tbody
@@ -29,6 +30,7 @@ table.table.table-condensed.table-striped
         td= cd.total_income_amount
         td= cd.total_operations_count
         td= cd.aml_status
+        td= cd.risk
         td= cd.current_order
         td.text-right
           .btn-group
