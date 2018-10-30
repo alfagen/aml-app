@@ -40,6 +40,15 @@ module Amlapp
       render :new, locals: { client: e.record }
     end
 
+    def update
+      authorize_action_for client
+      client.update!(permitted_params)
+      redirect_to client_path(client)
+    rescue ActiveRecord::RecordInvalid => e
+      flash.now.alert = e.message
+      redirect_to client_path(client)
+    end
+
     private
 
     def q
@@ -51,7 +60,7 @@ module Amlapp
     end
 
     def permitted_params
-      params.fetch(:client, {}).permit(:first_name, :surname, :patronymic, :birth_date, :email, :phone, :aml_status_id)
+      params.fetch(:client, {}).permit(:first_name, :surname, :patronymic, :birth_date, :email, :phone, :aml_status_id, :risk)
     end
   end
 end

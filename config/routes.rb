@@ -51,7 +51,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :clients, except: %i[edit update destroy] do
+    resources :clients, except: %i[edit destroy] do
       member do
         delete :reset
       end

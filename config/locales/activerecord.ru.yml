@@ -19,6 +19,7 @@ ru:
         patronymic: Отчество
         birth_date: Дата рождения
         workflow_state: Состояние клиента
+        risk: Категория риска
       aml/document_field:
         value: Значение поля
       aml/document_group:
