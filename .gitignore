@@ -31,3 +31,5 @@ tags
 /config/master.key
 
 .envrc
+
+database.yml
