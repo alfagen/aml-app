@@ -1,7 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe UsersController, type: :controller do
-  let(:user) { create(:aml_operator) }
+RSpec.describe Amlapp::ProfilesController, type: :controller do
+  let!(:aml_operator) { create(:aml_operator) }
+  let(:user) { create(:user, aml_operator_id: aml_operator.id) }
   before { login_user user }
 
   it '#update оператор может редактировать свой профиль' do

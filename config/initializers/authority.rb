@@ -9,7 +9,7 @@ Authority.configure do |config|
   #
   # Default is:
 
-  config.user_method = :current_user
+  config.user_method = :current_operator
 
   # CONTROLLER_ACTION_MAP
   # =====================

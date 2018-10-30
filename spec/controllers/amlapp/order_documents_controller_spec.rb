@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Amlapp::OrderDocumentsController, type: :controller do
   describe '#actions' do
-    let(:user) { create :aml_operator, :administrator }
+    let!(:aml_operator) { create(:aml_operator) }
+    let(:user) { create(:user, aml_operator_id: aml_operator.id) }
     let!(:aml_status) { create(:aml_status, key: 'guest') }
     let(:aml_document_kind) { create(:aml_document_kind) }
 

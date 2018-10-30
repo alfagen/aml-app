@@ -1,0 +1,4 @@
+h3 Редактировать пользователя
+= link_to "К оператору #{user.aml_operator.name}", edit_operator_path(user.aml_operator), class: 'btn btn-default'
+hr
+= render 'form', user: user

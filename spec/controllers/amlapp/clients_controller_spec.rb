@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Amlapp::ClientsController, type: :controller do
-  let(:user) { create :aml_operator, :administrator }
+  let!(:aml_operator) { create(:aml_operator, :administrator) }
+  let(:user) { create(:user, aml_operator_id: aml_operator.id) }
   let!(:aml_status) { create :aml_status, key: 'guest' }
   let!(:aml_client) { create :aml_client, aml_status: aml_status }
 

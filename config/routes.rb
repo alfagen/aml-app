@@ -13,7 +13,6 @@ Rails.application.routes.draw do
   resource :password, only: %i[edit update]
 
   resource :locale, only: :update
-  resource :user, only: %i[edit update]
 
   scope module: :amlapp do
     root to: redirect('orders#index')
@@ -23,7 +22,9 @@ Rails.application.routes.draw do
     delete 'drop_clients' => 'application#drop_clients'
     delete 'drop_orders' => 'application#drop_orders'
 
-    resources :operators, except: %i[show destroy] do
+    resource :profile, only: %i[edit update]
+    resources :users, except: :destroy
+    resources :operators, except: %i[destroy new create] do
       member do
         put :block
         put :unblock

@@ -3,7 +3,8 @@ require 'rails_helper'
 RSpec.describe Amlapp::DocumentGroupsController, type: :controller do
   let(:aml_status) { create(:aml_status) }
   let(:aml_document_group) { create(:aml_document_group) }
-  let(:user) { create :aml_operator, :administrator }
+  let!(:aml_operator) { create(:aml_operator, :administrator) }
+  let(:user) { create(:user, aml_operator_id: aml_operator.id) }
 
   before { login_user(user) }
 

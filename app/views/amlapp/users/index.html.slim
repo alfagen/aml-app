@@ -1,14 +1,13 @@
 .pull-right= link_to 'Добавить пользователя', new_user_path, class: 'btn btn-success' if current_operator.can_create?(AML::Operator)
-h1 Список операторов
+h1 Список пользователей
 hr
 table.table.table-condensed
   thead
     tr
-      th Имя
-      th Состояние
-      th Роль
-      th Пользователь
+      th Email
+      th Оператор
+      th Статус оператора
       th.text-right Действия
   tbody
-    = render operators, partial: :operator
-= paginate operators
+    = render users, partial: :user
+= paginate users

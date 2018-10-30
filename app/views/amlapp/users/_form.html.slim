@@ -1,0 +1,9 @@
+= simple_form_for user do |f|
+  .row
+    .col-md-6
+      = f.input :email, as: :string
+    .col-md-6
+      = f.input :password, as: :password
+      = f.input :password_confirmation, as: :password
+  hr
+  = f.button :submit, 'Сохранить', class: 'btn btn-success'

@@ -3,9 +3,9 @@ require 'rails_helper'
 RSpec.describe LocalesController, type: :controller do
   describe '#update' do
     context 'with registered user' do
-      let(:aml_operator) { create :aml_operator }
+      let(:user) { create :user, :operator }
 
-      before { login_user(aml_operator) }
+      before { login_user(user) }
 
       it 'изменение локали на другую' do
         locale = I18n.locale
