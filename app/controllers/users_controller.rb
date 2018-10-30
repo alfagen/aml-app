@@ -13,7 +13,7 @@ class UsersController < ApplicationController
 
   def create
     ActiveRecord::Base.transaction do
-      operator = AML::Operator.create!(name: permitted_params[:name])
+      operator = AML::Operator.create!(name: permitted_params[:name], email: permitted_params[:email])
       User.create! permitted_params.merge!(aml_operator: operator)
     end
     redirect_to users_path, notice: "Пользователь #{permitted_params[:name]} создан."
