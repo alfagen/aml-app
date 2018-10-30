@@ -113,20 +113,22 @@ ActiveRecord::Schema.define(version: 2018_10_30_081239) do
   end
 
   create_table "aml_operators", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "email", null: false
+    t.string "crypted_password"
+    t.string "salt"
     t.string "workflow_state", default: "unblocked", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_token_expires_at"
+    t.datetime "reset_password_email_sent_at"
+    t.integer "access_count_to_reset_password_page", default: 0
     t.integer "role", default: 0, null: false
     t.string "name", null: false
     t.string "locale", default: "ru", null: false
     t.string "time_zone_name"
-    t.string "salt"
-    t.string "crypted_password"
-    t.string "email"
-    t.integer "access_count_to_reset_password_page"
-    t.datetime "reset_password_email_sent_at"
-    t.datetime "reset_password_token_expires_at"
-    t.string "reset_password_token"
+    t.index ["email"], name: "index_aml_operators_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_aml_operators_on_reset_password_token"
   end
 
   create_table "aml_order_documents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
