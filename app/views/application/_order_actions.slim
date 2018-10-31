@@ -19,5 +19,8 @@
 - unless order.all_documents_loaded?
   .text-danger Не все документы загружены
 
+- unless order.set_client_risk?
+  .text-danger Не указана категория риска для клиента
+
 - unless order.all_documents_accepted?
   .text-warning Документы не все приняты
