@@ -18,10 +18,10 @@ hr
       dd= order_decorated.aml_status
 
       dt Категория риска
-      - if order.client.risk == 'undefined'
-        dd= link_to 'Задать категорию риска', client_path(order.client), class: 'btn btn-default'
-      - else
+      - if order.set_client_risk?
         dd= order.client.risk
+      - else
+        dd= link_to 'Задать категорию риска', client_path(order.client), class: 'btn btn-default'
 
       dt Состояние
       dd= order_decorated.workflow_state
