@@ -22,8 +22,8 @@ RSpec.describe Amlapp::ClientsController, type: :controller do
     expect(response).to be_successful
   end
 
-  it '#update (risk)' do
-    put 'update', params: { client: { risk: 'C' }, id: aml_client.id }
+  it '#update' do
+    put :update, params: { client: { risk: 'C' }, id: aml_client.id }
     expect(response).to be_redirect
   end
 end
