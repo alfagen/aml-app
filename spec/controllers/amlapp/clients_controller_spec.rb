@@ -16,8 +16,14 @@ RSpec.describe Amlapp::ClientsController, type: :controller do
     get :show, params: { id: aml_client.id }
     expect(response).to be_successful
   end
+
   it '#index' do
     get :index
     expect(response).to be_successful
+  end
+
+  it '#update (risk)' do
+    put 'update', params: { client: { risk: 'C' }, id: aml_client.id }
+    expect(response).to be_redirect
   end
 end
