@@ -2,32 +2,36 @@
   = link_to 'Добавить заявку', new_order_path(order: { client_id: client.id }), class: 'btn btn-success' if current_user.can_create?(AML::Order)
   =< link_to 'Сбросить статус', reset_client_path(client), class: 'btn btn-danger', method: :delete, data: { confirm: 'Сбросить статус клиента?' } if client.resetable_by? current_user
 
-- client = ClientDecorator.decorate client
+- cd = ClientDecorator.decorate client
 .row
   .col-md-3
     table.table
       tbody
         tr
           th Имя
-          td= client.first_name
+          td= cd.first_name
         tr
           th Фамилия
-          td= client.surname
+          td= cd.surname
         tr
           th Отчество
-          th= client.patronymic
+          th= cd.patronymic
         tr
           th Дата рождения
-          td= client.birth_date
+          td= cd.birth_date
         tr
           th Email
-          td= client.email
+          td= cd.email
         tr
           th Количество сделок
-          td= client.total_operations_count
+          td= cd.total_operations_count
         tr
           th Статус
-          td= client.aml_status
+          td= cd.aml_status
+        tr
+          th Категория риска
+          td style="min-width: 250px"
+            = render 'risk_category', client: client
 
 - if client.orders.any?
   hr

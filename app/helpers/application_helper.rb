@@ -1,6 +1,14 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
+  def client_risk_category_link(client, risk_category)
+    css_class = client.risk_category == risk_category ? 'btn btn-primary' : 'btn btn-default'
+    link_to risk_category || 'не установлена',
+            client_path(client, client: { risk_category: risk_category }),
+            method: :put,
+            class: css_class
+  end
+
   ORDER_WORKFLOW_STATE_CLASSES = {
     'none'       => 'label-default',
     'pending'    => 'label-warning',

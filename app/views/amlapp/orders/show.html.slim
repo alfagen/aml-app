@@ -20,6 +20,9 @@ hr
       dt Состояние
       dd= order_decorated.workflow_state
 
+      dt Категория риска
+      dd= render 'amlapp/clients/risk_category', client: order.client
+
       - if order.current_state >= :processing
         dt Оператор
         dd= order_decorated.operator

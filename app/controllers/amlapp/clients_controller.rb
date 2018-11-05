@@ -10,6 +10,14 @@ module Amlapp
       render :index, locals: { clients: paginate(q.result.ordered) }
     end
 
+    def update
+      authorize_action_for client
+      client.update! params.require(:client).permit(:risk_category)
+
+      flash.notice = "Клиенту #{client} установлена категория риска #{client.risk_category}"
+      redirect_back fallback_location: client_path(client)
+    end
+
     def show
       add_breadcrumb 'Клиенты', :clients_path
       add_breadcrumb "Клиент #{client.id}"
