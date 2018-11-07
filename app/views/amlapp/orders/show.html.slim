@@ -9,6 +9,7 @@ hr
   .col-md-6
     = render 'order_brief', order: order
   .col-md-6
+    = render 'amlapp/clients/agreements', client: order.client
     = render 'order_checks', order: order
     - if order.rejected?
       = order_decorated.reject_reason
