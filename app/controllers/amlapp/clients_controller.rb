@@ -27,7 +27,7 @@ module Amlapp
     def reset
       authorize_action_for client
       client.reset_status!
-      redirect_back_or_to client_path(client), notice: "Статус клиента сброшен до '#{client.aml_status.title}'"
+      redirect_back_or_to client_path(client), notice: "Статус клиента сброшен до '#{client.aml_status.try(:title)}'"
     end
 
     def new
