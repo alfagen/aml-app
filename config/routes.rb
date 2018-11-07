@@ -23,6 +23,8 @@ Rails.application.routes.draw do
     delete 'drop_clients' => 'application#drop_clients'
     delete 'drop_orders' => 'application#drop_orders'
 
+    resources :agreements
+
     resources :operators, except: %i[show destroy] do
       member do
         put :block

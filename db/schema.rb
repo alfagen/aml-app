@@ -10,7 +10,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_29_145547) do
+ActiveRecord::Schema.define(version: 2018_11_07_113839) do
+
+  create_table "aml_agreement_translations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "aml_agreement_id", null: false
+    t.string "locale", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "title"
+    t.text "details"
+    t.index ["aml_agreement_id"], name: "index_aml_agreement_translations_on_aml_agreement_id"
+    t.index ["locale"], name: "index_aml_agreement_translations_on_locale"
+  end
+
+  create_table "aml_agreements", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "url"
+    t.timestamp "archived_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "aml_check_lists", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "url"
+    t.integer "position", default: 0, null: false
+    t.timestamp "archived_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["title"], name: "index_aml_check_lists_on_title", unique: true
+  end
+
+  create_table "aml_client_agreements", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "aml_client_id", null: false
+    t.bigint "aml_agreement_id", null: false
+    t.string "remote_ip", null: false
+    t.string "locale", null: false
+    t.text "user_agent", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["aml_agreement_id"], name: "index_aml_client_agreements_on_aml_agreement_id"
+    t.index ["aml_client_id", "aml_agreement_id"], name: "aml_client_agreements_idx", unique: true
+    t.index ["aml_client_id"], name: "index_aml_client_agreements_on_aml_client_id"
+  end
 
   create_table "aml_clients", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "first_name"
@@ -28,6 +69,7 @@ ActiveRecord::Schema.define(version: 2018_10_29_145547) do
     t.integer "total_income_amount_cents", default: 0, null: false
     t.string "total_income_amount_currency", default: "eur", null: false
     t.integer "total_operations_count", default: 0, null: false
+    t.string "risk_category", limit: 1
     t.index ["aml_accepted_order_id"], name: "index_aml_clients_on_aml_accepted_order_id"
     t.index ["aml_order_id"], name: "index_aml_clients_on_aml_order_id"
     t.index ["aml_status_id"], name: "index_aml_clients_on_aml_status_id"
@@ -131,6 +173,17 @@ ActiveRecord::Schema.define(version: 2018_10_29_145547) do
     t.index ["reset_password_token"], name: "index_aml_operators_on_reset_password_token"
   end
 
+  create_table "aml_order_checks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "aml_order_id", null: false
+    t.bigint "aml_check_list_id", null: false
+    t.string "workflow_state", default: "none", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["aml_check_list_id"], name: "index_aml_order_checks_on_aml_check_list_id"
+    t.index ["aml_order_id", "aml_check_list_id"], name: "index_aml_order_checks_on_aml_order_id_and_aml_check_list_id", unique: true
+    t.index ["aml_order_id"], name: "index_aml_order_checks_on_aml_order_id"
+  end
+
   create_table "aml_order_documents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "document_kind_id", null: false
     t.datetime "created_at", null: false
@@ -207,6 +260,8 @@ ActiveRecord::Schema.define(version: 2018_10_29_145547) do
     t.index ["key"], name: "index_aml_statuses_on_key", unique: true
   end
 
+  add_foreign_key "aml_client_agreements", "aml_agreements"
+  add_foreign_key "aml_client_agreements", "aml_clients"
   add_foreign_key "aml_clients", "aml_orders", column: "aml_accepted_order_id"
   add_foreign_key "aml_clients", "aml_orders", on_delete: :nullify
   add_foreign_key "aml_clients", "aml_statuses"
@@ -215,6 +270,8 @@ ActiveRecord::Schema.define(version: 2018_10_29_145547) do
   add_foreign_key "aml_document_group_to_statuses", "aml_document_groups"
   add_foreign_key "aml_document_group_to_statuses", "aml_statuses"
   add_foreign_key "aml_document_kind_field_definitions", "aml_document_kinds", column: "document_kind_id"
+  add_foreign_key "aml_order_checks", "aml_check_lists"
+  add_foreign_key "aml_order_checks", "aml_orders"
   add_foreign_key "aml_order_documents", "aml_document_kinds", column: "document_kind_id"
   add_foreign_key "aml_order_documents", "aml_orders", column: "order_id"
   add_foreign_key "aml_orders", "aml_clients", column: "client_id"
