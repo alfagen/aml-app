@@ -3,31 +3,13 @@
 hr
 h2 Заявка: #{order.id}
 hr
+- order_decorated = OrderDecorator.decorate order
 
 .row
   .col-md-6
-    - order_decorated = OrderDecorator.decorate order
-    dl
-      dt Клиент
-      dd= order_decorated.client_name
-
-      dt Дата рождения
-      dd= order_decorated.birth_date
-
-      dt Статус
-      dd= order_decorated.aml_status
-
-      dt Состояние
-      dd= order_decorated.workflow_state
-
-      dt Категория риска
-      dd= render 'amlapp/clients/risk_category', client: order.client
-
-      - if order.current_state >= :processing
-        dt Оператор
-        dd= order_decorated.operator
-
+    = render 'order_brief', order: order
   .col-md-6
+    = render 'order_checks', order: order
     - if order.rejected?
       = order_decorated.reject_reason
       hr

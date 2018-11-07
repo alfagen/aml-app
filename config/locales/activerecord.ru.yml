@@ -13,6 +13,10 @@ ru:
       status: Статус
       reject_reason: Причина отклонения
     attributes:
+      aml/check_list:
+        title: Наименование
+        url: Ссылка
+        position: Позиция
       aml/client:
         first_name: Имя
         surname: Фамилия

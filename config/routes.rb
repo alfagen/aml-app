@@ -37,6 +37,7 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :check_lists
     resources :statuses
     resources :document_group_to_statuses, only: %i[create destroy]
 
@@ -57,6 +58,12 @@ Rails.application.routes.draw do
       end
     end
     resources :orders do
+      resources :checks, controller: :order_checks do
+        member do
+          put :accept
+          put :reject
+        end
+      end
       resources :rejections, only: [:new, :create], controller: :order_rejections
       member do
         put :done
