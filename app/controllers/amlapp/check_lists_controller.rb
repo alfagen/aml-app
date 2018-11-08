@@ -42,6 +42,15 @@ module Amlapp
       redirect_to edit_check_list_path(check_list)
     end
 
+    def destroy
+      check_list.destroy!
+      flash.now.notice = 'Чек-лист удален'
+      redirect_to check_lists_path
+    rescue ActiveRecord::RecordInvalid => e
+      flash.now.alert = e.message
+      redirect_back fallback_location: check_lists_path
+    end
+
     private
 
     def check_list
