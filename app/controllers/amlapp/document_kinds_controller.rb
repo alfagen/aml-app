@@ -36,6 +36,15 @@ module Amlapp
       render :edit, locals: { document_kind: e.record }
     end
 
+    def destroy
+      document_kind.destroy!
+      flash.now.notice = 'Вид документа удален'
+      redirect_to document_group_path(document_kind.document_group_id)
+    rescue ActiveRecord::RecordInvalid => e
+      flash.now.alert = e.message
+      redirect_back fallback_location: document_group_path(document_kind.document_group_id)
+    end
+
     def show
       redirect_to edit_document_group_document_kind_path(document_group, document_kind)
     end

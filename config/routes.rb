@@ -46,7 +46,7 @@ Rails.application.routes.draw do
     resources :document_groups, except: %i[destroy] do
       concerns :archivable
 
-      resources :document_kinds, except: %i[destroy] do
+      resources :document_kinds do
         concerns :archivable
         resources :document_kind_field_definitions do
           concerns :archivable
