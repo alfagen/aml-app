@@ -6,7 +6,6 @@ table.table.table-condensed
       tr
         td
           = link_to agreement.title, agreement_path(agreement), target: '_blank'
-        td
           - if client_agreement.present?
             .text-success
               | Принято
