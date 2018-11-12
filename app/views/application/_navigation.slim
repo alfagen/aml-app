@@ -27,6 +27,7 @@ nav.navbar.navbar-default.navbar-fixed-top
               = active_link_to 'Группы документов', document_groups_path, wrap_tag: :li
               = active_link_to 'Причины отмены', reject_reasons_path, wrap_tag: :li
               = active_link_to 'Пользовательские соглашения', agreements_path, wrap_tag: :li
+              = active_link_to 'Настройка уведомлений', notifications_path, wrap_tag: :li
               li.divider
               = active_link_to 'Операторы', operators_path, wrap_tag: :li
               - unless Rails.env.production?

@@ -65,15 +65,8 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "aml_#{Rails.env}"
 
-  config.action_mailer.perform_caching     = false
+  config.action_mailer.perform_caching     = true
   config.action_mailer.default_url_options = Settings.default_url_options.symbolize_keys
-  config.action_mailer.delivery_method     = :mailgun
-
-  # NOTE не хочет подтягивать конфиг из initializers/mailgun.rb
-  config.action_mailer.mailgun_settings = {
-    api_key: Secrets.mailgun_api_key,
-    domain: Secrets.mailgun_domain
-  }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.

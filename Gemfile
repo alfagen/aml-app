@@ -28,6 +28,7 @@ gem 'turbolinks', '~> 5'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use ActiveStorage variant
+gem 'best_in_place'
 gem 'carrierwave'
 gem 'mini_magick', '~> 4.8'
 gem 'ransack'
@@ -35,6 +36,7 @@ gem 'virtus'
 
 gem 'money', '~> 6.12'
 gem 'money-rails', '~> 1.12'
+gem 'sendgrid-actionmailer'
 
 gem 'draper', '~> 3.0.1' # , github: 'drapergem/draper'
 

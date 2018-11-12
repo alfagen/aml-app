@@ -22,8 +22,10 @@
 //= require nprogress-turbolinks
 //= require nprogress-ajax
 //= require flash
+//= require best_in_place
 //= require_tree .
 
 document.addEventListener("turbolinks:load", function() {
+  $(".best_in_place").best_in_place();
   $('div.datetimepicker').datetimepicker({ locale: 'ru', format: 'DD-MM-YYYY' });
 });
