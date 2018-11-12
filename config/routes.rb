@@ -25,6 +25,8 @@ Rails.application.routes.draw do
 
     resources :agreements
 
+    resources :notifications, only: %i[index update create]
+
     resources :operators, except: %i[show destroy] do
       member do
         put :block
