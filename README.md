@@ -1,6 +1,9 @@
 # AML
 
 
+[![Build Status](https://travis-ci.org/alfagen/aml-app.svg?branch=master)](https://travis-ci.org/alfagen/aml-app)
+
+
 ## Установка
 
 > git submodule init; git submodule update
