@@ -1,23 +1,22 @@
 .pull-right
   = link_to 'документация', 'https://docs.google.com/spreadsheets/d/15MKv6fq6u0bwHRXtvXHIDNNZkLfKdwl4u1sbwIOihHA/edit#gid=0', target: '_blank'
-h2 Настройка уведомлений
 
-table.table.table-condensed.table-striped
+h2 Настройка уведомлений
+hr
+
+p Укажите template_id уведомления для соответсвующего языка
+
+table.table.table-condensed.table-striped.table-bordered
   thead
     tr
-      th rowspan=2
+      th
       - I18n.available_locales.each do |locale|
-        th colspan=2
+        th
           .text-center= locale
-    tr
-      - I18n.available_locales.each do |locale|
-        th template_id
-        th Тема
 
-  - AML::Notification::KEYS.each do |key|
+  - AML::Notification.order(:title).each do |notification|
     tr
-      th= key
+      th= notification.title
       - I18n.available_locales.each do |locale|
-        - n = AML::Notification.find_or_initialize_by(locale: locale, key: key)
-        td= best_in_place n, :template_id
-        td= best_in_place n, :subject
+        - t = notification.aml_notification_templates.find_or_initialize_by(locale: locale)
+        td.text-nowrap= best_in_place t, :template_id

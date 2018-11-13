@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
+  def boolean_humanized(flag)
+    flag ? content_tag(:span, 'ДА') : content_tag(:span, 'нет', class: 'text-muted')
+  end
+
   def client_risk_category_link(client, risk_category)
     css_class = client.risk_category == risk_category ? 'btn btn-primary' : 'btn btn-default'
     link_to risk_category || 'не установлена',

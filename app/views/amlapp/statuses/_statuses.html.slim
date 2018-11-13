@@ -2,12 +2,9 @@ table.table.table-condensed.table-striped
   thead
     tr
       th Статус
-      th Номер
-      th Ключ
       th Лимит операции в валюте
       th Лимит количества операций
       th Реферальная программа с возможностью вывода средств (Без ограничений).
-      th Описание
       th Клиентов
       th Заявок
       th.text-right Действия
@@ -16,14 +13,15 @@ table.table.table-condensed.table-striped
       tr
         td
           = link_to status.title, status_path(status)
-        td= status.position
-        td= status.key
+          .text-muted= status.key
         td= humanized_money_with_symbol status.max_amount_limit
         td= status.operations_count_limit
-        td= status.referal_output_enabled
-        td= status.details
+        td= boolean_humanized status.referal_output_enabled
         td
           = link_to status.clients.count, clients_path( q: { aml_status_id_eq: status.id })
         td
           = link_to status.orders.count, orders_path( q: { aml_status_id_eq: status.id })
-        td.text-right = link_to 'Подробнее', status_path(status), class: 'btn btn-default'
+        td style='min-width: 200px'
+          .btn-group
+            = link_to 'Подробнее', status_path(status), class: 'btn btn-default'
+            = link_to 'Изменить', edit_status_path(status), class: 'btn btn-default'

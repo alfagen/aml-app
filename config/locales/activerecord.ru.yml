@@ -67,6 +67,9 @@ ru:
         referal_output_enabled: Реферальная программа с возможностью вывода средств (Без ограничений)
         title_ru: Название статуса
         details_ru: Описание статуса
+        on_pending_notification: Пользователь отправил заявку на обработку
+        on_reject_notification: Заявка отклонена
+        on_accept_notification: Заявка принята
       aml/order_document:
         reject_reason_details: Подробности отклонения документа
 
