@@ -25,7 +25,7 @@ Rails.application.routes.draw do
 
     resources :agreements
 
-    resources :notifications, only: %i[index]
+    resources :notifications
     resources :notification_templates, only: %i[update create]
 
     resources :operators, except: %i[show destroy] do
