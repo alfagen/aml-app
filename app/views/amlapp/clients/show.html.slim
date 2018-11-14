@@ -39,4 +39,4 @@
 - if client.orders.any?
   hr
   h2 Заявки (#{client.orders.count})
-  = render 'amlapp/orders/orders', orders: client.orders.ordered
+  = render 'amlapp/orders/orders', orders: client.orders.order(:pending_at, :updated_at)
