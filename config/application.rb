@@ -22,6 +22,8 @@ module Aml
     config.time_zone = 'Europe/Moscow'
     Time.zone = 'Europe/Moscow'
 
+    config.active_record.default_timezone = :local
+
     config.generators do |generate|
       generate.template_engine :slim
       generate.helper false
