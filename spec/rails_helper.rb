@@ -38,6 +38,7 @@ ActiveRecord::Migration.maintain_test_schema!
 DatabaseCleaner = DatabaseRewinder
 
 RSpec.configure do |config|
+  config.full_backtrace = ENV['RSPEC_SKIP_BACKTRACE'].blank?
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.include FactoryBot::Syntax::Methods
