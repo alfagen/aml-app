@@ -4,4 +4,4 @@
 	url = https://github.com/alfagen/aml-engine.git
 [submodule "config/locales/shared"]
 	path = config/locales/shared
-	url = git@github.com:alfagen/locales.git
+  url = https://github.com/alfagen/locales.git
