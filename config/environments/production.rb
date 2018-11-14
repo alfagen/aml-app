@@ -72,7 +72,7 @@ Rails.application.configure do
     api_key: Secrets.sendgrid_api_key,
     raise_delivery_errors: true
   }
-  config.action_mailer.logger = Rails.logger
+  config.action_mailer.logger = ActiveSupport::Logger.new Rails.root.join './log/action_mailer.log'
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
