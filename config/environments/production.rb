@@ -67,6 +67,12 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching     = true
   config.action_mailer.default_url_options = Settings.default_url_options.symbolize_keys
+  config.action_mailer.delivery_method = :sendgrid_actionmailer
+  config.action_mailer.sendgrid_actionmailer_settings = {
+    api_key: Secrets.sendgrid_api_key,
+    raise_delivery_errors: true
+  }
+  config.action_mailer.logger = Rails.logger
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
