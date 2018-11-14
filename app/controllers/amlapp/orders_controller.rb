@@ -7,7 +7,7 @@ module Amlapp
     authorize_actions_for AML::Order
 
     def index
-      render :index, locals: { orders: paginate(q.result.ordered), workflow_state: workflow_state }
+      render :index, locals: { orders: paginate(q.result.order(:pending_at, :updated_at)), workflow_state: workflow_state }
     end
 
     def new
