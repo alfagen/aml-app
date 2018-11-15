@@ -1,13 +1,17 @@
 require_relative 'application_controller'
 
 module Amlapp
-  class OrdersController < ApplicationController
+  class OrdersController < ApplicationController # rubocop:disable Metrics/ClassLength
     include Pagination
 
     authorize_actions_for AML::Order
 
     def index
-      render :index, locals: { orders: paginate(q.result.order(:pending_at, :updated_at)), workflow_state: workflow_state }
+      render :index, locals: {
+        q: q,
+        orders: paginate(q.result),
+        workflow_state: workflow_state
+      }
     end
 
     def new
@@ -100,7 +104,31 @@ module Amlapp
     end
 
     def q
-      @q ||= orders.ransack params.fetch(:q, {}).permit!
+      @q ||= build_query
+    end
+
+    def build_query
+      query = orders.ransack params.fetch(:q, {}).permit!
+      if query.sorts.empty?
+        query.sorts = get_session_sorts workflow_state
+      else
+        set_session_sorts workflow_state, params[:q][:s]
+      end
+      query
+    end
+
+    def set_session_sorts(workflow_state, sorts)
+      session[workflow_state + '_sorts'] = sorts
+    end
+
+    def get_session_sorts(workflow_state)
+      if workflow_state == 'pending'
+        session[workflow_state + '_sorts'] || 'pending_at asc'
+      elsif workflow_state == 'none'
+        session[workflow_state + '_sorts'] || 'updated_at asc'
+      else
+        session[workflow_state + '_sorts'] || 'operated_at asc'
+      end
     end
   end
 end

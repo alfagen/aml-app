@@ -19,6 +19,18 @@ class OrderDecorator < ApplicationDecorator
     h.content_tag :div, buffer.join.html_safe, class: 'alert alert-info'
   end
 
+  def pending_at
+    h.humanized_time_in_current_time_zone object.pending_at
+  end
+
+  def operated_at
+    h.humanized_time_in_current_time_zone object.operated_at
+  end
+
+  def created_at
+    h.humanized_time_in_current_time_zone object.created_at
+  end
+
   def operator
     object.operator&.name
   end

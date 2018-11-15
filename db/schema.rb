@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_14_131851) do
+ActiveRecord::Schema.define(version: 2018_11_15_163644) do
 
   create_table "aml_agreement_translations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "aml_agreement_id", null: false
@@ -51,6 +51,26 @@ ActiveRecord::Schema.define(version: 2018_11_14_131851) do
     t.index ["aml_agreement_id"], name: "index_aml_client_agreements_on_aml_agreement_id"
     t.index ["aml_client_id", "aml_agreement_id"], name: "aml_client_agreements_idx", unique: true
     t.index ["aml_client_id"], name: "index_aml_client_agreements_on_aml_client_id"
+  end
+
+  create_table "aml_client_infos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "aml_client_id", null: false
+    t.string "first_name"
+    t.string "maiden_name"
+    t.string "last_name"
+    t.string "patronymic"
+    t.date "birth_date"
+    t.string "birth_place"
+    t.string "gender"
+    t.text "address"
+    t.string "citizenship"
+    t.string "passport_number"
+    t.string "second_document_number"
+    t.string "card_suffix"
+    t.string "utility_bill"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["aml_client_id"], name: "index_aml_client_infos_on_aml_client_id_uniq", unique: true
   end
 
   create_table "aml_clients", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -231,10 +251,12 @@ ActiveRecord::Schema.define(version: 2018_11_14_131851) do
     t.bigint "aml_reject_reason_id"
     t.text "reject_reason_details"
     t.timestamp "pending_at"
+    t.timestamp "operated_at"
     t.index ["aml_reject_reason_id"], name: "index_aml_orders_on_aml_reject_reason_id"
     t.index ["aml_status_id"], name: "index_aml_orders_on_aml_status_id"
     t.index ["client_id"], name: "index_aml_orders_on_client_id"
     t.index ["operator_id"], name: "index_aml_orders_on_operator_id"
+    t.index ["workflow_state", "operated_at"], name: "index_aml_orders_on_workflow_state_and_operated_at"
     t.index ["workflow_state", "pending_at"], name: "index_aml_orders_on_workflow_state_and_pending_at"
   end
 
@@ -287,6 +309,7 @@ ActiveRecord::Schema.define(version: 2018_11_14_131851) do
 
   add_foreign_key "aml_client_agreements", "aml_agreements"
   add_foreign_key "aml_client_agreements", "aml_clients"
+  add_foreign_key "aml_client_infos", "aml_clients"
   add_foreign_key "aml_clients", "aml_orders", column: "aml_accepted_order_id"
   add_foreign_key "aml_clients", "aml_orders", on_delete: :nullify
   add_foreign_key "aml_clients", "aml_statuses"
