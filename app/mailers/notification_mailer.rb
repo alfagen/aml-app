@@ -21,7 +21,16 @@ class NotificationMailer < ApplicationMailer
 
       # Чтобы sendgrid принял нужно хоть что-то передавать,
       # а если ничего не передавать, то запускается render
-      body: 'dummy'
+      body: 'dummy',
+      mail_settings: mail_settings
     )
+  end
+
+  def mail_settings
+    if Rails.env.production?
+      {}
+    else
+      { sandbox_mode: { enable: true } }
+    end
   end
 end

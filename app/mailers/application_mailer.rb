@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'custom_action_mailer'
-
 class ApplicationMailer < ActionMailer::Base
   default from: Settings.mailer.from
 
