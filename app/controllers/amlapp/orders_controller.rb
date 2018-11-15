@@ -23,7 +23,7 @@ module Amlapp
 
     def show
       authorize_action_for order
-      render :show, locals: { order: order }
+      render :show, locals: { order: order, client_info: client_info }
     end
 
     def done
@@ -61,6 +61,24 @@ module Amlapp
     private
 
     DEFAULT_WORKFLOW_STATE = :pending
+
+    def client_info
+      return order.client.aml_client_info if order.client.aml_client_info.present?
+
+      build_client_info
+    end
+
+    def build_client_info
+      order
+        .client
+        .build_aml_client_info(
+          first_name: order.first_name,
+          last_name: order.surname,
+          birth_date: order.birth_date,
+          patronymic: order.patronymic,
+          aml_client: order.client
+        )
+    end
 
     def workflow_state
       params[:workflow_state] || DEFAULT_WORKFLOW_STATE

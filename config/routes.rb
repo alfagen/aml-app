@@ -62,6 +62,7 @@ Rails.application.routes.draw do
         delete :reset
       end
     end
+    resources :client_infos
     resources :orders do
       resources :checks, controller: :order_checks do
         member do

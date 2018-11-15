@@ -1,15 +1,20 @@
-h2.m-t-0 Проверка по спискам
-table.table.table-condensed
-  tbody
-    - order.order_checks.includes(:aml_check_list).order(:id).each do |order_check|
-      tr
-        th
-          = order_check.aml_check_list.title
-          - if order_check.aml_check_list.url.present?
-            = link_to 'Ссылка на ресурс', order_check.aml_check_list.url, target: '_blank'
-        td
-          .btn-group
-            - if order_check.acceptable_by?(current_user)
-              = link_to 'Принять', order_check_path(order, order_check), method: :put, class: 'btn btn-success'
-            - if order_check.rejectable_by?(current_user)
-              = link_to 'Отклонить', order_check_path(order, order_check), method: :put, class: 'btn btn-danger'
+h2.m-t-0 Проверка по спискам (чек-листы )
+
+- if order.order_checks.any?
+  table.table.table-condensed
+    tbody
+      - order.order_checks.includes(:aml_check_list).order(:id).each do |order_check|
+        tr
+          th
+            = order_check.aml_check_list.title
+            - if order_check.aml_check_list.url.present?
+              = link_to 'Ссылка на ресурс', order_check.aml_check_list.url, target: '_blank'
+          td
+            .btn-group
+              - if order_check.acceptable_by?(current_user)
+                = link_to 'Принять', order_check_path(order, order_check), method: :put, class: 'btn btn-success'
+              - if order_check.rejectable_by?(current_user)
+                = link_to 'Отклонить', order_check_path(order, order_check), method: :put, class: 'btn btn-danger'
+- else
+  p Нет списков для проверки.
+  = link_to 'Добавить', check_lists_path

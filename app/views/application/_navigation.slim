@@ -20,6 +20,7 @@ nav.navbar.navbar-default.navbar-fixed-top
               span.m-l-sm.caret
             ul.dropdown-menu
               = active_link_to 'Клиенты', clients_path, wrap_tag: :li
+              = active_link_to 'Клиентская информация', client_infos_path, wrap_tag: :li
               = active_link_to 'Документы клиентов', order_documents_path, wrap_tag: :li
               li.divider
               = active_link_to 'Статусы', statuses_path, wrap_tag: :li
