@@ -118,16 +118,16 @@ module Amlapp
     end
 
     def set_session_sorts(workflow_state, sorts)
-      session[workflow_state + '_sorts'] = sorts
+      session[workflow_state.to_s + '_sorts'] = sorts
     end
 
     def get_session_sorts(workflow_state)
       if workflow_state == 'pending'
-        session[workflow_state + '_sorts'] || 'pending_at asc'
+        session[workflow_state.to_s + '_sorts'] || 'pending_at asc'
       elsif workflow_state == 'none'
-        session[workflow_state + '_sorts'] || 'updated_at asc'
+        session[workflow_state.to_s + '_sorts'] || 'updated_at asc'
       else
-        session[workflow_state + '_sorts'] || 'operated_at asc'
+        session[workflow_state.to_s + '_sorts'] || 'operated_at asc'
       end
     end
   end
