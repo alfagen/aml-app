@@ -22,7 +22,7 @@ module Amlapp
       add_breadcrumb 'Клиенты', :clients_path
       add_breadcrumb "Клиент #{client.id}"
       query = client.orders.ransack(params.fetch(:q, {}).permit!)
-      render :show, locals: { client: client, orders: query.result, q: query }
+      render :show, locals: { client: client, orders: query.result, q: query, client_info: client_info }
     end
 
     def reset
@@ -50,6 +50,10 @@ module Amlapp
     end
 
     private
+
+    def client_info
+      client.aml_client_info || client.build_aml_client_info
+    end
 
     def q
       @q ||= AML::Client.ransack params.fetch(:q, {}).permit!
