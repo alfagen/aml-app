@@ -69,6 +69,7 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.default_url_options = Settings.default_url_options.symbolize_keys
   config.action_mailer.delivery_method = :sendgrid_actionmailer
+  config.action_mailer.logger = ActiveSupport::Logger.new Rails.root.join './log/action_mailer.log'
   config.action_mailer.sendgrid_actionmailer_settings = {
     api_key: Secrets.sendgrid_api_key,
     raise_delivery_errors: true

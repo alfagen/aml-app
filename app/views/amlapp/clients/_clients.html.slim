@@ -13,6 +13,7 @@ table.table.table-condensed.table-striped
       th Сумма сделок
       th Количество сделок
       th Статус
+      th Язык
       th Текущая заявка
       th.text-right Действия
   tbody
@@ -31,6 +32,7 @@ table.table.table-condensed.table-striped
         td= cd.total_income_amount
         td= cd.total_operations_count
         td= cd.aml_status
+        td= cd.locale || "(#{I18n.default_locale})"
         td= cd.current_order
         td.text-right
           .btn-group
