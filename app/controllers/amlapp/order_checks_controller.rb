@@ -7,14 +7,14 @@ module Amlapp
     helper_method :order
 
     def accept
-      authorize_action_for order
+      authorize_action_for order_check
       order_check.accept!
       flash.notice = "Чеклист '#{order_check.aml_check_list}' принят"
       redirect_back fallback_location: order_path(order)
     end
 
     def reject
-      authorize_action_for order
+      authorize_action_for order_check
       order_check.reject!
       flash.notice = "Чеклист '#{order_check.aml_check_list}' отклонен"
       redirect_back fallback_location: order_path(order)

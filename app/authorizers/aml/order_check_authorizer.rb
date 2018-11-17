@@ -18,7 +18,7 @@ module AML
     end
 
     def rejectable_by?(operator)
-      (operator.administrator? || operator == resource.aml_order.operator) && resource.can_accept?
+      (operator.administrator? || operator == resource.aml_order.operator) && resource.can_reject?
     end
   end
 end
