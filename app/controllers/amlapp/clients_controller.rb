@@ -21,7 +21,8 @@ module Amlapp
     def show
       add_breadcrumb 'Клиенты', :clients_path
       add_breadcrumb "Клиент #{client.id}"
-      render :show, locals: { client: client }
+      query = client.orders.ransack(params.fetch(:q, {}).permit!)
+      render :show, locals: { client: client, orders: query.result, q: query }
     end
 
     def reset
