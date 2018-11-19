@@ -82,7 +82,7 @@ GIT
 PATH
   remote: vendor/aml-engine
   specs:
-    aml (0.3.3)
+    aml (0.3.4)
       carrierwave
       dapi-archivable (~> 0.1.2)
       enumerize
@@ -93,6 +93,7 @@ PATH
       money-rails (~> 1.12)
       rails (~> 5.2.1)
       ransack
+      sendgrid-actionmailer
       sorcery
       valid_email
       workflow (~> 1.3.0)
