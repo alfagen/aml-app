@@ -8,7 +8,7 @@ Rails.application.config.after_initialize do
   [
     AML::Order, AML::Client, AML::Operator, AML::OrderDocument,
     AML::DocumentKindFieldDefinition, AML::DocumentKind, AML::DocumentGroup, AML::DocumentField,
-    AML::ClientInfo, AML::Status
+    AML::ClientInfo, AML::Status, AML::Notification, AML::NotificationTemplate
   ].each { |model| model.include Authority::Abilities }
 
   AML::Operator.include Authority::UserAbilities
