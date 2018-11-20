@@ -50,7 +50,7 @@ module Amlapp
     end
 
     def show
-      render :show, locals: { client_info: client_info }
+      redirect_to edit_client_info_path client_info
     end
 
     private

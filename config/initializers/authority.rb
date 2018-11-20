@@ -22,22 +22,23 @@ Authority.configure do |config|
   # Defaults are as follows:
   #
   config.controller_action_map = {
-    index:   'read',
-    show:    'read',
-    new:     'create',
-    create:  'create',
-    edit:    'update',
-    update:  'update',
+    index: 'read',
+    show: 'read',
+    new: 'create',
+    create: 'create',
+    edit: 'update',
+    update: 'update',
     destroy: 'delete',
-    accept:  'accept',
-    reject:  'reject',
-    done:    'done',
-    start:   'start',
-    cancel:  'cancel',
+    accept: 'accept',
+    reject: 'reject',
+
+    done: 'done',
+    start: 'start',
+    cancel: 'cancel',
     archive: 'archive',
     restore: 'restore',
-    reset:   'reset',
-    block:   'block',
+    reset: 'reset',
+    block: 'block',
     unblock: 'unblock'
   }
 
@@ -50,21 +51,21 @@ Authority.configure do |config|
   # Defaults are as follows:
   #
   config.abilities = {
-    create:      'creatable',
-    read:        'readable',
-    update:      'updatable',
-    reset:       'resetable',
-    delete:      'deletable',
-    destroy:     'deletable',
-    accept:      'acceptable',
-    reject:      'rejectable',
+    create: 'creatable',
+    read: 'readable',
+    update: 'updatable',
+    reset: 'resetable',
+    delete: 'deletable',
+    destroy: 'deletable',
+    accept: 'acceptable',
+    reject: 'rejectable',
     update_role: 'role_updatable',
-    block:       'blockable',
-    unblock:     'unblockable',
-    start:       'startable',
-    done:        'donable',
-    cancel:      'cancelable',
-    taked:       'taken' # TODO Удалить
+    block: 'blockable',
+    unblock: 'unblockable',
+    start: 'startable',
+    done: 'donable',
+    cancel: 'cancelable',
+    taked: 'taken' # TODO Удалить
   }
 
   # LOGGER

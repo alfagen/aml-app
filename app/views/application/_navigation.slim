@@ -12,30 +12,29 @@ nav.navbar.navbar-default.navbar-fixed-top
         = active_link_to orders_path, wrap_tag: :li do
           = title_with_counter 'Заявки клиентов', AML::Order.with_pending_state.count
 
-        - if current_user.administrator?
-          li.dropdown
-            = link_to '#', class: 'dropdown-toggle', data: { toggle: :dropdown }, role: :button, 'aria-haspopup' => true, 'aria-expanded' => false do
-              | Управление
-              = fa_icon 'lock-open'
-              span.m-l-sm.caret
-            ul.dropdown-menu
-              = active_link_to 'Клиенты', clients_path, wrap_tag: :li
-              = active_link_to 'Клиентская информация', client_infos_path, wrap_tag: :li
-              = active_link_to 'Документы клиентов', order_documents_path, wrap_tag: :li
+        li.dropdown
+          = link_to '#', class: 'dropdown-toggle', data: { toggle: :dropdown }, role: :button, 'aria-haspopup' => true, 'aria-expanded' => false do
+            | Управление
+            = fa_icon 'lock-open'
+            span.m-l-sm.caret
+          ul.dropdown-menu
+            = active_link_to 'Клиенты', clients_path, wrap_tag: :li if AML::Client.readable_by? current_user
+            = active_link_to 'Клиентская информация', client_infos_path, wrap_tag: :li if AML::ClientInfo.readable_by? current_user
+            = active_link_to 'Документы клиентов', order_documents_path, wrap_tag: :li if AML::OrderDocument.readable_by? current_user
+            li.divider
+            = active_link_to 'Статусы', statuses_path, wrap_tag: :li if AML::Status.readable_by? current_user
+            = active_link_to 'Чек-листы', check_lists_path, wrap_tag: :li if AML::CheckList.readable_by? current_user
+            = active_link_to 'Группы документов', document_groups_path, wrap_tag: :li if AML::DocumentGroup.readable_by? current_user
+            = active_link_to 'Причины отказов', reject_reasons_path, wrap_tag: :li if AML::RejectReason.readable_by? current_user
+            = active_link_to 'Пользовательские соглашения', agreements_path, wrap_tag: :li if AML::Agreement.readable_by? current_user
+            = active_link_to 'Настройка уведомлений', notifications_path, wrap_tag: :li if AML::Notification.readable_by? current_user
+            li.divider
+            = active_link_to 'Операторы', operators_path, wrap_tag: :li if AML::Operator.readable_by? current_user
+            - if current_user.administrator? || !Rails.env.production?
               li.divider
-              = active_link_to 'Статусы', statuses_path, wrap_tag: :li
-              = active_link_to 'Чек-листы', check_lists_path, wrap_tag: :li
-              = active_link_to 'Группы документов', document_groups_path, wrap_tag: :li
-              = active_link_to 'Причины отказов', reject_reasons_path, wrap_tag: :li
-              = active_link_to 'Пользовательские соглашения', agreements_path, wrap_tag: :li
-              = active_link_to 'Настройка уведомлений', notifications_path, wrap_tag: :li
-              li.divider
-              = active_link_to 'Операторы', operators_path, wrap_tag: :li
-              - unless Rails.env.production?
-                li.divider
-                = active_link_to 'Полный сброс данных', reset_db_path, wrap_tag: :li, method: :delete, data: { confirm: 'Сбросить полностью данные (документы, анкеты, кроме операторов) без восстановления?' }
-                = active_link_to 'Сброс клиентов', drop_clients_path, wrap_tag: :li, method: :delete, data: { confirm: 'Сбросить клиентов?' }
-                = active_link_to 'Сброс заявок', drop_orders_path, wrap_tag: :li, method: :delete, data: { confirm: 'Сбросить заявки?' }
+              = active_link_to 'Полный сброс данных', reset_db_path, wrap_tag: :li, method: :delete, data: { confirm: 'Сбросить полностью данные (документы, анкеты, кроме операторов) без восстановления?' }
+              = active_link_to 'Сброс клиентов', drop_clients_path, wrap_tag: :li, method: :delete, data: { confirm: 'Сбросить клиентов?' }
+              = active_link_to 'Сброс заявок', drop_orders_path, wrap_tag: :li, method: :delete, data: { confirm: 'Сбросить заявки?' }
       - if logged_in?
         ul.nav.navbar-nav.navbar-right
           li.dropdown
