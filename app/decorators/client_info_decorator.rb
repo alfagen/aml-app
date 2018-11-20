@@ -1,2 +1,0 @@
-class ClientInfoDecorator < ApplicationDecorator
-end

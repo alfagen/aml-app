@@ -9,7 +9,7 @@ class UserSessionsController < ApplicationController
 
   def create
     if login user_session.login, user_session.password, true
-      redirect_back_or_to orders_path, notice: 'Добро пожаловать!'
+      redirect_back_or_to aml.orders_path, notice: 'Добро пожаловать!'
     else
       flash.now.alert = 'Неверный логин или пароль'
       new
