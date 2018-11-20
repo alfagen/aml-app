@@ -83,6 +83,7 @@ PATH
   remote: vendor/aml-engine
   specs:
     aml (0.3.4)
+      authority
       carrierwave
       dapi-archivable (~> 0.1.2)
       enumerize
