@@ -34,7 +34,7 @@ gem 'mini_magick', '~> 4.8'
 gem 'ransack'
 gem 'virtus'
 
-gem 'money', '~> 6.12'
+gem 'money', '~> 6.13'
 gem 'money-rails', '~> 1.12'
 gem 'sendgrid-actionmailer', github: 'dreimannzelt/sendgrid-actionmailer', branch: :dynamic_template_data
 
