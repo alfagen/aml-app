@@ -1,16 +1,16 @@
 module OrdersHelper
   ORDER_WORKFLOW_STATE_CLASSES = {
-    'none'       => 'label-default',
-    'pending'    => 'label-warning',
+    'none' => 'label-default',
+    'pending' => 'label-warning',
     'processing' => 'label-warning',
-    'accepted'   => 'label-success',
-    'rejected'   => 'label-danger'
+    'accepted' => 'label-success',
+    'rejected' => 'label-danger'
   }.freeze
 
   ORDER_CHECK_WORKFLOW_STATE_CLASSES = {
-    'none'       => 'label-default',
-    'accepted'   => 'label-success',
-    'rejected'   => 'label-danger'
+    'none' => 'label-default',
+    'accepted' => 'label-success',
+    'rejected' => 'label-danger'
   }.freeze
 
   def order_workflow_state(workflow_state)

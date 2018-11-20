@@ -6,12 +6,28 @@ module Amlapp
 
     authorize_actions_for AML::Order
 
+    helper_method :workflow_state
+
+    EXPORT_COLUMNS = %i[
+      client_id
+      last_name maiden_name first_name patronymic birth_date birth_place gender
+      citizenship address passport_number second_document_number
+      card_suffix utility_bill
+      aml_status risk_category
+      pending_at accepted_at
+      all_agreements_accepted?
+      all_checks_accepted?
+    ].freeze
+
     def index
-      render :index, locals: {
-        q: q,
-        orders: paginate(q.result),
-        workflow_state: workflow_state
-      }
+      respond_to do |format|
+        format.html do
+          render :index, locals: { q: q, orders: paginate(q.result), workflow_state: workflow_state }
+        end
+        format.xlsx do
+          export_xlsx
+        end
+      end
     end
 
     def new
@@ -119,6 +135,17 @@ module Amlapp
 
     def set_session_sorts(workflow_state, sorts)
       session[workflow_state.to_s + '_sorts'] = sorts
+    end
+
+    def export_xlsx
+      orders = q.result.includes(:client, :aml_client_info)
+
+      render xlsx: 'orders',
+             locals: {
+               orders: OrderExportDecorator.decorate_collection(orders),
+               columns: EXPORT_COLUMNS
+             },
+             disposition: 'inline'
     end
 
     def get_session_sorts(workflow_state)

@@ -40,6 +40,13 @@ gem 'sendgrid-actionmailer', github: 'dreimannzelt/sendgrid-actionmailer', branc
 
 gem 'draper', '~> 3.0.1' # , github: 'drapergem/draper'
 
+# In Gem hell migrating to RubyZip v1.0.0? Include zip-zip in your Gemfile and everything's coming up roses!
+# для axlsx
+gem 'zip-zip'
+
+gem 'axlsx', github: 'randym/axlsx'
+gem 'axlsx_rails'
+
 gem 'globalize', github: 'globalize/globalize', ref: 'HEAD'
 gem 'globalize-accessors'
 gem 'http_accept_language'
