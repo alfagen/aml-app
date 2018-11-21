@@ -6,7 +6,7 @@ table.table.table-condensed.table-striped
       th.text-right Действия
   tbody
     - client_infos.each do |client_info|
-      - cid = ClientInfoDecorator.decorate(client_info)
+      - cid = AML::ClientInfoDecorator.decorate(client_info)
       tr
         - columns.each do |column|
           th= cid.send column

@@ -96,6 +96,7 @@ PATH
       authority
       carrierwave
       dapi-archivable (~> 0.1.2)
+      draper (~> 3.0.1)
       enumerize
       fast_jsonapi
       globalize

@@ -1,4 +1,4 @@
-- document_decorated = OrderDocumentDecorator.decorate order_document
+- document_decorated = AML::OrderDocumentDecorator.decorate order_document
 h4 Имя в заявке: #{order_document.order.first_name} #{order_document.order.surname} #{order_document.order.patronymic}
 h4 Тип документа: #{order_document.document_kind.title}
 h4 Состояние: #{order_document.workflow_state}

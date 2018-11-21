@@ -18,7 +18,7 @@ table.table.table-condensed.table-striped
       th.text-right Действия
   tbody
     - clients.each do |client|
-      - cd = ClientDecorator.new client
+      - cd = AML::ClientDecorator.new client
       tr
         td= cd.id
         td= humanized_time_in_current_time_zone(cd.created_at)
