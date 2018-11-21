@@ -1,0 +1,11 @@
+- if order.card_holded?
+  hr
+  .text-success Карта удачно холдирована #{humanized_time_in_current_time_zone order.card_holded_at}
+  dl
+    dt Карта
+    dd= order_card order
+  - if order.card_image.present?
+    = link_to image_tag(order.card_image.url, size: '100'), order.card_image.url
+
+- else
+  .text-danger Холдированная карта отсутствует

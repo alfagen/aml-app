@@ -4,7 +4,8 @@ AML.configure do |config|
   config.logger = ActiveSupport::Logger.new Rails.root.join './log/aml.log'
 end
 
-Rails.application.config.after_initialize do
+Rails.application.config.to_prepare do
+  # Rails.application.config.after_initialize do
   [
     AML::Order, AML::Client, AML::Operator, AML::OrderDocument,
     AML::DocumentKindFieldDefinition, AML::DocumentKind, AML::DocumentGroup, AML::DocumentField,

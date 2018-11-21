@@ -28,4 +28,10 @@ module OrdersHelper
     classes << ORDER_CHECK_WORKFLOW_STATE_CLASSES[workflow_state]
     content_tag :span, workflow_state, class: classes
   end
+
+  def order_card(order)
+    return '-' unless order.card_brand.present?
+
+    "#{order.card_bin}..#{order.card_suffix} #{order.card_brand}"
+  end
 end

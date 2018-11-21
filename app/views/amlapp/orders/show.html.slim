@@ -11,6 +11,8 @@ hr
     = render 'order_actions', order: order
     - if order.rejected?
       = order_decorated.reject_reason
+
+    = render 'order_card', order: order
   .col-md-4
     = render 'amlapp/clients/agreements', client: order.client
   .col-md-4
