@@ -19,6 +19,7 @@ module Amlapp
     end
 
     def show
+      authorize_action_for client
       add_breadcrumb 'Клиенты', :clients_path
       add_breadcrumb "Клиент #{client.id}"
       query = client.orders.ransack(params.fetch(:q, {}).permit!)
