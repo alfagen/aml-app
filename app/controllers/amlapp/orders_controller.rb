@@ -147,7 +147,7 @@ module Amlapp
 
       render xlsx: 'orders',
              locals: {
-               orders: OrderExportDecorator.decorate_collection(orders),
+               orders: AML::OrderExportDecorator.decorate_collection(orders),
                columns: EXPORT_COLUMNS
              },
              disposition: 'inline'
