@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_15_163644) do
+ActiveRecord::Schema.define(version: 2018_11_20_120501) do
 
   create_table "aml_agreement_translations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "aml_agreement_id", null: false
@@ -90,6 +90,7 @@ ActiveRecord::Schema.define(version: 2018_11_15_163644) do
     t.string "total_income_amount_currency", default: "eur", null: false
     t.integer "total_operations_count", default: 0, null: false
     t.string "risk_category", limit: 1
+    t.string "locale"
     t.index ["aml_accepted_order_id"], name: "index_aml_clients_on_aml_accepted_order_id"
     t.index ["aml_order_id"], name: "index_aml_clients_on_aml_order_id"
     t.index ["aml_status_id"], name: "index_aml_clients_on_aml_status_id"
@@ -252,6 +253,11 @@ ActiveRecord::Schema.define(version: 2018_11_15_163644) do
     t.text "reject_reason_details"
     t.timestamp "pending_at"
     t.timestamp "operated_at"
+    t.string "card_brand"
+    t.string "card_bin"
+    t.string "card_suffix"
+    t.boolean "card_holded", default: false, null: false
+    t.timestamp "card_holded_at"
     t.index ["aml_reject_reason_id"], name: "index_aml_orders_on_aml_reject_reason_id"
     t.index ["aml_status_id"], name: "index_aml_orders_on_aml_status_id"
     t.index ["client_id"], name: "index_aml_orders_on_client_id"

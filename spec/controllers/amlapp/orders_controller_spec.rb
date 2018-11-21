@@ -26,9 +26,9 @@ RSpec.describe Amlapp::OrdersController, type: :controller do
     let(:user) { create(:aml_operator, role: 'administrator') }
 
     it '#create' do
-      post :create, params: { order: attributes_for(:aml_order) }
+      post :create, params: { order: attributes_for(:aml_order).merge(client_id: aml_order.client_id) }
 
-      expect(response).to be_successful
+      expect(response).to be_redirect
     end
   end
 end
