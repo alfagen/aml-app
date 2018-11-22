@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   default_url_options Settings.default_url_options.symbolize_keys
 
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
-  mount AML::Engine, at: '/aml'
-  root to: redirect('aml/orders#index')
+  mount AML::Engine, at: '/'
+  root to: redirect('orders#index')
 
   get 'login' => 'user_sessions#new', as: :login
   delete 'logout' => 'user_sessions#destroy', as: :logout
