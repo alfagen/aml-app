@@ -101,8 +101,6 @@ PATH
       fast_jsonapi
       globalize
       globalize-accessors
-      jquery-rails
-      jquery-ui-rails
       money (~> 6.13)
       money-rails (~> 1.13)
       rails (~> 5.2.1)
