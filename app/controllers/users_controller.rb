@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  layout 'simple'
+
   def edit
     render :edit, locals: { user: current_user }
   end

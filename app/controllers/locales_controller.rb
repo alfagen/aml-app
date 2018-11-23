@@ -1,4 +1,6 @@
 class LocalesController < ApplicationController
+  layout 'simple'
+
   def update
     locale = available_locale params[:locale]
     if locale.present?
