@@ -85,6 +85,8 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-noty'
 end
 
+gem 'noty_flash', github: 'BrandyMint/noty_flash'
+
 gem 'bootstrap-kaminari-views'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
 gem 'font-awesome-rails'

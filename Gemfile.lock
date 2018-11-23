@@ -15,6 +15,12 @@ GIT
       addressable
 
 GIT
+  remote: https://github.com/BrandyMint/noty_flash.git
+  revision: 24e3deacd8960248459f7cad179899dac3f1d321
+  specs:
+    noty_flash (0.1.2)
+
+GIT
   remote: https://github.com/HoJSim/fast_jsonapi.git
   revision: d6b6b37486f8fd0dfbf83a95abf3dd933bfb2383
   branch: dev
@@ -92,7 +98,7 @@ GIT
 PATH
   remote: vendor/aml-engine
   specs:
-    aml (0.4.1)
+    aml (0.4.2)
       active_link_to
       authority
       carrierwave
@@ -104,6 +110,7 @@ PATH
       globalize-accessors
       money (~> 6.13)
       money-rails (~> 1.13)
+      noty_flash
       rails (~> 5.2.1)
       ransack
       sendgrid-actionmailer
@@ -705,6 +712,7 @@ DEPENDENCIES
   money-rails (~> 1.12)
   mysql2 (~> 0.5.2)
   non-stupid-digest-assets
+  noty_flash!
   nprogress-rails
   overcommit
   pry
