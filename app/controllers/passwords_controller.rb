@@ -1,4 +1,6 @@
 class PasswordsController < ApplicationController
+  layout 'simple'
+
   def edit
     render :edit, locals: { change_password_form: form, user: current_user }
   end
