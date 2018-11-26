@@ -14,6 +14,5 @@ Rails.application.routes.draw do
   resources :password_resets, only: %i[new create edit update]
   resource :password, only: %i[edit update]
 
-  resource :locale, only: :update
   resource :user, only: %i[edit update]
 end
