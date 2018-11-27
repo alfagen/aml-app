@@ -86,6 +86,7 @@ source 'https://rails-assets.org' do
 end
 
 gem 'noty_flash', github: 'BrandyMint/noty_flash'
+gem 'simple_form_bootstrap_inputs', github: 'ValentinAndreev/simple_form_bootstrap_inputs'
 
 gem 'bootstrap-kaminari-views'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
