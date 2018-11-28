@@ -110,11 +110,12 @@ GIT
 PATH
   remote: vendor/aml-engine
   specs:
-    aml (0.4.4)
+    aml (0.4.5)
       active_link_to
       authority
       axlsx
       axlsx_rails
+      best_in_place
       bootstrap-kaminari-views
       bootstrap-sass (~> 3.2)
       bootstrap3-datetimepicker-rails (~> 4.17.47)
@@ -209,8 +210,13 @@ GEM
     ast (2.4.0)
     authority (3.3.0)
       activesupport (>= 3.0.0)
+    auto_logger (0.1.3)
+      activesupport
+      beautiful-log
+      logger
     autoprefixer-rails (9.3.1)
       execjs
+    awesome_print (1.8.0)
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
       ice_nine (~> 0.11.0)
@@ -219,6 +225,9 @@ GEM
       actionpack (>= 3.1)
       axlsx (>= 2.0.1)
     bcrypt (3.1.12)
+    beautiful-log (0.2.2)
+      awesome_print (~> 1.8.0)
+      colorize (~> 0.8.1)
     best_in_place (3.1.1)
       actionpack (>= 3.2)
       railties (>= 3.2)
@@ -300,6 +309,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
+    colorize (0.8.1)
     concurrent-ruby (1.1.3)
     crass (1.0.4)
     dapi-archivable (0.1.3)
@@ -413,6 +423,7 @@ GEM
     localized_render (0.1.0)
       globalize
       rails (~> 5.2.1)
+    logger (1.2.8)
     loofah (2.2.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -682,6 +693,7 @@ DEPENDENCIES
   active_link_to!
   aml!
   authority
+  auto_logger (~> 0.1.3)
   axlsx!
   axlsx_rails
   best_in_place

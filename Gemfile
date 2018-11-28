@@ -47,6 +47,7 @@ gem 'zip-zip'
 gem 'axlsx', github: 'randym/axlsx'
 gem 'axlsx_rails'
 
+gem 'auto_logger', '~> 0.1.3'
 gem 'globalize', github: 'globalize/globalize', ref: 'HEAD'
 gem 'globalize-accessors'
 gem 'http_accept_language'
