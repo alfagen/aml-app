@@ -33,4 +33,9 @@ class User < ApplicationRecord
     self.password = new_password
     save!
   end
+
+  def time_zone
+    return unless time_zone_name.present?
+    ActiveSupport::TimeZone[time_zone_name]
+  end
 end

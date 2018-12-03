@@ -8,6 +8,9 @@ class CreateUser < ActiveRecord::Migration[5.2]
       t.datetime :reset_password_token_expires_at
       t.datetime :reset_password_email_sent_at
       t.integer :access_count_to_reset_password_page
+      t.string :time_zone_name
+      t.string :locale
+      t.string :name
       t.timestamps
     end
 
