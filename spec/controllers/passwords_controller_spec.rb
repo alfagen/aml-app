@@ -15,8 +15,8 @@ RSpec.describe PasswordsController, type: :controller do
 
       it 'изменение пароля с правильным текущим паролем' do
         put 'update', params: { change_password_form: attributes_for(:user, current_password: current_password,
-                                                                                    password: new_password,
-                                                                                    password_confirmation: new_password) }
+                                                                            password: new_password,
+                                                                            password_confirmation: new_password) }
         expect(User.authenticate(user.email, new_password)).to eq(user)
         expect(response).to be_successful
       end

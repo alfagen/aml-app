@@ -36,6 +36,7 @@ class User < ApplicationRecord
 
   def time_zone
     return unless time_zone_name.present?
+
     ActiveSupport::TimeZone[time_zone_name]
   end
 end
