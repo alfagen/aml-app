@@ -5,11 +5,7 @@ class ApplicationAuthorizer < Authority::Authorizer
   # @param [Symbol] adjective; example: `:creatable`
   # @param [Object] user - whatever represents the current user in your app
   # @return [Boolean]
-  def self.default(_adjective, operator)
-    operator.administrator?
-  end
-
-  def operator
-    current_user.aml_operator
+  def self.default(_adjective, user)
+    user.try(:aml_operator)&.administrator?
   end
 end
