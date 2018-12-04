@@ -1,0 +1,10 @@
+doctype html
+html
+  head
+    title Forbidden
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  body
+    h1 Access Denied
+    p You do not have permission to access this resource.
+    = noty_flashes
