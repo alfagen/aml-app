@@ -4,12 +4,12 @@ class PasswordResetsController < ApplicationController
   before_action :require_login, only: [:update]
 
   def create
-    user = AML::Operator.find_by email: params.require(:password_reset).fetch(:email)
+    user = User.find_by email: params.require(:password_reset).fetch(:email)
     user&.deliver_reset_password_instructions!
   end
 
   def edit
-    user = AML::Operator.load_from_reset_password_token(params[:id])
+    user = User.load_from_reset_password_token(params[:id])
 
     if user.present?
       auto_login user
