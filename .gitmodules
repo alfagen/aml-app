@@ -2,6 +2,7 @@
 [submodule "vendor/aml-engine"]
 	path = vendor/aml-engine
 	url = https://github.com/alfagen/aml-engine.git
+  branch = production
 [submodule "config/locales/shared"]
 	path = config/locales/shared
   url = https://github.com/alfagen/locales.git
