@@ -8,6 +8,8 @@ git checkout master && git pull > /dev/null
 cd ../../
 pwd
 
+bundle
+git add Gemfile.lock
 rails aml:install:migrations
 
 NEW_VERSION=`ruby -r./vendor/aml-engine/lib/aml/version -e "print AML::VERSION"`
