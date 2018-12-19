@@ -7,6 +7,11 @@ defaults: &defaults
   mailer:
     from: support@kassa.cc
 
+  card:
+    brands: [visa, master, mir]
+    bin: { visa: 6, master: 6, mir: 4 }
+    suffix: { visa: 4, master: 4, mir: 2 }
+
   notification_documentation_url: 'https://docs.google.com/spreadsheets/d/15MKv6fq6u0bwHRXtvXHIDNNZkLfKdwl4u1sbwIOihHA/edit#gid=0'
 
 development:
