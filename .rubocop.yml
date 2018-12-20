@@ -8,6 +8,7 @@ AllCops:
     - 'config/initializers/simple_form*'
     - 'db/migrate/*'
     - 'vendor/**/*'
+    - 'config/locales/shared/**/*'
 
 Style/AsciiComments:
   Enabled: false
