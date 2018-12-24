@@ -110,7 +110,7 @@ GIT
 PATH
   remote: vendor/aml-engine
   specs:
-    aml (0.4.23)
+    aml (0.4.24)
       active_link_to
       authority
       axlsx
