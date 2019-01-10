@@ -1,6 +1,6 @@
 h3 Редактировать профиль
 hr
-= simple_form_for user, url: user_path do |f|
+= simple_form_for operator, url: user_path do |f|
   .row
     .col-md-6
       = f.input :name, as: :string
@@ -8,7 +8,7 @@ hr
       = f.input :email, as: :string
   .row
     .col-md-6
-      = f.input :locale, collection: I18n.available_locales, selected: current_user.locale, include_blank: false
+      = f.input :locale, collection: I18n.available_locales, selected: current_user.aml_operator.locale, include_blank: false
     .col-md-6
       = f.input :time_zone_name,
         collection: ActiveSupport::TimeZone.all.map{ |z| [z.to_s, z.name] },
