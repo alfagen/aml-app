@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_24_105551) do
+ActiveRecord::Schema.define(version: 2019_01_10_052242) do
 
   create_table "aml_agreement_translations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "aml_agreement_id", null: false
@@ -350,6 +350,22 @@ ActiveRecord::Schema.define(version: 2018_12_24_105551) do
     t.index ["on_reject_notification_id"], name: "index_aml_statuses_on_on_reject_notification_id"
   end
 
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "email", null: false
+    t.string "name"
+    t.string "crypted_password"
+    t.string "salt"
+    t.string "reset_password_token"
+    t.datetime "reset_password_token_expires_at"
+    t.datetime "reset_password_email_sent_at"
+    t.integer "access_count_to_reset_password_page"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "aml_operator_id"
+    t.index ["aml_operator_id"], name: "index_users_on_aml_operator_id"
+    t.index ["email"], name: "index_users_on_email", unique: true
+  end
+
   add_foreign_key "aml_client_agreements", "aml_agreements"
   add_foreign_key "aml_client_agreements", "aml_clients"
   add_foreign_key "aml_client_infos", "aml_clients"
@@ -372,4 +388,5 @@ ActiveRecord::Schema.define(version: 2018_12_24_105551) do
   add_foreign_key "aml_statuses", "aml_notifications", column: "on_accept_notification_id"
   add_foreign_key "aml_statuses", "aml_notifications", column: "on_pending_notification_id"
   add_foreign_key "aml_statuses", "aml_notifications", column: "on_reject_notification_id"
+  add_foreign_key "users", "aml_operators"
 end
