@@ -110,7 +110,7 @@ GIT
 PATH
   remote: vendor/aml-engine
   specs:
-    aml (0.4.27)
+    aml (0.4.28)
       active_link_to
       authority
       axlsx
@@ -146,7 +146,6 @@ PATH
       simple_form_bootstrap_inputs
       slim
       slim-rails
-      sorcery
       turbolinks
       valid_email
       workflow (~> 1.3.0)
