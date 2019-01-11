@@ -13,7 +13,7 @@ class User < ApplicationRecord
   after_commit :deliver_reset_password_instructions!, on: :create, if: -> { respond_to?(:deliver_reset_password_instructions!) }
 
   def active_for_authentication?
-    aml_operator.unblocked?
+    aml_operator&.unblocked?
   end
 
   # TODO move to sorcery
