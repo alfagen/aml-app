@@ -110,11 +110,11 @@ GIT
 PATH
   remote: vendor/aml-engine
   specs:
-    aml (0.4.29)
+    aml (0.5.1)
       active_link_to
       authority
       axlsx
-      axlsx_rails
+      axlsx_rails (~> 0.5.2)
       best_in_place
       bootstrap-kaminari-views
       bootstrap-sass (~> 3.2)
@@ -308,7 +308,7 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     colorize (0.8.1)
-    concurrent-ruby (1.1.3)
+    concurrent-ruby (1.1.4)
     crass (1.0.4)
     dapi-archivable (0.1.3)
       activerecord
@@ -328,7 +328,7 @@ GEM
     enumerize (2.2.2)
       activesupport (>= 3.2)
     equalizer (0.0.11)
-    erubi (1.7.1)
+    erubi (1.8.0)
     execjs (2.7.0)
     factory_bot (4.11.1)
       activesupport (>= 3.0.0)
@@ -376,7 +376,7 @@ GEM
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     http_accept_language (2.1.1)
-    i18n (1.1.1)
+    i18n (1.5.1)
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
     iniparse (1.4.4)
@@ -435,10 +435,10 @@ GEM
     mime-types (3.2.2)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2018.0812)
-    mimemagic (0.3.2)
+    mimemagic (0.3.3)
     mini_magick (4.9.2)
     mini_mime (1.0.1)
-    mini_portile2 (2.3.0)
+    mini_portile2 (2.4.0)
     mini_racer (0.2.4)
       libv8 (>= 6.3)
     minitest (5.11.3)
@@ -465,8 +465,8 @@ GEM
     net-ssh (5.0.2)
     netrc (0.11.0)
     nio4r (2.3.1)
-    nokogiri (1.8.5)
-      mini_portile2 (~> 2.3.0)
+    nokogiri (1.10.0)
+      mini_portile2 (~> 2.4.0)
     non-stupid-digest-assets (1.0.9)
       sprockets (>= 2.0)
     notiffany (0.1.1)
