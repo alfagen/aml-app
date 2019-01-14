@@ -56,7 +56,7 @@ gem 'localized_render'
 gem 'non-stupid-digest-assets'
 gem 'settingslogic'
 
-gem 'workflow', github: 'geekq/workflow'
+gem 'workflow', github: 'brandymint/workflow', branch: 'transition_availbility'
 
 # Можно перейти в master если туда влили этот PR https://github.com/Netflix/fast_jsonapi/pull/230
 # Данные изменения отлавливаются в spec/serializers/order_serializer_spec.rb
