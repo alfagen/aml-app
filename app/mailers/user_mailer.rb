@@ -1,4 +1,4 @@
-class UserMailer < ApplicationMailer
+class UserMailer < AML::ApplicationMailer
   layout 'mailer'
 
   default from: Settings.mailer.from
